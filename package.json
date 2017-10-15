@@ -1,0 +1,61 @@
+{
+  "name": "bird",
+  "version": "0.5.4",
+  "description": "Framework for web ( it's my personal template :D)",
+  "main": "build/app.js",
+  "scripts": {
+    "devbuild": "gulp dev watch",
+    "devserver": "nodemon build/app.js -e js,njk",
+    "compress": "tar -czvf app.tar.gz build package.json",
+    "app": "NODE_ENV=production node build/app.js",
+    "build": "gulp prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amovah/bird.git"
+  },
+  "keywords": [
+    "framework",
+    "web"
+  ],
+  "author": "Ali Movahedi <ali_movahedi@aol.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "commander": "^2.11.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "fs-extra": "^4.0.1",
+    "helmet": "^3.8.1",
+    "mongoose": "^4.11.10",
+    "morgan": "^1.8.2",
+    "nunjucks": "^3.0.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "replace": "^0.3.0",
+    "require-directory": "^2.1.1",
+    "socket.io": "^2.0.3",
+    "stringing": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.0",
+    "babelify": "^7.3.0",
+    "eslint": "^3.19.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean-css": "^3.6.0",
+    "gulp-eslint": "^4.0.0",
+    "gulp-less": "^3.3.2",
+    "gulp-nunjucks": "^3.0.0",
+    "gulp-replace": "^0.6.1",
+    "gulp-rimraf": "^0.2.1",
+    "gulp-uglify": "^3.0.0"
+  }
+}
