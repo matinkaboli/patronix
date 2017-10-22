@@ -1,18 +1,17 @@
 {
-  "name": "bird",
-  "version": "0.5.4",
-  "description": "Framework for web ( it's my personal template :D)",
+  "name": "clopa",
+  "version": "0.0.0",
+  "description": "",
   "main": "build/app.js",
   "scripts": {
     "devbuild": "gulp dev watch",
-    "devserver": "nodemon build/app.js -e js,njk",
+    "devserver": "nodemon --delay 0.5 build/app.js -e js,njk",
     "compress": "tar -czvf app.tar.gz build package.json",
     "app": "NODE_ENV=production node build/app.js",
     "build": "gulp prod"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/amovah/bird.git"
+    "type": "git"
   },
   "keywords": [
     "framework",
