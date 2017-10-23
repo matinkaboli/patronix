@@ -1,0 +1,32 @@
+{% extends './layouts/index.njk' %}
+
+{% block styles %}
+<link rel="stylesheet" href="/css/style.css">
+{% endblock %}
+{% block content %}
+<form
+  class="login"
+  method="post"
+  action="/login"
+  name="login-form"
+  onsubmit="return checkForm()">
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    required>
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    maxlength="200"
+    required>
+  <input
+    type="submit"
+    value="REGISTER">
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="/file/js/login.js"></script>
+{% endblock %}
