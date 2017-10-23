@@ -6,12 +6,12 @@ const chatSchema = new Schema({
       enum: [0, 1],
       type: Number,
       trim: true,
-      required: [true, "Sender required"]
+      required: [true, 'Sender required']
     },
     message: {
       type: String,
       trim: true,
-      required: [true, "Message required"]
+      required: [true, 'Message required']
     },
     time: {
       type: Number,
