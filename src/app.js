@@ -51,7 +51,7 @@ app.use(helmet());
 /**
 * static files
 */
-app.use('/file', express.static(path.resolve(__dirname, './public')));
+app.use('/files', express.static(path.resolve(__dirname, './public')));
 
 /**
  * logger
