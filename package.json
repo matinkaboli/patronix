@@ -20,6 +20,7 @@
   "author": "Ali Movahedi <ali_movahedi@aol.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.26.0",
     "body-parser": "^1.17.2",
     "commander": "^2.11.0",
     "connect-flash": "^0.1.1",
@@ -43,17 +44,14 @@
     "babel-eslint": "^7.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.0",
-    "babelify": "^7.3.0",
     "eslint": "^3.19.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.0",
-    "gulp-browserify": "^0.5.1",
     "gulp-clean-css": "^3.6.0",
     "gulp-eslint": "^4.0.0",
     "gulp-less": "^3.3.2",
     "gulp-nunjucks": "^3.0.0",
-    "gulp-replace": "^0.6.1",
     "gulp-rimraf": "^0.2.1",
     "gulp-uglify": "^3.0.0"
   }

@@ -7,10 +7,7 @@ var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var minifier = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
-var replace = require('gulp-replace');
-var browserify = require('gulp-browserify');
 var babel = require('gulp-babel');
-var babelify = require('babelify');
 var config = require('./src/config.json');
 
 gulp.task('clean', function() {
