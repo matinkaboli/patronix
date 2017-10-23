@@ -6,7 +6,7 @@ const operatorSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    required: [true, "Email required"]
+    required: [true, 'Email required']
   },
   password: {
     type: String,
