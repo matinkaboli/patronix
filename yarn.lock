@@ -1132,7 +1132,7 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
 
-defaults@^1.0.0:
+defaults@^1.0.0, defaults@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/defaults/-/defaults-1.0.3.tgz#c656051e9817d9ff08ed881477f3fe4019f3ef7d"
   dependencies:
@@ -1508,6 +1508,12 @@ expand-tilde@^2.0.2:
 expect-ct@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/expect-ct/-/expect-ct-0.1.0.tgz#52735678de18530890d8d7b95f0ac63640958094"
+
+express-rate-limit@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-2.9.0.tgz#62c29fc939d72f0a03a87428c647fc4ee0d15978"
+  dependencies:
+    defaults "^1.0.3"
 
 express-session@^1.15.5:
   version "1.15.6"
