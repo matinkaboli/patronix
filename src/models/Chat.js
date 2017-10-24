@@ -28,6 +28,6 @@ const chatSchema = new Schema({
   client: {
 
   }
-}, { versionKey: false });
+});
 
 export default mongoose.model('Chat', chatSchema);

@@ -16,6 +16,6 @@ const siteSchema = new Schema({
     trim: true,
     required: true
   }
-}, { versionKey: false });
+});
 
 export default mongoose.model('Site', siteSchema);
