@@ -3,8 +3,6 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-import passport from 'passport';
-import LocalStrategy from 'passport-local';
 import nunjucks from 'nunjucks';
 import cookieParser from 'cookie-parser';
 import path from 'path';
@@ -14,7 +12,6 @@ import helmet from 'helmet';
 import socket from 'socket.io';
 
 import config from './config.json';
-import { User } from './models';
 import routers from './routers/';
 import replies from './replies';
 
@@ -88,28 +85,6 @@ app.use(session({
 app.use(flash());
 
 /**
- * passport
- */
-passport.use(new LocalStrategy((username, password, done) => {
-  User.findOne({username, password}).then(user => {
-    user ? done(null, user) : done(null, false);
-  }, () => { done(null, false); });
-}));
-
-passport.serializeUser((user, done) => {
-  done(null, user.username);
-});
-
-passport.deserializeUser((username, done) => {
-  User.findOne({ username }).then(user => {
-    done(null, user);
-  });
-});
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-/**
  * nunjucks
  */
 app.set('engine', nunjucks.configure(path.resolve(__dirname, './views'), {
@@ -167,8 +142,8 @@ app.use((req, res, next) => {
  * routers
  */
 
-for (let router in routers) {
-  app.use(routers[router]);
+for (let router of routers) {
+  app.use(router);
 }
 
 
