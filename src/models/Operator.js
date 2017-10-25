@@ -1,16 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 
-const fullName = new Schema({
-  first: {
-    type: String,
-    trim: true
-  },
-  last: {
-    type: String,
-    trim: true
-  }
-});
-
 const schema = new Schema({
   email: {
     type: String,
@@ -23,7 +12,18 @@ const schema = new Schema({
     type: String,
     trim: true
   },
-  name: fullName
+  name: {
+    first: {
+      type: String,
+      trim: true,
+      required: [true, 'First name required']
+    },
+    last: {
+      type: String,
+      trim: true,
+      required: [true, 'Last name required']
+    }
+  }
 });
 
 export default mongoose.model('Operator', schema);
