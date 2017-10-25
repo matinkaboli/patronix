@@ -13,7 +13,8 @@ const fullName = new Schema({
   }
 });
 
-const userSchema = new Schema({
+const schema = new Schema({
+  name: fullName,
   email: {
     type: String,
     unique: true,
@@ -21,10 +22,8 @@ const userSchema = new Schema({
     trim: true,
     required: [true, 'Email required']
   },
-  name: fullName,
   password: {
     type: String,
-    /* ref: COMPLETE THIS SHIT */
     trim: true
   },
   phone: {
@@ -33,7 +32,7 @@ const userSchema = new Schema({
       validator(v) {
         return /\d{3}-\d{3}-\d{4}/.test(v);
       },
-      message: '{VALUE} is not a valid phone number!'
+      message: 'It is not a valid phone number!'
     },
     trim: true
   },
@@ -49,10 +48,13 @@ const userSchema = new Schema({
   },
   status: {
     type: Number,
-    enum: [1, 2, 3],
+    enum: [0, 1, 2, 3],
     required: true,
     trim: true
+  },
+  activationLink: {
+    type: String
   }
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model('User', schema);

@@ -1,21 +1,25 @@
 import mongoose, { Schema } from 'mongoose';
 
-const siteSchema = new Schema({
+const schema = new Schema({
   link: {
     type: String,
     unique: true
   },
   owner: {
-
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
-  operator: {
-  },
+  operator: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Operator'
+    }
+  ],
   status: {
     type: Number,
     enum: [1, 2, 3],
-    trim: true,
     required: true
   }
 });
 
-export default mongoose.model('Site', siteSchema);
+export default mongoose.model('Site', schema);

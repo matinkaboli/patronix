@@ -1,6 +1,17 @@
 import mongoose, { Schema } from 'mongoose';
 
-const operatorSchema = new Schema({
+const fullName = new Schema({
+  first: {
+    type: String,
+    trim: true
+  },
+  last: {
+    type: String,
+    trim: true
+  }
+});
+
+const schema = new Schema({
   email: {
     type: String,
     unique: true,
@@ -11,7 +22,8 @@ const operatorSchema = new Schema({
   password: {
     type: String,
     trim: true
-  }
+  },
+  name: fullName
 });
 
-export default mongoose.model('Operator', operatorSchema);
+export default mongoose.model('Operator', schema);

@@ -20,13 +20,14 @@ const chatSchema = new Schema({
     }
   }],
   site: {
-
+    type: Schema.Types.ObjectId,
+    ref: 'Site'
   },
   operator: {
-
+    type: Schema.Types.ObjectId,
+    ref: 'Operator'
   },
   client: {
-
   }
 });
 
