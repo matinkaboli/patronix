@@ -14,9 +14,9 @@ const chatSchema = new Schema({
       required: [true, 'Message required']
     },
     time: {
-      type: Number,
+      type: Date,
       trim: true,
-      default: Date.now()
+      default: Date.now
     }
   }],
   site: {
