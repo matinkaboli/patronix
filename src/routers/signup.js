@@ -10,7 +10,7 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
-  const fullName = {
+  const name = {
     first: req.body.fname,
     last: req.body.lname
   };
@@ -20,7 +20,7 @@ router.post('/signup', (req, res) => {
     status: 0,
     activationLink: 'test code',
     email,
-    fullName
+    name
   });
   addUser.save()
     .then(() => {
