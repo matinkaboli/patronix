@@ -16,7 +16,7 @@ const decrypt = (text, email) => {
   return decrypted;
 };
 
-module.exports = {
+export default {
   encrypt,
   decrypt
 };
