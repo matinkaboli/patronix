@@ -767,7 +767,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.0, bluebird@^3.5.0:
+bluebird@^3.5.0:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -1014,12 +1014,11 @@ connect-flash@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/connect-flash/-/connect-flash-0.1.1.tgz#d8630f26d95a7f851f9956b1e8cc6732f3b6aa30"
 
-connect-mongo@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/connect-mongo/-/connect-mongo-1.3.2.tgz#7cbf58dfff26760e5e00e017d0a85b4bc90b9d37"
+connect-mongo@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/connect-mongo/-/connect-mongo-2.0.0.tgz#3e4d036a6869385b0191a3737d3051a86abc2fb8"
   dependencies:
-    bluebird "^3.0"
-    mongodb ">= 1.2.0 <3.0.0"
+    mongodb "^2.0.36"
 
 console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
@@ -2845,7 +2844,7 @@ mongodb-core@2.1.17:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb@2.2.33, "mongodb@>= 1.2.0 <3.0.0":
+mongodb@2.2.33, mongodb@^2.0.36:
   version "2.2.33"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.33.tgz#b537c471d34a6651b48f36fdbf29750340e08b50"
   dependencies:
