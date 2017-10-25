@@ -1,0 +1,41 @@
+{% extends './layouts/index.njk' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+  <form
+    method="post"
+    action="/signup"
+    name="signup-form"
+    onsubmit="return checkForm()">
+    <input
+      type="email"
+      name="email"
+      placeholder="ایمیل"
+      required>
+    <input
+      type="password"
+      name="password"
+      placeholder="رمز ورود"
+      maxlength="200"
+      required>
+    <input
+      type="text"
+      name="fname"
+      placeholder="نام"
+      required>
+    <input
+      type="text"
+      name="lname"
+      placeholder="نام خانوادگی"
+      required>
+    <input
+      type="submit"
+      value="عضویت">
+  </form>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/files/js/register.js"></script>
+{% endblock %}
