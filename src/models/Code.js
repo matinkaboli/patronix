@@ -7,7 +7,13 @@ const schema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    unique: true
+  },
+  createdAt: {
+    type: Date,
+    expires: 3600,
+    default: Date.now
   }
 });
 
