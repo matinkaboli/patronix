@@ -59,7 +59,7 @@ const schema = new Schema({
     trim: true
   },
   expireTime: {
-    type: Number,
+    type: Date,
     trim: true
   },
   status: {
@@ -67,9 +67,6 @@ const schema = new Schema({
     enum: [0, 1, 2, 3],
     required: true,
     trim: true
-  },
-  code: {
-    type: String
   }
 });
 
