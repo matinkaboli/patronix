@@ -31,15 +31,9 @@ const app = express();
 
 let server;
 
-if (process.env.NODE_ENV !== 'production') {
-  server = app.listen(config.devPort, () => {
-    console.log(`server has been started on port: ${config.devPort}`);
-  });
-} else {
-  server = app.listen(config.prodPort, () => {
-    console.log(`server has been started on port: ${config.prodPort}`);
-  });
-}
+server = app.listen(config.port, () => {
+  console.log(`server has been started on port: ${config.port}`);
+});
 
 const io = socket(server);
 

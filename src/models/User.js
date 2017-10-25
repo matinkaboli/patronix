@@ -12,6 +12,7 @@ const fullName = new Schema({
     required: [true, 'Last name required']
   }
 });
+
 const userSchema = new Schema({
   email: {
     type: String,
