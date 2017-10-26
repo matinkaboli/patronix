@@ -1,11 +1,15 @@
 {% extends './layouts/index.njk' %}
 
-{% block styles %}
-<link rel="stylesheet" type="text/css" href="/files/css/main.css" />
+{% block head %}
+<link rel="stylesheet" href="/files/css/tmr.css">
 {% endblock %}
 
 {% block content %}
-  <h1>درخواست بیش از حد. گمشو بیرون</h1>
+  <div>
+    <img src="/files/image/sad.png">
+    <h1>به دلیل درخواست های زیاد، IP شما به مدت سه ساعت بن شده است.</h1>
+    <p>لطفا بعدا امتحان کنید</p>
+  </div>
 {% endblock %}
 
 {% block scripts %}

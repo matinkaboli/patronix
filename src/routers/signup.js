@@ -8,7 +8,7 @@ const router = new Router();
 
 const signupLimiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
-  max: 50,
+  max: 30,
   delayMs: 300,
   handler(req, res) {
     res.render('too_many_req.njk');
