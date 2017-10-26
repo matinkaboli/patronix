@@ -9,6 +9,7 @@ var minifier = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var babel = require('gulp-babel');
 var config = require('./src/config.json');
+var htmlmin = require('gulp-htmlmin');
 
 gulp.task('clean', function() {
   return gulp.src('build', { read: false })
@@ -27,6 +28,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('build/public/js/lib')),
 
     gulp.src('src/views/**/*')
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build/views'))
   ];
 });

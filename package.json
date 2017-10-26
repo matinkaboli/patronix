@@ -49,6 +49,7 @@
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.9.0",
     "gulp-eslint": "^4.0.0",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-less": "^3.3.2",
     "gulp-rimraf": "^0.2.1",
     "gulp-uglify": "^3.0.0"
