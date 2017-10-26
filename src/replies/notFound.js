@@ -1,5 +1,5 @@
-export default (res, message) => {
+export default (res, data) => {
   res.status(404);
 
-  res.render('404.njk', { message, title: 'Not Found' });
+  res.render('404.njk', data);
 };

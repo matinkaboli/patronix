@@ -1,5 +1,5 @@
-export default (res, message) => {
+export default (res, data) => {
   res.status(200);
 
-  res.render('200.njk', { message, title: 'OK' });
+  res.render('200.njk', data);
 };

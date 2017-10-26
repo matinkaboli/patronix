@@ -1,5 +1,5 @@
-export default (res, message) => {
+export default (res, data) => {
   res.status(500);
 
-  res.render('500.njk', { message, title: 'Error' });
+  res.render('500.njk', data);
 };
