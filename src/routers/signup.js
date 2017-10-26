@@ -23,9 +23,9 @@ router.post('/signup', (req, res) => {
   });
 
   user.save().then(() => {
-      res.send('Good Job');
+    res.send('Good Job');
   }).catch(e => {
-      res.json(e);
+    res.json(e);
   });
 });
 
