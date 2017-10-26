@@ -8,27 +8,25 @@ router.get('/signup', (req, res) => {
   res.render('signup.njk');
 });
 router.post('/signup', (req, res) => {
-  const email = req.body.email.toLowerCase();
-  const password = req.body.password;
-  const name = {
-    first: req.body.fname,
-    last: req.body.lname
-  };
-  const addUser = new User({
-    password: encrypt(password, email),
+  req.body.email = req.body.email.toLowerCase();
+
+  const user = new User({
+    password: encrypt(req.body.password, req.body.email),
     type: 1,
     status: 0,
     activationLink: 'test code',
-    email,
-    name
+    email: req.body.email,
+    name: {
+      first: req.body.fname,
+      last: req.body.lname
+    }
   });
-  addUser.save()
-    .then(() => {
+
+  user.save().then(() => {
       res.send('Good Job');
-    })
-    .catch(e => {
+  }).catch(e => {
       res.json(e);
-    });
+  });
 });
 
 export default router;
