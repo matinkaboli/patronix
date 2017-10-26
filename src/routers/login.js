@@ -26,12 +26,12 @@ router.post('/login', loginLimiter, (req, res) => {
     email: req.body.email,
     password: encrypt(req.body.password, req.body.email)
   }).then(userDoc => {
-    if (JSON.stringify(userDoc) === '[]') {
+    if (userDoc === null) {
       res.reply.notFound({ message: 'User not found' });
     } else {
       if (userDoc.status === 0) {
         Code.findOne({ user: userDoc._id }).then(codeDoc => {
-          if (JSON.stringify(codeDoc) === '[]') {
+          if (codeDoc === null) {
             const newCode = new Code({
               code: unique(25),
               user: userDoc._id
