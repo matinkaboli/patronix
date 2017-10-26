@@ -22,33 +22,39 @@ router.get('/login', (req, res) => {
 router.post('/login', loginLimiter, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
-  User.find({
+  User.findOne({
     email: req.body.email,
     password: encrypt(req.body.password, req.body.email)
   }).then(userDoc => {
     if (JSON.stringify(userDoc) === '[]') {
-      res.send('User not found');
+      res.reply.notFound({ message: 'User not found' });
     } else {
-      if (userDoc[0].status === 0) {
-        Code.find({ user: userDoc[0]._id }).then(codeDoc => {
+      if (userDoc.status === 0) {
+        Code.findOne({ user: userDoc._id }).then(codeDoc => {
           if (JSON.stringify(codeDoc) === '[]') {
             const newCode = new Code({
               code: unique(25),
-              user: userDoc[0]._id
+              user: userDoc._id
             });
             newCode.save().then(() => {
-              res.send('You have to verify your fucking email');
+              res.reply.ok({
+                message: 'You have to verify your fucking email'
+              });
             }).catch(() => {
-              res.send('Error');
+              res.reply.error({ message: 'Error' });
             });
           } else {
-            res.send('You have to verify your fucking email');
+            res.reply.ok({
+              message: 'You have to verify your fucking email'
+            });
           }
         }).catch(() => {
-          res.send('Error');
+          res.reply.error({ message: 'Error' });
         });
       } else {
-        res.send('Your account was verified before :)');
+        res.reply.ok({
+          message: 'Your account was verified before :)'
+        });
       }
     }
   });
