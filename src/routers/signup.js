@@ -27,14 +27,17 @@ router.post('/signup', signupLimiter, (req, res) => {
     password: encrypt(req.body.password, req.body.email)
   }).then(doc => {
     if (doc) {
+      // Hasn't verified yet
       if (doc.status === 0) {
         Code.findOne({ user: doc._id }).then(code => {
+          // If user has a code
           if (code) {
             res.json(2);
           }
 
           else {
-            let newCode = new Code({
+            // Create a new code
+            const newCode = new Code({
               user: doc._id,
               code: generate(6, { lower: 1, number: 1 })
             });
@@ -52,7 +55,7 @@ router.post('/signup', signupLimiter, (req, res) => {
     }
 
     else {
-      let user = new User({
+      const user = new User({
         password: encrypt(req.body.password, req.body.email),
         type: 1,
         status: 0,
@@ -63,7 +66,7 @@ router.post('/signup', signupLimiter, (req, res) => {
         }
       });
 
-      let code = new Code({
+      const code = new Code({
         code: generate(6, { lower: 1, number: 1 }),
         user: user._id
       });
