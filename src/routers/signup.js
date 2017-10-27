@@ -2,7 +2,7 @@ import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
-import { unique } from 'stringing';
+import { generate } from 'stringing';
 
 const router = new Router();
 
@@ -21,30 +21,56 @@ router.get('/signup', (req, res) => {
 router.post('/signup', signupLimiter, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
-  const user = new User({
-    password: encrypt(req.body.password, req.body.email),
-    type: 1,
-    status: 0,
-    email: req.body.email,
-    name: {
-      first: req.body.fname,
-      last: req.body.lname
+  User.findOne({
+    email: req.body.email.toLowerCase(),
+    password: encrypt(req.body.password, req.body.email)
+  }).then(doc => {
+    if (doc) {
+      if (doc.status === 0) {
+        Code.findOne({ user: doc._id }).then(code => {
+          if (code) {
+            res.json(2);
+          }
+
+          else {
+            let newCode = new Code({
+              user: doc._id,
+              code: generate(6, { lower: 1, number: 1 })
+            });
+
+            newCode.save().then(() => {
+              res.json(1);
+            }).catch(() => {
+              res.reply.error({ message: 'error has occured' });
+            });
+          }
+        });
+      } else {
+        res.reply.error('you have signed up already');
+      }
     }
-  });
 
-  const code = new Code({
-    code: unique(25),
-    user: user._id
-  });
+    else {
+      let user = new User({
+        password: encrypt(req.body.password, req.body.email),
+        type: 1,
+        status: 0,
+        email: req.body.email,
+        name: {
+          first: req.body.fname,
+          last: req.body.lname
+        }
+      });
 
-  user.save().then(() => {
-    code.save().then(() => {
-      res.send('Good Job');
-    }).catch(() => {
-      res.send('Erorr happened');
-    });
-  }).catch(() => {
-    res.send('Error happened');
+      let code = new Code({
+        code: generate(6, { lower: 1, number: 1 }),
+        user: user._id
+      });
+
+      user.save().then(() => code.save()).then(() => {
+        res.json(true);
+      }).catch(() => res.json(false));
+    }
   });
 });
 
