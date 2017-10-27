@@ -4,7 +4,10 @@ import { Code, User } from '../models';
 const router = new Router();
 
 router.get('/code', (req, res) => {
-  res.render('code.njk');
+  res.render('code.njk', {
+    error: req.flash('error'),
+    success: req.flash('success')
+  });
 });
 router.post('/code', (req, res) => {
   req.body.email = req.body.email.toLowerCase();
@@ -20,31 +23,26 @@ router.post('/code', (req, res) => {
             if (code.code === req.body.code) {
               user.status = 1;
               user.save().then(() => {
-                res.reply.ok({
-                  message: 'Done'
-                });
+                req.flash('success', 'حساب شما با موفقیت تایید شد.');
+                res.redirect('/login');
                 // Remove code document
               });
             } else {
-              res.reply.ok({
-                message: 'Wrong, You wanna resend?'
-              });
+              req.flash('error', 'کد اشتباه است.');
+              res.redirect('/code');
             }
           } else {
-            res.reply.error({
-              message: 'We have to create a new code for you.'
-            });
+            req.flash('error', 'حساب شما به یک کد جدید نیاز دارد.');
+            res.redirect('/login');
           }
         });
       } else {
-        res.reply.ok({
-          message: 'Your account has verified before.'
-        });
+        req.flash('warn', 'این حساب از قبل تایید شده است.');
+        res.redirect('/login');
       }
     } else {
-      res.reply.ok({
-        message: 'There is no such username'
-      });
+      req.flash('error', 'چنین حسابی وجود ندارد.');
+      res.redirect('/signup');
     }
   });
 });

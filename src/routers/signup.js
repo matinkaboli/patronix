@@ -28,7 +28,7 @@ router.post('/signup', signupLimiter, (req, res) => {
     password: encrypt(req.body.password, req.body.email)
   }).then(doc => {
     if (doc) {
-      req.flash('error', 'This account has already signed up');
+      req.flash('error', 'این ایمیل توسط کسی ثبت نام شده.');
       res.redirect('/signup');
     } else {
       const user = new User({
@@ -45,11 +45,11 @@ router.post('/signup', signupLimiter, (req, res) => {
       user.save().then(() => {
         req.flash(
           'success',
-          'Your account has been created successfully.');
+          'حساب کاربری شما با موفقیت ساخته شد.');
         req.flash('email', req.body.email);
         res.redirect('/login');
       }).catch(() => {
-        req.flash('error', 'Error happened, try again');
+        req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
         res.redirect('/signup');
       });
     }

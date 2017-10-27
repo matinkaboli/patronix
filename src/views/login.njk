@@ -31,12 +31,32 @@
 {% block scripts %}
 {% for i in success %}
   <script>
-    alert("{{ i }}")
+    swal({
+      title: 'موفق',
+      text: "{{ i }}",
+      icon: 'success',
+      button: 'باشه'
+    });
   </script>
 {% endfor %}
 {% for i in error %}
   <script>
-    alert("{{ i }}")
+    swal({
+      title: 'خطا',
+      text: "{{ i }}",
+      icon: 'error',
+      button: 'باشه'
+    });
+  </script>
+{% endfor %}
+{% for i in warn %}
+  <script>
+    swal({
+      title: 'عجیبه',
+      text: "{{ i }}",
+      icon: 'warn',
+      button: 'باشه'
+    });
   </script>
 {% endfor %}
 <script src="/files/js/login.js"></script>

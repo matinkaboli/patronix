@@ -18,7 +18,8 @@ const loginLimiter = new RateLimit({
 router.get('/login', (req, res) => {
   res.render('login.njk', {
     success: req.flash('success'),
-    error: req.flash('error')
+    error: req.flash('error'),
+    warn: req.flash('warn')
   });
 });
 
@@ -35,7 +36,8 @@ router.post('/login', loginLimiter, (req, res) => {
           user: user._id
         }).then(code => {
           if (code) {
-            // now go to /code to enter it
+            req.flash('error',
+            'برای ورود، شما باید حساب خود را تایید کنید.');
             res.redirect('/code');
           } else {
             const newCode = new Code({
@@ -43,9 +45,11 @@ router.post('/login', loginLimiter, (req, res) => {
               user: user._id
             });
             newCode.save().then(() => {
+              req.flash('error',
+              'برای ورود، شما باید حساب خود را تایید کنید.');
               res.redirect('/code');
             }).catch(() => {
-              req.flash('error', 'Error happened');
+              req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید.');
               res.redirect('/login');
             });
           }
@@ -57,7 +61,7 @@ router.post('/login', loginLimiter, (req, res) => {
         });
       }
     } else {
-      req.flash('error', 'There is no such user');
+      req.flash('error', 'چنین حسابی وجود ندارد.');
       res.redirect('/login');
     }
   });

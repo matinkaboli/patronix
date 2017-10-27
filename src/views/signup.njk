@@ -40,7 +40,12 @@
 {% block scripts %}
 {% for item in error %}
 <script>
-    alert("{{ item }}");
+  swal({
+    title: 'خطا',
+    text: "{{ item }}",
+    icon: 'error',
+    button: 'باشه'
+  });
 </script>
 {% endfor %}
   <script src="/files/js/register.js"></script>
