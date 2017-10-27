@@ -38,5 +38,10 @@
 {% endblock %}
 
 {% block scripts %}
+{% for item in error %}
+<script>
+    alert("{{ item }}");
+</script>
+{% endfor %}
   <script src="/files/js/register.js"></script>
 {% endblock %}

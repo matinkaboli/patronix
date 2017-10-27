@@ -16,7 +16,10 @@ const loginLimiter = new RateLimit({
 });
 
 router.get('/login', (req, res) => {
-  res.render('login.njk');
+  res.render('login.njk', {
+    success: req.flash('success'),
+    error: req.flash('error')
+  });
 });
 
 router.post('/login', loginLimiter, (req, res) => {
@@ -32,9 +35,8 @@ router.post('/login', loginLimiter, (req, res) => {
           user: user._id
         }).then(code => {
           if (code) {
-            res.reply.ok({
-              message: 'Enter your code in /code'
-            });
+            // now go to /code to enter it
+            res.redirect('/code');
           } else {
             const newCode = new Code({
               code: generate(6, { lower: 1, number: 1 }),
@@ -43,9 +45,8 @@ router.post('/login', loginLimiter, (req, res) => {
             newCode.save().then(() => {
               res.redirect('/code');
             }).catch(() => {
-              res.reply.error({
-                message: 'Error happened'
-              });
+              req.flash('error', 'Error happened');
+              res.redirect('/login');
             });
           }
         });
@@ -56,9 +57,8 @@ router.post('/login', loginLimiter, (req, res) => {
         });
       }
     } else {
-      res.reply.error({
-        message: 'There is no such user.'
-      });
+      req.flash('error', 'There is no such user');
+      res.redirect('/login');
     }
   });
 });

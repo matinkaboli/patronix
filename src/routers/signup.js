@@ -15,7 +15,9 @@ const signupLimiter = new RateLimit({
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup.njk');
+  res.render('signup.njk', {
+    error: req.flash('error')
+  });
 });
 
 router.post('/signup', signupLimiter, (req, res) => {
@@ -26,7 +28,8 @@ router.post('/signup', signupLimiter, (req, res) => {
     password: encrypt(req.body.password, req.body.email)
   }).then(doc => {
     if (doc) {
-      res.send('This account has already signed up.');
+      req.flash('error', 'This account has already signed up');
+      res.redirect('/signup');
     } else {
       const user = new User({
         password: encrypt(req.body.password, req.body.email),
@@ -40,10 +43,15 @@ router.post('/signup', signupLimiter, (req, res) => {
       });
 
       user.save().then(() => {
-        res.reply.ok({ message: 'Your account has been created.' });
-      }).catch(() => res.reply.error({
-        message: 'Error happened, try again'
-      }));
+        req.flash(
+          'success',
+          'Your account has been created successfully.');
+        req.flash('email', req.body.email);
+        res.redirect('/login');
+      }).catch(() => {
+        req.flash('error', 'Error happened, try again');
+        res.redirect('/signup');
+      });
     }
   });
 });

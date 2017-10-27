@@ -29,5 +29,15 @@
 {% endblock %}
 
 {% block scripts %}
+{% for i in success %}
+  <script>
+    alert("{{ i }}")
+  </script>
+{% endfor %}
+{% for i in error %}
+  <script>
+    alert("{{ i }}")
+  </script>
+{% endfor %}
 <script src="/files/js/login.js"></script>
 {% endblock %}
