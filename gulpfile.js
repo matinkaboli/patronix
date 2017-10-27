@@ -25,11 +25,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('build/public/')),
 
     gulp.src(['src/public/js/lib/**'])
-    .pipe(gulp.dest('build/public/js/lib')),
-
-    gulp.src('src/views/**/*')
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest('build/views'))
+    .pipe(gulp.dest('build/public/js/lib'))
   ];
 });
 
@@ -54,6 +50,11 @@ gulp.task('less', ['clean'], function() {
         .pipe(gulp.dest('build/public/css'));
 });
 
+gulp.task('nunjucks', ['clean'], function() {
+  gulp.src('src/views/**/*.njk')
+      .pipe(htmlmin({ collapseWhitespace: true }))
+      .pipe(gulp.dest('build/views'))
+});
 
 gulp.task('prod', ['clean', 'lint', 'babel', 'less'], function() {
   return gulp.start('copy');
