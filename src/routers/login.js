@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User, Code } from '../models';
+import { User } from '../models';
 import { encrypt } from '../utils/encrypt';
-import { unique } from 'stringing';
 
 const router = new Router();
 
@@ -25,37 +24,11 @@ router.post('/login', loginLimiter, (req, res) => {
   User.findOne({
     email: req.body.email,
     password: encrypt(req.body.password, req.body.email)
-  }).then(userDoc => {
-    if (userDoc === null) {
-      res.reply.notFound({ message: 'User not found' });
+  }).then(user => {
+    if (user) {
+      res.send('next step');
     } else {
-      if (userDoc.status === 0) {
-        Code.findOne({ user: userDoc._id }).then(codeDoc => {
-          if (codeDoc === null) {
-            const newCode = new Code({
-              code: unique(25),
-              user: userDoc._id
-            });
-            newCode.save().then(() => {
-              res.reply.ok({
-                message: 'You have to verify your fucking email'
-              });
-            }).catch(() => {
-              res.reply.error({ message: 'Error' });
-            });
-          } else {
-            res.reply.ok({
-              message: 'You have to verify your fucking email'
-            });
-          }
-        }).catch(() => {
-          res.reply.error({ message: 'Error' });
-        });
-      } else {
-        res.reply.ok({
-          message: 'Your account was verified before :)'
-        });
-      }
+      res.reply.error({ message: 'you have to signup first' });
     }
   });
 });
