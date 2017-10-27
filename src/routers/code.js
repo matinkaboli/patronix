@@ -25,7 +25,6 @@ router.post('/code', (req, res) => {
               user.save().then(() => {
                 req.flash('success', 'حساب شما با موفقیت تایید شد.');
                 res.redirect('/login');
-                // Remove code document
               });
             } else {
               req.flash('error', 'کد اشتباه است.');

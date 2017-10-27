@@ -54,7 +54,6 @@ router.post('/login', loginLimiter, (req, res) => {
             });
           }
         });
-        // Look at code
       } else if (user.status === 1) {
         res.reply.ok({
           message: 'You\'re in.'
@@ -62,7 +61,7 @@ router.post('/login', loginLimiter, (req, res) => {
       }
     } else {
       req.flash('error', 'چنین حسابی وجود ندارد.');
-      res.redirect('/login');
+      res.redirect('/signup');
     }
   });
 });
