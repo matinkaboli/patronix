@@ -31,6 +31,13 @@
       name="lname"
       placeholder="نام خانوادگی"
       required>
+    {{ captcha | safe }}
+    <input
+      type="text"
+      name="captcha"
+      placeholder="کد امنیتی"
+      maxlength="10"
+      required>
     <input
       type="submit"
       value="عضویت">
