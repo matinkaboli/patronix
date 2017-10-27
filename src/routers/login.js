@@ -23,7 +23,8 @@ router.post('/login', loginLimiter, (req, res) => {
 
   User.findOne({
     email: req.body.email,
-    password: encrypt(req.body.password, req.body.email)
+    password: encrypt(req.body.password, req.body.email),
+    status: 1
   }).then(user => {
     if (user) {
       res.send('next step');
