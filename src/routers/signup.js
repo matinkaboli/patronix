@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User, Code } from '../models';
+import { User } from '../models';
 import { encrypt } from '../utils/encrypt';
-import { generate } from 'stringing';
 
 const router = new Router();
 
@@ -23,38 +22,12 @@ router.post('/signup', signupLimiter, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   User.findOne({
-    email: req.body.email.toLowerCase(),
+    email: req.body.email,
     password: encrypt(req.body.password, req.body.email)
   }).then(doc => {
     if (doc) {
-      // Hasn't verified yet
-      if (doc.status === 0) {
-        Code.findOne({ user: doc._id }).then(code => {
-          // If user has a code
-          if (code) {
-            res.json(2);
-          }
-
-          else {
-            // Create a new code
-            const newCode = new Code({
-              user: doc._id,
-              code: generate(6, { lower: 1, number: 1 })
-            });
-
-            newCode.save().then(() => {
-              res.json(1);
-            }).catch(() => {
-              res.reply.error({ message: 'error has occured' });
-            });
-          }
-        });
-      } else {
-        res.reply.error('you have signed up already');
-      }
-    }
-
-    else {
+      res.send('This account has already signed up.');
+    } else {
       const user = new User({
         password: encrypt(req.body.password, req.body.email),
         type: 1,
@@ -66,14 +39,11 @@ router.post('/signup', signupLimiter, (req, res) => {
         }
       });
 
-      const code = new Code({
-        code: generate(6, { lower: 1, number: 1 }),
-        user: user._id
-      });
-
-      user.save().then(() => code.save()).then(() => {
-        res.json(true);
-      }).catch(() => res.json(false));
+      user.save().then(() => {
+        res.reply.ok({ message: 'Your account has been created.' });
+      }).catch(() => res.reply.error({
+        message: 'Error happened, try again'
+      }));
     }
   });
 });

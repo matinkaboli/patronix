@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User } from '../models';
+import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
+import { generate } from 'stringing';
 
 const router = new Router();
 
@@ -23,13 +24,41 @@ router.post('/login', loginLimiter, (req, res) => {
 
   User.findOne({
     email: req.body.email,
-    password: encrypt(req.body.password, req.body.email),
-    status: 1
+    password: encrypt(req.body.password, req.body.email)
   }).then(user => {
     if (user) {
-      res.send('next step');
+      if (user.status === 0) {
+        Code.findOne({
+          user: user._id
+        }).then(code => {
+          if (code) {
+            res.reply.ok({
+              message: 'Enter your code in /code'
+            });
+          } else {
+            const newCode = new Code({
+              code: generate(6, { lower: 1, number: 1 }),
+              user: user._id
+            });
+            newCode.save().then(() => {
+              res.redirect('/code');
+            }).catch(() => {
+              res.reply.error({
+                message: 'Error happened'
+              });
+            });
+          }
+        });
+        // Look at code
+      } else if (user.status === 1) {
+        res.reply.ok({
+          message: 'You\'re in.'
+        });
+      }
     } else {
-      res.reply.error({ message: 'you have to signup first' });
+      res.reply.error({
+        message: 'There is no such user.'
+      });
     }
   });
 });

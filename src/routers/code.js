@@ -15,23 +15,36 @@ router.post('/code', (req, res) => {
       if (user.status === 0) {
         Code.findOne({
           user: user._id,
-          code: req.body.code
         }).then(code => {
           if (code) {
-            user.status = 1;
-            user.save().then(() => {
-              res.send('Done');
-              // Remove code document
-            });
+            if (code.code === req.body.code) {
+              user.status = 1;
+              user.save().then(() => {
+                res.reply.ok({
+                  message: 'Done'
+                });
+                // Remove code document
+              });
+            } else {
+              res.reply.ok({
+                message: 'Wrong, You wanna resend?'
+              });
+            }
           } else {
-            res.send('We have to create a new code for you.');
+            res.reply.error({
+              message: 'We have to create a new code for you.'
+            });
           }
         });
       } else {
-        res.send('Your account has verified before.');
+        res.reply.ok({
+          message: 'Your account has verified before.'
+        });
       }
     } else {
-      res.send('There is not such username');
+      res.reply.ok({
+        message: 'There is no such username'
+      });
     }
   });
 });
