@@ -56,11 +56,11 @@ gulp.task('nunjucks', ['clean'], function() {
       .pipe(gulp.dest('build/views'))
 });
 
-gulp.task('prod', ['clean', 'lint', 'babel', 'less'], function() {
+gulp.task('prod', ['clean', 'lint', 'babel', 'less', 'nunjucks'], function() {
   return gulp.start('copy');
 });
 
-gulp.task('dev', ['clean', 'babel', 'less'], function() {
+gulp.task('dev', ['clean', 'babel', 'less', 'nunjucks'], function() {
   return gulp.start('copy');
 });
 

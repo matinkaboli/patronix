@@ -18,6 +18,7 @@ const signupLimiter = new RateLimit({
 router.get('/signup', (req, res) => {
   res.render('signup.njk');
 });
+
 router.post('/signup', signupLimiter, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
