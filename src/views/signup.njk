@@ -42,6 +42,7 @@
       type="submit"
       value="عضویت">
   </form>
+  <button id="change-captcha">تغییر کد امنیتی</button>
 {% endblock %}
 
 {% block scripts %}
@@ -55,5 +56,6 @@
   });
 </script>
 {% endfor %}
+  <script src="/files/js/recaptcha.js"></script>
   <script src="/files/js/register.js"></script>
 {% endblock %}

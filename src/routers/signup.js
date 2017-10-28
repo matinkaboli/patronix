@@ -14,7 +14,18 @@ const signupLimiter = new RateLimit({
     res.render('too_many_req.njk');
   }
 });
+router.get('/recaptcha', (req, res) => {
+  const captcha = svgCaptcha.create({
+    size: 6,
+    ignoreChars: '0o1ilIQ8',
+    noise: 4
+  });
+  req.session.captcha = captcha.text;
 
+  res.json({
+    captcha: captcha.data
+  });
+});
 router.get('/signup', (req, res) => {
   svgCaptcha.options.width = 220;
   const captcha = svgCaptcha.create({
