@@ -1,7 +1,17 @@
 import { Router } from 'express';
 import { Code, User } from '../models';
+import RateLimit from 'express-rate-limit';
 
 const router = new Router();
+
+const codeLimiter = new RateLimit({
+  windowMs: 1000 * 60 * 60 * 3,
+  max: 100,
+  delayMs: 0,
+  handler(req, res) {
+    res.render('too_many_req.njk');
+  }
+});
 
 router.get('/code', (req, res) => {
   res.render('code.njk', {
@@ -10,7 +20,7 @@ router.get('/code', (req, res) => {
     email: req.flash('email')
   });
 });
-router.post('/code', (req, res) => {
+router.post('/code', codeLimiter, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
   User.findOne({
     email: req.body.email
