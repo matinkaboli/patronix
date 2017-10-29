@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User } from '../models';
-import { encrypt } from '../utils/encrypt';
+import send from '../utils/mail';
+import { generate } from 'stringing';
 import svgCaptcha from 'svg-captcha';
-
+import { User, Code } from '../models';
+import { encrypt } from '../utils/encrypt';
 const router = new Router();
 
 const signupLimiter = new RateLimit({
@@ -67,11 +68,21 @@ router.post('/signup', signupLimiter, (req, res) => {
         });
 
         user.save().then(() => {
-          req.flash(
-            'success',
-            'حساب کاربری شما با موفقیت ساخته شد.');
-          req.flash('email', req.body.email);
-          res.redirect('/code');
+          const newCode = new Code({
+            code: generate(6, { lower: 1, number: 1 }),
+            user: user._id
+          });
+          newCode.save().then(() => {
+            send(req.body.email, newCode.code, 'signup', req.body.fname);
+            req.flash(
+              'success',
+              'حساب کاربری شما با موفقیت ساخته شد.');
+            req.flash('email', req.body.email);
+            res.redirect('/code');
+          }).catch(() => {
+            req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
+            res.redirect('/login');
+          });
         }).catch(() => {
           req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
           res.redirect('/signup');
