@@ -14,17 +14,20 @@ const signupLimiter = new RateLimit({
     res.render('too_many_req.njk');
   }
 });
-router.get('/recaptcha', (req, res) => {
+const recaptchaLimiter = new RateLimit({
+  windowMs: 1000 * 60 * 10,
+  max: 150,
+});
+
+router.get('/recaptcha', recaptchaLimiter, (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const captcha = svgCaptcha.create({
     size: 6,
     ignoreChars: '0o1ilIQ8',
     noise: 4
   });
   req.session.captcha = captcha.text;
-
-  res.json({
-    captcha: captcha.data
-  });
+  res.json({ captcha: captcha.data });
 });
 router.get('/signup', (req, res) => {
   svgCaptcha.options.width = 220;
