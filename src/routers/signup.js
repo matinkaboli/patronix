@@ -71,7 +71,7 @@ router.post('/signup', signupLimiter, (req, res) => {
             'success',
             'حساب کاربری شما با موفقیت ساخته شد.');
           req.flash('email', req.body.email);
-          res.redirect('/login');
+          res.redirect('/code');
         }).catch(() => {
           req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
           res.redirect('/signup');

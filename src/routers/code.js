@@ -6,7 +6,8 @@ const router = new Router();
 router.get('/code', (req, res) => {
   res.render('code.njk', {
     error: req.flash('error'),
-    success: req.flash('success')
+    success: req.flash('success'),
+    email: req.flash('email')
   });
 });
 router.post('/code', (req, res) => {

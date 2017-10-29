@@ -7,7 +7,8 @@
 {% block content %}
 <form
   method="post"
-  action="/code">
+  action="/code"
+  name="code-form">
   <input
     type="email"
     name="email"
@@ -42,6 +43,11 @@
       icon: 'success',
       button: 'باشه'
     });
+  </script>
+{% endfor %}
+{% for i in email %}
+  <script>
+    document.forms['code-form'].email.value = "{{ i }}";
   </script>
 {% endfor %}
 {% endblock %}
