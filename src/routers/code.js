@@ -33,15 +33,18 @@ router.post('/code', (req, res) => {
             }
           } else {
             req.flash('error', 'حساب شما به یک کد جدید نیاز دارد.');
+            req.flash('email', req.body.email);
             res.redirect('/login');
           }
         });
       } else {
         req.flash('warn', 'این حساب از قبل تایید شده است.');
+        req.flash('email', req.body.email);
         res.redirect('/login');
       }
     } else {
       req.flash('error', 'چنین حسابی وجود ندارد.');
+      req.flash('email', req.body.email);
       res.redirect('/signup');
     }
   });

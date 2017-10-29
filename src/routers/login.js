@@ -3,6 +3,7 @@ import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
 import { generate } from 'stringing';
+import send from '../utils/mail';
 
 const router = new Router();
 
@@ -19,7 +20,8 @@ router.get('/login', (req, res) => {
   res.render('login.njk', {
     success: req.flash('success'),
     error: req.flash('error'),
-    warn: req.flash('warn')
+    warn: req.flash('warn'),
+    email: req.flash('email')
   });
 });
 
@@ -38,6 +40,7 @@ router.post('/login', loginLimiter, (req, res) => {
           if (code) {
             req.flash('error',
             'برای ورود، شما باید حساب خود را تایید کنید.');
+            req.flash('email', req.body.email);
             res.redirect('/code');
           } else {
             const newCode = new Code({
@@ -45,6 +48,7 @@ router.post('/login', loginLimiter, (req, res) => {
               user: user._id
             });
             newCode.save().then(() => {
+              send(req.body.email, newCode.code, 'newcode', user.fname);
               req.flash('error',
               'برای ورود، شما باید حساب خود را تایید کنید.');
               res.redirect('/code');

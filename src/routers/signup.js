@@ -40,6 +40,7 @@ router.get('/signup', (req, res) => {
   req.session.captcha = captcha.text;
   res.render('signup.njk', {
     error: req.flash('error'),
+    email: req.flash('email'),
     captcha: captcha.data
   });
 });
