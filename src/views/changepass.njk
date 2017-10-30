@@ -1,25 +1,39 @@
 {% extends './layouts/index.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/signup.css">
+<link rel="stylesheet" href="files/css/signup.css">
 {% endblock %}
 
 {% block content %}
-<h1>خوش آمدید</h1>
 <form
-  name="forgot-form"
   method="post"
-  action="/forgot"
+  action="/changepass"
+  name="changepass-form"
   onsubmit="return checkForm()">
   <input
-    type="email"
-    name="email"
-    placeholder="ایمیل">
-  <input type="submit" value="ارسال ایمیل">
+    type="text"
+    maxlength="10"
+    name="code"
+    placeholder="کد">
+  <input
+    type="password"
+    name="password"
+    placeholder="رمز عبور جدید">
+  <input type="submit" value="تغییر رمز">
 </form>
 {% endblock %}
 
 {% block scripts %}
+{% for i in success %}
+  <script>
+    swal({
+      title: 'موفق',
+      text: "{{ i }}",
+      icon: 'success',
+      button: 'باشه'
+    });
+  </script>
+{% endfor %}
 {% for i in error %}
   <script>
     swal({
@@ -45,5 +59,4 @@
     document.forms['login-form'].email.value = "{{ i }}";
   </script>
 {% endfor %}
-<script src="/files/js/forgot.js"></script>
 {% endblock %}
