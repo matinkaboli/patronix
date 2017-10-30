@@ -3,7 +3,7 @@ import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
 import { generate } from 'stringing';
-import send from '../utils/mail';
+// import send from '../utils/mail';
 
 const router = new Router();
 
@@ -48,7 +48,7 @@ router.post('/login', loginLimiter, (req, res) => {
               user: user._id
             });
             newCode.save().then(() => {
-              send(req.body.email, newCode.code, 'newcode', user.fname);
+              // send(req.body.email, newCode.code, 'newcode', user.fname);
               req.flash('error',
               'برای ورود، شما باید حساب خود را تایید کنید.');
               res.redirect('/code');

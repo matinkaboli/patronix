@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import send from '../utils/mail';
+// import send from '../utils/mail';
 import { generate } from 'stringing';
 import svgCaptcha from 'svg-captcha';
 import { User, Code } from '../models';
@@ -63,7 +63,7 @@ router.post('/signup', signupLimiter, (req, res) => {
             user: user._id
           });
           newCode.save().then(() => {
-            send(req.body.email, newCode.code, 'signup', req.body.fname);
+            // send(req.body.email, newCode.code, 'signup', req.body.fname);
             req.flash(
               'success',
               'حساب کاربری شما با موفقیت ساخته شد.');
