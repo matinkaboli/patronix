@@ -35,6 +35,19 @@ gulp.task('babel', ['clean'], function() {
         .pipe(gulp.dest('build'));
 });
 
+gulp.task('js:prod', ['clean'], function() {
+  return gulp.src(['src/public/js/**/*.js', '!src/public/js/lib/**/*'])
+        .pipe(babel())
+        .pipe(uglify())
+        .pipe(gulp.dest('build/public/js'))
+});
+
+gulp.task('js:dev', ['clean'], function() {
+  return gulp.src(['src/public/js/**/*.js', '!src/public/js/lib/**/*'])
+        .pipe(babel())
+        .pipe(gulp.dest('build/public/js'))
+});
+
 gulp.task('lint', function() {
   return gulp.src('src/**/*.js')
         .pipe(eslint())
@@ -56,11 +69,11 @@ gulp.task('nunjucks', ['clean'], function() {
       .pipe(gulp.dest('build/views'))
 });
 
-gulp.task('prod', ['clean', 'lint', 'babel', 'less', 'nunjucks'], function() {
+gulp.task('prod', ['clean', 'lint', 'babel', 'less', 'nunjucks', 'js:prod'], function() {
   return gulp.start('copy');
 });
 
-gulp.task('dev', ['clean', 'babel', 'less', 'nunjucks'], function() {
+gulp.task('dev', ['clean', 'babel', 'less', 'nunjucks', 'js:dev'], function() {
   return gulp.start('copy');
 });
 
