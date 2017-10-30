@@ -1,0 +1,24 @@
+{% extends './layouts/index.njk' %}
+
+{% block head %}
+<link rel="stylesheet" href="/files/css/signup.css">
+{% endblock %}
+
+{% block content %}
+<h1>خوش آمدید</h1>
+<form
+  name="forgot-form"
+  method="post"
+  action="/forgot"
+  onsubmit="return checkForm()">
+  <input
+    type="email"
+    name="email"
+    placeholder="ایمیل">
+  <input type="submit" value="ارسال ایمیل">
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/forgot.js"></script>
+{% endblock %}
