@@ -30,7 +30,7 @@ gulp.task('copy', function() {
 });
 
 gulp.task('babel', ['clean'], function() {
-  return gulp.src('src/**/*.js')
+  return gulp.src(['src/**/*.js', '!src/public/js/lib/**/*'])
         .pipe(babel())
         .pipe(gulp.dest('build'));
 });

@@ -5,6 +5,7 @@ import { generate } from 'stringing';
 import svgCaptcha from 'svg-captcha';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
+
 const router = new Router();
 
 const signupLimiter = new RateLimit({
@@ -15,21 +16,7 @@ const signupLimiter = new RateLimit({
     res.render('too_many_req.njk');
   }
 });
-const recaptchaLimiter = new RateLimit({
-  windowMs: 1000 * 60 * 10,
-  max: 150,
-});
 
-router.get('/recaptcha', recaptchaLimiter, (req, res) => {
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  const captcha = svgCaptcha.create({
-    size: 6,
-    ignoreChars: '0o1ilIQ8',
-    noise: 4
-  });
-  req.session.captcha = captcha.text;
-  res.json({ captcha: captcha.data });
-});
 router.get('/signup', (req, res) => {
   svgCaptcha.options.width = 220;
   const captcha = svgCaptcha.create({
@@ -37,7 +24,9 @@ router.get('/signup', (req, res) => {
     ignoreChars: '0o1ilIQ8',
     noise: 4
   });
+
   req.session.captcha = captcha.text;
+
   res.render('signup.njk', {
     error: req.flash('error'),
     email: req.flash('email'),
