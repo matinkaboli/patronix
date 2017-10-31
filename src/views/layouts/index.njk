@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="/files/css/font.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <script src="/files/js/lib/sweetalert.min.js"></script>
-    <title>{{ title }}</title>
+    {% if title %}
+    <title>Clopa - {{ title }}</title>
+    {% else %}
+    <title>Clopa</title>
+    {% endif %}
     {% for item in locals.header %}
       {{ item | safe }}
     {% endfor %}
