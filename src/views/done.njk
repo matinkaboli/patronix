@@ -35,6 +35,16 @@
   <input type="hidden" name="email" value="{{ email }}">
   <input type="submit" value="فرستادن دوباره کد">
 </form>
+{% elif type == "forgot" %}
+<h1>کد با موفقیت به ایمیل شما ارسال گردید</h1>
+<h2>برای تغییر رمز خود. به ایمیل خود مراجعه کنید.</h2>
+<form
+  action="/code"
+  name="code-form"
+  method="post">
+  <input type="hidden" name="email" value="{{ email }}">
+  <input type="submit" value="فرستادن دوباره کد">
+</form>
 {% endif %}
 <a href="/signup">عضویت</a>
 <a href="/login">ورود</a>

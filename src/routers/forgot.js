@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
-import { generate } from 'stringing';
+import { unique } from 'stringing';
 
 const router = new Router();
 
@@ -31,13 +31,15 @@ router.post('/forgot', forgotLimit, (req, res) => {
           res.redirect('/login');
         } else {
           const newCode = new Code({
-            code: generate(6, { lower: 1, number: 1 }),
+            code: unique(25),
             user: user._id
           });
           newCode.save().then(() => {
             // send(req.body.email, code.code, 'forgot', user.fname);
-            req.flash('success', 'ایمیل برای شما با موفقیت فرستاده شد');
-            res.redirect('/login');
+            res.render('done.njk', {
+              type: 'forgot',
+              email: req.body.email
+            });
           }).catch(() => {
             req.flash('error', 'خطا، بعدا امتحان کنید.');
             res.redirect('/forgot');

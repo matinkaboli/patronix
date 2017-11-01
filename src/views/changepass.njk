@@ -11,11 +11,6 @@
   name="changepass-form"
   onsubmit="return checkForm()">
   <input
-    type="text"
-    maxlength="10"
-    name="code"
-    placeholder="کد">
-  <input
     type="password"
     name="password"
     placeholder="رمز عبور جدید">
@@ -53,11 +48,6 @@
       icon: 'warn',
       button: 'باشه'
     });
-  </script>
-{% endfor %}
-{% for i in email %}
-  <script>
-    document.forms['login-form'].email.value = "{{ i }}";
   </script>
 {% endfor %}
 {% endblock %}

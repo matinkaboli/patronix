@@ -13,11 +13,25 @@ const changepassLimit = new RateLimit({
   }
 });
 
-router.get('/changepass', (req, res) => {
-  res.render('changepass.njk', {
-    email: req.flash('email'),
-    error: req.flash('error'),
-    warn: req.flash('warn')
+router.get('/changepass/:code', (req, res) => {
+  Code.findOne({ code: req.params.code }).then(code => {
+    if (code) {
+      res.render('changepass.njk', {
+        email: req.flash('email'),
+        error: req.flash('error'),
+        warn: req.flash('warn'),
+        type: true
+      });
+    } else {
+      res.render('changepass.njk', {
+        email: req.flash('email'),
+        error: req.flash('error'),
+        warn: req.flash('warn'),
+        type: false
+      });
+    }
+  }).catch(() => {
+    res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
   });
 });
 router.post('/changepass', changepassLimit, (req, res) => {
