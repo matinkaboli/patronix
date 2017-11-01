@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 // import send from '../utils/mail';
-import { generate } from 'stringing';
+import { unique } from 'stringing';
 import svgCaptcha from 'svg-captcha';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
@@ -59,28 +59,30 @@ router.post('/signup', signupLimiter, (req, res) => {
 
         user.save().then(() => {
           const newCode = new Code({
-            code: generate(6, { lower: 1, number: 1 }),
+            code: unique(25),
             user: user._id
           });
           newCode.save().then(() => {
             // send(req.body.email, newCode.code, 'signup', req.body.fname);
-            req.flash(
-              'success',
-              'حساب کاربری شما با موفقیت ساخته شد.');
-            req.flash('email', req.body.email);
-            res.redirect('/code');
+            res.render('done.njk', {
+              type: 'signup',
+              email: req.body.email
+            });
           }).catch(() => {
             req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
+            req.flash('email', req.body.email);
             res.redirect('/login');
           });
         }).catch(() => {
           req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
+          res.flash('email', req.body.email);
           res.redirect('/signup');
         });
       }
     });
   } else {
     req.flash('error', 'کد امنیتی وارد شده اشتباه است.');
+    req.flash('email', req.body.email);
     res.redirect('/signup');
   }
 });

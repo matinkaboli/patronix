@@ -2,7 +2,6 @@ import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
-import { generate } from 'stringing';
 // import send from '../utils/mail';
 
 const router = new Router();
@@ -38,25 +37,14 @@ router.post('/login', loginLimiter, (req, res) => {
           user: user._id
         }).then(code => {
           if (code) {
-            req.flash('error',
-            'برای ورود، شما باید حساب خود را تایید کنید.');
-            req.flash('email', req.body.email);
-            res.redirect('/code');
-          } else {
-            const newCode = new Code({
-              code: generate(6, { lower: 1, number: 1 }),
-              user: user._id
-            });
-            newCode.save().then(() => {
-              // send(req.body.email, newCode.code, 'newcode', user.fname);
-              req.flash('error',
-              'برای ورود، شما باید حساب خود را تایید کنید.');
-              res.redirect('/code');
-            }).catch(() => {
-              req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید.');
-              res.redirect('/login');
+            res.render('done.njk', {
+              type: 'login',
+              email: req.body.email
             });
           }
+        }).catch(() => {
+          req.flash('error', 'خطا! بعدا امتحان کنید.');
+          res.redirect('/login');
         });
       } else if (user.status === 1) {
         res.reply.ok({
@@ -67,6 +55,9 @@ router.post('/login', loginLimiter, (req, res) => {
       req.flash('error', 'چنین حسابی وجود ندارد.');
       res.redirect('/signup');
     }
+  }).catch(() => {
+    req.flash('error', 'خطا! بعدا امتحان کنید.');
+    res.redirect('/login');
   });
 });
 

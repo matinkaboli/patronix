@@ -1,0 +1,44 @@
+{% extends './layouts/index.njk' %}
+
+{% block head %}
+<link rel="stylesheet" href="/files/css/signup.css">
+{% endblock %}
+
+{% block content %}
+{% if type == "signup" %}
+<h1>حساب کاربری شما با موفقیت ساخته شد!</h1>
+<h3>برای فعال سازی حساب خود، به ایمیل خود سر زده.</h3>
+<form
+  action="/code"
+  name="code-form"
+  method="post">
+  <input type="hidden" name="email" value="{{ email }}">
+  <input type="submit" value="فرستادن دوباره کد">
+</form>
+{% elif type == "resend" %}
+<h1>کد فعالسازی با موفقیت به ایمیل شما ارسال گردید</h1>
+<h3>برای فعال سازی حساب خود، به ایمیل خود سر زده.</h3>
+<form
+  action="/code"
+  name="code-form"
+  method="post">
+  <input type="hidden" name="email" value="{{ email }}">
+  <input type="submit" value="فرستادن دوباره کد">
+</form>
+{% elif type == "login" %}
+<h1>برای ورود، شما نیاز به فعالسازی حساب خود دارید.</h1>
+<h2>برای فعالسازی حساب خود، به ایمیل خود سر بزنید.</h2>
+<form
+  action="/code"
+  name="code-form"
+  method="post">
+  <input type="hidden" name="email" value="{{ email }}">
+  <input type="submit" value="فرستادن دوباره کد">
+</form>
+{% endif %}
+<a href="/signup">عضویت</a>
+<a href="/login">ورود</a>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
