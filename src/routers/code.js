@@ -14,7 +14,41 @@ const codeLimiter = new RateLimit({
     res.render('too_many_req.njk');
   }
 });
-
+router.get('/code/:code', codeLimiter, (req, res) => {
+  Code.findOne({ code: req.params.code }).then(code => {
+    if (code) {
+      User.findOne({ _id: code.user }).then(user => {
+        if (user) {
+          user.status = 1;
+          user.save().then(() => {
+            Code.remove({ code: req.params.code }).then(() => {
+              req.flash('success', 'حساب شما با موفقیت تایید گردید.');
+              req.flash('email', user.email);
+              res.redirect('/login');
+            }).catch(() => {
+              req.flash('error', 'خطا! بعدا امتحان کنید.');
+              res.redirect('/login');
+            });
+          }).catch(() => {
+            req.flash('error', 'خطا! بعدا امتحان کنید.');
+            res.redirect('/login');
+          });
+        } else {
+          req.flash('error', 'چنین حسابی وجود ندارد.');
+          res.redirect('/signup');
+        }
+      }).catch(() => {
+        req.flash('error', 'خطا! بعدا امتحان کنید.');
+        res.redirect('/login');
+      });
+    } else {
+      res.reply.notFound();
+    }
+  }).catch(() => {
+    req.flash('error', 'خطا! بعدا امتحان کنید.');
+    res.redirect('/login');
+  });
+});
 router.post('/code', codeLimiter, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
   User.findOne({

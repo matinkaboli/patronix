@@ -1,7 +1,7 @@
 {% extends './layouts/index.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="files/css/signup.css">
+<link rel="stylesheet" href="/files/css/signup.css">
 {% endblock %}
 
 {% block content %}
@@ -14,6 +14,10 @@
     type="password"
     name="password"
     placeholder="رمز عبور جدید">
+  <input
+    type="hidden"
+    name="code"
+    value="{{ code }}">
   <input type="submit" value="تغییر رمز">
 </form>
 <a href="/forgot">گرفتن کد</a>

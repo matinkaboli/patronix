@@ -20,15 +20,10 @@ router.get('/changepass/:code', (req, res) => {
         email: req.flash('email'),
         error: req.flash('error'),
         warn: req.flash('warn'),
-        type: true
+        code: req.params.code
       });
     } else {
-      res.render('changepass.njk', {
-        email: req.flash('email'),
-        error: req.flash('error'),
-        warn: req.flash('warn'),
-        type: false
-      });
+      res.reply.notFound();
     }
   }).catch(() => {
     res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
@@ -37,7 +32,8 @@ router.get('/changepass/:code', (req, res) => {
 router.post('/changepass', changepassLimit, (req, res) => {
   Code.findOne({ code: req.body.code }).then(code => {
     if (code) {
-      User.findOne({ id: code.user }).then(user => {
+      User.findOne({ _id: code.user }).then(user => {
+        console.log(user);
         if (user) {
           user.password = encrypt(req.body.password, user.email);
           user.save().then(() => {
@@ -49,8 +45,8 @@ router.post('/changepass', changepassLimit, (req, res) => {
             res.redirect('/changepass');
           });
         } else {
-          req.flash('error', 'خطا! بعدا امتحان کنید');
-          res.redirect('/changepass');
+          req.flash('error', 'چنین حسابی وجود ندارد.');
+          res.redirect('/signup');
         }
       }).catch(() => {
         req.flash('error', 'خطا! بعدا امتحان کنید.');

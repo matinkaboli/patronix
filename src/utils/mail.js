@@ -15,8 +15,7 @@ const send = (to, text, flag, name = 'boddy') => {
   };
   if (flag === 'signup') {
     mailOption.html = `Welcome ${name}, click here to verify your account
-<a href="127.0.0.1:8010/code">HERE</a>
-This is your code = ${text}`;
+                      <a href="127.0.0.1:8010/code/${text}">HERE</a>`;
   }
   transport.sendMail(mailOption, (err) => {
     if (err) {
