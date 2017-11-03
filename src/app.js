@@ -30,7 +30,7 @@ const app = express();
 let server;
 
 server = app.listen(config.port, () => {
-  console.log(`server has been started on port: ${config.port}`);
+    console.log(`Server has been started on port ${config.port}`);
 });
 
 const io = socket(server);
