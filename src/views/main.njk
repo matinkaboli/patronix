@@ -10,4 +10,14 @@
 {% endblock %}
 
 {% block scripts %}
+{% for i in success %}
+  <script>
+    swal({
+      title: 'موفق',
+      text: "{{ i }}",
+      icon: 'success',
+      button: 'باشه'
+    });
+  </script>
+{% endfor %}
 {% endblock %}
