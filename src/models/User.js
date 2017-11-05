@@ -58,6 +58,11 @@ const schema = new Schema({
     enum: [0, 1, 2, 3],
     required: true,
     trim: true
+  },
+  image: {
+    type: String,
+    trim: true,
+    unique: true
   }
 });
 
