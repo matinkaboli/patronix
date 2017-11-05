@@ -6,8 +6,17 @@ const router = new Router();
 
 router.get('/u', auth, (req, res) => {
   User.findOne({ _id: req.session.user }).then(user => {
-    console.log(user);
-    res.render('u.njk', { user });
+    if (user) {
+      res.render('u.njk', {
+        error: req.flash('error'),
+        success: req.flash('success'),
+        warn: req.flash('warn'),
+        user
+      });
+    } else {
+      req.flash('erorr', 'خطا! بعدا امتحان کنید.');
+      res.redirect('/u');
+    }
   }).catch(() => {
     req.flash('error', 'خطا! بعدا امتحان کنید.');
     res.redirect('/login');
