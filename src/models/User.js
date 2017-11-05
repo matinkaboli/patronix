@@ -7,12 +7,14 @@ const schema = new Schema({
     first: {
       type: String,
       trim: true,
-      required: [true, 'First name required']
+      required: [true, 'First name required'],
+      maxlength: 20
     },
     last: {
       type: String,
       trim: true,
-      required: [true, 'Last name required']
+      required: [true, 'Last name required'],
+      maxlength: 20
     }
   },
   email: {
@@ -26,22 +28,14 @@ const schema = new Schema({
       },
       message: 'It is not a valid email'
     },
-    required: [true, 'Email required']
+    required: [true, 'Email required'],
+    maxlength: 100
   },
   password: {
     type: String,
     trim: true,
-    required: [true, 'Password required']
-  },
-  phone: {
-    type: String,
-    validate: {
-      validator(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
-      },
-      message: 'It is not a valid phone number!'
-    },
-    trim: true
+    required: [true, 'Password required'],
+    maxlength: 200
   },
   type: {
     type: Number,
