@@ -63,6 +63,7 @@ router.post('/signup', signupLimiter, (req, res) => {
             user: user._id
           });
           newCode.save().then(() => {
+            req.session.captcha = null;
             // send(req.body.email, newCode.code, 'signup', req.body.fname);
             res.render('done.njk', {
               type: 'signup',

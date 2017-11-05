@@ -47,9 +47,8 @@ router.post('/login', loginLimiter, (req, res) => {
           res.redirect('/login');
         });
       } else if (user.status === 1) {
-        res.reply.ok({
-          message: 'You\'re in.'
-        });
+        req.session.user = user._id;
+        res.redirect('/u');        
       }
     } else {
       req.flash('error', 'چنین حسابی وجود ندارد.');
