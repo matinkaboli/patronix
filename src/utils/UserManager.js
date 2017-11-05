@@ -1,20 +1,12 @@
-export default class {
-  constructor(session) {
-    this.session = session;
-    this.status = false;
-  }
-
-  login(id) {
-    this.session = id;
-    this.status = true;
-  }
-
-  logout() {
-    this.session = null;
-    this.status = false;
-  }
-
-  get loggedIn() {
-    return this.status;
+class A {
+  auth(req, res, next) {
+    if (req.session.user) {
+      console.log(req.session);
+      return next();
+    } else {
+      res.reply.notFound();
+    }
   }
 }
+
+export default new A();

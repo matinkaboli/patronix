@@ -14,7 +14,6 @@ import socket from 'socket.io';
 import config from './config.json';
 import routers from './routers/';
 import replies from './replies';
-import { UserManager } from './utils';
 
 
 /**
@@ -91,13 +90,6 @@ app.use(flash());
 app.set('engine', nunjucks.configure(path.resolve(__dirname, './views'), {
   express: app
 }));
-
-app.use((req, res, next) => {
-  req.user = new UserManager(req.session.muser);
-  req.op = new UserManager(req.session.mop);
-
-  next();
-});
 
 /**
 * add default variable to templates
