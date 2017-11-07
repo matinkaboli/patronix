@@ -69,12 +69,16 @@ router.post('/signup', signupLimiter, (req, res) => {
               type: 'signup',
               email: req.body.email
             });
-          }).catch(() => {
+          }).catch((e) => {
+            console.log(1);
+            console.log(e);
             req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
             req.flash('email', req.body.email);
             res.redirect('/login');
           });
-        }).catch(() => {
+        }).catch((e) => {
+          console.log(2);
+          console.log(e);
           req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
           req.flash('email', req.body.email);
           res.redirect('/signup');

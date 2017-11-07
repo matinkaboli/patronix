@@ -55,8 +55,7 @@ const schema = new Schema({
   },
   image: {
     type: String,
-    trim: true,
-    unique: true
+    trim: true
   }
 });
 
