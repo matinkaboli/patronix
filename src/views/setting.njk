@@ -38,6 +38,7 @@
 <form
   action="/settingpassword"
   method="post"
+  name="pass-form"
   onsubmit="return checkPassForm()">
   <input
     type="password"
@@ -88,5 +89,6 @@
     });
   </script>
 {% endfor %}
+<script src="/files/js/validator.js"></script>
 <script src="/files/js/setting.js"></script>
 {% endblock %}
