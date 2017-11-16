@@ -3,6 +3,7 @@ import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { unique } from 'stringing';
 // import send from '../utils/mail';
+import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -14,14 +15,14 @@ const forgotLimit = new RateLimit({
   }
 });
 
-router.get('/forgot', (req, res) => {
+router.get('/forgot', logged, (req, res) => {
   res.render('forgot.njk', {
     email: req.flash('email'),
     erorr: req.flash('error'),
     warn: req.flash('warn')
   });
 });
-router.post('/forgot', forgotLimit, (req, res) => {
+router.post('/forgot', forgotLimit, logged, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {

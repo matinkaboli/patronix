@@ -2,6 +2,7 @@ import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
+import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -13,7 +14,7 @@ const changepassLimit = new RateLimit({
   }
 });
 
-router.get('/changepass/:code', (req, res) => {
+router.get('/changepass/:code', logged, (req, res) => {
   Code.findOne({ code: req.params.code }).then(code => {
     if (code) {
       res.render('changepass.njk', {
@@ -29,7 +30,7 @@ router.get('/changepass/:code', (req, res) => {
     res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
   });
 });
-router.post('/changepass', changepassLimit, (req, res) => {
+router.post('/changepass', changepassLimit, logged, (req, res) => {
   Code.findOne({ code: req.body.code }).then(code => {
     if (code) {
       User.findOne({ _id: code.user }).then(user => {

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import svgCaptcha from 'svg-captcha';
 import RateLimit from 'express-rate-limit';
+import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -9,7 +10,7 @@ const recaptchaLimiter = new RateLimit({
   max: 150,
 });
 
-router.get('/recaptcha', recaptchaLimiter, (req, res) => {
+router.get('/recaptcha', recaptchaLimiter, logged, (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   const captcha = svgCaptcha.create({

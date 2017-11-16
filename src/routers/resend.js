@@ -1,10 +1,9 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
-import svgCaptcha from 'svg-captcha';
 import { User, Code } from '../models';
-import { encrypt } from '../utils/encrypt';
 // import send from '../utils/mail';
+import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -17,11 +16,11 @@ const resendLimiter = new RateLimit({
   }
 });
 
-router.get('/resend', (req, res) => {
+router.get('/resend', logged, (req, res) => {
   res.render('resend.njk');
 });
 
-router.post('/resend', resendLimiter, (req, res) => {
+router.post('/resend', resendLimiter, logged, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {

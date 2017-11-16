@@ -3,6 +3,7 @@ import RateLimit from 'express-rate-limit';
 import { User, Code } from '../models';
 import { encrypt } from '../utils/encrypt';
 // import send from '../utils/mail';
+import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -15,7 +16,7 @@ const loginLimiter = new RateLimit({
   }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', logged, (req, res) => {
   res.render('login.njk', {
     success: req.flash('success'),
     error: req.flash('error'),
@@ -24,7 +25,7 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.post('/login', loginLimiter, (req, res) => {
+router.post('/login', loginLimiter, logged, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   User.findOne({
@@ -48,7 +49,7 @@ router.post('/login', loginLimiter, (req, res) => {
         });
       } else if (user.status === 1) {
         req.session.user = user._id;
-        res.redirect('/u');        
+        res.redirect('/u');
       }
     } else {
       req.flash('error', 'چنین حسابی وجود ندارد.');
