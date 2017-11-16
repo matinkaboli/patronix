@@ -120,7 +120,7 @@ app.use((req, res, next) => {
   res.locals.footer = (name, att) => {
     res.localSource.footer.push(addTag(name, att));
   };
-
+  res.locals.io = io;
   next();
 });
 
