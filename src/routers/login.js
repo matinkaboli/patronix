@@ -51,7 +51,9 @@ router.post('/login', loginLimiter, logged, (req, res) => {
         req.session.user = user._id;
         res.redirect('/u');
       }
-    } else {
+    }
+
+    else {
       req.flash('error', 'چنین حسابی وجود ندارد.');
       res.redirect('/signup');
     }

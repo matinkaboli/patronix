@@ -21,7 +21,7 @@ const signupLimiter = new RateLimit({
 router.get('/signup', logged, (req, res) => {
   svgCaptcha.options.width = 220;
   const captcha = svgCaptcha.create({
-    size: 6,
+    size: 4,
     ignoreChars: '0o1ilIQ8',
     noise: 4
   });
@@ -70,16 +70,12 @@ router.post('/signup', signupLimiter, logged, (req, res) => {
               type: 'signup',
               email: req.body.email
             });
-          }).catch((e) => {
-            console.log(1);
-            console.log(e);
+          }).catch(() => {
             req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
             req.flash('email', req.body.email);
             res.redirect('/login');
           });
-        }).catch((e) => {
-          console.log(2);
-          console.log(e);
+        }).catch(() => {
           req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
           req.flash('email', req.body.email);
           res.redirect('/signup');
