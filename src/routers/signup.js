@@ -20,6 +20,7 @@ const signupLimiter = new RateLimit({
 
 router.get('/signup', logged, (req, res) => {
   svgCaptcha.options.width = 220;
+
   const captcha = svgCaptcha.create({
     size: 4,
     ignoreChars: '0o1ilIQ8',
@@ -43,10 +44,12 @@ router.post('/signup', signupLimiter, logged, (req, res) => {
       email: req.body.email,
       password: encrypt(req.body.password, req.body.email)
     }).then(doc => {
+
       if (doc) {
         req.flash('error', 'این ایمیل توسط کسی ثبت نام شده.');
         res.redirect('/signup');
-      } else {
+      }
+      else {
         const user = new User({
           password: encrypt(req.body.password, req.body.email),
           type: 1,
@@ -63,13 +66,16 @@ router.post('/signup', signupLimiter, logged, (req, res) => {
             code: unique(25),
             user: user._id
           });
+
           newCode.save().then(() => {
             req.session.captcha = null;
+
             // send(req.body.email, newCode.code, 'signup', req.body.fname);
             res.render('done.njk', {
               type: 'signup',
               email: req.body.email
             });
+            
           }).catch(() => {
             req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
             req.flash('email', req.body.email);

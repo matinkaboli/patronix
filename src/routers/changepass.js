@@ -15,7 +15,9 @@ const changepassLimit = new RateLimit({
 });
 
 router.get('/changepass/:code', logged, (req, res) => {
+
   Code.findOne({ code: req.params.code }).then(code => {
+
     if (code) {
       res.render('changepass.njk', {
         email: req.flash('email'),
@@ -26,17 +28,22 @@ router.get('/changepass/:code', logged, (req, res) => {
     } else {
       res.reply.notFound();
     }
+
   }).catch(() => {
     res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
   });
 });
+
 router.post('/changepass', changepassLimit, logged, (req, res) => {
+
   Code.findOne({ code: req.body.code }).then(code => {
     if (code) {
+
       User.findOne({ _id: code.user }).then(user => {
-        console.log(user);
         if (user) {
+
           user.password = encrypt(req.body.password, user.email);
+          
           user.save().then(() => {
             req.flash('success', 'رمز با موفقیت تغییر یافت');
             req.flash('email', user.email);

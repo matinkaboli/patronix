@@ -33,6 +33,7 @@ router.post('/login', loginLimiter, logged, (req, res) => {
     password: encrypt(req.body.password, req.body.email)
   }).then(user => {
     if (user) {
+      
       if (user.status === 0) {
         Code.findOne({
           user: user._id
@@ -47,7 +48,8 @@ router.post('/login', loginLimiter, logged, (req, res) => {
           req.flash('error', 'خطا! بعدا امتحان کنید.');
           res.redirect('/login');
         });
-      } else if (user.status === 1) {
+      }
+      else if (user.status === 1) {
         req.session.user = user._id;
         res.redirect('/u');
       }

@@ -5,6 +5,7 @@ import { User } from '../models';
 const router = new Router();
 
 router.get('/u', auth, (req, res) => {
+
   User.findOne({ _id: req.session.user }).then(user => {
     if (user) {
       res.render('u.njk', {
@@ -13,7 +14,8 @@ router.get('/u', auth, (req, res) => {
         warn: req.flash('warn'),
         user
       });
-    } else {
+    }
+    else {
       req.flash('erorr', 'خطا! بعدا امتحان کنید.');
       res.redirect('/u');
     }

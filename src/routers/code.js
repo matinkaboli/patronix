@@ -15,14 +15,20 @@ const codeLimiter = new RateLimit({
     res.render('too_many_req.njk');
   }
 });
+
 router.get('/code/:code', codeLimiter, logged, (req, res) => {
   Code.findOne({ code: req.params.code }).then(code => {
+
     if (code) {
       User.findOne({ _id: code.user }).then(user => {
+
         if (user) {
+
           user.status = 1;
+
           user.save().then(() => {
             Code.remove({ code: req.params.code }).then(() => {
+
               req.flash('success', 'حساب شما با موفقیت تایید گردید.');
               req.flash('email', user.email);
               res.redirect('/login');
@@ -50,29 +56,37 @@ router.get('/code/:code', codeLimiter, logged, (req, res) => {
     res.redirect('/login');
   });
 });
+
 router.post('/code', codeLimiter, logged, (req, res) => {
+
   req.body.email = req.body.email.toLowerCase();
+
   User.findOne({
     email: req.body.email
   }).then(user => {
     if (user) {
+
       if (user.status === 0) {
         Code.findOne({
           user: user._id
         }).then(code => {
           if (code) {
             // send(user.email, code.code, 'resend', user.fname);
+
             res.render('done.njk', {
               type: 'resend',
               email: user.email
             });
           } else {
+
             const newCode = new Code({
               user: user._id,
               code: unique(25)
             });
+
             newCode.save().then(() => {
               // send(user.email, newCode.code, 'resend', user.fname);
+
               res.render('done.njk', {
                 type: 'resend',
                 email: user.email
@@ -101,4 +115,5 @@ router.post('/code', codeLimiter, logged, (req, res) => {
     res.redirect('/signup');
   });
 });
+
 export default router;

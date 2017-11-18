@@ -22,22 +22,30 @@ router.get('/forgot', logged, (req, res) => {
     warn: req.flash('warn')
   });
 });
+
 router.post('/forgot', forgotLimit, logged, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
+
       Code.findOne({ user: user._id }).then(code => {
+
         if (code) {
+
           // send(req.body.email, code.code, 'forgot', user.fname);
           req.flash('success', 'ایمیل برای شما با موفقیت فرستاده شد');
           res.redirect('/login');
         } else {
+
           const newCode = new Code({
             code: unique(25),
             user: user._id
           });
+
           newCode.save().then(() => {
             // send(req.body.email, code.code, 'forgot', user.fname);
+            
             res.render('done.njk', {
               type: 'forgot',
               email: req.body.email

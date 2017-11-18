@@ -22,6 +22,7 @@ router.get('/resend', logged, (req, res) => {
 
 router.post('/resend', resendLimiter, logged, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
+  
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       if (user.status === 0) {
@@ -33,12 +34,15 @@ router.post('/resend', resendLimiter, logged, (req, res) => {
               email: req.body.email
             });
           } else {
+
             const newCode = new Code({
               user: user._id,
               code: unique(25)
             });
             newCode.save().then(() => {
+
               // send(req.body.email, code.code, 'resend', user.fname);
+
               res.render('done.njk', {
                 type: 'resend',
                 email: req.body.email
