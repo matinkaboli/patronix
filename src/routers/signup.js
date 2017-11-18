@@ -64,14 +64,14 @@ router.post('/signup', signupLimiter, logged, (req, res) => {
 
           user.save().then(() => {
             const newCode = new Code({
-              code: unique(25),
+              link: unique(25),
               user: user._id
             });
 
             newCode.save().then(() => {
               req.session.captcha = null;
 
-              // send(req.body.email, newCode.code, 'signup', req.body.fname);
+              // send(req.body.email, newCode.link, 'signup', req.body.fname);
               res.render('done.njk', {
                 type: 'signup',
                 email: req.body.email
@@ -97,7 +97,7 @@ router.post('/signup', signupLimiter, logged, (req, res) => {
   } else {
     req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
     req.flash('email', req.body.email);
-    res.redirect('/signup');    
+    res.redirect('/signup');
   }
 });
 

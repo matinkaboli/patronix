@@ -32,7 +32,8 @@ router.post('/login', loginLimiter, logged, (req, res) => {
 
     User.findOne({
       email: req.body.email,
-      password: encrypt(req.body.password, req.body.email)
+      password: encrypt(req.body.password, req.body.email),
+      status: { $in: [0, 1, 2] }
     }).then(user => {
       if (user) {
 

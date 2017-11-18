@@ -35,18 +35,18 @@ router.post('/forgot', forgotLimit, logged, (req, res) => {
 
           if (code) {
 
-            // send(req.body.email, code.code, 'forgot', user.fname);
+            // send(req.body.email, code.link, 'forgot', user.fname);
             req.flash('success', 'ایمیل برای شما با موفقیت فرستاده شد');
             res.redirect('/login');
           } else {
 
             const newCode = new Code({
               code: unique(25),
-              user: user._id
+              link: user._id
             });
 
             newCode.save().then(() => {
-              // send(req.body.email, code.code, 'forgot', user.fname);
+              // send(req.body.email, code.link, 'forgot', user.fname);
 
               res.render('done.njk', {
                 type: 'forgot',

@@ -19,7 +19,7 @@ const codeLimiter = new RateLimit({
 router.get('/code/:code', codeLimiter, logged, (req, res) => {
 
   if (req.params.code) {
-    Code.findOne({ code: req.params.code }).then(code => {
+    Code.findOne({ link: req.params.code }).then(code => {
 
       if (code) {
         User.findOne({ _id: code.user }).then(user => {
@@ -78,7 +78,7 @@ router.post('/code', codeLimiter, logged, (req, res) => {
             user: user._id
           }).then(code => {
             if (code) {
-              // send(user.email, code.code, 'resend', user.fname);
+              // send(user.email, code.link, 'resend', user.fname);
 
               res.render('done.njk', {
                 type: 'resend',
@@ -88,11 +88,11 @@ router.post('/code', codeLimiter, logged, (req, res) => {
 
               const newCode = new Code({
                 user: user._id,
-                code: unique(25)
+                link: unique(25)
               });
 
               newCode.save().then(() => {
-                // send(user.email, newCode.code, 'resend', user.fname);
+                // send(user.email, newCode.link, 'resend', user.fname);
 
                 res.render('done.njk', {
                   type: 'resend',

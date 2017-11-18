@@ -30,7 +30,7 @@ router.post('/resend', resendLimiter, logged, (req, res) => {
         if (user.status === 0) {
           Code.findOne({ user: user._id }).then(code => {
             if (code) {
-              // send(req.body.email, code.code, 'resend', user.fname);
+              // send(req.body.email, code.link, 'resend', user.fname);
               res.render('done.njk', {
                 type: 'resend',
                 email: req.body.email
@@ -39,11 +39,11 @@ router.post('/resend', resendLimiter, logged, (req, res) => {
 
               const newCode = new Code({
                 user: user._id,
-                code: unique(25)
+                link: unique(25)
               });
               newCode.save().then(() => {
 
-                // send(req.body.email, code.code, 'resend', user.fname);
+                // send(req.body.email, code.link, 'resend', user.fname);
 
                 res.render('done.njk', {
                   type: 'resend',

@@ -17,7 +17,7 @@ const changepassLimit = new RateLimit({
 router.get('/changepass/:code', logged, (req, res) => {
 
   if (req.params.code) {
-    Code.findOne({ code: req.params.code }).then(code => {
+    Code.findOne({ link: req.params.code }).then(code => {
 
       if (code) {
         res.render('changepass.njk', {
@@ -41,7 +41,7 @@ router.get('/changepass/:code', logged, (req, res) => {
 router.post('/changepass', changepassLimit, logged, (req, res) => {
 
   if (req.body.code) {
-    Code.findOne({ code: req.body.code }).then(code => {
+    Code.findOne({ link: req.body.code }).then(code => {
       if (code) {
 
         User.findOne({ _id: code.user }).then(user => {
