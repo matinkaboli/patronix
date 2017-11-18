@@ -6,12 +6,17 @@ const router = new Router();
 
 router.post('/delete', auth, (req, res) => {
 
-  User.remove({ _id: req.session.user }).then(() => {
+  User.findOne({ _id: req.session.user }).then(user => {
+    user.status = 3;
 
-    req.flash('success', 'حساب کاربری با موفقیت حذف شد.');
-    res.redirect('/');
-    req.session.user = null;
-    
+    user.save().then(() => {
+      req.flash('success', 'حساب کاربری با موفقیت حذف شد.');
+      res.redirect('/');
+      req.session.user = null;
+    }).catch(() => {
+      req.flash('error', 'خطا! بعدا امتحان کنید.');
+      res.redirect('/setting');
+    });
   }).catch(() => {
     req.flash('error', 'خطا! بعدا امتحان کنید.');
     res.redirect('/setting');
