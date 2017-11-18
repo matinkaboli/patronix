@@ -17,103 +17,114 @@ const codeLimiter = new RateLimit({
 });
 
 router.get('/code/:code', codeLimiter, logged, (req, res) => {
-  Code.findOne({ code: req.params.code }).then(code => {
 
-    if (code) {
-      User.findOne({ _id: code.user }).then(user => {
+  if (req.params.code) {
+    Code.findOne({ code: req.params.code }).then(code => {
 
-        if (user) {
+      if (code) {
+        User.findOne({ _id: code.user }).then(user => {
 
-          user.status = 1;
+          if (user) {
 
-          user.save().then(() => {
-            Code.remove({ code: req.params.code }).then(() => {
+            user.status = 1;
 
-              req.flash('success', 'حساب شما با موفقیت تایید گردید.');
-              req.flash('email', user.email);
-              res.redirect('/login');
-            }).catch(() => {
-              req.flash('error', 'خطا! بعدا امتحان کنید.');
-              res.redirect('/login');
-            });
-          }).catch(() => {
-            req.flash('error', 'خطا! بعدا امتحان کنید.');
-            res.redirect('/login');
-          });
-        } else {
-          req.flash('error', 'چنین حسابی وجود ندارد.');
-          res.redirect('/signup');
-        }
-      }).catch(() => {
-        req.flash('error', 'خطا! بعدا امتحان کنید.');
-        res.redirect('/login');
-      });
-    } else {
-      res.reply.notFound();
-    }
-  }).catch(() => {
-    req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/login');
-  });
-});
+            user.save().then(() => {
+              Code.remove({ code: req.params.code }).then(() => {
 
-router.post('/code', codeLimiter, logged, (req, res) => {
-
-  req.body.email = req.body.email.toLowerCase();
-
-  User.findOne({
-    email: req.body.email
-  }).then(user => {
-    if (user) {
-
-      if (user.status === 0) {
-        Code.findOne({
-          user: user._id
-        }).then(code => {
-          if (code) {
-            // send(user.email, code.code, 'resend', user.fname);
-
-            res.render('done.njk', {
-              type: 'resend',
-              email: user.email
-            });
-          } else {
-
-            const newCode = new Code({
-              user: user._id,
-              code: unique(25)
-            });
-
-            newCode.save().then(() => {
-              // send(user.email, newCode.code, 'resend', user.fname);
-
-              res.render('done.njk', {
-                type: 'resend',
-                email: user.email
+                req.flash('success', 'حساب شما با موفقیت تایید گردید.');
+                req.flash('email', user.email);
+                res.redirect('/login');
+              }).catch(() => {
+                req.flash('error', 'خطا! بعدا امتحان کنید.');
+                res.redirect('/login');
               });
             }).catch(() => {
               req.flash('error', 'خطا! بعدا امتحان کنید.');
               res.redirect('/login');
             });
+          } else {
+            req.flash('error', 'چنین حسابی وجود ندارد.');
+            res.redirect('/signup');
           }
         }).catch(() => {
           req.flash('error', 'خطا! بعدا امتحان کنید.');
-          res.redirect('/signup');
+          res.redirect('/login');
         });
       } else {
-        req.flash('warn', 'این حساب از قبل تایید شده است.');
-        req.flash('email', req.body.email);
-        res.redirect('/login');
+        res.reply.notFound();
       }
-    } else {
-      req.flash('error', 'چنین حسابی وجود ندارد.');
-      req.flash('email', req.body.email);
+    }).catch(() => {
+      req.flash('error', 'خطا! بعدا امتحان کنید.');
+      res.redirect('/login');
+    });
+  } else {
+    req.flash('error', 'خطا! بعدا امتحان کنید.');
+    res.redirect('/login');
+  }
+});
+
+router.post('/code', codeLimiter, logged, (req, res) => {
+
+  if (req.body.email) {
+    req.body.email = req.body.email.toLowerCase();
+
+    User.findOne({
+      email: req.body.email
+    }).then(user => {
+      if (user) {
+
+        if (user.status === 0) {
+          Code.findOne({
+            user: user._id
+          }).then(code => {
+            if (code) {
+              // send(user.email, code.code, 'resend', user.fname);
+
+              res.render('done.njk', {
+                type: 'resend',
+                email: user.email
+              });
+            } else {
+
+              const newCode = new Code({
+                user: user._id,
+                code: unique(25)
+              });
+
+              newCode.save().then(() => {
+                // send(user.email, newCode.code, 'resend', user.fname);
+
+                res.render('done.njk', {
+                  type: 'resend',
+                  email: user.email
+                });
+              }).catch(() => {
+                req.flash('error', 'خطا! بعدا امتحان کنید.');
+                res.redirect('/login');
+              });
+            }
+          }).catch(() => {
+            req.flash('error', 'خطا! بعدا امتحان کنید.');
+            res.redirect('/signup');
+          });
+        } else {
+          req.flash('warn', 'این حساب از قبل تایید شده است.');
+          req.flash('email', req.body.email);
+          res.redirect('/login');
+        }
+      } else {
+        req.flash('error', 'چنین حسابی وجود ندارد.');
+        req.flash('email', req.body.email);
+        res.redirect('/signup');
+      }
+    }).catch(() => {
+      req.flash('error', 'خطا! بعدا امتحان کنید.');
       res.redirect('/signup');
-    }
-  }).catch(() => {
+    });
+  } else {
     req.flash('error', 'خطا! بعدا امتحان کنید.');
     res.redirect('/signup');
-  });
+  }
 });
 
 export default router;

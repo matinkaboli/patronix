@@ -26,43 +26,49 @@ router.get('/login', logged, (req, res) => {
 });
 
 router.post('/login', loginLimiter, logged, (req, res) => {
-  req.body.email = req.body.email.toLowerCase();
 
-  User.findOne({
-    email: req.body.email,
-    password: encrypt(req.body.password, req.body.email)
-  }).then(user => {
-    if (user) {
-      
-      if (user.status === 0) {
-        Code.findOne({
-          user: user._id
-        }).then(code => {
-          if (code) {
-            res.render('done.njk', {
-              type: 'login',
-              email: req.body.email
-            });
-          }
-        }).catch(() => {
-          req.flash('error', 'خطا! بعدا امتحان کنید.');
-          res.redirect('/login');
-        });
-      }
-      else if (user.status === 1) {
-        req.session.user = user._id;
-        res.redirect('/u');
-      }
-    }
+  if (req.body.email) {
+    req.body.email = req.body.email.toLowerCase();
 
-    else {
-      req.flash('error', 'چنین حسابی وجود ندارد.');
-      res.redirect('/signup');
-    }
-  }).catch(() => {
+    User.findOne({
+      email: req.body.email,
+      password: encrypt(req.body.password, req.body.email)
+    }).then(user => {
+      if (user) {
+
+        if (user.status === 0) {
+          Code.findOne({
+            user: user._id
+          }).then(code => {
+            if (code) {
+              res.render('done.njk', {
+                type: 'login',
+                email: req.body.email
+              });
+            }
+          }).catch(() => {
+            req.flash('error', 'خطا! بعدا امتحان کنید.');
+            res.redirect('/login');
+          });
+        }
+        else if (user.status === 1) {
+          req.session.user = user._id;
+          res.redirect('/u');
+        }
+      }
+
+      else {
+        req.flash('error', 'چنین حسابی وجود ندارد.');
+        res.redirect('/signup');
+      }
+    }).catch(() => {
+      req.flash('error', 'خطا! بعدا امتحان کنید.');
+      res.redirect('/login');
+    });
+  } else {
     req.flash('error', 'خطا! بعدا امتحان کنید.');
     res.redirect('/login');
-  });
+  }
 });
 
 export default router;

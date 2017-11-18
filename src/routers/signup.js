@@ -37,61 +37,67 @@ router.get('/signup', logged, (req, res) => {
 });
 
 router.post('/signup', signupLimiter, logged, (req, res) => {
-  req.body.email = req.body.email.toLowerCase();
+  if (req.body.email) {
+    req.body.email = req.body.email.toLowerCase();
 
-  if (req.body.captcha === req.session.captcha) {
-    User.findOne({
-      email: req.body.email,
-      password: encrypt(req.body.password, req.body.email)
-    }).then(doc => {
+    if (req.body.captcha === req.session.captcha) {
+      User.findOne({
+        email: req.body.email,
+        password: encrypt(req.body.password, req.body.email)
+      }).then(doc => {
 
-      if (doc) {
-        req.flash('error', 'این ایمیل توسط کسی ثبت نام شده.');
-        res.redirect('/signup');
-      }
-      else {
-        const user = new User({
-          password: encrypt(req.body.password, req.body.email),
-          type: 1,
-          status: 0,
-          email: req.body.email,
-          name: {
-            first: req.body.fname,
-            last: req.body.lname
-          }
-        });
-
-        user.save().then(() => {
-          const newCode = new Code({
-            code: unique(25),
-            user: user._id
+        if (doc) {
+          req.flash('error', 'این ایمیل توسط کسی ثبت نام شده.');
+          res.redirect('/signup');
+        }
+        else {
+          const user = new User({
+            password: encrypt(req.body.password, req.body.email),
+            type: 1,
+            status: 0,
+            email: req.body.email,
+            name: {
+              first: req.body.fname,
+              last: req.body.lname
+            }
           });
 
-          newCode.save().then(() => {
-            req.session.captcha = null;
-
-            // send(req.body.email, newCode.code, 'signup', req.body.fname);
-            res.render('done.njk', {
-              type: 'signup',
-              email: req.body.email
+          user.save().then(() => {
+            const newCode = new Code({
+              code: unique(25),
+              user: user._id
             });
-            
+
+            newCode.save().then(() => {
+              req.session.captcha = null;
+
+              // send(req.body.email, newCode.code, 'signup', req.body.fname);
+              res.render('done.njk', {
+                type: 'signup',
+                email: req.body.email
+              });
+
+            }).catch(() => {
+              req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
+              req.flash('email', req.body.email);
+              res.redirect('/login');
+            });
           }).catch(() => {
             req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
             req.flash('email', req.body.email);
-            res.redirect('/login');
+            res.redirect('/signup');
           });
-        }).catch(() => {
-          req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
-          req.flash('email', req.body.email);
-          res.redirect('/signup');
-        });
-      }
-    });
+        }
+      });
+    } else {
+      req.flash('error', 'کد امنیتی وارد شده اشتباه است.');
+      req.flash('email', req.body.email);
+      res.redirect('/signup');
+    }
   } else {
-    req.flash('error', 'کد امنیتی وارد شده اشتباه است.');
+    req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
     req.flash('email', req.body.email);
-    res.redirect('/signup');
+    res.redirect('/signup');    
   }
 });
 

@@ -6,23 +6,29 @@ import { encrypt } from '../utils/encrypt';
 const router = new Router();
 
 router.get('/setting', auth, (req, res) => {
-  User.findOne({ _id: req.session.user }).then(user => {
-    if (user) {
-      res.render('setting.njk', {
-        error: req.flash('error'),
-        success: req.flash('success'),
-        warn: req.flash('warn'),
-        user
-      });
-    }
-    else {
+
+  if (req.session.user) {
+    User.findOne({ _id: req.session.user }).then(user => {
+      if (user) {
+        res.render('setting.njk', {
+          error: req.flash('error'),
+          success: req.flash('success'),
+          warn: req.flash('warn'),
+          user
+        });
+      }
+      else {
+        req.flash('erorr', 'خطا! بعدا امتحان کنید.');
+        res.redirect('/u');
+      }
+    }).catch(() => {
       req.flash('erorr', 'خطا! بعدا امتحان کنید.');
       res.redirect('/u');
-    }
-  }).catch(() => {
+    });
+  } else {
     req.flash('erorr', 'خطا! بعدا امتحان کنید.');
     res.redirect('/u');
-  });
+  }
 });
 
 router.post('/setting', auth, (req, res) => {
@@ -101,7 +107,7 @@ router.post('/settingpassword', auth, (req, res) => {
         if (encrypt(req.body.oldpass, user.email) === user.password) {
 
           user.password = encrypt(req.body.newpass, user.email);
-          
+
           user.save().then(() => {
             req.flash('success', 'رمز شما با موفقیت تغییر یافت.');
             res.redirect('/u');
