@@ -29,7 +29,7 @@ router.get('/code/:code', codeLimiter, logged, (req, res) => {
             user.status = 1;
 
             user.save().then(() => {
-              Code.remove({ code: req.params.code }).then(() => {
+              Code.remove({ link: req.params.code }).then(() => {
 
                 req.flash('success', 'حساب شما با موفقیت تایید گردید.');
                 req.flash('email', user.email);
