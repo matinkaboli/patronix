@@ -1,11 +1,9 @@
 import { Router } from 'express';
+import { perm } from '../perms';
 
-export default (perms, models, utils) => {
-  let { perm } = perms;
-  const router = new Router();
+const router = new Router();
 
-  router.get('/@@replacement@@', perm, (req, res) => {
-  });
+router.get('/@@replacement@@', perm, (req, res) => {
+});
 
-  return router;
-};
+export default router;

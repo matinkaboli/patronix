@@ -14,12 +14,8 @@ import socket from 'socket.io';
 import config from './config.json';
 import routers from './routers/';
 import replies from './replies';
-import models from './models';
-import utils from './utils';
-import perms from './perms';
-
-const { UserManager } = utils;
-const { User, Operator } = models;
+import UserManager from './utils/UserManager';
+import { User, Operator } from './models';
 
 
 /**
@@ -175,7 +171,7 @@ app.use((req, res, next) => {
  */
 
 for (let router of routers) {
-  app.use(router(perms, models, utils));
+  app.use(router);
 }
 
 
