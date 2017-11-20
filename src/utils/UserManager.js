@@ -30,7 +30,7 @@ export default class {
     });
   }
 
-  logged() {
+  get logged() {
     return this.user ? true : false;
   }
 }
