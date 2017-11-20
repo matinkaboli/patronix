@@ -3,7 +3,6 @@ import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
 import { User, Code } from '../models';
 // import send from '../utils/mail';
-import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -16,11 +15,11 @@ const resendLimiter = new RateLimit({
   }
 });
 
-router.get('/resend', logged, (req, res) => {
+router.get('/resend', (req, res) => {
   res.render('resend.njk');
 });
 
-router.post('/resend', resendLimiter, logged, (req, res) => {
+router.post('/resend', resendLimiter, (req, res) => {
 
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();

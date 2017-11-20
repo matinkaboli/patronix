@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import { auth } from '../utils/UserManager';
 import { User } from '../models';
 import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
 
-router.get('/setting', auth, (req, res) => {
+router.get('/setting', (req, res) => {
 
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
@@ -31,7 +30,7 @@ router.get('/setting', auth, (req, res) => {
   }
 });
 
-router.post('/setting', auth, (req, res) => {
+router.post('/setting', (req, res) => {
 
   if (req.body.email &&
       req.body.fname &&
@@ -97,7 +96,7 @@ router.post('/setting', auth, (req, res) => {
   }
 });
 
-router.post('/settingpassword', auth, (req, res) => {
+router.post('/settingpassword', (req, res) => {
 
   if (req.body.oldpass && req.body.newpass) {
 

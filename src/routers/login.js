@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User, Code } from '../models';
+import { User } from '../models';
 import { encrypt } from '../utils/encrypt';
 // import send from '../utils/mail';
-import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -16,60 +15,35 @@ const loginLimiter = new RateLimit({
   }
 });
 
-router.get('/login', logged, (req, res) => {
-  res.render('login.njk', {
-    success: req.flash('success'),
-    error: req.flash('error'),
-    warn: req.flash('warn'),
-    email: req.flash('email')
-  });
+router.get('/login', (req, res) => {
+  res.render('login.njk');
 });
 
-router.post('/login', loginLimiter, logged, (req, res) => {
-
-  if (req.body.email) {
-    req.body.email = req.body.email.toLowerCase();
-
-    User.findOne({
-      email: req.body.email,
-      password: encrypt(req.body.password, req.body.email),
-      status: { $in: [0, 1, 2] }
-    }).then(user => {
-      if (user) {
-
-        if (user.status === 0) {
-          Code.findOne({
-            user: user._id
-          }).then(code => {
-            if (code) {
-              res.render('done.njk', {
-                type: 'login',
-                email: req.body.email
-              });
-            }
-          }).catch(() => {
-            req.flash('error', 'خطا! بعدا امتحان کنید.');
-            res.redirect('/login');
-          });
-        }
-        else if (user.status === 1) {
-          req.session.user = user._id;
-          res.redirect('/u');
-        }
+router.post('/login', loginLimiter, (req, res) => {
+  User.findOne({
+    email: req.body.email,
+    password: encrypt(req.body.password, req.body.email),
+    status: { $in: [0, 1, 2] }
+  }).then(user => {
+    if (user) {
+      if (user.status === 0) {
+        res.reply.error({ message: 'unverified user' });
       }
 
-      else {
-        req.flash('error', 'چنین حسابی وجود ندارد.');
-        res.redirect('/signup');
+      else if (user.status === 1) {
+        req.user.login(user);
+        res.reply.ok();
       }
-    }).catch(() => {
-      req.flash('error', 'خطا! بعدا امتحان کنید.');
-      res.redirect('/login');
-    });
-  } else {
-    req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/login');
-  }
+
+      else if (user.status === 2) {
+        res.reply.error({ message: 'your account has expired' });
+      }
+    }
+
+    else {
+      res.reply.error({ message: 'no such user' });
+    }
+  });
 });
 
 export default router;

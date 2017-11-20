@@ -3,7 +3,6 @@ import { Code, User } from '../models';
 import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
 // import send from '../utils/mail';
-import { logged } from '../utils/UserManager';
 
 const router = new Router();
 
@@ -16,7 +15,7 @@ const codeLimiter = new RateLimit({
   }
 });
 
-router.get('/code/:code', codeLimiter, logged, (req, res) => {
+router.get('/code/:code', codeLimiter, (req, res) => {
 
   if (req.params.code) {
     Code.findOne({ link: req.params.code }).then(code => {
@@ -63,7 +62,7 @@ router.get('/code/:code', codeLimiter, logged, (req, res) => {
   }
 });
 
-router.post('/code', codeLimiter, logged, (req, res) => {
+router.post('/code', codeLimiter, (req, res) => {
 
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();

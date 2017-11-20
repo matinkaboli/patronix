@@ -14,6 +14,8 @@ import socket from 'socket.io';
 import config from './config.json';
 import routers from './routers/';
 import replies from './replies';
+import UserManager from './utils/UserManager';
+import { User, Operator } from './models';
 
 
 /**
@@ -120,7 +122,7 @@ app.use((req, res, next) => {
   res.locals.footer = (name, att) => {
     res.localSource.footer.push(addTag(name, att));
   };
-  res.locals.io = io;
+
   next();
 });
 
@@ -136,6 +138,32 @@ app.use((req, res, next) => {
   res.reply.error = replies.error.bind(null, res);
 
   next();
+});
+
+/**
+ * add LoginManager
+ */
+
+function* GetUserDoc(users) {
+  for (let user of users) {
+    yield user.load();
+  }
+}
+
+app.use((req, res, next) => {
+  req.user = new UserManager('user', req.session, User);
+  req.operator = new UserManager('operator', req.session.operator, Operator);
+
+  let iterator = new GetUserDoc([req.user]);
+  (function loop() {
+    let go = iterator.next();
+
+    if (go.done) {
+      next();
+    } else {
+      go.value.then(loop);
+    }
+  })();
 });
 
 /**

@@ -1,17 +1,16 @@
 import { Router } from 'express';
-import { auth } from '../utils/UserManager';
 import { User } from '../models';
 
 const router = new Router();
 
-router.post('/delete', auth, (req, res) => {
+router.post('/delete', (req, res) => {
 
   User.findOne({ _id: req.session.user }).then(user => {
     user.status = 3;
 
     user.save().then(() => {
       req.session.user = null;
-      
+
       req.flash('success', 'حساب کاربری با موفقیت حذف شد.');
       res.redirect('/');
 

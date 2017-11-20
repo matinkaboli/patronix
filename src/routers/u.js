@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import { auth } from '../utils/UserManager';
 import { User } from '../models';
 
 const router = new Router();
 
-router.get('/u', auth, (req, res) => {
+router.get('/u', (req, res) => {
 
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
