@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { perm } from '../perms';
+
+const { perm } = rootRequire('./perms');
 
 const router = new Router();
 

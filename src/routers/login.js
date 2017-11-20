@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User } from '../models';
-import { encrypt } from '../utils/encrypt';
-// import send from '../utils/mail';
+
+const { User } = rootRequire('./models');
+const { encrypt } = rootRequire('./utils/encrypt');
 
 const router = new Router();
 
-const loginLimiter = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
   max: 50,
   delayMs: 300,
@@ -19,7 +19,7 @@ router.get('/login', (req, res) => {
   res.render('login.njk');
 });
 
-router.post('/login', loginLimiter, (req, res) => {
+router.post('/login', limiter, (req, res) => {
   User.findOne({
     email: req.body.email,
     password: encrypt(req.body.password, req.body.email),

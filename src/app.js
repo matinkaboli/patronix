@@ -12,11 +12,16 @@ import helmet from 'helmet';
 import socket from 'socket.io';
 
 import config from './config.json';
-import routers from './routers/';
 import replies from './replies';
 import UserManager from './utils/UserManager';
 import { User, Operator } from './models';
 
+/**
+ * setting global rootRequire and import routers
+ */
+
+global.rootRequire = name => require(path.resolve(__dirname, name));
+const routers = require('./routers');
 
 /**
  * setting up db
