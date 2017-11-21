@@ -20,4 +20,4 @@ const schema = new Schema({
   }
 });
 
-export default mongoose.model('Code', schema);
+export default mongoose.model('Link', schema);

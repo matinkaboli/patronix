@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User, Code } from '../models';
+import { User, Link } from '../models';
 import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
@@ -15,7 +15,7 @@ const changepassLimit = new RateLimit({
 
 router.get('/changepass/:code', (req, res) => {
   if (req.params.code) {
-    Code.findOne({ link: req.params.code }).then(code => {
+    Link.findOne({ link: req.params.code }).then(code => {
 
       if (code) {
         res.render('changepass.njk', {
@@ -38,7 +38,7 @@ router.get('/changepass/:code', (req, res) => {
 
 router.post('/changepass', changepassLimit, (req, res) => {
   if (req.body.code) {
-    Code.findOne({ link: req.body.code }).then(code => {
+    Link.findOne({ link: req.body.code }).then(code => {
       if (code) {
 
         User.findOne({ _id: code.user }).then(user => {

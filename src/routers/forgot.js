@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User, Code } from '../models';
+import { User, Link } from '../models';
 import { unique } from 'stringing';
 // import send from '../utils/mail';
 
@@ -30,7 +30,7 @@ router.post('/forgot', forgotLimit, (req, res) => {
     User.findOne({ email: req.body.email }).then(user => {
       if (user) {
 
-        Code.findOne({ user: user._id }).then(code => {
+        Link.findOne({ user: user._id }).then(code => {
 
           if (code) {
 
@@ -39,9 +39,9 @@ router.post('/forgot', forgotLimit, (req, res) => {
             res.redirect('/login');
           } else {
 
-            const newCode = new Code({
-              code: unique(25),
-              link: user._id
+            const newCode = new Link({
+              link: unique(25),
+              user: user._id
             });
 
             newCode.save().then(() => {

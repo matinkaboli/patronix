@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Code, User } from '../models';
+import { Link, User } from '../models';
 import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
 // import send from '../utils/mail';
@@ -18,7 +18,7 @@ const codeLimiter = new RateLimit({
 router.get('/code/:code', codeLimiter, (req, res) => {
 
   if (req.params.code) {
-    Code.findOne({ link: req.params.code }).then(code => {
+    Link.findOne({ link: req.params.code }).then(code => {
 
       if (code) {
         User.findOne({ _id: code.user }).then(user => {
@@ -28,7 +28,7 @@ router.get('/code/:code', codeLimiter, (req, res) => {
             user.status = 1;
 
             user.save().then(() => {
-              Code.remove({ link: req.params.code }).then(() => {
+              Link.remove({ link: req.params.code }).then(() => {
 
                 req.flash('success', 'حساب شما با موفقیت تایید گردید.');
                 req.flash('email', user.email);
@@ -73,7 +73,7 @@ router.post('/code', codeLimiter, (req, res) => {
       if (user) {
 
         if (user.status === 0) {
-          Code.findOne({
+          Link.findOne({
             user: user._id
           }).then(code => {
             if (code) {
@@ -85,7 +85,7 @@ router.post('/code', codeLimiter, (req, res) => {
               });
             } else {
 
-              const newCode = new Code({
+              const newCode = new Link({
                 user: user._id,
                 link: unique(25)
               });

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
-import { User, Code } from '../models';
+import { User, Link } from '../models';
 // import send from '../utils/mail';
 
 const router = new Router();
@@ -27,7 +27,7 @@ router.post('/resend', resendLimiter, (req, res) => {
     User.findOne({ email: req.body.email }).then(user => {
       if (user) {
         if (user.status === 0) {
-          Code.findOne({ user: user._id }).then(code => {
+          Link.findOne({ user: user._id }).then(code => {
             if (code) {
               // send(req.body.email, code.link, 'resend', user.fname);
               res.render('done.njk', {
@@ -36,7 +36,7 @@ router.post('/resend', resendLimiter, (req, res) => {
               });
             } else {
 
-              const newCode = new Code({
+              const newCode = new Link({
                 user: user._id,
                 link: unique(25)
               });

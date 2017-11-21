@@ -3,7 +3,7 @@ import RateLimit from 'express-rate-limit';
 // import send from '../utils/mail';
 import { unique } from 'stringing';
 import svgCaptcha from 'svg-captcha';
-import { User, Code } from '../models';
+import { User, Link } from '../models';
 import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
@@ -62,7 +62,7 @@ router.post('/signup', signupLimiter, (req, res) => {
           });
 
           user.save().then(() => {
-            const newCode = new Code({
+            const newCode = new Link({
               link: unique(25),
               user: user._id
             });
