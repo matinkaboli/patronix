@@ -1,15 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
 const schema = new Schema({
-  link: {
+  name: {
     type: String,
-    unique: true
   },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  operator: [
+  operators: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Operator'

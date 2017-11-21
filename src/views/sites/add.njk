@@ -1,0 +1,20 @@
+{% extends locals.layouts + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<form
+  method="post"
+  action="/u/sites/add">
+  <input
+    type="text"
+    name="name"
+    placeholder="name">
+  <input type="submit" value="add">
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

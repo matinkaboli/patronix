@@ -63,17 +63,22 @@ gulp.task('less', ['clean'], function() {
         .pipe(gulp.dest('build/public/css'));
 });
 
-gulp.task('nunjucks', ['clean'], function() {
+gulp.task('nunjucks:prod', ['clean'], function() {
   gulp.src('src/views/**/*.njk')
       .pipe(htmlmin({ collapseWhitespace: true }))
-      .pipe(gulp.dest('build/views'))
+      .pipe(gulp.dest('build/views'));
 });
 
-gulp.task('prod', ['clean', 'lint', 'babel', 'less', 'nunjucks', 'js:prod'], function() {
+gulp.task('nunjucks:dev', ['clean'], function() {
+  gulp.src('src/views/**/*.njk')
+      .pipe(gulp.dest('build/views'));
+});
+
+gulp.task('prod', ['clean', 'lint', 'babel', 'less', 'nunjucks:prod', 'js:prod'], function() {
   return gulp.start('copy');
 });
 
-gulp.task('dev', ['clean', 'babel', 'less', 'nunjucks', 'js:dev'], function() {
+gulp.task('dev', ['clean', 'babel', 'less', 'nunjucks:dev', 'js:dev'], function() {
   return gulp.start('copy');
 });
 

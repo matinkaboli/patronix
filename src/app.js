@@ -116,7 +116,8 @@ function addTag(name, attribute) {
 app.use((req, res, next) => {
   res.localSource = {
     header: [],
-    footer: []
+    footer: [],
+    layouts: path.resolve(__dirname, 'views', 'layouts')
   };
 
   app.get('engine').addGlobal('locals', res.localSource);
