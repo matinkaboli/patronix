@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 const perms = rootRequire('./perms');
+const { Site } = rootRequire('./models');
 
 const router = new Router();
 
@@ -13,7 +14,16 @@ router.post(
   perms.basic,
   perms.sites.add,
   (req, res) => {
-    res.send(req.body);
+    let site = new Site({
+      name: req.body.name,
+      owner: req.user.user._id,
+      operators: [],
+      status: 1
+    });
+
+    site.save().then(() => {
+      res.reply.ok('done');
+    });
   }
 );
 

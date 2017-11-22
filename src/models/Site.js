@@ -3,6 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const schema = new Schema({
   name: {
     type: String,
+    required: true
   },
   owner: {
     type: Schema.Types.ObjectId,
