@@ -19,7 +19,6 @@ router.get('/recaptcha', recaptchaLimiter, (req, res) => {
   });
 
   req.session.captcha = captcha.text;
-
   res.json({ captcha: captcha.data });
 });
 

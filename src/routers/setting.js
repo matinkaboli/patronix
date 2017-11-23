@@ -5,7 +5,6 @@ import { encrypt } from '../utils/encrypt';
 const router = new Router();
 
 router.get('/setting', (req, res) => {
-
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
@@ -31,17 +30,14 @@ router.get('/setting', (req, res) => {
 });
 
 router.post('/setting', (req, res) => {
-
   if (req.body.email &&
       req.body.fname &&
       req.body.lname
   ) {
-
     req.body.email = req.body.email.toLowerCase();
 
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
-
         user.name.first = req.body.fname;
         user.name.last = req.body.lname;
 
@@ -59,11 +55,11 @@ router.post('/setting', (req, res) => {
           });
         } else {
           User.findOne({ email: req.body.email }).then(userEmail => {
-
             if (userEmail) {
               req.flash('error', 'این ایمیل توسط شخص دیگری استفاده میشود');
               res.redirect('/setting');
             }
+
             else {
               user.name.first = req.body.fname;
               user.name.last = req.body.lname;
@@ -97,14 +93,10 @@ router.post('/setting', (req, res) => {
 });
 
 router.post('/settingpassword', (req, res) => {
-
   if (req.body.oldpass && req.body.newpass) {
-
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
-
         if (encrypt(req.body.oldpass, user.email) === user.password) {
-
           user.password = encrypt(req.body.newpass, user.email);
 
           user.save().then(() => {
@@ -114,7 +106,8 @@ router.post('/settingpassword', (req, res) => {
             req.flash('error', 'خطا! بعدا امتحان کنید.');
             res.redirect('/setting');
           });
-        } else {
+        }
+        else {
           req.flash('error', 'رمز وارد شده اشتباه میباشد.');
           res.redirect('/setting');
         }

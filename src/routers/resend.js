@@ -20,7 +20,6 @@ router.get('/resend', (req, res) => {
 });
 
 router.post('/resend', resendLimiter, (req, res) => {
-
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
@@ -30,18 +29,18 @@ router.post('/resend', resendLimiter, (req, res) => {
           Link.findOne({ user: user._id }).then(code => {
             if (code) {
               // send(req.body.email, code.link, 'resend', user.fname);
+
               res.render('done.njk', {
                 type: 'resend',
                 email: req.body.email
               });
             } else {
-
               const newCode = new Link({
                 user: user._id,
                 link: unique(25)
               });
-              newCode.save().then(() => {
 
+              newCode.save().then(() => {
                 // send(req.body.email, code.link, 'resend', user.fname);
 
                 res.render('done.njk', {

@@ -16,22 +16,18 @@ const codeLimiter = new RateLimit({
 });
 
 router.get('/code/:code', codeLimiter, (req, res) => {
-
   if (req.params.code) {
     Link.findOne({ link: req.params.code }).then(code => {
-
       if (code) {
         User.findOne({ _id: code.user }).then(user => {
-
           if (user) {
-
             user.status = 1;
 
             user.save().then(() => {
               Link.remove({ link: req.params.code }).then(() => {
-
                 req.flash('success', 'حساب شما با موفقیت تایید گردید.');
                 req.flash('email', user.email);
+
                 res.redirect('/login');
               }).catch(() => {
                 req.flash('error', 'خطا! بعدا امتحان کنید.');
@@ -49,7 +45,8 @@ router.get('/code/:code', codeLimiter, (req, res) => {
           req.flash('error', 'خطا! بعدا امتحان کنید.');
           res.redirect('/login');
         });
-      } else {
+      }
+      else {
         res.reply.notFound();
       }
     }).catch(() => {
@@ -63,7 +60,6 @@ router.get('/code/:code', codeLimiter, (req, res) => {
 });
 
 router.post('/code', codeLimiter, (req, res) => {
-
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
@@ -71,7 +67,6 @@ router.post('/code', codeLimiter, (req, res) => {
       email: req.body.email
     }).then(user => {
       if (user) {
-
         if (user.status === 0) {
           Link.findOne({
             user: user._id
@@ -84,7 +79,6 @@ router.post('/code', codeLimiter, (req, res) => {
                 email: user.email
               });
             } else {
-
               const newCode = new Link({
                 user: user._id,
                 link: unique(25)
