@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-import { User, Link } from '../models';
 import { unique } from 'stringing';
 // import send from '../utils/mail';
 
 const router = new Router();
+const { User, Link } = rootRequire('./models');
 
 const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,

@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
-import { User, Link } from '../models';
 // import send from '../utils/mail';
 
 const router = new Router();
+const { User, Link } = rootRequire('./models');
 
 const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
@@ -15,11 +15,11 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/resend', (req, res) => {
+router.get('/forgot//resend', (req, res) => {
   res.render('resend.njk');
 });
 
-router.post('/resend', limiter, (req, res) => {
+router.post('/forgot/resend', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
