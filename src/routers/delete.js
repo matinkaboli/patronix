@@ -3,7 +3,7 @@ import { User } from '../models';
 
 const router = new Router();
 
-router.post('/delete', (req, res) => {
+router.post('/u/setting/delete', (req, res) => {
   User.remove({ _id: req.session.user }).then(() => {
     req.flash('success', 'حساب کاربری با موفقیت حذف شد.');
     res.redirect('/');

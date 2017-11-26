@@ -4,7 +4,7 @@ import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
 
-router.get('/setting', (req, res) => {
+router.get('/u/setting', (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
@@ -29,7 +29,7 @@ router.get('/setting', (req, res) => {
   }
 });
 
-router.post('/setting', (req, res) => {
+router.post('/u/setting', (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname
@@ -92,7 +92,7 @@ router.post('/setting', (req, res) => {
   }
 });
 
-router.post('/settingpassword', (req, res) => {
+router.post('/u/setting/settingpassword', (req, res) => {
   if (req.body.oldpass && req.body.newpass) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {

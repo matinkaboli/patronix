@@ -6,7 +6,7 @@
 
 {% block content %}
 <form
-  action="/setting"
+  action="/u/setting"
   method="post"
   name="main-form"
   onsubmit="return checkForm()">
@@ -36,7 +36,7 @@
     value="ثبت تغییرات">
 </form>
 <form
-  action="/settingpassword"
+  action="/u/setting/settingpassword"
   method="post"
   name="pass-form"
   onsubmit="return checkPassForm()">
@@ -58,7 +58,7 @@
 </form>
 <form
   name="delete-form"
-  action="/delete"
+  action="/u/setting/delete"
   method="post">
   <input type="submit" value="حذف حساب">
 </form>
