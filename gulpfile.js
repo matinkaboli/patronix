@@ -10,6 +10,7 @@ var uglify = require('gulp-uglify');
 var babel = require('gulp-babel');
 var config = require('./src/config.json');
 var htmlmin = require('gulp-htmlmin');
+var replace = require('gulp-replace');
 
 gulp.task('clean', function() {
   return gulp.src('build', { read: false })
