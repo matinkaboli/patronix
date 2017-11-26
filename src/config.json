@@ -1,5 +1,6 @@
 {
   "port": "8010",
   "db": "mongodb://localhost/clopa",
-  "title": "Clopa"
+  "title": "Clopa",
+  "url": "http://localhost:8010"
 }
