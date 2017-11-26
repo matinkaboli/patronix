@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { User } from '../models';
-import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
 const perms = rootRequire('./perms');
+const { User } = rootRequire('./models');
+const { encrypt } = rootRequire('./utils');
 
 router.get('/u/setting', perms.basic, (req, res) => {
   if (req.session.user) {

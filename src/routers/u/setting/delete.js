@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { User } from '../models';
 
 const router = new Router();
 const perms = rootRequire('./perms');
+const { User } = rootRequire('./models');
 
 router.post('/u/setting/delete', perms.basic, (req, res) => {
   if (req.session.user) {
