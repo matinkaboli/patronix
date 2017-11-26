@@ -3,8 +3,9 @@ import { User } from '../models';
 import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
+const perms = rootRequire('./perms');
 
-router.get('/u/setting', (req, res) => {
+router.get('/u/setting', perms.basic, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
@@ -29,7 +30,7 @@ router.get('/u/setting', (req, res) => {
   }
 });
 
-router.post('/u/setting', (req, res) => {
+router.post('/u/setting', perms.basic, (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname
@@ -92,7 +93,7 @@ router.post('/u/setting', (req, res) => {
   }
 });
 
-router.post('/u/setting/settingpassword', (req, res) => {
+router.post('/u/setting/settingpassword', perms.basic, (req, res) => {
   if (req.body.oldpass && req.body.newpass) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {

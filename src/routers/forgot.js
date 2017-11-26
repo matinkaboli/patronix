@@ -6,7 +6,7 @@ import { unique } from 'stringing';
 
 const router = new Router();
 
-const forgotLimit = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
   max: 10,
   handler(req, res) {
@@ -22,7 +22,7 @@ router.get('/forgot', (req, res) => {
   });
 });
 
-router.post('/forgot', forgotLimit, (req, res) => {
+router.post('/forgot', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 

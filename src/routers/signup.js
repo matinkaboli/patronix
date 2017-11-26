@@ -8,7 +8,7 @@ import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
 
-const signupLimiter = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
   max: 30,
   delayMs: 300,
@@ -35,7 +35,7 @@ router.get('/signup', (req, res) => {
   });
 });
 
-router.post('/signup', signupLimiter, (req, res) => {
+router.post('/signup', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 

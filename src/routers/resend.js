@@ -6,7 +6,7 @@ import { User, Link } from '../models';
 
 const router = new Router();
 
-const resendLimiter = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
   max: 10,
   delayMs: 300,
@@ -19,7 +19,7 @@ router.get('/resend', (req, res) => {
   res.render('resend.njk');
 });
 
-router.post('/resend', resendLimiter, (req, res) => {
+router.post('/resend', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 

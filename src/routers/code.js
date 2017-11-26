@@ -6,7 +6,7 @@ import { unique } from 'stringing';
 
 const router = new Router();
 
-const codeLimiter = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
   max: 50,
   delayMs: 0,
@@ -15,7 +15,7 @@ const codeLimiter = new RateLimit({
   }
 });
 
-router.get('/code/:code', codeLimiter, (req, res) => {
+router.get('/code/:code', limiter, (req, res) => {
   if (req.params.code) {
     Link.findOne({ link: req.params.code }).then(code => {
       if (code) {
@@ -59,7 +59,7 @@ router.get('/code/:code', codeLimiter, (req, res) => {
   }
 });
 
-router.post('/code', codeLimiter, (req, res) => {
+router.post('/code', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 

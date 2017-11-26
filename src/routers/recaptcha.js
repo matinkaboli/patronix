@@ -4,12 +4,12 @@ import RateLimit from 'express-rate-limit';
 
 const router = new Router();
 
-const recaptchaLimiter = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 10,
   max: 150,
 });
 
-router.get('/recaptcha', recaptchaLimiter, (req, res) => {
+router.get('/recaptcha', limiter, (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   const captcha = svgCaptcha.create({

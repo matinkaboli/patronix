@@ -5,7 +5,7 @@ import { encrypt } from '../utils/encrypt';
 
 const router = new Router();
 
-const changepassLimit = new RateLimit({
+const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
   max: 10,
   handler(req, res) {
@@ -36,7 +36,7 @@ router.get('/changepass/:code', (req, res) => {
   }
 });
 
-router.post('/changepass', changepassLimit, (req, res) => {
+router.post('/changepass', limiter, (req, res) => {
   if (req.body.code) {
     Link.findOne({ link: req.body.code }).then(code => {
       if (code) {
