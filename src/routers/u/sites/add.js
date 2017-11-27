@@ -12,7 +12,7 @@ router.get('/u/sites/add', perms.basic, (req, res) => {
 router.post(
   '/u/sites/add',
   perms.basic,
-  perms.sites.add,
+  perms.u.sites.add,
   (req, res) => {
     let site = new Site({
       name: req.body.name,

@@ -18,7 +18,7 @@ router.get(
 router.post(
   '/u/sites/remove',
   perms.basic,
-  perms.sites.remove,
+  perms.u.sites.remove,
   (req, res) => {
     Site.remove({ _id: req.body.id }).then(() => {
       res.reply.ok();
