@@ -12,6 +12,8 @@ var config = require('./src/config.json');
 var htmlmin = require('gulp-htmlmin');
 var replace = require('gulp-replace');
 
+var config = require('./src/config.json');
+
 gulp.task('clean', function() {
   return gulp.src('build', { read: false })
         .pipe(rm());
@@ -66,12 +68,16 @@ gulp.task('less', ['clean'], function() {
 
 gulp.task('nunjucks:prod', ['clean'], function() {
   gulp.src('src/views/**/*.njk')
+      .pipe(replace(/@@PROJECTNAME@@/g, config.title))
+      .pipe(replace(/@@LINK@@/g, config.url))
       .pipe(htmlmin({ collapseWhitespace: true }))
       .pipe(gulp.dest('build/views'));
 });
 
 gulp.task('nunjucks:dev', ['clean'], function() {
   gulp.src('src/views/**/*.njk')
+      .pipe(replace(/@@PROJECTNAME@@/g, config.title))
+      .pipe(replace(/@@LINK@@/g, config.url))
       .pipe(gulp.dest('build/views'));
 });
 

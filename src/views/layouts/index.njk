@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/files/css/main.css">
     <script src="/files/js/lib/sweetalert.min.js"></script>
     {% if title %}
-    <title>Clopa - {{ title }}</title>
+    <title>@@PROJECTNAME@@ - {{ title }}</title>
     {% else %}
-    <title>Clopa</title>
+    <title>@@PROJECTNAME@@</title>
     {% endif %}
     {% for item in locals.header %}
       {{ item | safe }}
