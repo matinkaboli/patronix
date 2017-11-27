@@ -4,6 +4,11 @@
 {% endblock %}
 
 {% block content %}
+{% for site in sites %}
+<p>
+ {{site.name}} - {{site._id}}
+</p>
+{% endfor %}
 {% endblock %}
 
 {% block scripts %}

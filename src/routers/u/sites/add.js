@@ -6,7 +6,7 @@ const { Site } = rootRequire('./models');
 const router = new Router();
 
 router.get('/u/sites/add', perms.basic, (req, res) => {
-  res.render('sites/add.njk');
+  res.render('u/sites/add.njk');
 });
 
 router.post(
@@ -22,7 +22,7 @@ router.post(
     });
 
     site.save().then(() => {
-      res.reply.ok('done');
+      res.reply.ok();
     });
   }
 );
