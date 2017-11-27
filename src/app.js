@@ -14,7 +14,6 @@ import socket from 'socket.io';
 import config from './config.json';
 import replies from './replies';
 import UserManager from './utils/UserManager';
-import { User, Operator } from './models';
 
 /**
  * setting global rootRequire and import routers
