@@ -9,7 +9,7 @@ router.get('/u/setting', perms.basic, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
-        res.render('setting.njk', {
+        res.render('u/setting/setting.njk', {
           error: req.flash('error'),
           success: req.flash('success'),
           warn: req.flash('warn'),

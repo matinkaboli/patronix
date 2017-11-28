@@ -8,7 +8,7 @@ router.get('/u', perms.basic, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
-        res.render('u.njk', {
+        res.render('u/u.njk', {
           error: req.flash('error'),
           success: req.flash('success'),
           warn: req.flash('warn'),
