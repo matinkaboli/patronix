@@ -71,7 +71,7 @@ router.post('/signup', limiter, (req, res) => {
               req.session.captcha = null;
 
               // send(req.body.email, newCode.link, 'signup', req.body.fname);
-              res.render('done.njk', {
+              res.render('replies/done.njk', {
                 type: 'signup',
                 email: req.body.email
               });

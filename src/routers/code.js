@@ -74,7 +74,7 @@ router.post('/code', limiter, (req, res) => {
             if (code) {
               // send(user.email, code.link, 'resend', user.fname);
 
-              res.render('done.njk', {
+              res.render('replies/done.njk', {
                 type: 'resend',
                 email: user.email
               });
@@ -87,7 +87,7 @@ router.post('/code', limiter, (req, res) => {
               newCode.save().then(() => {
                 // send(user.email, newCode.link, 'resend', user.fname);
 
-                res.render('done.njk', {
+                res.render('replies/done.njk', {
                   type: 'resend',
                   email: user.email
                 });
