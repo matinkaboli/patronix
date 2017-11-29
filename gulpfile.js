@@ -69,7 +69,6 @@ gulp.task('less', ['clean'], function() {
 gulp.task('nunjucks:prod', ['clean'], function() {
   gulp.src('src/views/**/*.njk')
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
-      .pipe(replace(/@@LINK@@/g, config.url))
       .pipe(htmlmin({ collapseWhitespace: true }))
       .pipe(gulp.dest('build/views'));
 });
@@ -77,7 +76,6 @@ gulp.task('nunjucks:prod', ['clean'], function() {
 gulp.task('nunjucks:dev', ['clean'], function() {
   gulp.src('src/views/**/*.njk')
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
-      .pipe(replace(/@@LINK@@/g, config.url))
       .pipe(gulp.dest('build/views'));
 });
 
