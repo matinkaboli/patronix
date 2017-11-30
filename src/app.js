@@ -46,8 +46,8 @@ const io = socket(server);
 app.use(helmet());
 
 /**
-* static files
-*/
+ * static files
+ */
 app.use('/files', express.static(path.resolve(__dirname, './public')));
 
 /**
@@ -98,9 +98,9 @@ app.set('engine', nunjucks.configure(path.resolve(__dirname, './views'), {
 }));
 
 /**
-* add default variable to templates
-* and add locals and tagCreator to res
-*/
+ * add default variable to templates
+ * and add locals and tagCreator to res
+ */
 
 function addTag(name, attribute) {
   let att = [];
