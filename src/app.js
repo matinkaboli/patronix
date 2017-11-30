@@ -58,8 +58,8 @@ app.use(morgan('short'));
 /**
  * request parser
  */
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({limit: 100000000}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: 100000000 }));
 
 /**
  * cookie parser
