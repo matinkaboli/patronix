@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-const { perm } = rootRequire('./perms');
+const perms = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/@@replacement@@', perm, (req, res) => {
+router.get('/@@replacement@@', perms, (req, res) => {
 });
 
 export default router;
