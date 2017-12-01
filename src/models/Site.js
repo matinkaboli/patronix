@@ -12,7 +12,7 @@ const schema = new Schema({
   operators: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Operator'
+      ref: 'User'
     }
   ],
   status: {

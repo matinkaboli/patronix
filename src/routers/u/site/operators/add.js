@@ -22,19 +22,9 @@ router.post(
     User.findOne({ email: req.body.email }).then(operator => {
       if (operator) {
         Site.findOne({ _id: req.params.id }).then(site => {
-          let operators = site.operators;
-          operators.push(operator._id);
+          site.operators.push(operator._id);
 
-          Site.updateOne(
-            {
-              _id: req.params.id
-            },
-            {
-              $set: {
-                operators
-              }
-            }
-          ).then(() => {
+          site.save().then(() => {
             res.reply.ok();
           });
         });
