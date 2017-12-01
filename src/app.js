@@ -76,7 +76,7 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   cookie: {
-    maxAge: 60 * 60 * 1000
+    maxAge: 60 * 60 * 1000 * 24
   },
   store: new MongoStore({
   host: '127.0.0.1',
