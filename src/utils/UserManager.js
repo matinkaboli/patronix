@@ -14,7 +14,7 @@ export default class {
   }
 
   logout() {
-    this.session = null;
+    this.session[this.name] = null;
     this.user = null;
   }
 
