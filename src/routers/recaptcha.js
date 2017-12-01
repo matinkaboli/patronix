@@ -13,12 +13,12 @@ router.get('/recaptcha', limiter, (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   const captcha = svgCaptcha.create({
-    size: 6,
+    size: 4,
     ignoreChars: '0o1ilIQ8',
     noise: 4
   });
 
-  req.session.captcha = captcha.text;
+  req.session.captcha = captcha.text.toLowerCase();
   res.json({ captcha: captcha.data });
 });
 

@@ -26,7 +26,7 @@ router.get('/signup', (req, res) => {
     noise: 4
   });
 
-  req.session.captcha = captcha.text;
+  req.session.captcha = captcha.text.toLowerCase();
 
   res.render('signup.njk', {
     error: req.flash('error'),
@@ -39,7 +39,7 @@ router.post('/signup', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
-    if (req.body.captcha.toLowerCase() === req.session.captcha.toLowerCase()) {
+    if (req.body.captcha.toLowerCase() === req.session.captcha) {
       User.findOne({
         email: req.body.email,
         password: encrypt(req.body.password, req.body.email)
