@@ -116,7 +116,7 @@ app.use((req, res, next) => {
   res.localSource = {
     header: [],
     footer: [],
-    layouts: path.resolve(__dirname, 'views', 'layouts')
+    path: path.resolve(__dirname, 'views', 'layouts')
   };
 
   app.get('engine').addGlobal('locals', res.localSource);
