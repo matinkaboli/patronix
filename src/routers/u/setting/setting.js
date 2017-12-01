@@ -5,7 +5,7 @@ const perms = rootRequire('./perms');
 const { User } = rootRequire('./models');
 const { encrypt } = rootRequire('./utils');
 
-router.get('/u/setting', perms.basic, (req, res) => {
+router.get('/u/setting', perms.logged, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
@@ -30,7 +30,7 @@ router.get('/u/setting', perms.basic, (req, res) => {
   }
 });
 
-router.post('/u/setting', perms.basic, (req, res) => {
+router.post('/u/setting', perms.logged, (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname
@@ -93,7 +93,7 @@ router.post('/u/setting', perms.basic, (req, res) => {
   }
 });
 
-router.post('/u/setting/settingpassword', perms.basic, (req, res) => {
+router.post('/u/setting/settingpassword', perms.logged, (req, res) => {
   if (req.body.oldpass && req.body.newpass) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {

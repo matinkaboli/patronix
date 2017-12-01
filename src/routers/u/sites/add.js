@@ -5,13 +5,13 @@ const { Site } = rootRequire('./models');
 
 const router = new Router();
 
-router.get('/u/sites/add', perms.basic, (req, res) => {
+router.get('/u/sites/add', perms.logged, (req, res) => {
   res.render('u/sites/add.njk');
 });
 
 router.post(
   '/u/sites/add',
-  perms.basic,
+  perms.logged,
   perms.u.sites.add,
   (req, res) => {
     let site = new Site({

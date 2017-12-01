@@ -5,7 +5,7 @@ const { Site } = rootRequire('./models');
 
 const router = new Router();
 
-router.get('/u/sites', perms.basic, (req, res) => {
+router.get('/u/sites', perms.logged, (req, res) => {
   Site.find({ owner: req.user.user._id }).then(sites => {
     res.render('u/sites/sites.njk', { sites });
   });

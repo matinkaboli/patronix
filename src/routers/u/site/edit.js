@@ -7,7 +7,7 @@ const router = new Router();
 
 router.get(
   '/u/site/:id/edit',
-  perms.basic,
+  perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
     Site.findOne({_id: req.params.id }).then(site => {
@@ -17,7 +17,7 @@ router.get(
 
 router.post(
   '/u/site/:id/edit',
-  perms.basic,
+  perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
     Site.updateOne(

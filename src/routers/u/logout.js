@@ -4,7 +4,7 @@ const perms = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/u/logout', perms.basic, (req, res) => {
+router.get('/u/logout', perms.logged, (req, res) => {
   req.user.logout();
 
   res.redirect('/');

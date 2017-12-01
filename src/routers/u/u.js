@@ -4,7 +4,7 @@ const router = new Router();
 const perms = rootRequire('./perms');
 const { User } = rootRequire('./models');
 
-router.get('/u', perms.basic, (req, res) => {
+router.get('/u', perms.logged, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {

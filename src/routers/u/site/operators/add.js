@@ -7,7 +7,7 @@ const router = new Router();
 
 router.get(
   '/u/site/:id/operators/add',
-  perms.basic,
+  perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
     res.render('u/site/operators/add.njk', { id: req.params.id });
@@ -16,7 +16,7 @@ router.get(
 
 router.post(
   '/u/site/:id/operators/add',
-  perms.basic,
+  perms.logged,
   perms.u.site.isOwner,
   perms.u.site.operators.add,
   (req, res) => {
