@@ -1,0 +1,17 @@
+{% extends locals.layouts + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+{% for operator in operators %}
+  <p>
+    {{operator.name.first}} {{operator.name.last}} - {{operator.email}}
+  </p>
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
