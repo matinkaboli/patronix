@@ -18,6 +18,7 @@ router.post(
   '/u/site/:id/operators/add',
   perms.basic,
   perms.u.site.isOwner,
+  perms.u.site.operators.add,
   (req, res) => {
     User.findOne({ email: req.body.email }).then(operator => {
       if (operator) {
