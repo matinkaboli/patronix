@@ -157,7 +157,6 @@ function* GetUserDoc(users) {
 
 app.use((req, res, next) => {
   req.user = new UserManager('user', req.session, 'User');
-  req.operator = new UserManager('operator', req.session, 'Operator');
 
   let iterator = new GetUserDoc([req.user]);
   (function loop() {

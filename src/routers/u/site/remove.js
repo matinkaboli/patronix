@@ -8,7 +8,7 @@ const router = new Router();
 router.post(
   '/u/site/:id/remove',
   perms.basic,
-  perms.u.sites.remove,
+  perms.u.site.isOwner,
   (req, res) => {
     Site.remove({ _id: req.params.id }).then(() => {
       res.reply.ok();

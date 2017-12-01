@@ -39,7 +39,7 @@ router.post('/signup', limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
-    if (req.body.captcha === req.session.captcha) {
+    if (req.body.captcha.toLowerCase() === req.session.captcha.toLowerCase()) {
       User.findOne({
         email: req.body.email,
         password: encrypt(req.body.password, req.body.email)
@@ -62,12 +62,12 @@ router.post('/signup', limiter, (req, res) => {
           });
 
           user.save().then(() => {
-            const newCode = new Link({
+            const link = new Link({
               link: unique(25),
               user: user._id
             });
 
-            newCode.save().then(() => {
+            link.save().then(() => {
               req.session.captcha = null;
 
               // send(req.body.email, newCode.link, 'signup', req.body.fname);

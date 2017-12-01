@@ -56,6 +56,11 @@ const schema = new Schema({
   image: {
     type: String,
     trim: true
+  },
+  sites: {
+    type: Number,
+    required: true,
+    default: 0
   }
 });
 
