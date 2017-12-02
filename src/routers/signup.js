@@ -5,6 +5,7 @@ import { unique } from 'stringing';
 import svgCaptcha from 'svg-captcha';
 import { User, Link } from '../models';
 import { encrypt } from '../utils/encrypt';
+const { login } = rootRequire('./perms');
 
 const router = new Router();
 
@@ -17,7 +18,7 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', login, (req, res) => {
   svgCaptcha.options.width = 220;
 
   const captcha = svgCaptcha.create({
@@ -35,7 +36,7 @@ router.get('/signup', (req, res) => {
   });
 });
 
-router.post('/signup', limiter, (req, res) => {
+router.post('/signup', login, limiter, (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname &&

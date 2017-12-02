@@ -5,6 +5,7 @@ import { unique } from 'stringing';
 
 const router = new Router();
 const { User, Link } = rootRequire('./models');
+const { login } = rootRequire('./perms');
 
 const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
@@ -14,7 +15,7 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/forgot', (req, res) => {
+router.get('/forgot', login, (req, res) => {
   res.render('forgot.njk', {
     email: req.flash('email'),
     erorr: req.flash('error'),
@@ -22,7 +23,7 @@ router.get('/forgot', (req, res) => {
   });
 });
 
-router.post('/forgot', limiter, (req, res) => {
+router.post('/forgot', login, limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 

@@ -3,6 +3,7 @@ import { Link, User } from '../models';
 import RateLimit from 'express-rate-limit';
 
 const router = new Router();
+const { login } = rootRequire('./perms');
 
 const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
@@ -13,7 +14,7 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/active/:link', limiter, (req, res) => {
+router.get('/active/:link', login, limiter, (req, res) => {
   if (req.params.link) {
     Link.findOne({ link: req.params.link }).then(link => {
       if (link) {

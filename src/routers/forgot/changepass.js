@@ -4,6 +4,7 @@ import RateLimit from 'express-rate-limit';
 const router = new Router();
 const { User, Link } = rootRequire('./models');
 const { encrypt } = rootRequire('./utils');
+const { login } = rootRequire('./perms');
 
 const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
@@ -13,7 +14,7 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/forgot/changepass/:code', (req, res) => {
+router.get('/forgot/changepass/:code', login, (req, res) => {
   if (req.params.code) {
     Link.findOne({ link: req.params.code }).then(code => {
       if (code) {
@@ -36,7 +37,7 @@ router.get('/forgot/changepass/:code', (req, res) => {
   }
 });
 
-router.post('/forgot/changepass', limiter, (req, res) => {
+router.post('/forgot/changepass', login, limiter, (req, res) => {
   if (req.body.code) {
     Link.findOne({ link: req.body.code }).then(code => {
       if (code) {
