@@ -30,7 +30,7 @@
     "express-session": "^1.15.6",
     "fs-extra": "^4.0.2",
     "helmet": "^3.9.0",
-    "mongoose": "^4.12.4",
+    "mongoose": "^4.13.5",
     "morgan": "^1.9.0",
     "nodemailer": "^4.3.1",
     "nunjucks": "^3.0.1",

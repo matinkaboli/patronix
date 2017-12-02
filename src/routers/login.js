@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 
-const { User } = rootRequire('./models');
+const { User, Session } = rootRequire('./models');
+const { login } = rootRequire('./perms');
 const { encrypt } = rootRequire('./utils/encrypt');
 
 const router = new Router();
@@ -15,11 +16,11 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', login, (req, res) => {
   res.render('login.njk');
 });
 
-router.post('/login', limiter, (req, res) => {
+router.post('/login', login, limiter, (req, res) => {
   User.findOne({
     email: req.body.email,
     password: encrypt(req.body.password, req.body.email),
@@ -31,8 +32,31 @@ router.post('/login', limiter, (req, res) => {
       }
 
       else if (user.status === 1) {
-        req.user.login(user);
-        res.reply.ok();
+        Session.findOne(
+          { session: new RegExp(user._id.toString()) }
+        ).lean().then(session => {
+          if (session) {
+            let parsed = JSON.parse(session.session);
+            parsed.user = null;
+
+            Session.update(
+              {
+                session: new RegExp(user._id.toString())
+              },
+              {
+                $set: {
+                  session: JSON.stringify(parsed)
+                }
+              }
+            ).then(() => {
+              req.user.login(user);
+              res.reply.ok();
+            });
+          } else {
+            req.user.login(user);
+            res.reply.ok();
+          }
+        });
       }
 
       else if (user.status === 2) {
