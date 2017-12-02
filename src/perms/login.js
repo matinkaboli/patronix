@@ -1,3 +1,3 @@
 export default (req, res, next) => {
-  req.user.logged() ? res.reply.forbidden() : next();
+  req.user.logged() ? res.redirect('/u') : next();
 };
