@@ -4,7 +4,11 @@ const perms = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/@@replacement@@', perms, (req, res) => {
-});
+router.get(
+  '/@@replacement@@',
+  perms,
+  (req, res) => {
+  }
+);
 
 export default router;
