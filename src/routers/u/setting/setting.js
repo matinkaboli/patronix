@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 const router = new Router();
-const perms = rootRequire('./perms');
+const { logged } = rootRequire('./perms');
 const { User } = rootRequire('./models');
 
-router.get('/u/setting', perms.logged, (req, res) => {
+router.get('/u/setting', logged, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
@@ -29,7 +29,7 @@ router.get('/u/setting', perms.logged, (req, res) => {
   }
 });
 
-router.post('/u/setting', perms.logged, (req, res) => {
+router.post('/u/setting', logged, (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname

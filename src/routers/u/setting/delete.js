@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 const router = new Router();
-const perms = rootRequire('./perms');
+const { logged } = rootRequire('./perms');
 const { User } = rootRequire('./models');
 
-router.post('/u/setting/delete', perms.logged, (req, res) => {
+router.post('/u/setting/delete', logged, (req, res) => {
   if (req.session.user) {
     User.remove({ _id: req.session.user }).then(() => {
       req.flash('success', 'حساب کاربری با موفقیت حذف شد.');

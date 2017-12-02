@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 const router = new Router();
-const perms = rootRequire('./perms');
+const { logged } = rootRequire('./perms');
 const { User } = rootRequire('./models');
 
-router.get('/u', perms.logged, (req, res) => {
+router.get('/u', logged, (req, res) => {
   if (req.session.user) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {

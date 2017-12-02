@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 const router = new Router();
-const perms = rootRequire('./perms');
+const { logged } = rootRequire('./perms');
 const { User } = rootRequire('./models');
 const { encrypt } = rootRequire('./utils');
 
-router.post('/u/setting/password', perms.logged, (req, res) => {
+router.post('/u/setting/password', logged, (req, res) => {
   if (req.body.oldpass && req.body.newpass) {
     User.findOne({ _id: req.session.user }).then(user => {
       if (user) {
