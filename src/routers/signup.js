@@ -36,7 +36,12 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', limiter, (req, res) => {
-  if (req.body.email) {
+  if (req.body.email &&
+      req.body.fname &&
+      req.body.lname &&
+      req.body.password &&
+      req.body.captcha
+  ) {
     req.body.email = req.body.email.toLowerCase();
 
     if (req.body.captcha.toLowerCase() === req.session.captcha) {

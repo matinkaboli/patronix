@@ -37,3 +37,5 @@ router.post('/u/setting/password', perms.logged, (req, res) => {
     res.redirect('/setting');
   }
 });
+
+export default router;
