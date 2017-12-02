@@ -21,17 +21,4 @@
     });
   </script>
 {% endfor %}
-<script>
-  const test = document.getElementById("testa");
-  test.addEventListener('click', () => {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        const obj = JSON.parse(this.responseText);
-      }
-    };
-    xhttp.open("GET", "/teste", true);
-    xhttp.send();
-  });
-</script>
 {% endblock %}
