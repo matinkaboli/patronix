@@ -1,0 +1,18 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% for operator in operators %}
+  <form
+    action="/u/site/{{id}}/operators/remove"
+    method="POST">
+    <input type="hidden" name="id" value="{{operator._id}}" />{{operator.email}}
+    <input type="submit" value="remove" />
+  </form>
+{% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
