@@ -54,21 +54,6 @@
 {% endblock %}
 
 {% block scripts %}
-{% for item in error %}
-<script>
-  swal({
-    title: 'خطا',
-    text: "{{ item }}",
-    icon: 'error',
-    button: 'باشه'
-  });
-</script>
-{% endfor %}
-{% for i in email %}
-  <script>
-    document.forms['signup-form'].email.value = "{{ i }}";
-  </script>
-{% endfor %}
   <script src="/files/js/validator.js"></script>
   <script src="/files/js/recaptcha.js"></script>
   <script src="/files/js/check.js"></script>
