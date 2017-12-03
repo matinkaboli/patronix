@@ -2,8 +2,10 @@ function checkForm() {
   const f = document.forms['signup-form'];
   const divW = document.getElementById('warn');
   const divE = document.getElementById('error');
+  const divS = document.getElementById('success');
   divW.innerHTML = '';
   divE.innerHTML = '';
+  divS.innerHTML = '';
   if (
     f.email.value &&
     f.password.value &&
@@ -29,11 +31,23 @@ function checkForm() {
         XHR.onreadystatechange = function () {
           if (this.readyState === 4 && this.status === 200) {
             const obj = JSON.parse(this.responseText);
-            if (obj.status === 'error') {
+            if (obj.status === 'e') {
               const p = document.createElement('p');
-              p.innerHTML = obj.message;
+              if (obj.code === 0) {
+                p.innerHTML = 'این ایمیل توسط کسی ثبت نام شده.';
+              } else if (obj.code === 1) {
+                p.innerHTML = 'مشکلی پیش آمده است، بعدا امتحان کنید';
+              } else if (obj.code === 2) {
+                p.innerHTML = 'کد امنیتی وارد شده اشتباه است.';
+              }
               divE.appendChild(p);
               divE.style.display = 'block';
+            } else if (obj.status === 's') {
+              const p = document.createElement('p');
+              p.innerHTML = 'حساب شما با موفقیت ایجاد شد، ' +
+              'برای فعالسازی حساب خود، به ایمیل خود مراجعه فرمایید.';
+              divS.appendChild(p);
+              divS.style.display = 'block';
             }
           }
         };

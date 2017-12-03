@@ -52,8 +52,8 @@ router.post('/signup', login, limiter, (req, res) => {
 
         if (doc) {
           res.json({
-            status: 'error',
-            message: 'این ایمیل توسط کسی ثبت نام شده.'
+            status: 'e',
+            code: 0
           });
         }
         else {
@@ -82,34 +82,31 @@ router.post('/signup', login, limiter, (req, res) => {
               //   type: 'signup',
               //   email: req.body.email
               // });
-              res.json({
-                status: 'success',
-                message: 'Done'
-              });
+              res.json({ status: 's' });
             }).catch(() => {
               res.json({
-                status: 'error',
-                message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
+                status: 'e',
+                code: 1
               });
             });
           }).catch(() => {
             res.json({
-              status: 'error',
-              message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
+              status: 'e',
+              code: 1
             });
           });
         }
       });
     } else {
       res.json({
-        status: 'error',
-        message: 'کد امنیتی وارد شده اشتباه است.'
+        status: 'e',
+        code: 2
       });
     }
   } else {
     res.json({
-      status: 'error',
-      message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
+      status: 'e',
+      code: 1
     });
   }
 });
