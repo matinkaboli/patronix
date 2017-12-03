@@ -78,10 +78,6 @@ router.post('/signup', login, limiter, (req, res) => {
               req.session.captcha = null;
 
               // send(req.body.email, newCode.link, 'signup', req.body.fname);
-              // res.render('replies/done.njk', {
-              //   type: 'signup',
-              //   email: req.body.email
-              // });
               res.json({ status: 's' });
             }).catch(() => {
               res.json({
