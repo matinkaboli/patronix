@@ -17,3 +17,35 @@ input[type="submit"] {
   cursor: pointer;
   color: black;
 }
+.alert {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  display: none;
+  box-sizing: border-box;
+}
+#error {
+  background-color: #f54d42;
+  color: white;
+  transition: background-color 1s, color 1s;
+  border-bottom: 1px solid darken(#f54d42, 30%);
+}
+#error:hover {
+  background-color: white;
+  color: #f54d42;
+}
+#warn {
+  background-color: #fcc88a;
+  color: white;
+  transition: background-color 1s, color 1s;
+  border-bottom: 1px solid darken(#fcc88a, 30%);
+}
+#warn:hover {
+  background-color: white;
+  color: #fcc88a;
+}

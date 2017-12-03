@@ -47,13 +47,14 @@ router.post('/signup', login, limiter, (req, res) => {
 
     if (req.body.captcha.toLowerCase() === req.session.captcha) {
       User.findOne({
-        email: req.body.email,
-        password: encrypt(req.body.password, req.body.email)
+        email: req.body.email
       }).then(doc => {
 
         if (doc) {
-          req.flash('error', 'این ایمیل توسط کسی ثبت نام شده.');
-          res.redirect('/signup');
+          res.json({
+            status: 'error',
+            message: 'این ایمیل توسط کسی ثبت نام شده.'
+          });
         }
         else {
           const user = new User({
@@ -77,32 +78,39 @@ router.post('/signup', login, limiter, (req, res) => {
               req.session.captcha = null;
 
               // send(req.body.email, newCode.link, 'signup', req.body.fname);
-              res.render('replies/done.njk', {
-                type: 'signup',
-                email: req.body.email
+              // res.render('replies/done.njk', {
+              //   type: 'signup',
+              //   email: req.body.email
+              // });
+              res.json({
+                status: 'success',
+                message: 'Done'
               });
-
             }).catch(() => {
-              req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
-              req.flash('email', req.body.email);
-              res.redirect('/login');
+              res.json({
+                status: 'error',
+                message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
+              });
             });
           }).catch(() => {
-            req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
-            req.flash('email', req.body.email);
-            res.redirect('/signup');
+            res.json({
+              status: 'error',
+              message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
+            });
           });
         }
       });
     } else {
-      req.flash('error', 'کد امنیتی وارد شده اشتباه است.');
-      req.flash('email', req.body.email);
-      res.redirect('/signup');
+      res.json({
+        status: 'error',
+        message: 'کد امنیتی وارد شده اشتباه است.'
+      });
     }
   } else {
-    req.flash('error', 'مشکلی پیش آمده، دوباره امتحان کنید');
-    req.flash('email', req.body.email);
-    res.redirect('/signup');
+    res.json({
+      status: 'error',
+      message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
+    });
   }
 });
 

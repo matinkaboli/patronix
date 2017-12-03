@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block content %}
+  <div class="alert" id="error">
+  </div>
+  <div class="alert" id="warn">
+  </div>
   <form
     method="post"
     action="/signup"
@@ -65,5 +69,5 @@
 {% endfor %}
   <script src="/files/js/validator.js"></script>
   <script src="/files/js/recaptcha.js"></script>
-  <script src="/files/js/register.js"></script>
+  <script src="/files/js/check.js"></script>
 {% endblock %}
