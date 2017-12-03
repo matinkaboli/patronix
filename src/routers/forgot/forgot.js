@@ -36,15 +36,15 @@ router.post('/forgot', login, limiter, (req, res) => {
             req.flash('success', 'ایمیل برای شما با موفقیت فرستاده شد');
             res.redirect('/login');
           } else {
-            const newCode = new Link({
+            const newLink = new Link({
               link: unique(25),
               user: user._id
             });
 
-            newCode.save().then(() => {
+            newLink.save().then(() => {
               // send(req.body.email, code.link, 'forgot', user.fname);
 
-              res.render('done.njk', {
+              res.render('replies/done.njk', {
                 type: 'forgot',
                 email: req.body.email
               });
