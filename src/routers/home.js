@@ -4,7 +4,7 @@ const router = new Router();
 const { login } = rootRequire('./perms');
 
 router.get('/', login, (req, res) => {
-  res.render('main.njk', {
+  res.render('home.njk', {
     success: req.flash('success')
   });
 });
