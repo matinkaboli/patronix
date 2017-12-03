@@ -50,11 +50,11 @@ router.post('/login', login, limiter, (req, res) => {
               }
             ).then(() => {
               req.user.login(user);
-              res.reply.ok();
+              res.redirect('/u');
             });
           } else {
             req.user.login(user);
-            res.reply.ok();
+            res.redirect('/u');
           }
         });
       }
