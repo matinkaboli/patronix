@@ -28,7 +28,6 @@ router.get('/forgot/changepass/:code', login, (req, res) => {
       else {
         res.reply.notFound();
       }
-
     }).catch(() => {
       res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
     });
@@ -46,33 +45,42 @@ router.post('/forgot/changepass', login, limiter, (req, res) => {
             user.password = encrypt(req.body.password, user.email);
 
             user.save().then(() => {
-              req.flash('success', 'رمز با موفقیت تغییر یافت');
-              req.flash('email', user.email);
+              Link.remove({ link: req.body.code }).then(() => {
+                req.flash('success', 'رمز با موفقیت تغییر یافت');
+                req.flash('email', user.email);
 
-              res.redirect('/login');
+                res.redirect('/login');
+              }).catch(() => {
+                res.reply.error({ message: 'Error, Try Again! '});
+              });
             }).catch(() => {
+              console.log(1);
               req.flash('error', 'خطا! بعدا امتحان کنید');
-              res.redirect('/changepass');
+              res.redirect('/forgot');
             });
           } else {
             req.flash('error', 'چنین حسابی وجود ندارد.');
             res.redirect('/signup');
           }
         }).catch(() => {
+          console.log(2);
           req.flash('error', 'خطا! بعدا امتحان کنید.');
-          res.redirect('/changepass');
+          res.redirect('/forgot');
         });
       } else {
+        console.log(3);
         req.flash('error', 'کد معتبر نمیباشد');
-        res.redirect('/changepass');
+        res.redirect('/forgot');
       }
     }).catch(() => {
+      console.log(4);
       req.flash('error', 'خطا! بعدا امتحان کنید.');
-      res.redirect('/changepass');
+      res.redirect('/forgot');
     });
   } else {
+    console.log(5);
     req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/changepass');
+    res.redirect('/forgot');
   }
 });
 
