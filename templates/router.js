@@ -6,7 +6,6 @@ const router = new Router();
 
 router.get(
   '/@@replacement@@',
-  perms,
   (req, res) => {
   }
 );
