@@ -6,7 +6,7 @@ var replace = require('replace');
 var { version } = require('./package.json');
 
 
-function addrouter(name) {
+function router(name) {
   fs.copy(
     './templates/router.js',
     `./src/routers/${name}.js`
@@ -21,14 +21,14 @@ function addrouter(name) {
   }).catch(e => console.log(e));
 }
 
-function addview(name) {
+function view(name) {
   fs.copy(
     './templates/view.njk',
     `./src/views/${name}.njk`
   ).catch(e => console.log(e));
 }
 
-function addmodel(name) {
+function model(name) {
   fs.copy(
     './templates/model.js',
     `./src/models/${name}.js`
@@ -51,21 +51,21 @@ bird
   .command('router <name>')
   .description('add new router')
   .action(name => {
-    addrouter(name);
+    router(name);
   });
 
 bird
   .command('view <name>')
   .description('add new a view')
   .action(name => {
-    addview(name);
+    view(name);
   });
 
 bird
   .command('model <name>')
   .description('add new a model')
   .action(name => {
-    addmodel(name);
+    model(name);
   });
 
 bird
@@ -78,14 +78,24 @@ bird
     );
   });
 
+bird
+  .command('socket <name>')
+  .description('add new a socket')
+  .action(name => {
+    fs.copy(
+      './templates/socket.js',
+      `./src/sockets/${name}.js`
+    );
+  });
+
 
 bird
   .command('full <name>')
   .description('add new router, model and perm all together')
   .action(name => {
-    addrouter(name);
-    addview(name);
-    addmodel(name);
+    router(name);
+    view(name);
+    model(name);
   });
 
 

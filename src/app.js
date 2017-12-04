@@ -16,11 +16,12 @@ import replies from './replies';
 import UserManager from './utils/UserManager';
 
 /**
- * setting global rootRequire and import routers
+ * setting global rootRequire and import some stuff
  */
 
 global.rootRequire = name => require(path.resolve(__dirname, name));
 const routers = require('./routers');
+const sockets = require('./sockets');
 
 /**
  * setting up db
@@ -185,3 +186,25 @@ for (let router of routers) {
 app.use((req, res) => {
    res.reply.notFound();
 });
+
+(() => {
+  let groups = {};
+
+  for (let socket of sockets) {
+    if (!groups[socket.namespace]) {
+      groups[socket.namespace] = [];
+    }
+
+    groups[socket.namespace].push(socket);
+  }
+
+  for (let [namespace, handlers] of Object.entries(groups)) {
+    let nsp = io.of(namespace);
+
+    io.on('connection', socket => {
+      for (let handler of handlers) {
+        handler.plug(socket, nsp, io);
+      }
+    });
+  }
+})();
