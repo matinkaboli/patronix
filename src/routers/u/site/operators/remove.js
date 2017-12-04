@@ -30,6 +30,7 @@ router.post(
   '/u/site/:id/operators/remove',
   perms.logged,
   perms.u.site.isOwner,
+  perms.u.site.operators.remove,
   (req, res) => {
     Site.findById(req.params.id).then(site => {
       let index = 0;

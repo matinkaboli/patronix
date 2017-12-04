@@ -1,25 +1,23 @@
 const { Site, User } = rootRequire('./models');
 
-function isUnique(array, unique) {
-  for (let item of array) {
-    if (unique.toString() === item.toString()) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
 export default (req, res, next) => {
   Site.findById(req.params.id).then(site => {
-    if (site.operators.length < 6) {
+    if (site.operators.length < 3) {
       User.findOne({ email: req.body.email }).then(user => {
-        if (isUnique(site.operators, user._id)) {
+        let isUnique = true;
+        for (let operator of site.operators) {
+          if (user._id.toString() === operator.toString()) {
+            isUnique = false;
+            break;
+          }
+        }
+
+        if (isUnique) {
           next();
         } else {
           res.reply.error();
         }
-      });
+      }).catch(e => console.log(e));
     } else {
       res.reply.error();
     }
