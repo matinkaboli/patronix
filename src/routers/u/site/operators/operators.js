@@ -11,7 +11,7 @@ router.get(
   perms.u.site.isOwner,
   (req, res) => {
     Site
-    .findOne({ _id: req.params.id })
+    .findById(req.params.id)
     .populate('operators')
     .exec()
     .then(site => {

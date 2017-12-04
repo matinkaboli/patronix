@@ -10,7 +10,7 @@ router.get(
   perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
-    Site.findOne({_id: req.params.id }).then(site => {
+    Site.findById(req.params.id).then(site => {
       res.render('u/site/edit.njk', { site });
     });
 });
