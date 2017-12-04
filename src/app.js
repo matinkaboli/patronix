@@ -187,6 +187,10 @@ app.use((req, res) => {
    res.reply.notFound();
 });
 
+/**
+ * socket.io handler
+ */
+
 (() => {
   let groups = {};
 
