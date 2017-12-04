@@ -1,4 +1,4 @@
-const Socket = rootRequire('./Socket.js');
+const Socket = rootRequire('./Soket.js');
 
 let socket = new Socket('namepsace');
 
