@@ -11,7 +11,7 @@ router.get(
   perms.u.site.isOwner,
   (req, res) => {
     Site
-    .findOne({ _id: req.params.id })
+    .findById(req.params.id)
     .populate('operators')
     .exec()
     .then(site => {
@@ -31,7 +31,7 @@ router.post(
   perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
-    Site.findOne({ _id: req.params.id }).then(site => {
+    Site.findById(req.params.id).then(site => {
       let index = 0;
       for (let [i, operator] of site.operators.entries()) {
         if (req.body.id === operator.toString()) {

@@ -11,8 +11,7 @@ function isUnique(array, unique) {
 }
 
 export default (req, res, next) => {
-  Site.findOne({ _id: req.params.id })
-  .then(site => {
+  Site.findById(req.params.id).then(site => {
     if (site.operators.length < 6) {
       User.findOne({ email: req.body.email }).then(user => {
         if (isUnique(site.operators, user._id)) {
