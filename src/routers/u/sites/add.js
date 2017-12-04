@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { generate } from 'stringing';
 
 const perms = rootRequire('./perms');
 const { Site } = rootRequire('./models');
@@ -17,8 +18,9 @@ router.post(
     let site = new Site({
       name: req.body.name,
       owner: req.user.user._id,
-      operators: [],
-      status: 1
+      operators: [req.user.user._id],
+      status: 1,
+      code: generate(50, { upper: 1, lower: 1, number: 1})
     });
 
     site.save().then(() => {

@@ -19,6 +19,11 @@ const schema = new Schema({
     type: Number,
     enum: [1, 2, 3],
     required: true
+  },
+  code: {
+    type: String,
+    unique: true,
+    required: true
   }
 });
 
