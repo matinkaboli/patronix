@@ -28,7 +28,11 @@ router.post('/login', login, limiter, (req, res) => {
   }).then(user => {
     if (user) {
       if (user.status === 0) {
-        res.reply.error({ message: 'unverified user' });
+        res.json({
+          status: 'e',
+          code: 0
+        });
+        // unverified user
       }
 
       else if (user.status === 1) {
@@ -50,24 +54,47 @@ router.post('/login', login, limiter, (req, res) => {
               }
             ).then(() => {
               req.user.login(user);
-              res.redirect('/u');
-            });
+              res.json({ status: 's' });
+            }).catch(() => {
+              res.json({
+                status: 'e',
+                code: 3
+              });
+            })
           } else {
             req.user.login(user);
-            res.redirect('/u');
+            res.json({ status: 's' });
           }
+        }).catch(() => {
+          res.json({
+            status: 'e',
+            code: 3
+          });
         });
       }
 
       else if (user.status === 2) {
-        res.reply.error({ message: 'your account has expired' });
+        res.json({
+          status: 'e',
+          code: 1
+        });
+        // account has expired
       }
     }
 
     else {
-      res.reply.error({ message: 'no such user' });
+      res.json({
+        status: 'e',
+        code: 2
+      });
+      // no such user
     }
-  });
+  }).catch(() => {
+    res.json({
+      status: 'e',
+      code: 3
+    });
+  })
 });
 
 export default router;
