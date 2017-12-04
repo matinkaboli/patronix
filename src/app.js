@@ -205,7 +205,7 @@ app.use((req, res) => {
   for (let [namespace, handlers] of Object.entries(groups)) {
     let nsp = io.of(namespace);
 
-    io.on('connection', socket => {
+    nsp.on('connection', socket => {
       for (let handler of handlers) {
         handler.plug(socket, nsp, io);
       }
