@@ -1,0 +1,18 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<p>
+  code
+</p>
+
+<xmp>
+  <script src="{{url}}socket.io/socket.io.js"></script>
+  {{code}}
+</xmp>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
