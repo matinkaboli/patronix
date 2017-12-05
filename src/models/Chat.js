@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const chatSchema = new Schema({
-  chat: [{
+  chats: [{
     sender: {
       enum: [0, 1],
       type: Number,
@@ -21,13 +21,25 @@ const chatSchema = new Schema({
   }],
   site: {
     type: Schema.Types.ObjectId,
-    ref: 'Site'
+    ref: 'Site',
+    required: true
   },
   operator: {
     type: Schema.Types.ObjectId,
-    ref: 'Operator'
+    ref: 'User',
+    socketId: {
+      type: String,
+      required: true
+    }
   },
   client: {
+    socketId: {
+      type: String,
+      required: true
+    }
+  },
+  done: {
+    type: Boolean
   }
 });
 
