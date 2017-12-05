@@ -28,16 +28,13 @@ router.post('/login', login, limiter, (req, res) => {
   }).then(user => {
     if (user) {
       if (user.status === 0) {
-        res.json({
-          status: 'e',
-          code: 0
-        });
+        res.json({ type: 'e', code: 0 });
         // unverified user
       }
 
       else if (
         user.status === 1 &&
-        decrypt(user.password, user.email + dbkey)
+        decrypt(user.password, user.email + dbkey) === req.body.password
       ) {
         Session.findOne(
           { session: new RegExp(user._id.toString()) }
@@ -57,46 +54,36 @@ router.post('/login', login, limiter, (req, res) => {
               }
             ).then(() => {
               req.user.login(user);
-              res.json({ status: 's' });
+              res.json({ type: 's' });
+              // success
             }).catch(() => {
-              res.json({
-                status: 'e',
-                code: 3
-              });
+              res.json({ type: 'e', code: 3 });
+              // error
             });
           } else {
             req.user.login(user);
-            res.json({ status: 's' });
+            res.json({ type: 's' });
+            // success
           }
         }).catch(() => {
-          res.json({
-            status: 'e',
-            code: 3
-          });
+          res.json({ type: 'e', code: 3 });
+          // error
         });
       }
 
       else if (user.status === 2) {
-        res.json({
-          status: 'e',
-          code: 1
-        });
+        res.json({ type: 'e', code: 1 });
         // account has expired
       }
     }
 
     else {
-      res.json({
-        status: 'e',
-        code: 2
-      });
+      res.json({ type: 'e', code: 2 });
       // no such user
     }
   }).catch(() => {
-    res.json({
-      status: 'e',
-      code: 3
-    });
+    res.json({ type: 'e', code: 3 });
+    // error
   });
 });
 

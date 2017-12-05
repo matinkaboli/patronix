@@ -31,6 +31,7 @@ function checkForm() {
           email: f.email.value
         })
       }).then(checkStatus).then(res => res.json()).then(data => {
+        console.log(data);
         if (data.type === 'e') {
           const p = document.createElement('p');
           if (data.code === 0) {
@@ -47,6 +48,8 @@ function checkForm() {
             p.innerHTML += ' در غیر این صورت رمز عبور یا ایمیل غلط است.';
           } else if (data.code === 3) {
             p.innerHTML = 'خطا! بعدا امتحان کنید.';
+          } else if (data.code === 4) {
+            p.innerHTML = 'رمز عبور اشتباه است.';
           }
           divE.appendChild(p);
           divE.style.display = 'block';
