@@ -20,7 +20,7 @@ router.post(
       owner: req.user.user._id,
       operators: [req.user.user._id],
       status: 1,
-      code: generate(50, { upper: 1, lower: 1, number: 1})
+      token: generate(50, { upper: 1, lower: 1, number: 1})
     });
 
     site.save().then(() => {

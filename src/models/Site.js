@@ -20,7 +20,7 @@ const schema = new Schema({
     enum: [1, 2, 3],
     required: true
   },
-  code: {
+  token: {
     type: String,
     unique: true,
     required: true
