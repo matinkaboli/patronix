@@ -3,7 +3,8 @@ import RateLimit from 'express-rate-limit';
 
 const { User, Session } = rootRequire('./models');
 const { login } = rootRequire('./perms');
-const { encrypt } = rootRequire('./utils/encrypt');
+const { decrypt } = rootRequire('./utils/crypt');
+const { dbkey } = rootRequire('./config.json');
 
 const router = new Router();
 
@@ -23,7 +24,6 @@ router.get('/login', login, (req, res) => {
 router.post('/login', login, limiter, (req, res) => {
   User.findOne({
     email: req.body.email,
-    password: encrypt(req.body.password, req.body.email),
     status: { $in: [0, 1, 2] }
   }).then(user => {
     if (user) {
@@ -35,7 +35,10 @@ router.post('/login', login, limiter, (req, res) => {
         // unverified user
       }
 
-      else if (user.status === 1) {
+      else if (
+        user.status === 1 &&
+        decrypt(user.password, user.email + dbkey)
+      ) {
         Session.findOne(
           { session: new RegExp(user._id.toString()) }
         ).lean().then(session => {
@@ -60,7 +63,7 @@ router.post('/login', login, limiter, (req, res) => {
                 status: 'e',
                 code: 3
               });
-            })
+            });
           } else {
             req.user.login(user);
             res.json({ status: 's' });
@@ -94,7 +97,7 @@ router.post('/login', login, limiter, (req, res) => {
       status: 'e',
       code: 3
     });
-  })
+  });
 });
 
 export default router;

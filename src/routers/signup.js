@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
-// import send from '../utils/mail';
 import { unique } from 'stringing';
 import svgCaptcha from 'svg-captcha';
+
+// import send from '../utils/mail';
 import { User, Link } from '../models';
-import { encrypt } from '../utils/encrypt';
+const { encrypt } = rootRequire('./utils/crypt');
 const { login } = rootRequire('./perms');
+const { dbkey } = rootRequire('./config.json');
 
 const router = new Router();
 
@@ -54,7 +56,7 @@ router.post('/signup', login, limiter, (req, res) => {
         }
         else {
           const user = new User({
-            password: encrypt(req.body.password, req.body.email),
+            password: encrypt(req.body.password, req.body.email + dbkey),
             type: 1,
             status: 0,
             email: req.body.email,
