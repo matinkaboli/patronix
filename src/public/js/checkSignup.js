@@ -27,42 +27,56 @@ function checkForm() {
       } else {
         divW.style.display = 'none';
         divE.style.display = 'none';
-        const XHR = new XMLHttpRequest();
-        XHR.onreadystatechange = function () {
-          if (this.readyState === 4 && this.status === 200) {
-            const obj = JSON.parse(this.responseText);
-            if (obj.status === 'e') {
-              const p = document.createElement('p');
-              if (obj.code === 0) {
-                p.innerHTML = 'این ایمیل توسط کسی ثبت نام شده.';
-              } else if (obj.code === 1) {
-                p.innerHTML = 'مشکلی پیش آمده است، بعدا امتحان کنید';
-              } else if (obj.code === 2) {
-                p.innerHTML = 'کد امنیتی وارد شده اشتباه است.';
-              }
-              divE.appendChild(p);
-              divE.style.display = 'block';
-            } else if (obj.status === 's') {
-              const p = document.createElement('p');
-              p.innerHTML = 'حساب شما با موفقیت ایجاد شد، ' +
-              'برای فعالسازی حساب خود، به ایمیل خود مراجعه فرمایید.';
-              divS.appendChild(p);
-              divS.style.display = 'block';
+        fetch('/signup', {
+          method: 'POST',
+          credentials: 'include',
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          }),
+          body: JSON.stringify({
+            fname: f.fname.value,
+            lname: f.lname.value,
+            password: f.password.value,
+            email: f.email.value,
+            captcha: f.captcha.value
+          })
+        }).then(checkStatus).then(res => res.json()).then(data => {
+          if (data.status === 'e') {
+            const p = document.createElement('p');
+            if (data.code === 0) {
+              p.innerHTML = 'این ایمیل توسط کسی ثبت نام شده.';
+            } else if (data.code === 1) {
+              p.innerHTML = 'مشکلی پیش آمده است، بعدا امتحان کنید';
+            } else if (data.code === 2) {
+              p.innerHTML = 'کد امنیتی وارد شده اشتباه است.';
             }
+            divE.appendChild(p);
+            divE.style.display = 'block';
+          } else if (data.status === 's') {
+            const p = document.createElement('p');
+            p.innerHTML = 'حساب شما با موفقیت ایجاد شد، ' +
+            'برای فعالسازی حساب خود، به ایمیل خود مراجعه فرمایید.';
+            divS.appendChild(p);
+            divS.style.display = 'block';
           }
-        };
-        XHR.open('POST', '/signup', false);
-        XHR.withCredentials = true;
-        XHR.setRequestHeader('Content-type',
-        'application/x-www-form-urlencoded');
-        XHR.send(
-          'fname=' + f.fname.value +
-          '&lname=' + f.lname.value +
-          '&password=' + f.password.value +
-          '&captcha=' + f.captcha.value +
-          '&email=' + f.email.value);
+        }).catch(() => {
+          const p = document.createElement('p');
+          p.innerHTML = 'خطا! بعدا امتحان کنید.';
+          divW.appendChild(p);
+          divW.style.display = 'block';
+        });
       }
     }
   }
   return false;
+}
+function checkStatus(res) {
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  } else {
+    const error = new Error(res.statusText);
+    error.res = res;
+    throw error;
+  }
 }
