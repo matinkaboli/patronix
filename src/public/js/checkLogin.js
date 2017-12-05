@@ -23,8 +23,7 @@ function checkForm() {
         method: 'POST',
         credentials: 'include',
         headers: new Headers({
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }),
         body: JSON.stringify({
           password: f.password.value,
@@ -43,12 +42,10 @@ function checkForm() {
           } else if (data.code === 1) {
             p.innerHTML = 'حساب شما منقضی شده است.';
           } else if (data.code === 2) {
-            p.innerHTML = 'چنین حسابی وجود ندارد.';
-            p.innerHTML += ' در غیر این صورت رمز عبور یا ایمیل غلط است.';
+            p.innerHTML = 'چنین حسابی وجود ندارد.'
+            + ' در غیر این صورت رمز عبور یا ایمیل غلط است.';
           } else if (data.code === 3) {
             p.innerHTML = 'خطا! بعدا امتحان کنید.';
-          } else if (data.code === 4) {
-            p.innerHTML = 'رمز عبور اشتباه است.';
           }
           divE.appendChild(p);
           divE.style.display = 'block';
@@ -58,8 +55,8 @@ function checkForm() {
       }).catch(() => {
         const p = document.createElement('p');
         p.innerHTML = 'خطا! بعدا امتحان کنید.';
-        divW.appendChild(p);
-        divW.style.display = 'block';
+        divE.appendChild(p);
+        divE.style.display = 'block';
       });
     }
   }

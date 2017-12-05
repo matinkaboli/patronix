@@ -22,69 +22,79 @@ router.get('/login', login, (req, res) => {
 });
 
 router.post('/login', login, limiter, (req, res) => {
-  User.findOne({
-    email: req.body.email,
-    status: { $in: [0, 1, 2] }
-  }).then(user => {
-    if (user) {
-      if (user.status === 0) {
-        res.json({ type: 'e', code: 0 });
-        // unverified user
-      }
+  if (req.body.email && req.body.password) {
+    req.body.email = req.body.email.toLowerCase();
+    User.findOne({
+      email: req.body.email,
+      status: { $in: [0, 1, 2] }
+    }).then(user => {
+      if (user) {
+        if (user.status === 0) {
+          req.flash('email', req.body.email)
+          res.json({ type: 'e', code: 0 });
+          // unverified user
+        }
 
-      else if (
-        user.status === 1 &&
-        decrypt(user.password, user.email + dbkey) === req.body.password
-      ) {
-        Session.findOne(
-          { session: new RegExp(user._id.toString()) }
-        ).lean().then(session => {
-          if (session) {
-            let parsed = JSON.parse(session.session);
-            parsed.user = null;
+        else if (user.status === 1) {
+          if (decrypt(user.password, user.email + dbkey)
+          === req.body.password) {
+            Session.findOne(
+              { session: new RegExp(user._id.toString()) }
+            ).lean().then(session => {
+              if (session) {
+                let parsed = JSON.parse(session.session);
+                parsed.user = null;
 
-            Session.update(
-              {
-                session: new RegExp(user._id.toString())
-              },
-              {
-                $set: {
-                  session: JSON.stringify(parsed)
-                }
+                Session.update(
+                  {
+                    session: new RegExp(user._id.toString())
+                  },
+                  {
+                    $set: {
+                      session: JSON.stringify(parsed)
+                    }
+                  }
+                ).then(() => {
+                  req.user.login(user);
+                  res.json({ type: 's' });
+                  // success
+                }).catch(() => {
+                  res.json({ type: 'e', code: 3 });
+                  // error
+                });
+              } else {
+                req.user.login(user);
+                res.json({ type: 's' });
+                // success
               }
-            ).then(() => {
-              req.user.login(user);
-              res.json({ type: 's' });
-              // success
             }).catch(() => {
               res.json({ type: 'e', code: 3 });
               // error
             });
           } else {
-            req.user.login(user);
-            res.json({ type: 's' });
-            // success
+            res.json({ type: 'e', code: 2 });
+            // wrong pass
           }
-        }).catch(() => {
-          res.json({ type: 'e', code: 3 });
-          // error
-        });
+        }
+
+        else if (user.status === 2) {
+          res.json({ type: 'e', code: 1 });
+          // account has expired
+        }
       }
 
-      else if (user.status === 2) {
-        res.json({ type: 'e', code: 1 });
-        // account has expired
+      else {
+        res.json({ type: 'e', code: 2 });
+        // no such user
       }
-    }
-
-    else {
-      res.json({ type: 'e', code: 2 });
-      // no such user
-    }
-  }).catch(() => {
+    }).catch(() => {
+      res.json({ type: 'e', code: 3 });
+      // error
+    });
+  } else {
     res.json({ type: 'e', code: 3 });
     // error
-  });
+  }
 });
 
 export default router;
