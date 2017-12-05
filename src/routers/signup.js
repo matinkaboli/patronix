@@ -71,7 +71,7 @@ router.post('/signup', login, limiter, (req, res) => {
             link.save().then(() => {
               req.session.captcha = null;
 
-              // send(req.body.email, newCode.link, 'signup', req.body.fname);
+              // send(req.body.email, link.link, 'signup', req.body.fname);
               res.json({ status: 's' });
               // success
             }).catch(() => {

@@ -35,6 +35,7 @@ gulp.task('copy', function() {
 gulp.task('babel', ['clean'], function() {
   return gulp.src(['src/**/*.js', '!src/public/js/lib/**/*'])
         .pipe(babel())
+        .pipe(replace(/@@LINK@@/g, config.url))
         .pipe(gulp.dest('build'));
 });
 
