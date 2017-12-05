@@ -34,7 +34,7 @@ function checkForm() {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
           }),
-          body: JSON.stringify({
+          body: JSON3.stringify({
             fname: f.fname.value,
             lname: f.lname.value,
             password: f.password.value,
