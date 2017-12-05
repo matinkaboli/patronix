@@ -5,6 +5,10 @@ let socket = new Socket('/chat');
 
 socket.route('client:init', socket => id => {
   socket.data = {};
+
+  Site.findOne({ token: socket.handshake.query.token }).then(site => {
+
+  });
 });
 
 export default socket;

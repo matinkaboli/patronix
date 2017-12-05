@@ -33,22 +33,38 @@ gulp.task('copy', function() {
 });
 
 gulp.task('babel', ['clean'], function() {
-  return gulp.src(['src/**/*.js', '!src/public/js/lib/**/*'])
-        .pipe(babel())
+  return gulp.src(['src/**/*.js', '!src/public/js/lib/**/*', '!src/public/js/**/*.js'])
+        .pipe(babel({
+          presets: [
+            'env'
+          ],
+          plugins: [
+            'add-module-exports',
+            'transform-runtime'
+          ]
+        }))
         .pipe(replace(/@@LINK@@/g, config.url))
         .pipe(gulp.dest('build'));
 });
 
 gulp.task('js:prod', ['clean'], function() {
   return gulp.src(['src/public/js/**/*.js', '!src/public/js/lib/**/*'])
-        .pipe(babel())
+        .pipe(babel({
+          presets: [
+            'env'
+          ]
+        }))
         .pipe(uglify())
         .pipe(gulp.dest('build/public/js'))
 });
 
 gulp.task('js:dev', ['clean'], function() {
   return gulp.src(['src/public/js/**/*.js', '!src/public/js/lib/**/*'])
-        .pipe(babel())
+        .pipe(babel({
+          presets: [
+            'env'
+          ]
+        }))
         .pipe(gulp.dest('build/public/js'))
 });
 
