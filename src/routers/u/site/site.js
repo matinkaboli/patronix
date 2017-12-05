@@ -12,7 +12,7 @@ router.get(
   perms.u.site.isOwner,
   (req, res) => {
     Site.findById(req.params.id).then(site => {
-      res.render('u/site/site.njk', { code: site.code, url });
+      res.render('u/site/site.njk', { token: site.token, url });
     });
   }
 );
