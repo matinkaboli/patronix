@@ -17,7 +17,7 @@ export default (req, res, next) => {
         } else {
           res.reply.error();
         }
-      }).catch(e => console.log(e));
+      }).catch(e => console.error(e));
     } else {
       res.reply.error();
     }

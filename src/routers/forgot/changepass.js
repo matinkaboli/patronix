@@ -54,7 +54,6 @@ router.post('/forgot/changepass', login, limiter, (req, res) => {
                 res.reply.error({ message: 'Error, Try Again! '});
               });
             }).catch(() => {
-              console.log(1);
               req.flash('error', 'خطا! بعدا امتحان کنید');
               res.redirect('/forgot');
             });
@@ -63,22 +62,18 @@ router.post('/forgot/changepass', login, limiter, (req, res) => {
             res.redirect('/signup');
           }
         }).catch(() => {
-          console.log(2);
           req.flash('error', 'خطا! بعدا امتحان کنید.');
           res.redirect('/forgot');
         });
       } else {
-        console.log(3);
         req.flash('error', 'کد معتبر نمیباشد');
         res.redirect('/forgot');
       }
     }).catch(() => {
-      console.log(4);
       req.flash('error', 'خطا! بعدا امتحان کنید.');
       res.redirect('/forgot');
     });
   } else {
-    console.log(5);
     req.flash('error', 'خطا! بعدا امتحان کنید.');
     res.redirect('/forgot');
   }

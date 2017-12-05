@@ -31,7 +31,6 @@ function checkForm() {
           email: f.email.value
         })
       }).then(checkStatus).then(res => res.json()).then(data => {
-        console.log(data);
         if (data.type === 'e') {
           const p = document.createElement('p');
           if (data.code === 0) {

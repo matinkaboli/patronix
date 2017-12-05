@@ -18,14 +18,14 @@ function router(name) {
       recursive: true,
       silent: true,
     });
-  }).catch(e => console.log(e));
+  }).catch(e => console.error(e));
 }
 
 function view(name) {
   fs.copy(
     './templates/view.njk',
     `./src/views/${name}.njk`
-  ).catch(e => console.log(e));
+  ).catch(e => console.error(e));
 }
 
 function model(name) {
@@ -40,7 +40,7 @@ function model(name) {
       recursive: true,
       silent: true,
     });
-  }).catch(e => console.log(e));
+  }).catch(e => console.error(e));
 }
 
 bird
