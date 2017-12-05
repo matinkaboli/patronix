@@ -44,15 +44,11 @@ router.post('/signup', login, limiter, (req, res) => {
     req.body.email = req.body.email.toLowerCase();
 
     if (req.body.captcha.toLowerCase() === req.session.captcha) {
-      User.findOne({
-        email: req.body.email
-      }).then(doc => {
+      User.findOne({ email: req.body.email }).then(doc => {
 
         if (doc) {
-          res.json({
-            status: 'e',
-            code: 0
-          });
+          res.json({ status: 'e', code: 0 });
+          // email taken
         }
         else {
           const user = new User({
@@ -67,41 +63,31 @@ router.post('/signup', login, limiter, (req, res) => {
           });
 
           user.save().then(() => {
-            const link = new Link({
-              link: unique(25),
-              user: user._id
-            });
+            const link = new Link({ link: unique(25), user: user._id });
 
             link.save().then(() => {
               req.session.captcha = null;
 
               // send(req.body.email, newCode.link, 'signup', req.body.fname);
               res.json({ status: 's' });
+              // success
             }).catch(() => {
-              res.json({
-                status: 'e',
-                code: 1
-              });
+              res.json({ status: 'e', code: 1 });
+              // error
             });
           }).catch(() => {
-            res.json({
-              status: 'e',
-              code: 1
-            });
+            res.json({ status: 'e', code: 1 });
+            // error
           });
         }
       });
     } else {
-      res.json({
-        status: 'e',
-        code: 2
-      });
+      res.json({ status: 'e', code: 2 });
+      // wrong captcha
     }
   } else {
-    res.json({
-      status: 'e',
-      code: 1
-    });
+    res.json({ status: 'e', code: 1 });
+    // error
   }
 });
 
