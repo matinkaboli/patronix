@@ -8,6 +8,7 @@ import { User, Link } from '../models';
 const { encrypt } = rootRequire('./utils/crypt');
 const { login } = rootRequire('./perms');
 const { dbkey } = rootRequire('./config.json');
+const { validateEmail } = rootRequire('./utils/validate');
 
 const router = new Router();
 
@@ -39,7 +40,9 @@ router.post('/signup', login, limiter, (req, res) => {
       req.body.fname &&
       req.body.lname &&
       req.body.password &&
-      req.body.captcha
+      req.body.captcha &&
+      validateEmail(req.body.email) &&
+      req.body.password.length > 7
   ) {
     req.body.email = req.body.email.toLowerCase();
 
