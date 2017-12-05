@@ -33,9 +33,10 @@ function checkForm() {
         if (data.type === 'e') {
           const p = document.createElement('p');
           if (data.code === 0) {
-            p.innerHTML = 'حساب شما تایید نشده، برای تایید آن به ';
+            p.innerHTML = 'حساب شما تایید نشده، برای تایید به ایمیل خود ' +
+            'سر زده و یا برای گرفتن دوباره کد، به ';
             const a = document.createElement('a');
-            a.setAttribute('href', '/code');
+            a.setAttribute('href', '/resend');
             a.innerHTML = 'این صفحه';
             p.appendChild(a);
             p.innerHTML += ' مراجعه کنید';

@@ -16,11 +16,13 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/forgot//resend', login, (req, res) => {
-  res.render('resend.njk');
+router.get('/resend', login, (req, res) => {
+  res.render('resend.njk', {
+    email: req.flash('email')
+  });
 });
 
-router.post('/forgot/resend', login, limiter, (req, res) => {
+router.post('/resend', login, limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
@@ -36,13 +38,13 @@ router.post('/forgot/resend', login, limiter, (req, res) => {
                 email: req.body.email
               });
             } else {
-              const newCode = new Link({
+              const newLink = new Link({
                 user: user._id,
                 link: unique(25)
               });
 
               newCode.save().then(() => {
-                // send(req.body.email, code.link, 'resend', user.fname);
+                // send(req.body.email, newLink.link, 'resend', user.fname);
 
                 res.render('done.njk', {
                   type: 'resend',

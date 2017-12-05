@@ -30,7 +30,7 @@ router.post('/login', login, limiter, (req, res) => {
     }).then(user => {
       if (user) {
         if (user.status === 0) {
-          req.flash('email', req.body.email)
+          req.flash('email', req.body.email);
           res.json({ type: 'e', code: 0 });
           // unverified user
         }
