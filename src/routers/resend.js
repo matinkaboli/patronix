@@ -18,9 +18,7 @@ const limiter = new RateLimit({
 });
 
 router.get('/resend', login, (req, res) => {
-  res.render('resend.njk', {
-    email: req.flash('email')
-  });
+  res.render('resend.njk');
 });
 
 router.post('/resend', login, limiter, (req, res) => {
