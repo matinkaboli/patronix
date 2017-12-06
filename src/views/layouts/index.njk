@@ -25,10 +25,13 @@
     {% block content %}
     {% endblock %}
 
-    {% for item in locals.header %}
+    {% for item in locals.footer %}
       {{ item | safe }}
     {% endfor %}
 
+    <script>
+    const report = {{locals.report}};
+    </script>
     {% block scripts %}
     {% endblock %}
   </body>
