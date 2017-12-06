@@ -1,0 +1,60 @@
+function checkForm() {
+  const f = document.forms['changepass-form'];
+  const divW = document.getElementById('warn');
+  const divE = document.getElementById('error');
+  const divS = document.getElementById('success');
+  divW.innerHTML = '';
+  divE.innerHTML = '';
+  divS.innerHTML = '';
+  divW.style.display = 'none';
+  divE.style.display = 'none';
+  divS.style.display = 'none';
+
+  if (f.password.value) {
+    if (f.password.value.length < 7) {
+      const p = document.createElement('p');
+      p.innerHTML = 'رمز عبور باید حداقل هشت رقم باشد';
+      divW.appendChild(p);
+      divW.style.display = 'block';
+    } else {
+      fetch('/forgot/changepass', {
+        method: 'POST',
+        credentials: 'include',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+          email: f.password.value
+        })
+      }).then(checkStatus).then(res => res.json()).then(data => {
+        if (data.type === 'e') {
+          const p = document.createElement('p');
+          if (data.code === 0) {
+            p.innerHTML = 'چنین حسابی وجود ندارد.';
+          } else if (data.code === 1) {
+            p.innerHTML = 'خطا! بعدا امتحان کنید.';
+          }
+          divE.appendChild(p);
+          divE.style.display = 'block';
+        } else if (data.type === 's') {
+          window.location.href = '/login';
+        }
+      }).catch(() => {
+        const p = document.createElement('p');
+        p.innerHTML = 'خطا! بعدا امتحان کنید.';
+        divE.appendChild(p);
+        divE.style.display = 'block';
+      });
+    }
+  }
+  return false;
+}
+function checkStatus(res) {
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  } else {
+    const error = new Error(res.statusText);
+    error.res = res;
+    throw error;
+  }
+}

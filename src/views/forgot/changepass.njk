@@ -1,0 +1,37 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+<link rel="stylesheet" href="/files/css/alert.css">
+<link rel="stylesheet" href="/files/css/inputs.css">
+{% endblock %}
+
+{% block content %}
+<div class="alert" id="error">
+</div>
+<div class="alert" id="warn">
+</div>
+<div class="alert" id="success">
+</div>
+<form
+  method="post"
+  action="/forgot/changepass"
+  name="changepass-form"
+  onsubmit="return checkForm()">
+  <input
+    type="password"
+    name="password"
+    placeholder="رمز عبور جدید"
+    required>
+  <input
+    type="hidden"
+    name="code"
+    value="{{ code }}">
+  <input type="submit" value="تغییر رمز">
+</form>
+<a href="/forgot">گرفتن کد</a>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/lib/validator.js"></script>
+<script src="/files/js/checkChangepass.js"></script>
+{% endblock %}

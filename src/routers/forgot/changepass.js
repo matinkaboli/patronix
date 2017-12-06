@@ -5,6 +5,7 @@ const router = new Router();
 const { User, Link } = rootRequire('./models');
 const { encrypt } = rootRequire('./utils');
 const { login } = rootRequire('./perms');
+const { dbkey } = rootRequire('./config.json');
 
 const limiter = new RateLimit({
   windowMs: 1000 * 60 * 60 * 3,
@@ -18,10 +19,7 @@ router.get('/forgot/changepass/:code', login, (req, res) => {
   if (req.params.code) {
     Link.findOne({ link: req.params.code }).then(code => {
       if (code) {
-        res.render('changepass.njk', {
-          email: req.flash('email'),
-          error: req.flash('error'),
-          warn: req.flash('warn'),
+        res.render('forgot/changepass.njk', {
           code: req.params.code
         });
       }
@@ -29,10 +27,10 @@ router.get('/forgot/changepass/:code', login, (req, res) => {
         res.reply.notFound();
       }
     }).catch(() => {
-      res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
+      res.reply.notFound();
     });
   } else {
-    res.reply.error({ message: 'خطا! بعدا امتحان کنید. ' });
+    res.reply.notFound();
   }
 });
 
@@ -42,40 +40,45 @@ router.post('/forgot/changepass', login, limiter, (req, res) => {
       if (code) {
         User.findOne({ _id: code.user }).then(user => {
           if (user) {
-            user.password = encrypt(req.body.password, user.email);
+            user.password =
+            encrypt(req.body.password, user.email + dbkey);
 
             user.save().then(() => {
               Link.remove({ link: req.body.code }).then(() => {
-                req.flash('success', 'رمز با موفقیت تغییر یافت');
+                req.flash('s', '0');
                 req.flash('email', user.email);
 
-                res.redirect('/login');
+                res.json({ type: 's' });
               }).catch(() => {
-                res.reply.error({ message: 'Error, Try Again! '});
+                req.flash('e', '1');
+                res.redirect('/login');
+                // error
               });
             }).catch(() => {
-              req.flash('error', 'خطا! بعدا امتحان کنید');
-              res.redirect('/forgot');
+              req.flash('e', '1');
+              res.redirect('/login');
+              // error
             });
           } else {
-            req.flash('error', 'چنین حسابی وجود ندارد.');
+            req.flash('e', '2');
             res.redirect('/signup');
+            // no such user
           }
         }).catch(() => {
-          req.flash('error', 'خطا! بعدا امتحان کنید.');
-          res.redirect('/forgot');
+          req.flash('e', '1');
+          res.redirect('/login');
+          // error
         });
       } else {
-        req.flash('error', 'کد معتبر نمیباشد');
-        res.redirect('/forgot');
+        res.reply.notFound();
       }
     }).catch(() => {
-      req.flash('error', 'خطا! بعدا امتحان کنید.');
-      res.redirect('/forgot');
+      req.flash('e', '1');
+      res.redirect('/login');
+      // error
     });
   } else {
-    req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/forgot');
+    res.reply.notFound();
   }
 });
 

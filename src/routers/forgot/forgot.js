@@ -16,11 +16,7 @@ const limiter = new RateLimit({
 });
 
 router.get('/forgot', login, (req, res) => {
-  res.render('forgot.njk', {
-    email: req.flash('email'),
-    erorr: req.flash('error'),
-    warn: req.flash('warn')
-  });
+  res.render('forgot/forgot.njk');
 });
 
 router.post('/forgot', login, limiter, (req, res) => {
@@ -33,8 +29,8 @@ router.post('/forgot', login, limiter, (req, res) => {
           if (code) {
             // send(req.body.email, code.link, 'forgot', user.fname);
 
-            req.flash('success', 'ایمیل برای شما با موفقیت فرستاده شد');
-            res.redirect('/login');
+            res.json({ type: 's' });
+            // sent
           } else {
             const newLink = new Link({
               link: unique(25),
@@ -42,32 +38,30 @@ router.post('/forgot', login, limiter, (req, res) => {
             });
 
             newLink.save().then(() => {
-              // send(req.body.email, code.link, 'forgot', user.fname);
+              // send(req.body.email, newLink.link, 'forgot', user.fname);
 
-              res.render('replies/done.njk', {
-                type: 'forgot',
-                email: req.body.email
-              });
+              res.json({ type: 's' });
+              // sent
             }).catch(() => {
-              req.flash('error', 'خطا، بعدا امتحان کنید.');
-              res.redirect('/forgot');
+              res.json({ type: 'e', code: 1 });
+              // error
             });
           }
         }).catch(() => {
-          req.flash('error', 'خطا، بعدا امتحان کنید.');
-          res.redirect('/forgot');
+          res.json({ type: 'e', code: 1 });
+          // error
         });
       } else {
-        req.flash('error', 'چنین حسابی وجود ندارد.');
-        res.redirect('/signup');
+        res.json({ type: 'e', code: 0 });
+        // no such user
       }
     }).catch(() => {
-      req.flash('error', 'خطا، بعدا امتحان کنید.');
-      res.redirect('/forgot');
+      res.json({ type: 'e', code: 1 });
+      // error
     });
   } else {
-    req.flash('error', 'خطا، بعدا امتحان کنید.');
-    res.redirect('/forgot');
+    res.json({ type: 'e', code: 1 });
+    // error
   }
 });
 

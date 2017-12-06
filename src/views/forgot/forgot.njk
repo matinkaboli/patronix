@@ -1,0 +1,33 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+<link rel="stylesheet" href="/files/css/alert.css">
+<link rel="stylesheet" href="/files/css/inputs.css">
+{% endblock %}
+
+{% block content %}
+<div class="alert" id="error">
+</div>
+<div class="alert" id="warn">
+</div>
+<div class="alert" id="success">
+</div>
+<form
+  name="forgot-form"
+  method="post"
+  action="/forgot"
+  onsubmit="return checkForm()">
+  <input
+    type="email"
+    name="email"
+    placeholder="ایمیل"
+    required>
+  <input type="submit" value="ارسال ایمیل">
+</form>
+<a href="/changepass">تغییر رمز</a>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/lib/validator.js"></script>
+<script src="/files/js/checkForgot.js"></script>
+{% endblock %}
