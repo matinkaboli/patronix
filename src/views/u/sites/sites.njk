@@ -6,7 +6,7 @@
 {% block content %}
 {% for site in sites %}
 <p>
- {{site.name}} - {{site._id}}
+ <a href="/u/site/{{site._id}}">{{site.name}}</a>
 </p>
 {% endfor %}
 {% endblock %}
