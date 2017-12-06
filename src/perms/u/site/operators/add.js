@@ -21,5 +21,7 @@ export default (req, res, next) => {
     } else {
       res.reply.error();
     }
+  }).catch(() => {
+    res.reply.notFound();
   });
 };
