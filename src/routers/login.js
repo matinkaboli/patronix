@@ -20,7 +20,9 @@ const limiter = new RateLimit({
 router.get('/login', login, (req, res) => {
   res.render('login.njk', {
     email: req.flash('email'),
-    w: req.flash('w')
+    w: req.flash('w'),
+    s: req.flash('s'),
+    e: req.flash('e')
   });
 });
 

@@ -42,14 +42,37 @@
 {% block scripts %}
 
 {% for i in w %}
+{% if i == '0' %}
 <script>
-  console.log('{{ i }}');
   const divW = document.getElementById('warn');
   const p = document.createElement('p');
   p.innerHTML = 'حساب شما قبلا تایید شده.';
   divW.appendChild(p);
   divW.style.display = 'block';
 </script>
+{% endif %}
+{% endfor %}
+{% for i in s %}
+{% if i == '0' %}
+<script>
+  const divS = document.getElementById('success');
+  const p = document.createElement('p');
+  p.innerHTML = 'حساب شما با موفقیت تایید شد';
+  divS.appendChild(p);
+  divS.style.display = 'block';
+</script>
+{% endif %}
+{% endfor %}
+{% for i in e %}
+{% if i == '1' %}
+<script>
+  const divE = document.getElementById('error');
+  const p = document.createElement('p');
+  p.innerHTML = 'خطا! بعدا امتحان کنید.';
+  divE.appendChild(p);
+  divE.style.display = 'block';
+</script>
+{% endif %}
 {% endfor %}
 {% for i in email %}
   <script>

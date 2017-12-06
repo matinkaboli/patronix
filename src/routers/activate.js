@@ -24,37 +24,41 @@ router.get('/activate/:link', login, limiter, (req, res) => {
 
             user.save().then(() => {
               Link.remove({ link: req.params.link }).then(() => {
-                req.flash('success', 'حساب شما با موفقیت تایید گردید.');
+                req.flash('s', '0');
                 req.flash('email', user.email);
 
                 res.redirect('/login');
               }).catch(() => {
-                req.flash('error', 'خطا! بعدا امتحان کنید.');
+                req.flash('e', '1');
                 res.redirect('/login');
+                // error
               });
             }).catch(() => {
-              req.flash('error', 'خطا! بعدا امتحان کنید.');
+              req.flash('e', '1');
               res.redirect('/login');
+              // error
             });
           } else {
-            req.flash('error', 'چنین حسابی وجود ندارد.');
+            req.flash('e', '2');
             res.redirect('/signup');
+            // no such user
           }
         }).catch(() => {
-          req.flash('error', 'خطا! بعدا امتحان کنید.');
+          req.flash('e', '1');
           res.redirect('/login');
+          // error
         });
       }
       else {
         res.reply.notFound();
       }
     }).catch(() => {
-      req.flash('error', 'خطا! بعدا امتحان کنید.');
+      req.flash('e', '1');
       res.redirect('/login');
+      // error
     });
   } else {
-    req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/login');
+    res.reply.notFound();
   }
 });
 

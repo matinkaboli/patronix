@@ -32,7 +32,7 @@ router.get('/signup', login, (req, res) => {
 
   req.session.captcha = captcha.text.toLowerCase();
 
-  res.render('signup.njk', { captcha: captcha.data });
+  res.render('signup.njk', { captcha: captcha.data, e: req.flash('e') });
 });
 
 router.post('/signup', login, limiter, (req, res) => {

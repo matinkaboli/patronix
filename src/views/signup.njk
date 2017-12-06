@@ -55,6 +55,17 @@
 {% endblock %}
 
 {% block scripts %}
+{% for i in e %}
+{% if i == '2' %}
+<script>
+  const divE = document.getElementById('error');
+  const p = document.createElement('p');
+  p.innerHTML = 'همچین حسابی وجود ندارد.';
+  divE.appendChild(p);
+  divE.style.display = 'block';
+</script>
+{% endif %}
+{% endfor %}  
   <script src="/files/js/lib/validator.js"></script>
   <script src="/files/js/recaptcha.js"></script>
   <script src="/files/js/checkSignup.js"></script>
