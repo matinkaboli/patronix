@@ -33,8 +33,7 @@ router.post('/resend', login, limiter, (req, res) => {
             if (code) {
               // send(req.body.email, code.link, 'resend', user.fname);
 
-              res.json({ type: 's' });
-              // sent
+              res.json({ type: 1, text: 1 });
             } else {
               const newLink = new Link({
                 user: user._id,
@@ -44,34 +43,32 @@ router.post('/resend', login, limiter, (req, res) => {
               newLink.save().then(() => {
                 // send(req.body.email, newLink.link, 'resend', user.fname);
 
-                res.json({ type: 's' });
                 // sent
+                res.json({ type: 1, text: 1 });
               }).catch(() => {
-                res.json({ type: 'e', code: 1 });
                 // error
+                res.json({ type: 0, text: 1 });
               });
             }
           }).catch(() => {
-            res.json({ type: 'e', code: 1 });
             // error
+            res.json({ type: 0, text: 1 });
           });
         } else {
-          req.flash('w', '0');
-          req.flash('email', req.body.email);
-          res.json({ type: 'w', code: 0 });
           // verified before
+          res.json({ type: 2, text: 0 });
         }
       } else {
-        res.json({ type: 'e', code: 0 });
         // no such user
+        res.json({ type: 0, text: 0 });
       }
     }).catch(() => {
-      res.json({ type: 'e', code: 1 });
       // error
+      res.json({ type: 0, text: 1 });
     });
   } else {
-    res.json({ type: 'e', code: 1 });
     // error
+    res.json({ type: 0, text: 1 });
   }
 });
 

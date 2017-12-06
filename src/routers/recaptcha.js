@@ -10,8 +10,6 @@ const limiter = new RateLimit({
 });
 
 router.get('/recaptcha', limiter, (req, res) => {
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
   const captcha = svgCaptcha.create({
     size: 4,
     ignoreChars: '0o1ilIQ8',

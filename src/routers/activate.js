@@ -15,51 +15,23 @@ const limiter = new RateLimit({
 });
 
 router.get('/activate/:link', login, limiter, (req, res) => {
-  if (req.params.link) {
-    Link.findOne({ link: req.params.link }).then(link => {
-      if (link) {
-        User.findOne({ _id: link.user }).then(user => {
-          if (user) {
-            user.status = 1;
+  Link.findOne({ link: req.params.link }).then(link => {
+    if (link) {
+      User.findOne({ _id: link.user }).then(user => {
+        user.status = 1;
 
-            user.save().then(() => {
-              Link.remove({ link: req.params.link }).then(() => {
-                req.flash('s', '0');
-                req.flash('email', user.email);
-
-                res.redirect('/login');
-              }).catch(() => {
-                req.flash('e', '1');
-                res.redirect('/login');
-                // error
-              });
-            }).catch(() => {
-              req.flash('e', '1');
-              res.redirect('/login');
-              // error
-            });
-          } else {
-            req.flash('e', '2');
-            res.redirect('/signup');
-            // no such user
-          }
-        }).catch(() => {
-          req.flash('e', '1');
-          res.redirect('/login');
-          // error
+        user.save().then(() => {
+          Link.remove({ link: req.params.link }).then(() => {
+            res.redirect('/login');
+          });
         });
-      }
-      else {
-        res.reply.notFound();
-      }
-    }).catch(() => {
-      req.flash('e', '1');
-      res.redirect('/login');
-      // error
-    });
-  } else {
-    res.reply.notFound();
-  }
+      });
+    }
+
+    else {
+      res.reply.notFound();
+    }
+  });
 });
 
 export default router;

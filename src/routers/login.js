@@ -19,10 +19,7 @@ const limiter = new RateLimit({
 
 router.get('/login', login, (req, res) => {
   res.render('login.njk', {
-    email: req.flash('email'),
-    w: req.flash('w'),
-    s: req.flash('s'),
-    e: req.flash('e')
+    report: req.flash('report')
   });
 });
 
@@ -35,9 +32,8 @@ router.post('/login', login, limiter, (req, res) => {
     }).then(user => {
       if (user) {
         if (user.status === 0) {
-          req.flash('email', req.body.email);
-          res.json({ type: 'e', code: 0 });
           // unverified user
+          res.json({ type: 0, text: 0 });
         }
 
         else if (user.status === 1) {
@@ -61,45 +57,45 @@ router.post('/login', login, limiter, (req, res) => {
                     }
                   }
                 ).then(() => {
-                  req.user.login(user);
-                  res.json({ type: 's' });
                   // success
+                  req.user.login(user);
+                  res.json({ type: 1, text: 0 });
                 }).catch(() => {
-                  res.json({ type: 'e', code: 3 });
                   // error
+                  res.json({ type: 0, text: 3 });
                 });
               } else {
-                req.user.login(user);
-                res.json({ type: 's' });
                 // success
+                req.user.login(user);
+                res.json({ type: 1, text: 0 });
               }
             }).catch(() => {
-              res.json({ type: 'e', code: 3 });
               // error
+              res.json({ type: 0, text: 3 });
             });
           } else {
-            res.json({ type: 'e', code: 2 });
             // wrong pass
+            res.json({ type: 0, text: 2 });
           }
         }
 
         else if (user.status === 2) {
-          res.json({ type: 'e', code: 1 });
           // account has expired
+          res.json({ type: 0, text: 1 });
         }
       }
 
       else {
-        res.json({ type: 'e', code: 2 });
         // no such user
+        res.json({ type: 0, text: 2 });
       }
     }).catch(() => {
-      res.json({ type: 'e', code: 3 });
       // error
+      res.json({ type: 0, text: 3 });
     });
   } else {
-    res.json({ type: 'e', code: 3 });
     // error
+    res.json({ type: 0, text: 3 });
   }
 });
 
