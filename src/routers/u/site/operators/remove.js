@@ -2,11 +2,13 @@ import { Router } from 'express';
 
 const perms = rootRequire('./perms');
 const { Site } = rootRequire('./models');
+const middles = rootRequire('./middles');
 
 const router = new Router();
 
 router.get(
   '/u/site/:id/operators/remove',
+  middles.u.site.getSite,
   perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
@@ -28,27 +30,28 @@ router.get(
 
 router.post(
   '/u/site/:id/operators/remove',
+  middles.u.site.getSite,
   perms.logged,
   perms.u.site.isOwner,
   perms.u.site.operators.remove,
   (req, res) => {
-    Site.findById(req.params.id).then(site => {
-      let index = 0;
-      for (let [i, operator] of site.operators.entries()) {
-        if (req.body.id === operator.toString()) {
-          index = i;
-          break;
-        }
+    let site = req.middle.site;
+    
+    let index = 0;
+    for (let [i, operator] of site.operators.entries()) {
+      if (req.body.id === operator.toString()) {
+        index = i;
+        break;
       }
+    }
 
-      site.operators = [
-        ...site.operators.slice(0, index),
-        ...site.operators.slice(index + 1, site.operators.length)
-      ];
+    site.operators = [
+      ...site.operators.slice(0, index),
+      ...site.operators.slice(index + 1, site.operators.length)
+    ];
 
-      site.save().then(() => {
-        res.reply.ok();
-      });
+    site.save().then(() => {
+      res.reply.ok();
     });
   }
 );

@@ -1,12 +1,14 @@
 import { Router } from 'express';
 
 const perms = rootRequire('./perms');
-const { User, Site } = rootRequire('./models');
+const { User } = rootRequire('./models');
+const middles = rootRequire('./middles');
 
 const router = new Router();
 
 router.get(
   '/u/site/:id/operators/add',
+  middles.u.site.getSite,
   perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
@@ -16,18 +18,17 @@ router.get(
 
 router.post(
   '/u/site/:id/operators/add',
+  middles.u.site.getSite,
   perms.logged,
   perms.u.site.isOwner,
   perms.u.site.operators.add,
   (req, res) => {
     User.findOne({ email: req.body.email }).then(operator => {
       if (operator) {
-        Site.findById(req.params.id).then(site => {
-          site.operators.push(operator._id);
+        req.middle.site.operators.push(operator._id);
 
-          site.save().then(() => {
-            res.reply.ok();
-          });
+        req.middle.site.save().then(() => {
+          res.reply.ok();
         });
       }
 

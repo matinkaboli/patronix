@@ -88,6 +88,16 @@ bird
     );
   });
 
+bird
+  .command('middle <name>')
+  .description('add new a middleware')
+  .action(name => {
+    fs.copy(
+      './templates/perm.js',
+      `./src/middles/${name}.js`
+    );
+  });
+
 
 bird
   .command('full <name>')
