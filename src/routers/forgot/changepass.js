@@ -3,7 +3,7 @@ import RateLimit from 'express-rate-limit';
 
 const router = new Router();
 const { User, Link } = rootRequire('./models');
-const { encrypt } = rootRequire('./utils');
+const { encrypt } = rootRequire('./utils/crypt');
 const { login } = rootRequire('./perms');
 const { dbkey } = rootRequire('./config.json');
 
