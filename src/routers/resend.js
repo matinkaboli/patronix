@@ -33,47 +33,45 @@ router.post('/resend', login, limiter, (req, res) => {
             if (code) {
               // send(req.body.email, code.link, 'resend', user.fname);
 
-              res.render('done.njk', {
-                type: 'resend',
-                email: req.body.email
-              });
+              res.json({ type: 's' });
+              // sent
             } else {
               const newLink = new Link({
                 user: user._id,
                 link: unique(25)
               });
 
-              newCode.save().then(() => {
+              newLink.save().then(() => {
                 // send(req.body.email, newLink.link, 'resend', user.fname);
 
-                res.render('done.njk', {
-                  type: 'resend',
-                  email: req.body.email
-                });
+                res.json({ type: 's' });
+                // sent
               }).catch(() => {
-                req.flash('error', 'خطا! بعدا امتحان کنید');
-                res.redirect('/resend');
+                res.json({ type: 'e', code: 1 });
+                // error
               });
             }
           }).catch(() => {
-            req.flash('error', 'خطا! بعدا امتحان کنید');
-            res.redirect('/resend');
+            res.json({ type: 'e', code: 1 });
+            // error
           });
         } else {
-          req.flash('warn', 'این حساب قبلا فعال سازی شده است.');
-          res.redirect('/resend');
+          req.flash('w', '0');
+          req.flash('email', req.body.email);
+          res.json({ type: 'w', code: 0 });
+          // verified before
         }
       } else {
-        req.flash('error', 'چنین حسابی وجود ندارد.');
-        res.redirect('/resend');
+        res.json({ type: 'e', code: 0 });
+        // no such user
       }
     }).catch(() => {
-      req.flash('error', 'خطا! بعدا امتحان کنید');
-      res.redirect('/resend');
+      res.json({ type: 'e', code: 1 });
+      // error
     });
   } else {
-    req.flash('error', 'خطا! بعدا امتحان کنید');
-    res.redirect('/resend');
+    res.json({ type: 'e', code: 1 });
+    // error
   }
 });
 

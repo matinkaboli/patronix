@@ -1,10 +1,17 @@
 {% extends './layouts/index.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/signup.css">
+<link rel="stylesheet" href="/files/css/inputs.css">
+<link rel="stylesheet" href="/files/css/alert.css">
 {% endblock %}
 
 {% block content %}
+<div class="alert" id="error">
+</div>
+<div class="alert" id="warn">
+</div>
+<div class="alert" id="success">
+</div>
 <form
   action="/resend"
   method="post"
@@ -13,7 +20,8 @@
   <input
     type="email"
     name="email"
-    placeholder="ایمیل">
+    placeholder="ایمیل"
+    required>
   <input
     type="submit"
     value="گرفتن کد فعالسازی">
@@ -27,5 +35,5 @@
   </script>
 {% endfor %}
 <script src="/files/js/lib/validator.js"></script>
-<script src="/files/js/forgot.js"></script>
+<script src="/files/js/checkResend.js"></script>
 {% endblock %}
