@@ -1,23 +1,26 @@
 {% extends './layouts/index.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/home.css">
 {% endblock %}
 
 {% block content %}
-<h1>@@PROJECTNAME@@</h1>
-<a href="/login">ورود</a>
-<a href="/signup">ثبت نام</a>
+<header>
+  <div class="links">
+    <ul>
+      <li><a href="/login">ورود</a></li>
+      <li><a href="/signup">ایجاد حساب کاربری</a></li>
+    </ul>
+  </div>
+  <div class="title">
+    <h3>@@PROJECTNAME@@</h3>
+  </div>
+</header>
+<aside>
+  <div class="top-title">
+  </div>
+</aside>
 {% endblock %}
 
 {% block scripts %}
-{% for i in success %}
-  <script>
-    swal({
-      title: 'موفق',
-      text: "{{ i }}",
-      icon: 'success',
-      button: 'باشه'
-    });
-  </script>
-{% endfor %}
 {% endblock %}
