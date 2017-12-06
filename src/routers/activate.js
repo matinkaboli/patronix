@@ -14,7 +14,7 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/active/:link', login, limiter, (req, res) => {
+router.get('/activate/:link', login, limiter, (req, res) => {
   if (req.params.link) {
     Link.findOne({ link: req.params.link }).then(link => {
       if (link) {
