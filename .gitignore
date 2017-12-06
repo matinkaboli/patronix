@@ -36,3 +36,4 @@ jspm_packages
 # Build directory
 build/
 .DS_Store
+testclient

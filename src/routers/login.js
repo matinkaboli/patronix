@@ -41,8 +41,9 @@ router.post('/login', login, limiter, (req, res) => {
         }
 
         else if (user.status === 1) {
-          if (decrypt(user.password, user.email + dbkey)
-          === req.body.password) {
+          if (
+            decrypt(user.password, user.email + dbkey) === req.body.password
+          ) {
             Session.findOne(
               { session: new RegExp(user._id.toString()) }
             ).lean().then(session => {
