@@ -14,34 +14,34 @@
 }
 
 #error {
-  background-color: #f54d42;
+  background-color: @red-1;
   color: white;
   transition: background-color 500ms;
-  border-bottom: 1px solid darken(#f54d42, 10%);
+  border-bottom: 1px solid darken(@red-1, 10%);
 }
 
 #error:hover {
-  background-color: darken(#f54d42, 15%);
+  background-color: darken(@red-1, 15%);
 }
 
 #warn {
-  background-color: #ff6f3c;
+  background-color: @red-0;
   color: white;
   transition: background-color 500ms;
-  border-bottom: 1px solid darken(#ff6f3c, 10%);
+  border-bottom: 1px solid darken(@red-0, 10%);
 }
 
 #warn:hover {
-  background-color: darken(#ff6f3c, 15%);
+  background-color: darken(@red-0, 15%);
 }
 
 #success {
-  background-color: #cbf078;
+  background-color: green;
   color: #140303;
   transition: background-color 500ms;
-  border-bottom: 1px solid darken(#cbf078, 10%);
+  border-bottom: 1px solid darken(green, 10%);
 }
 
 #success:hover {
-  background-color: darken(#cbf078, 15%);
+  background-color: darken(green, 15%);
 }
