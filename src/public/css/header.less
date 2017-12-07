@@ -1,6 +1,9 @@
+@import "colors.less";
+
 body {
-  background-color: #f6f6f6;
+  background-color: @white-gray;
 }
+
 header {
   width: 100%;
   height: 70px;
@@ -14,121 +17,114 @@ header {
   box-sizing: border-box;
   z-index: 999;
   max-height: 100px;
-  background-color: #2C2E3E;
+  background-color: @navy-blue;
   display: flex;
   justify-content: space-between;
   align-content: center;
+
   a {
     text-decoration: none;
-    color: #c7c7c7;
+    color: white;
     margin-left: 40px;
     transition: color 300ms;
+
     &:hover {
-      color: lighten(#c7c7c7, 10%);
+      color: darken(white, 10%);
+    }
+  }
+
+  &:first-child {
+
+    ul {
+      list-style: none;
+
+      li {
+        display: inline;
+
+        a {
+          position: relative;
+          display: inline-block;
+
+          &:before, &:after {
+            position: absolute;
+            color: transparent;
+            top: 50%;
+            transition: all 0.3s;
+          }
+
+          &:before {
+            content: ']';
+            left: -15px;
+            transform: translate(-20px, -50%) scale(0.5, 0.5);
+          }
+
+          &:after {
+            content: '[';
+            right: -15px;
+            transform: translate(20px, -50%) scale(0.5, 0.5);
+          }
+
+          &:hover:before, &:hover:after {
+            color: white;
+            transform: translate(0px, -50%) scale(1, 1);
+          }
+        }
+      }
+    }
+  }
+
+  & #list-links {
+    position: fixed;
+    height: 100%;
+    top: 70px;
+    width: 80%;
+    max-width: 400px;
+    background: @medium-gray;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+
+    &:not(:target) {
+      right: -100%;
+      transition: right 500ms;
+    }
+
+    &:target {
+      right: 0;
+      transition: right 500ms;
     }
   }
 }
 
-div.links ul {
-  list-style: none;
-  li {
-    display: inline;
-  }
-}
-div.title h3 {
-  margin: -2px;
-}
 #project-min-name {
   display: none;
 }
-#list-links {
-  position: fixed;
-  height: 100%;
-  top: 70px;
-  width: 80%;
-  max-width: 400px;
-  background: #c7c7c7;
-  box-shadow: -3px 0 10px rgba(0,0,0,0.2);
-}
-#list-links:not(:target) {
-  right: -100%;
-  transition: right 500ms;
-}
-#list-links:target {
-  right: 0;
-  transition: right 500ms;
-}
+
 a[href="#list-links"] {
   display: none;
 }
+
 a[href="#"] {
   display: none;
 }
+
+aside {
+  margin-top: 70px;
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
+
   #project-min-name {
     display: block;
   }
+
   #project-name {
     display: none;
   }
-  .links ul {
+
+  header ul {
     display: none;
   }
+
   a[href="#list-links"] {
     display: inline;
   }
-}
-
-
-
-.top-title {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  height: 640px;
-  background-color: #4E516C;
-  font-family: SB;
-  font-weight: bold;
-  color: #C7C7C7;
-  & h1 {
-    font-size: 40px;
-    transition: color 300ms;
-    &:hover {
-      color: darken(#C7C7C7, 10%);
-    }
-  }
-}
-
-.logo {
-  position: relative;
-  display: inline-block;
-}
-.logo:before,
-.logo:after {
-  position: absolute;
-  color: transparent;
-  top: 50%;
-  transition: all 0.3s;
-}
-.logo:before {
-  content: ']';
-  left: -15px;
-  transform: translate(-20px, -50%) scale(0.5, 0.5);
-}
-.logo:after {
-  content: '[';
-  right: -15px;
-  transform: translate(20px, -50%) scale(0.5, 0.5);
-}
-.logo:hover:before,
-.logo:hover:after {
-  color: white;
-  transform: translate(0px, -50%) scale(1, 1);
-}
-aside {
-  margin-top: 70px;
 }
