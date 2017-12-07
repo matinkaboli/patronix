@@ -1,9 +1,9 @@
-const Socket = rootRequire('./Soket.js');
+const Soket = rootRequire('./Soket.js');
 
-let socket = new Socket('/chat');
+let soket = new Soket('/chat');
 
-socket.route('message', socket => () => {
+soket.on('message', socket => () => {
   socket;
 });
 
-export default socket;
+export default soket;

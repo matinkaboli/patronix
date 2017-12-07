@@ -79,11 +79,11 @@ bird
   });
 
 bird
-  .command('socket <name>')
+  .command('soket <name>')
   .description('add new a socket')
   .action(name => {
     fs.copy(
-      './templates/socket.js',
+      './templates/soket.js',
       `./src/sockets/${name}.js`
     );
   });

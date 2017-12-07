@@ -1,9 +1,9 @@
-const Socket = rootRequire('./Soket.js');
+const Soket = rootRequire('./Soket.js');
 const { Site, Chat } = rootRequire('./models');
 
-let socket = new Socket('/chat');
+let soket = new Soket('/chat');
 
-socket.route('client:init', socket => () => {
+soket.on('client:init', socket => () => {
   if (!socket.data && !socket.data.inited) {
     socket.data = {};
 
@@ -27,4 +27,4 @@ socket.route('client:init', socket => () => {
   }
 });
 
-export default socket;
+export default soket;

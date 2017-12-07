@@ -1,16 +1,16 @@
 export default class {
   constructor(namespace = '/') {
     this.namespace = namespace;
-    this.routers = [];
+    this.events = [];
   }
 
-  route(name, handler) {
-    this.routers.push({ name, handler });
+  on(name, handler) {
+    this.events.push({ name, handler });
   }
 
   plug(socket, namespace, io) {
-    for (let router of this.routers) {
-      socket.on(router.name, router.handler(socket, namespace, io));
+    for (let e of this.events) {
+      socket.on(e.name, e.handler(socket, namespace, io));
     }
   }
 }
