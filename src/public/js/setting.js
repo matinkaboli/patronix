@@ -1,3 +1,4 @@
+// THIS FILE MUST BE CHANGED, IT IS NOT COMPLETE, DO NOT USE THIS YET
 const settingForm = document.forms['main-form'];
 const passForm = document.forms['pass-form'];
 

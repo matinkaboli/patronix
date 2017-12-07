@@ -15,7 +15,7 @@ function checkForm() {
   ) {
     if (!validateEmail(f.email.value)) {
       const p = document.createElement('p');
-      p.innerHTML = 'ایمیل وارد شده صحیح نمیباشد.';
+      p.innerHTML = M[1][0];
       divW.appendChild(p);
       divW.style.display = 'block';
     } else {
@@ -33,20 +33,13 @@ function checkForm() {
         if (data.type === 'e') {
           const p = document.createElement('p');
           if (data.code === 0) {
-            p.innerHTML = 'حساب شما تایید نشده، برای تایید به ایمیل خود ' +
-            'سر زده و یا برای گرفتن دوباره کد، به ';
-            const a = document.createElement('a');
-            a.setAttribute('href', '/resend');
-            a.innerHTML = 'این صفحه';
-            p.appendChild(a);
-            p.innerHTML += ' مراجعه کنید';
+            p.innerHTML = M[0][5]
           } else if (data.code === 1) {
-            p.innerHTML = 'حساب شما منقضی شده است.';
+            p.innerHTML = M[0][4];
           } else if (data.code === 2) {
-            p.innerHTML = 'چنین حسابی وجود ندارد.'
-            + ' در غیر این صورت رمز عبور یا ایمیل غلط است.';
+            p.innerHTML = M[0][3];
           } else if (data.code === 3) {
-            p.innerHTML = 'خطا! بعدا امتحان کنید.';
+            p.innerHTML = M[0][0];
           }
           divE.appendChild(p);
           divE.style.display = 'block';
@@ -55,7 +48,7 @@ function checkForm() {
         }
       }).catch(() => {
         const p = document.createElement('p');
-        p.innerHTML = 'خطا! بعدا امتحان کنید.';
+        p.innerHTML = M[0][0];
         divE.appendChild(p);
         divE.style.display = 'block';
       });

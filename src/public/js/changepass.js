@@ -13,7 +13,7 @@ function checkForm() {
   if (f.password.value) {
     if (f.password.value.length < 7) {
       const p = document.createElement('p');
-      p.innerHTML = 'رمز عبور باید حداقل هشت رقم باشد';
+      p.innerHTML = M[1][1];
       divW.appendChild(p);
       divW.style.display = 'block';
     } else {
@@ -30,9 +30,9 @@ function checkForm() {
         if (data.type === 'e') {
           const p = document.createElement('p');
           if (data.code === 0) {
-            p.innerHTML = 'چنین حسابی وجود ندارد.';
+            p.innerHTML = M[0][3];
           } else if (data.code === 1) {
-            p.innerHTML = 'خطا! بعدا امتحان کنید.';
+            p.innerHTML = M[0][0];
           }
           divE.appendChild(p);
           divE.style.display = 'block';
@@ -41,7 +41,7 @@ function checkForm() {
         }
       }).catch(() => {
         const p = document.createElement('p');
-        p.innerHTML = 'خطا! بعدا امتحان کنید.';
+        p.innerHTML = M[0][0];
         divE.appendChild(p);
         divE.style.display = 'block';
       });

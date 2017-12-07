@@ -7,6 +7,6 @@ btn.addEventListener('click', () => {
   }).then(res => res.json()).then(data => {
     svgElement.innerHTML = data.captcha;
   }).catch(() => {
-    svgElement.innerHTML = 'خطا! بعدا امتحان کنید.';
+    svgElement.innerHTML = M[0][0];
   });
 });

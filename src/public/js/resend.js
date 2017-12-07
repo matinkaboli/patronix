@@ -13,7 +13,7 @@ function checkForm() {
   if (f.email.value) {
     if (!validateEmail(f.email.value)) {
       const p = document.createElement('p');
-      p.innerHTML = 'ایمیل وارد شده صحیح نمیباشد.';
+      p.innerHTML = M[1][0];
       divW.appendChild(p);
       divW.style.display = 'block';
     } else {
@@ -30,15 +30,15 @@ function checkForm() {
         if (data.type === 'e') {
           const p = document.createElement('p');
           if (data.code === 0) {
-            p.innerHTML = 'چنین حسابی وجود ندارد.';
+            p.innerHTML = M[0][3];
           } else if (data.code === 1) {
-            p.innerHTML = 'خطا! بعدا امتحان کنید.';
+            p.innerHTML = M[0][0];
           }
           divE.appendChild(p);
           divE.style.display = 'block';
         } else if (data.type === 's') {
           const p = document.createElement('p');
-          p.innerHTML = 'پیام تاییدیه به ایمیل شما فرستاده شد.';
+          p.innerHTML = M[2][1];
           divS.appendChild(p);
           divS.style.display = 'block';
         } else if (data.type === 'w') {
@@ -48,7 +48,7 @@ function checkForm() {
         }
       }).catch(() => {
         const p = document.createElement('p');
-        p.innerHTML = 'خطا! بعدا امتحان کنید.';
+        p.innerHTML = M[0][0];
         divE.appendChild(p);
         divE.style.display = 'block';
       });

@@ -15,13 +15,13 @@ function checkForm() {
   ) {
     if (!validateEmail(f.email.value)) {
       const p = document.createElement('p');
-      p.innerHTML = 'ایمیل وارد شده صحیح نمیباشد.';
+      p.innerHTML = M[1][0];
       divW.appendChild(p);
       divW.style.display = 'block';
     } else {
       if (f.password.value.length < 8) {
         const p = document.createElement('p');
-        p.innerHTML = 'رمز عبور باید حداقل هشت رقم باشد.';
+        p.innerHTML = M[1][1];
         divW.appendChild(p);
         divW.style.display = 'block';
       } else {
@@ -45,24 +45,23 @@ function checkForm() {
           if (data.status === 'e') {
             const p = document.createElement('p');
             if (data.code === 0) {
-              p.innerHTML = 'این ایمیل توسط کسی ثبت نام شده.';
+              p.innerHTML = M[0][2];
             } else if (data.code === 1) {
-              p.innerHTML = 'مشکلی پیش آمده است، بعدا امتحان کنید';
+              p.innerHTML = M[0][0];
             } else if (data.code === 2) {
-              p.innerHTML = 'کد امنیتی وارد شده اشتباه است.';
+              p.innerHTML = M[0][1];
             }
             divE.appendChild(p);
             divE.style.display = 'block';
           } else if (data.status === 's') {
             const p = document.createElement('p');
-            p.innerHTML = 'حساب شما با موفقیت ایجاد شد، ' +
-            'برای فعالسازی حساب خود، به ایمیل خود مراجعه فرمایید.';
+            p.innerHTML = M[2][0];
             divS.appendChild(p);
             divS.style.display = 'block';
           }
         }).catch(() => {
           const p = document.createElement('p');
-          p.innerHTML = 'خطا! بعدا امتحان کنید.';
+          p.innerHTML = M[0][0];
           divW.appendChild(p);
           divW.style.display = 'block';
         });
