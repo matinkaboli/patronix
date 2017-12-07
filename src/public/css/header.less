@@ -71,25 +71,33 @@ header {
         }
       }
     }
+
+    & #open-close-bar a {
+      padding: 2px 10px;
+      border-radius: 2px;
+      background-color: lighten(@navy-blue, 10%);
+    }
   }
 
   & #list-links {
-    position: fixed;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
     top: 70px;
-    width: 80%;
-    max-width: 400px;
+    width: 100%;
+    max-height: 400px;
     background: @medium-gray;
     box-shadow: -3px 0 10px rgba(0,0,0,0.2);
 
     &:not(:target) {
-      right: -100%;
-      transition: right 500ms;
+      height: 0;
+      transition: height 500ms;
     }
 
     &:target {
-      right: 0;
-      transition: right 500ms;
+      height: 350px;
+      transition: height 500ms;
     }
   }
 }
