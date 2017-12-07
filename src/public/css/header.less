@@ -102,6 +102,34 @@ a[href="#"] {
     }
   }
 }
+
+.logo {
+  position: relative;
+  display: inline-block;
+}
+.logo:before,
+.logo:after {
+  font-size: 12px;
+  position: absolute;
+  color: transparent;
+  top: 50%;
+  transition: all 0.3s;
+}
+.logo:before {
+  content: ']';
+  left: -6px;
+  transform: translate(-20px, -50%) scale(0.5, 0.5);
+}
+.logo:after {
+  content: '[';
+  right: -6px;
+  transform: translate(20px, -50%) scale(0.5, 0.5);
+}
+.logo:hover:before,
+.logo:hover:after {
+  color: white;
+  transform: translate(0px, -50%) scale(1, 1);
+}
 aside {
   margin-top: 70px;
 }
