@@ -18,9 +18,7 @@ const limiter = new RateLimit({
 });
 
 router.get('/login', login, (req, res) => {
-  res.render('login.njk', {
-    report: req.flash('report')
-  });
+  res.render('login.njk');
 });
 
 router.post('/login', login, limiter, (req, res) => {
@@ -60,20 +58,18 @@ router.post('/login', login, limiter, (req, res) => {
                   // success
                   req.user.login(user);
                   res.json({ type: 1, text: 0 });
-                }).catch(() => {
-                  // error
-                  res.json({ type: 0, text: 3 });
                 });
-              } else {
+              }
+
+              else {
                 // success
                 req.user.login(user);
                 res.json({ type: 1, text: 0 });
               }
-            }).catch(() => {
-              // error
-              res.json({ type: 0, text: 3 });
             });
-          } else {
+          }
+
+          else {
             // wrong pass
             res.json({ type: 0, text: 2 });
           }
@@ -89,11 +85,10 @@ router.post('/login', login, limiter, (req, res) => {
         // no such user
         res.json({ type: 0, text: 2 });
       }
-    }).catch(() => {
-      // error
-      res.json({ type: 0, text: 3 });
     });
-  } else {
+  }
+
+  else {
     // error
     res.json({ type: 0, text: 3 });
   }

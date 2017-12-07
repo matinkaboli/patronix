@@ -58,20 +58,20 @@ router.post('/signup', login, limiter, (req, res) => {
         });
 
         link.save().then(() => {
-          res.reply.ok();
+          res.json({ report: { type: 2, text: 0 }});
         });
       }).catch(() => {
-        res.reply.error();
+        res.json({ report: { type: 0, text: 0 }});
       });
     }
 
     else {
-      res.reply.error();
+      res.json({ report: { type: 0, text: 0 }});
     }
   }
 
   else {
-    res.reply.error();
+    res.json({ report: { type: 0, text: 0 }});
   }
 });
 
