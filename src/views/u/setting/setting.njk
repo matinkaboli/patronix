@@ -65,36 +65,6 @@
 {% endblock %}
 
 {% block scripts %}
-{% for i in success %}
-  <script>
-    swal({
-      title: 'موفق',
-      text: "{{ i }}",
-      icon: 'success',
-      button: 'باشه'
-    });
-  </script>
-{% endfor %}
-{% for i in error %}
-  <script>
-    swal({
-      title: 'خطا',
-      text: "{{ i }}",
-      icon: 'error',
-      button: 'باشه'
-    });
-  </script>
-{% endfor %}
-{% for i in warn %}
-  <script>
-    swal({
-      title: 'عجیبه',
-      text: "{{ i }}",
-      icon: 'warn',
-      button: 'باشه'
-    });
-  </script>
-{% endfor %}
 <script src="/files/js/lib/validator.js"></script>
 <script src="/files/js/setting.js"></script>
 {% endblock %}

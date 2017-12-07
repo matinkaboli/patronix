@@ -80,25 +80,68 @@ header {
   }
 
   & #list-links {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    top: 70px;
+    position: fixed;
     width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
     max-height: 400px;
     background: @medium-gray;
     box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+    padding: 0;
+    margin-top: 70px;
+
+    & ol {
+      list-style: none;
+
+      & li {
+        margin: 15px;
+
+        & a {
+          color: black;
+          font-size: 18px;
+          position: relative;
+          display: inline-block;
+
+          &::before, &::after {
+            position: absolute;
+            color: transparent;
+            top: 50%;
+            transition: all 0.3s;
+          }
+
+          &::before {
+            content: ']';
+            left: -15px;
+            transform: translate(-20px, -50%) scale(0.5, 0.5);
+          }
+
+          &::after {
+            content: '[';
+            right: -15px;
+            transform: translate(20px, -50%) scale(0.5, 0.5);
+          }
+
+          &:hover::before, &:hover::after {
+            color: black;
+            transform: translate(0px, -50%) scale(1, 1);
+          }
+        }
+      }
+    }
 
     &:not(:target) {
-      height: 0;
-      transition: height 500ms;
+      top: -100%;
+			transition: top .5s;
     }
 
     &:target {
-      height: 350px;
-      transition: height 500ms;
+      top: 0;
+			transition: top .5s;
     }
+  }
+  & #project-min-name, & #project-name {
+    font-family: 'Open Sans';
   }
 }
 
@@ -116,6 +159,7 @@ a[href="#"] {
 
 aside {
   margin-top: 70px;
+  box-sizing: content-box;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
