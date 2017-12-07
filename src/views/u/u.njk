@@ -1,11 +1,13 @@
-{% extends locals.path + '/index.njk' %}
+{% extends locals.path + '/u.njk' %}
 
 {% block head %}
 {% endblock %}
 
 {% block content %}
-<h1>Hello {{ user.name.first }}</h1>
-<a href="/u/setting">Setting</a>
+<div class="an">
+  <h1>Hello {{ user.name.first }}</h1>
+  <a href="/u/setting">Setting</a>
+</div>
 {% endblock %}
 
 {% block scripts %}
