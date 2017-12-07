@@ -46,7 +46,7 @@
 <script>
   const divW = document.getElementById('warn');
   const p = document.createElement('p');
-  p.innerHTML = 'حساب شما قبلا تایید شده.';
+  p.innerHTML = M[1][2];
   divW.appendChild(p);
   divW.style.display = 'block';
 </script>
@@ -57,7 +57,7 @@
 <script>
   const divS = document.getElementById('success');
   const p = document.createElement('p');
-  p.innerHTML = 'حساب شما با موفقیت تایید شد';
+  p.innerHTML = M[2][2];
   divS.appendChild(p);
   divS.style.display = 'block';
 </script>
@@ -68,7 +68,7 @@
 <script>
   const divE = document.getElementById('error');
   const p = document.createElement('p');
-  p.innerHTML = 'خطا! بعدا امتحان کنید.';
+  p.innerHTML = M[0][0];
   divE.appendChild(p);
   divE.style.display = 'block';
 </script>
