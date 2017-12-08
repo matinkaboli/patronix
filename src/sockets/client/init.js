@@ -1,7 +1,7 @@
 const Soket = rootRequire('./Soket.js');
 const { Site, Chat } = rootRequire('./models');
 
-let soket = new Soket('/chat');
+let soket = new Soket('/service');
 
 soket.on('client:init', socket => () => {
   if (!socket.data && !socket.data.inited) {
