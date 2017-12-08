@@ -1,4 +1,4 @@
-let socket = io('/chat');
+let socket = io('/service');
 
 fetch('/u/generate', { credentials: 'include', method: 'POST' })
   .then(data => data.text())

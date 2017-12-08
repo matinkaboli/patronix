@@ -1,24 +1,27 @@
 import mongoose, { Schema } from 'mongoose';
 
+const chats = new Schema({
+  sender: {
+    enum: [0, 1], // 0: client, 1: operator
+    type: Number,
+    required: [true, 'Sender required']
+  },
+  message: {
+    type: String,
+    trim: true,
+    required: [true, 'Message required']
+  },
+  time: {
+    type: Date,
+    trim: true,
+    default: Date.now
+  }
+}, {
+  _id: false
+});
+
 const chatSchema = new Schema({
-  chats: [{
-    sender: {
-      enum: [0, 1],
-      type: Number,
-      trim: true,
-      required: [true, 'Sender required']
-    },
-    message: {
-      type: String,
-      trim: true,
-      required: [true, 'Message required']
-    },
-    time: {
-      type: Date,
-      trim: true,
-      default: Date.now
-    }
-  }],
+  chats: [chats],
   site: {
     type: Schema.Types.ObjectId,
     ref: 'Site',
@@ -34,6 +37,10 @@ const chatSchema = new Schema({
   },
   client: {
     type: String,
+    required: true
+  },
+  taken: {
+    type: Boolean,
     required: true
   }
 });
