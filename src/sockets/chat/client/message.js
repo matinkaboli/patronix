@@ -2,7 +2,7 @@ const Soket = rootRequire('./Soket.js');
 
 let soket = new Soket('/chat');
 
-soket.on('message', socket => () => {
+soket.on('client:message', socket => () => {
   socket;
 });
 
