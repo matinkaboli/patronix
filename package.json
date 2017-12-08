@@ -4,7 +4,9 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
-    "devbuild": "gulp dev watch",
+    "client:build": "gulp client:dev client:watch",
+    "server:build": "gulp server:dev server:watch",
+    "full:build": "gulp full:dev full:watch",
     "devserver": "nodemon --delay 0.5 build/app.js -e js,njk",
     "compress": "tar -czvf app.tar.gz build package.json",
     "app": "node build/app.js",
@@ -47,6 +49,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "del": "^3.0.0",
     "eslint": "^4.9.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
@@ -56,7 +59,6 @@
     "gulp-htmlmin": "^3.0.0",
     "gulp-less": "^3.3.2",
     "gulp-replace": "^0.6.1",
-    "gulp-rimraf": "^0.2.1",
     "gulp-uglify": "^3.0.0"
   }
 }
