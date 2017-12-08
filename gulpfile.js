@@ -138,7 +138,7 @@ gulp.task('full:babel', ['full:clean'], taskBabel);
 gulp.task('client:js:prod', ['client:clean'], taskJsProd);
 gulp.task('full:js:prod', ['full:clean'], taskJsProd);
 gulp.task('client:js:dev', ['client:clean'], taskJsDev);
-gulp.task('js:dev', ['full:clean'], taskJsDev);
+gulp.task('full:js:dev', ['full:clean'], taskJsDev);
 
 gulp.task('lint', function() {
   return gulp.src('src/**/*.js')
