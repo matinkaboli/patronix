@@ -57,14 +57,14 @@ router.post('/login', login, limiter, (req, res) => {
                 ).then(() => {
                   // success
                   req.user.login(user);
-                  res.json({ type: 1, text: 0 });
+                  res.json({ type: 2, text: 0 });
                 });
               }
 
               else {
                 // success
                 req.user.login(user);
-                res.json({ type: 1, text: 0 });
+                res.json({ type: 2, text: 0 });
               }
             });
           }

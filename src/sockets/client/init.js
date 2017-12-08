@@ -4,7 +4,7 @@ const { Site, Chat } = rootRequire('./models');
 let soket = new Soket('/service');
 
 soket.on('client:init', socket => () => {
-  if (!socket.data && !socket.data.inited) {
+  if (!socket.data) {
     socket.data = {};
 
     Site.findOne({ token: socket.handshake.query.token }).then(site => {
@@ -13,7 +13,8 @@ soket.on('client:init', socket => () => {
 
         let chat = new Chat({
           site: site._id,
-          client: socket.id
+          client: socket.id,
+          taken: false
         });
 
         chat.save().then(() => {
@@ -21,7 +22,7 @@ soket.on('client:init', socket => () => {
           socket.data.inited = true;
         });
       } else {
-        socket.emit('reply', { type: 500, text: 'fuck u' });
+        socket.emit('report', { type: 0, text: 0 });
       }
     });
   }
