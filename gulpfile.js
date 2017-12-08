@@ -83,7 +83,9 @@ gulp.task('server:clean', function() {
     'build/**',
     '!build',
     '!build/public',
-    '!build/public/**'
+    '!build/public/**',
+    '!build/public/statics',
+    '!build/public/statics/**'
   ]);
 });
 
@@ -91,15 +93,19 @@ gulp.task('client:clean', function() {
   return del([
     'build/public/**',
     '!build/public',
-    '!build/public/font',
-    '!build/public/font/**',
-    '!build/public/image',
-    '!build/public/image/**'
+    '!build/public/statics',
+    '!build/public/statics/**'
   ]);
 });
 
 gulp.task('full:clean', function() {
-  return del('build');
+  return del([
+    'build',
+    '!build',
+    '!build/public',
+    '!build/public/statics',
+    '!build/public/statics/**'
+  ]);
 });
 
 gulp.task('server:copy', function() {
@@ -114,7 +120,7 @@ gulp.task('client:copy', function() {
     gulp.src(['src/public/**/*', '!src/public/js/**/*', '!src/public/css/**/*'])
     .pipe(gulp.dest('build/public/')),
 
-    gulp.src(['src/public/js/lib/**'])
+    gulp.src(['src/public/js/lib/**/*'])
     .pipe(gulp.dest('build/public/js/lib'))
   ];
 });
