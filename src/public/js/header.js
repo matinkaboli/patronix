@@ -1,6 +1,6 @@
 const d = document.getElementById('open-close-bar');
-const dO = document.getElementById('open-bar');
-const dC = document.getElementById('close-bar');
+const dO = d.getElementsByTagName('a')[0];
+const dC = d.getElementsByTagName('a')[1];
 let time = 0;
 
 d.addEventListener('click', () => {
@@ -14,16 +14,3 @@ d.addEventListener('click', () => {
     time = 0;
   }
 });
-
-// window.addEventListener('resize', () => {
-//   const list = document.getElementById('open-close-bar');
-//   const listLinks = document.getElementById('list-links');
-//
-//   if (window.outerWidth > 580) {
-//     list.style.display = 'none';
-//     listLinks.style.display = 'none';
-//   } else {
-//     listLinks.style.display = 'block';
-//     list.style.display = 'block';
-//   }
-// });
