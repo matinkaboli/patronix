@@ -28,12 +28,12 @@ router.post(
         req.middle.site.operators.push(operator._id);
 
         req.middle.site.save().then(() => {
-          res.reply.ok();
+          res.json({ type: 2, text: 0 });
         });
       }
 
       else {
-        res.reply.error();
+        res.json({ type: 0, text: 0 });
       }
     });
   }

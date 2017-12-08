@@ -13,7 +13,7 @@ router.post(
   perms.u.site.isOwner,
   (req, res) => {
     Site.remove({ _id: req.params.id }).then(() => {
-      res.reply.ok();
+      res.json({ type: 2, text: 0 });
     });
   }
 );

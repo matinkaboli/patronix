@@ -36,8 +36,8 @@ router.post(
   perms.u.site.operators.remove,
   (req, res) => {
     let site = req.middle.site;
-    
-    let index = 0;
+
+    let index = -1;
     for (let [i, operator] of site.operators.entries()) {
       if (req.body.id === operator.toString()) {
         index = i;
