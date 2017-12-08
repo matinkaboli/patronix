@@ -1,7 +1,7 @@
 {
   "port": "8010",
-  "db": "mongodb://localhost/clopa",
-  "title": "Clopa",
+  "db": "mongodb://localhost/patronix",
+  "title": "Patronix",
   "url": "http://localhost:8010",
   "dbkey": "!X>~zaWJS?)a5vIEg[s(bVHd8eGj2}",
   "socketkey": "p{Bj2mLdK+0Ax3cwn_}#u)qa[1lPbT"
