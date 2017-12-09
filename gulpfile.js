@@ -54,7 +54,7 @@ function taskJsDev() {
 }
 
 function taskLess() {
-  return gulp.src('src/public/css/*.less')
+  return gulp.src(['src/public/css/*.less', '!src/public/css/lib/**/*'])
   .pipe(less())
   .pipe(autoprefixer())
   .pipe(minifier())
@@ -121,7 +121,10 @@ gulp.task('client:copy', function() {
     .pipe(gulp.dest('build/public/')),
 
     gulp.src(['src/public/js/lib/**/*'])
-    .pipe(gulp.dest('build/public/js/lib'))
+    .pipe(gulp.dest('build/public/js/lib')),
+
+    gulp.src(['src/public/css/lib/**/*'])
+    .pipe(gulp.dest('build/public/css/lib'))
   ];
 });
 
@@ -133,8 +136,11 @@ gulp.task('full:copy', function() {
     gulp.src(['src/public/**/*', '!src/public/js/**/*', '!src/public/css/**/*'])
     .pipe(gulp.dest('build/public/')),
 
-    gulp.src(['src/public/js/lib/**'])
-    .pipe(gulp.dest('build/public/js/lib'))
+    gulp.src(['src/public/js/lib/**/*'])
+    .pipe(gulp.dest('build/public/js/lib')),
+
+    gulp.src(['src/public/css/lib/**/*'])
+    .pipe(gulp.dest('build/public/css/lib'))
   ];
 });
 
