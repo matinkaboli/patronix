@@ -1,7 +1,8 @@
 @import "colors";
 
 nav {
-  width: 40px;
+  position: absolute;
+  width: 100px;
   height: 100%;
   bottom: 0;
   top: 0;
@@ -9,8 +10,67 @@ nav {
   padding: 20px;
   background-color: @midnight-base;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+
+    li {
+      display: block;
+      margin-top: 40px;
+
+      a {
+        text-decoration: none;
+        color: white;
+        position: relative;
+        display: inline-block;
+
+        &:hover {
+          color: darken(white, 10%);
+        }
+
+        span {
+          visibility: hidden;
+          width: 120px;
+          background-color: white;
+          color: black;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 85;
+          top: 6px;
+          right: 110%;
+          opacity: 0;
+          box-shadow: 0 3px 3px rgba(0,0,0,.3);
+          transition: opacity 500ms, right 300ms;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent white;
+          }
+        }
+
+        &:hover span {
+          visibility: visible;
+          opacity: 1;
+          right: 150%;
+        }
+      }
+    }
+  }
 }
 
-.an {
-  margin: 0 40px 0 0;
+aside {
+  margin: 0 105px 0 0;
 }
