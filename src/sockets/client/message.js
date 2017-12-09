@@ -2,8 +2,8 @@ const Soket = rootRequire('./Soket.js');
 
 let soket = new Soket('/service');
 
-soket.on('client:message', socket => message => {
-  if (socket.data && socket.data.inited) {
+soket.on('client:message', (socket, nsp) => message => {
+  if (socket.data && socket.data.inited && message) {
     let chat = socket.data.chat;
 
     chat.chats.push({
@@ -11,9 +11,11 @@ soket.on('client:message', socket => message => {
       message
     });
 
-    console.log(chat.chats);
-
-    // chat.save();
+    chat.save().then(() => {
+      nsp
+      .to(socket.data.site._id.toString())
+      .emit('notification', socket.data.site.name);
+    });
   }
 
   else {

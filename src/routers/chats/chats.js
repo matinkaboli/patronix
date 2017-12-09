@@ -5,10 +5,10 @@ const perms = rootRequire('./perms');
 const router = new Router();
 
 router.get(
-  '/u/chat',
+  '/u/chats',
   perms.logged,
   (req, res) => {
-    res.render('u/chat.njk');
+    res.render('u/chats/chats.njk');
   }
 );
 
