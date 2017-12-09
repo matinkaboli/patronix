@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="/files/css/font.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <link rel="stylesheet" href="/files/css/nav.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/files/css/icon.css" rel="stylesheet">
     {% if title %}
     <title>@@PROJECTNAME@@ - {{ title }}</title>
     {% else %}
@@ -29,19 +27,19 @@
       <ul>
         <li>
           <a href="/u">
-            <i class="fa fa-user-circle" style="font-size: 47px"></i>
+            <i class="icon-user" style="font-size: 40px"></i>
             <span>پنل مدیریت</span>
           </a>
         </li>
         <li>
           <a href="/u/setting">
-            <i class="fa fa-cog" style="font-size: 50px"></i>
+            <i class="icon-cog" style="font-size: 40px"></i>
             <span>تنظیمات</span>
           </a>
         </li>
         <li>
           <a href="/u/sites">
-            <i class="fa fa-globe" style="font-size: 50px"></i>
+            <i class="icon-globe" style="font-size: 40px"></i>
             <span>سایت ها</span>
           </a>
         </li>
@@ -56,7 +54,7 @@
     {% endfor %}
 
     <script>
-    const report = {{locals.report}};
+    const report = "{{ locals.report }}";
     </script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/files/js/sook.js"></script>

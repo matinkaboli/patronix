@@ -8,7 +8,7 @@ nav {
   top: 0;
   right: 0;
   padding: 20px;
-  background-color: @midnight-base;
+  background-color: @white-1;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -28,8 +28,10 @@ nav {
         color: white;
         position: relative;
         display: inline-block;
+        transition: transform 300ms;
 
         &:hover {
+          transform: scale(1.1);
           color: darken(white, 10%);
         }
 
@@ -43,7 +45,7 @@ nav {
           padding: 5px 0;
           position: absolute;
           z-index: 85;
-          top: 6px;
+          top: 5px;
           right: 110%;
           opacity: 0;
           box-shadow: 0 3px 3px rgba(0,0,0,.3);
@@ -65,6 +67,14 @@ nav {
           visibility: visible;
           opacity: 1;
           right: 150%;
+        }
+
+        i {
+          color: @midnight-base;
+
+          &:hover {
+            color: darken(@midnight-base, 10%);
+          }
         }
       }
     }
