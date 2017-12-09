@@ -20,6 +20,7 @@ soket.on('client:init', socket => () => {
         chat.save().then(() => {
           socket.data.chat = chat;
           socket.data.inited = true;
+          socket.emit('client:init');
         });
       } else {
         socket.emit('report', { type: 0, text: 0 });
