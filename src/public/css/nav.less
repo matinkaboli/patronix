@@ -1,7 +1,7 @@
 @import "colors";
 
 nav {
-  position: absolute;
+  position: fixed;
   width: 70px;
   height: 100%;
   bottom: 0;
@@ -22,6 +22,10 @@ nav {
       display: block;
       margin-top: 15px;
 
+      &:first-child {
+        margin-top: 20px;
+      }
+
       a {
         text-decoration: none;
         color: white;
@@ -41,10 +45,10 @@ nav {
           color: black;
           text-align: center;
           border-radius: 6px;
-          padding: 5px 0;
+          padding: 4px 0;
           position: absolute;
-          z-index: 85;
-          top: 2.5px;
+          z-index: ;
+          top: 5px;
           right: 110%;
           opacity: 0;
           box-shadow: 0 3px 3px rgba(0,0,0,.3);
@@ -77,5 +81,5 @@ nav {
 }
 
 aside {
-  margin: 0 85px 0 0;
+  margin: 0 75px 0 0;
 }
