@@ -100,7 +100,7 @@ gulp.task('client:clean', function() {
 
 gulp.task('full:clean', function() {
   return del([
-    'build',
+    'build/**',
     '!build',
     '!build/public',
     '!build/public/statics',
