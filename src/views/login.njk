@@ -6,33 +6,38 @@
 {% endblock %}
 
 {% block content %}
-<div class="alert" id="error">
-</div>
-<div class="alert" id="warn">
-</div>
-<div class="alert" id="success">
-</div>
+<div class="form-container">
 <form
   class="login"
   method="post"
   action="/login"
   name="login-form"
   onsubmit="return checkForm()">
-  <input
+
+  <div class="group">
+    <input
     type="email"
     name="email"
-    placeholder="ایمیل"
     required>
-  <input
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>ایمیل</label>
+  </div>
+  <div class="group">
+    <input
     type="password"
     name="password"
-    placeholder="رمز ورود"
     maxlength="200"
     required>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>رمز عبور</label>
+  </div>
   <input
     type="submit"
     value="ورود">
 </form>
+</div>
 <a href="/code">فعالسازی اکانت</a>
 <a href="/forgot">فراموشی رمز</a>
 <a href="/resend">دوباره فرستادن کد</a>
