@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/files/css/font.css">
     <link rel="stylesheet" href="/files/css/main.css">
-    <link rel="stylesheet" href="/files/css/header.css">
+    <link rel="stylesheet" href="/files/css/indexLayout.css">
     <link href="/files/css/icon.css" rel="stylesheet">
     <script src="/files/js/messages.js"></script>
     <title>@@PROJECTNAME@@</title>
@@ -39,6 +39,9 @@
     {% block content %}
     {% endblock %}
     </aside>
+    <footer>
+      <p>ساخته شده با <i class="icon-heart"></i></p>
+    </footer>
     {% for item in locals.footer %}
       {{ item | safe }}
     {% endfor %}
