@@ -7,35 +7,33 @@ nav {
   bottom: 0;
   top: 0;
   right: 0;
-  padding: 20px;
   background-color: @midnight-base;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  padding-top: 20px;
 
   ul {
     list-style: none;
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     li {
       display: block;
-      margin-top: 15px;
-
-      &:first-child {
-        margin-top: 20px;
-      }
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
 
       a {
         text-decoration: none;
         color: white;
         position: relative;
-        display: inline-block;
-        transition: transform 300ms;
+        display: block;
+        transition: all 0.3s;
 
         &:hover {
-          transform: scale(1.1);
-          color: darken(white, 10%);
+          background-color: #256FA0;
         }
 
         span {
@@ -48,7 +46,6 @@ nav {
           border-radius: 6px;
           padding: 1px 0;
           position: absolute;
-          z-index: ;
           top: 4px;
           right: 110%;
           opacity: 0;
@@ -75,6 +72,12 @@ nav {
 
         i {
           font-size: 35px;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
         }
       }
     }
