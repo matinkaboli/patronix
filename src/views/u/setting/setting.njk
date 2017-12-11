@@ -1,7 +1,7 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/signup.css">
+<link rel="stylesheet" href="/files/css/setting.css">
 {% endblock %}
 
 {% block content %}
@@ -10,58 +10,59 @@
   method="post"
   name="main-form"
   onsubmit="return checkForm()">
-  <input
-    type="text"
-    value="{{ user.name.first }}"
-    placeholder="نام"
-    name="fname"
-    maxlength="20"
-    required>
-  <input
-    type="text"
-    value="{{ user.name.last }}"
-    placeholder="نام خانوادگی"
-    maxlength="20"
-    name="lname"
-    required>
-  <input
-    type="email"
-    name="email"
-    placeholder="ایمیل"
-    value="{{ user.email }}"
-    maxlength="100"
-    required>
-  <input
-    type="submit"
-    value="ثبت تغییرات">
+  <div>
+    <input
+      type="text"
+      value="{{ user.name.first }}"
+      name="fname"
+      maxlength="20"
+      required>
+      <label>نام</label>
+  </div>
+  <div>
+    <input
+      type="text"
+      value="{{ user.name.last }}"
+      maxlength="20"
+      name="lname"
+      required>
+      <label>نام خانوادگی</label>
+  </div>
+  <div>
+    <input
+      type="email"
+      name="email"
+      value="{{ user.email }}"
+      maxlength="100"
+      required>
+      <label>ایمیل</label>
+  </div>
+    <button type="submit">ثبت تغییرات</button>
 </form>
 <form
   action="/u/setting/password"
   method="post"
   name="pass-form"
   onsubmit="return checkPassForm()">
-  <input
-    type="password"
-    placeholder="رمز کنونی"
-    name="oldpass"
-    maxlength="200"
-    required>
+  <div>
+    <input
+      type="password"
+      placeholder="رمز کنونی"
+      name="oldpass"
+      maxlength="200"
+      required>
+  </div>
+  <div>
   <input
     type="password"
     placeholder="رمز جدید"
     name="newpass"
     maxlength="200"
     required>
-  <input
-    type="submit"
-    value="تغییر رمز">
+  </div>
+  <button type="submit">تغییر رمز</button>
 </form>
-<form
-  name="delete-form"
-  action="/u/setting/delete"
-  method="post">
-  <input type="submit" value="حذف حساب">
-</form>
+{# <button type="submit">حذف حساب</button> #}
 {% endblock %}
 
 {% block scripts %}
