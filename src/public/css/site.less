@@ -1,8 +1,5 @@
 @import "colors";
 
-body {
-  position: relative;
-}
 
 header {
   width: 100%;
@@ -11,16 +8,12 @@ header {
   padding: 20px 55px 20px 15px;
   box-shadow: 0 0 10px rgba(0,0,0,.3);
   font-size: 18px;
-  left: 0;
-  right: 0;
-  top: 0;
   box-sizing: border-box;
   max-height: 100px;
   background-color: @midnight-base;
   display: flex;
   justify-content: space-between;
   align-content: center;
-  z-index: 85;
 
   a {
     text-decoration: none;
@@ -158,21 +151,40 @@ footer {
   text-align: center;
   color: @white-0;
   background-color: @navy-2;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 85;
-  
+
   i {
+    font-size: 20px;
     position: absolute;
     color: @red-base;
     margin-right: 4px;
-    margin-top: 3px;
-    transition: transform 300ms;
 
     &:hover {
-      transform: scale(2);
+      animation: heartbeat 1s infinite;
     }
+  }
+}
+
+aside {
+  min-height: 492px;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(.75);
+  }
+  20% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(.75);
+  }
+  60% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(.75);
+  }
+  100% {
+    transform: scale(.75);
   }
 }
