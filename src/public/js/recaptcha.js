@@ -1,6 +1,7 @@
 const btn = document.getElementById('change-captcha');
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', e => {
+  e.preventDefault();
   const svgElement = document.getElementsByTagName('svg')[0];
   fetch('/recaptcha', {
     credentials: 'include'

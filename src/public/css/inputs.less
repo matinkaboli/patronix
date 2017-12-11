@@ -1,92 +1,140 @@
 @import "colors";
 
-.form-container {
-  margin: 20px;
+aside {
+  display: flex;
+  justify-content: center;
+}
+
+form button, form div label, form div input[type="text"] {
+  transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+}
+
+form {
+  font-weight: light;
+  direction: rtl;
+  position: relative;
+  display: inline-block;
+  max-width: 700px;
+  min-width: 500px;
+  box-sizing: border-box;
+  padding: 30px 25px;
+  background-color: @navy-2;
+  border-radius: 40px;
+  margin: 40px 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  button {
+    margin-top: 35px;
+    background-color: #8fbaf3;
+    border: 1px solid #8fbaf3;
+    line-height: 0;
+    font-size: 17px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    border-radius: 60px;
+    color: #fff;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+
+    &:hover, &:focus {
+      color: white;
+      background-color:#0245a3;
+      border: 1px solid #0245a3;
+    }
+  }
+
+  h1 {
+    color: #8fbaf3;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    margin-left: 15px;
+    margin-bottom: 4px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0245a3;
+    transition: color 500ms;
+
+    &:hover, &:active {
+      color: lighten(#0245a3, 15%);
+    }
+  }
 
   div {
     position: relative;
-    margin-bottom: 45px;
+    padding: 12px 0;
 
-    input {
-      font-size: 18px;
-      padding: 10px 10px 10px 5px;
-      display: block;
-      width: 285px;
-      border: none;
-      border-bottom: 1px solid #757575;
+    &:first-of-type {
+      padding-top: 0;
+    }
 
-      &:focus {
-        outline: none;
-      }
-
-      &:focus ~ label, &:valid ~ label {
-        top: -20px;
-        font-size: 16px;
-        color: #5264AE;
-      }
-
-      &:focus ~ .bar::before, &:focus ~ .bar::after {
-        width: 50%;
-      }
-
-      &:focus ~ .highlight {
-        animation: inputHighlighter 0.3s ease;
-      }
+    &:last-of-type {
+      padding-bottom: 0;
     }
 
     label {
-      color: #999;
-      font-size: 18px;
-      font-weight: normal;
-      position: absolute;
-      pointer-events: none;
-      right: 5px;
-      top: 10px;
-      transition: 0.2s ease all;
-    }
-
-    .bar 	{
-      position: relative;
+      color: @midnight-3;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      font-size: 17px;
+      box-sizing: border-box;
+      padding: 10px 15px;
       display: block;
-      width: 300px;
-
-      &::before, &::after {
-        content: '';
-        height: 2px;
-        width: 0;
-        bottom: 1px;
-        position: absolute;
-        background: #5264AE;
-        transition: 0.2s ease all;
-      }
-
-      &::before {
-        left: 50%;
-      }
-
-      &::after {
-        right: 50%;
-      }
+      position: absolute;
+      margin-top: -40px;
+      z-index: 2;
+      pointer-events: none;
     }
 
-    .highlight {
-      position: absolute;
-      height: 60%;
-      width: 100px;
-      top: 25%;
-      right: 0;
-      pointer-events: none;
-      opacity: 0.5;
+    input {
+      appearance: none;
+      background-color: none;
+      border: 1px solid @navy-base;
+      line-height: 0;
+      font-size: 17px;
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      padding: 11px 15px;
+      border-radius: 60px;
+      color: darken(@white-2, 15%);
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+
+      &:focus {
+        outline: none;
+        background: #8fbaf3;
+        color: white;
+        margin-top: 30px;
+      }
+
+      &:valid {
+        margin-top: 30px;
+      }
+
+      &:focus ~ label {
+        color: white;
+        transform: translate(0, -45px);
+      }
+
+      &:valid ~ label {
+        color: white;
+        transform: translate(5px, -35px) ;
+      }
     }
   }
 }
 
-@keyframes inputHighlighter {
-	from {
-    background: #5264AE;
-  }
-  to {
-    width: 0;
-    background: transparent;
+@media only screen and (max-width: 500px) {
+  form {
+    min-width: 100px;
   }
 }
