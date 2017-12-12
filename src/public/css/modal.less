@@ -1,0 +1,223 @@
+body {
+    font-family: 'Montserrat';
+    margin: 0;
+}
+
+#sign-in, #sign-up {
+  cursor: pointer;
+}
+
+#modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    &:not(:target) {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s, visibility 1s;
+    }
+
+    &:target {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s, visibility 1s;
+    }
+
+    #container {
+      height: auto;
+      margin: 0 auto;
+      width: 50%;
+      height: 80%;
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      background-image: url('../image/form-bg.jpg');
+      position: relative;
+    }
+
+    #exit-link {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 35px;
+      color: white;
+
+      &:hover {
+        color: darken(white, 15%);
+      }
+    }
+
+    .wrap {
+      width: 400px;
+      margin: 0 auto;
+
+      .headings {
+        margin: 40px auto 10px;
+
+        & > a:first-child {
+          margin-left: 20px;
+          margin-right: 45px;
+        }
+
+        & > a {
+          color: rgba(255, 255, 255, 0.4);
+          padding-bottom: 10px;
+          display: inline-block;
+        }
+
+        & > a:after {
+          display:block;
+          content: '';
+          height: 3px;
+          width: 0%;
+          background: #1161ED;
+          margin: auto;
+          transition: width 250ms ease-in-out;
+        }
+
+        & > a:hover, & > a.active {
+          color: rgba(255, 255, 255, 1);
+        }
+
+        & > a:hover::after, & > a.active::after {
+          width: 100%;
+        }
+
+        & > a span {
+          font-size: 22px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+label, form p {
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    padding: 13px 20px;
+    position: relative;
+    display: block;
+    font-size: 14px;
+}
+#rlabel+label {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 5px;
+}
+
+label.error,
+#capslock {
+    color: #F44336;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    text-transform: none;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 255, 255, 0);
+    margin: 10px 0;
+}
+
+input:active,
+input:focus {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+#rlabel {
+    display: inline-block;
+    padding: 0;
+    top: -2px;
+}
+
+#remember:hover,
+#rlabel:hover {
+    cursor: pointer;
+}
+
+input[type='submit'] {
+    width: 100%;
+    background: #4082f5;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px 0px rgba(17, 97, 237, 0.4);
+}
+
+input[type='submit']:hover {
+    background: #5a96ff;
+}
+
+#sign-up-form input[type='submit'] {
+    margin: 50px 0;
+}
+#sign-in-container {
+    display: block;
+}
+
+#sign-up-container {
+    display: none;
+}
+@media (max-width: 1024px) {
+    .container {
+      top: 5vh;
+    }
+  }
+@media (max-width: 524px) {
+    #container {
+      height: auto;
+      margin: 0 auto;
+      width: 80%;
+      height: 85%;
+      padding: 10px;
+      position: relative;
+    }
+    .wrap {
+        width: 80%;
+    }
+}
+
+@media (max-width: 399px) {
+    .container {
+      top: 2vh;
+    }
+    .container-shadow {
+        width: 100%;
+        margin: 0px;
+        left: inherit;
+    }
+    .container {
+        width: 100%;
+        margin: 0px;
+        left: inherit;
+    }
+}
+
+@media (max-width:330px) {
+    .wrap {
+        width: 90%
+    }
+}
