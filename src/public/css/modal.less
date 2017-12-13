@@ -1,5 +1,4 @@
 body {
-    font-family: 'Montserrat';
     margin: 0;
 }
 
@@ -19,15 +18,16 @@ body {
     display: flex;
 
     &:not(:target) {
+      transform: rotate(90deg);
       opacity: 0;
       visibility: hidden;
-      transition: opacity 1s, visibility 1s;
+      transition: opacity 500ms, visibility 800ms transform 800ms;
     }
 
     &:target {
       opacity: 1;
       visibility: visible;
-      transition: opacity 1s, visibility 1s;
+      transition: opacity 500ms, visibility 800ms transform 800ms;
     }
 
     #container {
@@ -115,7 +115,7 @@ label, form p {
 }
 
 label.error,
-#capslock {
+.capslock {
     color: #F44336;
     padding: 0;
     text-align: center;
@@ -127,7 +127,6 @@ label.error,
 input {
     width: 100%;
     color: #fff;
-    font-family: 'Montserrat';
     font-weight: 400;
     font-size: 16px;
     letter-spacing: 1px;
@@ -157,23 +156,82 @@ input:focus {
     cursor: pointer;
 }
 
-input[type='submit'] {
-    width: 100%;
-    background: #4082f5;
-    font-family: 'Montserrat';
-    text-transform: uppercase;
-    padding: 12px;
-    cursor: pointer;
-    box-shadow: 0px 10px 40px 0px rgba(17, 97, 237, 0.4);
+.btn {
+  width: 100%;
+  padding: 12px;
+  cursor: pointer;
+  font-family: SB;
+  box-shadow: 0px 10px 40px 0px rgba(17, 97, 237, 0.4);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+  transition: all 1s ease;
+
+
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #4082f5;
+  border-radius: 0.6em;
+  color: #4082f5;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  justify-content: center;
+  font-weight: 400;
+  line-height: 1;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 35px;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    outline: 0;
+  }
 }
 
-input[type='submit']:hover {
-    background: #5a96ff;
+.fifth {
+  border-color: #4082f5;
+  color: #4082f5;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: #4082f5;
+    z-index: -1;
+    transition: width 150ms ease-in-out;
+  }
+
+  &:hover {
+    color: #fff;
+    &:after {
+      width: 110%;
+    }
+  }
 }
 
 #sign-up-form input[type='submit'] {
     margin: 50px 0;
 }
+body {
+	font-family: 'Lato', sans-serif;
+	background: #353535;
+	color: #FFF;
+}
+
 #sign-in-container {
     display: block;
 }
@@ -195,6 +253,7 @@ input[type='submit']:hover {
       padding: 10px;
       position: relative;
     }
+
     .wrap {
         width: 80%;
     }
@@ -204,11 +263,13 @@ input[type='submit']:hover {
     .container {
       top: 2vh;
     }
+
     .container-shadow {
         width: 100%;
         margin: 0px;
         left: inherit;
     }
+
     .container {
         width: 100%;
         margin: 0px;
