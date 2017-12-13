@@ -31,12 +31,13 @@ body {
   }
 
   #container {
+    border-radius: 1px;
     height: auto;
     margin: 0 auto;
     width: 50%;
-    height: 80%;
+    height: 90%;
     background-color: #fff;
-    padding: 20px 20px 40px 20px;
+    padding: 4px 20px 40px 20px;
     text-align: center;
     background-image: url('../image/form-bg.jpg');
     position: relative;
@@ -59,7 +60,7 @@ body {
     margin: 0 auto;
 
     .headings {
-      margin: 40px auto 10px;
+      margin: 10px auto 10px;
 
       & > a:first-child {
         margin-left: 20px;
@@ -106,153 +107,128 @@ body {
   form {
     margin: 10px 0;
   }
-}
 
-label, form p {
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    padding: 13px 20px;
-    position: relative;
-    display: block;
-    font-size: 14px;
-}
-#rlabel+label {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    padding-left: 5px;
-}
+  form p {
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      padding: 13px 20px;
+      position: relative;
+      display: block;
+      font-size: 14px;
+  }
 
-label.error,
-.capslock {
-    color: #F44336;
-    padding: 0;
-    text-align: center;
+  .capslock {
+      color: #F44336;
+      padding: 0;
+      text-align: center;
+      width: 100%;
+      text-transform: none;
+      font-size: 16px;
+  }
+
+  input {
+      width: 100%;
+      color: #fff;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(255, 255, 255, 0);
+      margin: 10px 0;
+  }
+
+  input:active,
+  input:focus {
+      border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .btn {
     width: 100%;
-    text-transform: none;
-    font-size: 16px;
-}
-
-input {
-    width: 100%;
-    color: #fff;
-    font-weight: 400;
-    font-size: 16px;
-    letter-spacing: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-sizing: border-box;
-    border: 2px solid rgba(255, 255, 255, 0);
-    margin: 10px 0;
-}
-
-input:active,
-input:focus {
-    border: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-#rlabel {
-    display: inline-block;
-    padding: 0;
-    top: -2px;
-}
-
-#remember:hover,
-#rlabel:hover {
+    padding: 12px;
     cursor: pointer;
-}
-
-.btn {
-  width: 100%;
-  padding: 12px;
-  cursor: pointer;
-  font-family: SB;
-  box-shadow: 0px 10px 40px 0px rgba(17, 97, 237, 0.4);
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
-  transition: all 1s ease;
+    font-family: SB;
+    box-shadow: 0px 10px 40px 0px rgba(17, 97, 237, 0.4);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+    transition: all 1s ease;
 
 
-  box-sizing: border-box;
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid #4082f5;
-  border-radius: 0.6em;
-  color: #4082f5;
-  cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 1rem;
-  justify-content: center;
-  font-weight: 400;
-  line-height: 1;
-  padding: 1.2em 2.8em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 35px;
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #4082f5;
+    border-radius: 0.6em;
+    color: #4082f5;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    justify-content: center;
+    font-weight: 400;
+    line-height: 1;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 35px;
 
-  &:hover,
-  &:focus {
-    color: #fff;
-    outline: 0;
-  }
-}
-
-.fifth {
-  border-color: #4082f5;
-  color: #4082f5;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transition: color 150ms ease-in-out;
-
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 100%;
-    background: #4082f5;
-    z-index: -1;
-    transition: width 150ms ease-in-out;
+    &:hover,
+    &:focus {
+      color: #fff;
+      outline: 0;
+    }
   }
 
-  &:hover {
-    color: #fff;
+  .fifth {
+    border-color: #4082f5;
+    color: #4082f5;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 150ms ease-in-out;
+
     &:after {
-      width: 110%;
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 100%;
+      background: #4082f5;
+      z-index: -1;
+      transition: width 150ms ease-in-out;
     }
+
+    &:hover {
+      color: #fff;
+      &:after {
+        width: 110%;
+      }
+    }
+  }
+
+  #sign-in-container {
+      display: block;
+  }
+
+  #sign-up-container {
+      display: none;
   }
 }
 
-#sign-up-form input[type='submit'] {
-    margin: 50px 0;
-}
-body {
-	font-family: 'Lato', sans-serif;
-	background: #353535;
-	color: #FFF;
-}
-
-#sign-in-container {
-    display: block;
-}
-
-#sign-up-container {
-    display: none;
-}
 @media (max-width: 1024px) {
-    .container {
-      top: 5vh;
-    }
+  .container {
+    top: 5vh;
   }
+}
+
 @media (max-width: 524px) {
     #container {
       height: auto;
@@ -269,21 +245,21 @@ body {
 }
 
 @media (max-width: 399px) {
-    .container {
-      top: 2vh;
-    }
+  .container {
+    top: 2vh;
+  }
 
-    .container-shadow {
-        width: 100%;
-        margin: 0px;
-        left: inherit;
-    }
+  .container-shadow {
+    width: 100%;
+    margin: 0px;
+    left: inherit;
+  }
 
-    .container {
-        width: 100%;
-        margin: 0px;
-        left: inherit;
-    }
+  .container {
+    width: 100%;
+    margin: 0px;
+    left: inherit;
+  }
 }
 
 @media (max-width:330px) {

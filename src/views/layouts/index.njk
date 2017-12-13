@@ -60,15 +60,16 @@
               action="/login"
               name="login-form"
               onsubmit="return checkForm()">
-                <input id="email"
+                <input class="email"
                  class="draw" type="email"
                  name="email" placeholder="ایمیل" required>
-
+                 <div class="email-error error" style="display:none;">
+                   <span>ایمیل صحیح نمیباشد</span>
+                 </div>
                 <input class="password"
                 type="password" name="password"
                 placeholder="رمز عبور" required>
-
-                <div class="capslock" class="error" style="display:none;">
+                <div class="capslock error" style="display:none;">
                   <span>کلید Caps Lock روشن است</span>
                 </div>
                 <button class="btn fifth" type="submit">ورود</button>
@@ -93,10 +94,16 @@
             required>
             <input type="email" name="email"
               placeholder="ایمیل"
-             id="email" required>
+             class="email" required>
+             <div class="email-error error" style="display:none;">
+               <span>ایمیل صحیح نمیباشد</span>
+             </div>
             <input class="password" type="password"
             placeholder="رمز عبور"
             name="password" required>
+            <div class="capslock error" style="display:none;">
+              <span>کلید Caps Lock روشن است</span>
+            </div>
             {{ captcha | safe }}
             <div><input
             type="password"
@@ -107,9 +114,6 @@
             style="display: inline;">
             <button id="change-captcha">تغییر کد امنیتی</button>
           </div>
-            <div class="capslock" class="error" style="display:none;">
-              <span>کلید Caps Lock روشن است</span>
-            </div>
             <button class="btn fifth" type="submit">ثبت نام</button>
           </form>
         </div>
@@ -126,9 +130,11 @@
     <script>
     const report = {{locals.report}};
     </script>
+    <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/linktoggle.js"></script>
     <script src="/files/js/capslock.js"></script>
     <script src="/files/js/header.js"></script>
+    <script src="/files/js/recaptcha.js"></script>
     {% block scripts %}
     {% endblock %}
   </body>
