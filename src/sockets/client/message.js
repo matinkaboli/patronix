@@ -5,7 +5,7 @@ const { Site, Chat } = rootRequire('./models');
 let soket = new Soket('/service');
 
 soket.on('client:message', (socket, nsp) => message => {
-  new Promise(resolve => { // eslint-disable-line
+  new Promise(resolve => {
     if (!socket.data) {
       socket.data = {};
 
