@@ -10,39 +10,43 @@
     <link rel="stylesheet" href="/files/css/font.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <link href="/files/css/icon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/files/css/forms.css">
     <title>@@PROJECTNAME@@</title>
   </head>
   <body>
-    <div class="form-container">
-    <form
-      class="login"
-      method="post"
-      action="/login"
-      name="login-form"
-      onsubmit="return checkForm()">
-
-      <div>
-        <input
-        type="email"
-        name="email"
-        required>
-        <label>ایمیل</label>
-      </div>
-      <div>
-        <input
-        type="password"
-        name="password"
-        maxlength="200"
-        required>
-        <label>رمز عبور</label>
-      </div>
-      <button type="submit">ورود</button>
-        <a href="/code">فعالسازی اکانت</a>
-        <a href="/resend">دوباره فرستادن کد</a>
-    </form>
-    </div>
-    <script src="/files/js/lib/validator.js"></script>
-    <script src="/files/js/recaptcha.js"></script>
-    <script src="/files/js/login.js"></script>
+    <div>
+     <div>
+       <div class="card">
+         <div class="card-right">
+           <form action="/login" method="post">
+             <h1>ورود</h1>
+             <input
+              type="email"
+              name="email"
+              placeholder="ایمیل"
+              required />
+             <input
+              type="password"
+              name="password"
+              placeholder="رمز ورود"
+              maxlength="200"
+              required />
+             <div class="row">
+               <input type="submit" formaction="/login" value="ورود"/>
+               <a href="/forgot">فراموشی رمز</a>
+             </div>
+           </form>
+         </div>
+         <div>
+           <h1>ثبت نام</h1>
+           <p>اگر در سامانه عضو نیستید به راحتی می توانید همین الان نام نویسی کنید.</p>
+           <button onclick="location.href = '/signup'">ورود</button>
+         </div>
+       </div>
+     </div>
+   </div>
+   <script src="/files/js/lib/validator.js"></script>
+   <script src="/files/js/lib/recaptcha.js"></script>
+   <script src="/files/js/signup.js"></script>
   </body>
 </html>
