@@ -1,6 +1,6 @@
 (() => {
   let status = false;
-  let token = 'fYnc1kD8vQglZXKVUhx9mj7Rt0p4OSzBMFwIibsGrdJ5uAeTP3';
+  let token = 't17nypOMaFlvm2Z5E8ABuUVDWKqGjhXbQfoHr6iYzgNewCxsc4';
   let socketUrl = `http://codeminer:8010/service?token=${token}`;
 
   let socket = io(socketUrl);
