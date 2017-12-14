@@ -24,7 +24,11 @@ router.post(
     });
 
     site.save().then(() => {
-      res.json({ type: 2, text: 0 });
+      req.user.user.sites.push(site.id);
+
+      req.user.user.save().then(() => {
+        res.json({ type: 2, text: 0 });
+      });
     }).catch(() => {
       res.json({ type: 0, text: 0 });
     });

@@ -13,12 +13,12 @@ soket.on('op:init', socket => token => {
       if (user) {
         socket.data.user = user;
 
-        Site.find({ operators: { $in: [user._id] } }).then(sites => {
-          for (let site of sites) {
-            socket.join(site._id.toString());
-          }
-        });
+        for (let site of user.sites) {
+          socket.join(site._id.toString());
+        }
       }
+    }).catch(() => {
+      socket.emit('report', { type: 0, text: 0 });
     });
   }
 });
