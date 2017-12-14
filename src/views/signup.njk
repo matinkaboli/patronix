@@ -41,15 +41,15 @@
               placeholder="رمز ورود"
               maxlength="200"
               required />
-              <svg></svg>
+              <span id="svg-contain"></span>
              <input
               type="password"
               name="captcha"
               placeholder="کد امنیتی"
               maxlength="200"
               required />
-              <input type="submit" value="ورود" />
              <div class="row">
+               <input type="submit" formaction="/signup" value="ورود"/>
                <a href="/forgot">فراموشی رمز</a>
              </div>
            </form>
@@ -57,16 +57,17 @@
          <div>
            <h1>ثبت نام</h1>
            <p>اگر در سامانه عضو نیستید به راحتی می توانید همین الان نام نویسی کنید.</p>
-           <button>عضویت</button>
+           <button onclick="location.href = '/login'">ورود</button>
          </div>
        </div>
      </div>
    </div>
    <script>
-     const svgElement = document.getElementsByTagName('svg')[0];
+     const svgElement = document.getElementById('svg-contain');
      fetch('/recaptcha', {
        credentials: 'include'
      }).then(res => res.json()).then(data => {
+       console.log(data);
        svgElement.innerHTML = data.captcha;
      }).catch(() => {
        svgElement.innerHTML = M[0][0];
