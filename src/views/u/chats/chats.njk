@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block content %}
+{% for chat in chats %}
+<a href="/u/chats/{{chat.id}}">{{chat.site.name}}</a>
+{% endfor %}
 {% endblock %}
 
 {% block scripts %}

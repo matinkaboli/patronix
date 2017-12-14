@@ -5,7 +5,7 @@ const { Site, Chat } = rootRequire('./models');
 let soket = new Soket('/service');
 
 soket.on('client:message', (socket, nsp) => message => {
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     if (!socket.data) {
       socket.data = {};
 
@@ -32,7 +32,7 @@ soket.on('client:message', (socket, nsp) => message => {
         }
 
         else {
-          resolve();
+          reject();
         }
       });
     }
@@ -40,7 +40,9 @@ soket.on('client:message', (socket, nsp) => message => {
     else {
       resolve();
     }
-  }).then(() => {
+  })
+
+  .then(() => {
     let chat = socket.data.chat;
 
     chat.chats.push({
@@ -49,6 +51,10 @@ soket.on('client:message', (socket, nsp) => message => {
     });
 
     chat.save();
+  })
+
+  .catch(() => {
+    socket.emit({ type: 0, type: 0 });
   });
 });
 

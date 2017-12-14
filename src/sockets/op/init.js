@@ -1,5 +1,5 @@
 const Soket = rootRequire('./Soket.js');
-const { User, Site } = rootRequire('./models');
+const { User } = rootRequire('./models');
 const { decrypt } = rootRequire('./utils/crypt');
 const { socketkey } = rootRequire('./config.json');
 
