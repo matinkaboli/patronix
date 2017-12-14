@@ -1,0 +1,125 @@
+body > div {
+  position: relative;
+  margin-top: 8%;
+
+  & > div:first-child {
+    display: flex;
+
+    & > div:first-child {
+      display: flex;
+      position: absolute;
+      right: 17%;
+      width: 65%;
+      height: auto;
+      box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+
+      & > div:first-child {
+        background-color: #fff;
+        padding: 35px 60px;
+
+        h1 {
+          font-weight: normal;
+          font-size: 40px;
+        }
+
+        & div {
+          flex-direction: row;
+          margin-top: 2%;
+
+          a {
+            margin-right: 25%;
+          }
+
+          input {
+            width: 40%;
+            cursor: pointer;
+            background-color: #20a8d8;
+            color: #fff;
+          }
+        }
+
+        input {
+          width: 90%;
+          margin: 5px;
+          padding: 0.6rem 0.75rem;
+          font-size: 14px;
+          line-height: 1.25;
+          border-radius: 4px;
+          color: #607d8b;
+          border: 1px solid rgba(0, 0, 0, 0.15);
+          transition: 0.5s;
+
+          &:focus {
+            box-shadow: 0 0 3px rgba(35, 173, 278, 1);
+          }
+
+          &:focus[type="button"] {
+            box-shadow: none;
+          }
+        }
+
+        a {
+          text-decoration: none;
+          color: #20a8d8;
+          transition: 0.5s;
+          cursor: pointer;
+
+          &:hover {
+            color: #333;
+          }
+        }
+
+        p {
+          color: #adadad;
+          margin-bottom: 10px;
+        }
+
+        label {
+          margin: 5px;
+        }
+      }
+
+      & > div:last-child {
+        background-color: #20a8d8;
+        color: #fff;
+        text-align: center;
+        padding: 50px 1px;
+        text-align: center;
+
+        button {
+          border: none;
+          margin-top: 20px;
+          background-color: #1985ac;
+          width: 180px;
+          padding: 9px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.5s;
+          color: #Fff;
+          font-size: 18px;
+
+          &:hover {
+            background-color: #333;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+
+  .card {
+    flex-direction: column;
+    right: 5%;
+    width: 90%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card-right {
+    margin: 0;
+    padding: 0px;
+  }
+}

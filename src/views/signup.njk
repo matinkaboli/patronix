@@ -1,79 +1,78 @@
-{% extends './layouts/index.njk' %}
-
-{% block head %}
-<link rel="stylesheet" href="/files/css/alert.css">
-<link rel="stylesheet" href="/files/css/inputs.css">
-{% endblock %}
-
-{% block content %}
-<div class="card">
-  <form
-    method="post"
-    action="/signup"
-    name="signup-form"
-    onsubmit="return checkForm()">
-    <h1>ثبت نام</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="پشتیبانی انلاین">
+    <meta name="keywords" content="پشتیبانی,انلاین">
+    <meta name="author" content="Matin Kaboli, Ali Movahedi">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/files/css/font.css">
+    <link rel="stylesheet" href="/files/css/main.css">
+    <link href="/files/css/icon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/files/css/forms.css">
+    <title>@@PROJECTNAME@@</title>
+  </head>
+  <body>
     <div>
-      <input
-      type="text"
-      name="fname"
-      required>
-      <label>نام</label>
-    </div>
-    <div>
-      <input
-      type="text"
-      name="lname"
-      required>
-      <label>نام خانوادگی</label>
-    </div>
-    <div>
-      <input
-      type="email"
-      name="email"
-      required>
-      <label>ایمیل</label>
-    </div>
-    <div>
-      <input
-      type="password"
-      name="password"
-      required>
-      <label>رمز عبور</label>
-    </div>
-    {{ captcha | safe }}
-    <div>
-      <input
-      type="password"
-      name="captcha"
-      maxlength="10"
-      required>
-      <label>کد امنیتی</label>
-    </div>
-    <button
-      type="submit">
-      عضویت
-    </button>
-    <button id="change-captcha">تغییر کد امنیتی</button>
-    <a href="/login">ورود</a>
-    <a href="/resend">دوباره فرستادن کد</a>
-  </form>
-</div>
-{% endblock %}
-
-{% block scripts %}
-{% for i in e %}
-{% if i == '2' %}
-<script>
-  const divE = document.getElementById('error');
-  const p = document.createElement('p');
-  p.innerHTML = M[0][3];
-  divE.appendChild(p);
-  divE.style.display = 'block';
-</script>
-{% endif %}
-{% endfor %}
-  <script src="/files/js/lib/validator.js"></script>
-  <script src="/files/js/recaptcha.js"></script>
-  <script src="/files/js/signup.js"></script>
-{% endblock %}
+     <div>
+       <div class="card">
+         <div class="card-right">
+           <form class="" action="index.html" method="post">
+             <h1>ثبت نام</h1>
+             <input
+              type="text"
+              name="fname"
+              placeholder="نام"
+              required />
+             <input
+              type="text"
+              name="lname"
+              placeholder="نام خانوادگی"
+              required />
+             <input
+              type="email"
+              name="email"
+              placeholder="ایمیل"
+              required />
+             <input
+              type="password"
+              name="password"
+              placeholder="رمز ورود"
+              maxlength="200"
+              required />
+              <svg></svg>
+             <input
+              type="password"
+              name="captcha"
+              placeholder="کد امنیتی"
+              maxlength="200"
+              required />
+             <div class="row">
+               <input type="button" value="ورود" class="sub" />
+               <a href="/forgot">فراموشی رمز</a>
+             </div>
+           </form>
+         </div>
+         <div>
+           <h1>ثبت نام</h1>
+           <p>اگر در سامانه عضو نیستید به راحتی می توانید همین الان نام نویسی کنید.</p>
+           <button>عضویت</button>
+         </div>
+       </div>
+     </div>
+   </div>
+   <script>
+     const svgElement = document.getElementsByTagName('svg')[0];
+     fetch('/recaptcha', {
+       credentials: 'include'
+     }).then(res => res.json()).then(data => {
+       svgElement.innerHTML = data.captcha;
+     }).catch(() => {
+       svgElement.innerHTML = M[0][0];
+     });
+   </script>
+   <script src="/files/js/lib/validator.js"></script>
+   <script src="/files/js/signup.js"></script>
+  </body>
+</html>

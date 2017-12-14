@@ -1,81 +1,48 @@
-{% extends './layouts/index.njk' %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="پشتیبانی انلاین">
+    <meta name="keywords" content="پشتیبانی,انلاین">
+    <meta name="author" content="Matin Kaboli, Ali Movahedi">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/files/css/font.css">
+    <link rel="stylesheet" href="/files/css/main.css">
+    <link href="/files/css/icon.css" rel="stylesheet">
+    <title>@@PROJECTNAME@@</title>
+  </head>
+  <body>
+    <div class="form-container">
+    <form
+      class="login"
+      method="post"
+      action="/login"
+      name="login-form"
+      onsubmit="return checkForm()">
 
-{% block head %}
-<link rel="stylesheet" href="/files/css/alert.css">
-<link rel="stylesheet" href="/files/css/inputs.css">
-{% endblock %}
-
-{% block content %}
-<div class="form-container">
-<form
-  class="login"
-  method="post"
-  action="/login"
-  name="login-form"
-  onsubmit="return checkForm()">
-
-  <div>
-    <input
-    type="email"
-    name="email"
-    required>
-    <label>ایمیل</label>
-  </div>
-  <div>
-    <input
-    type="password"
-    name="password"
-    maxlength="200"
-    required>
-    <label>رمز عبور</label>
-  </div>
-  <button type="submit">ورود</button>
-    <a href="/code">فعالسازی اکانت</a>
-    <a href="/resend">دوباره فرستادن کد</a>
-</form>
-</div>
-{% endblock %}
-
-{% block scripts %}
-
-{% for i in w %}
-{% if i == '0' %}
-<script>
-  const divW = document.getElementById('warn');
-  const p = document.createElement('p');
-  p.innerHTML = M[1][2];
-  divW.appendChild(p);
-  divW.style.display = 'block';
-</script>
-{% endif %}
-{% endfor %}
-{% for i in s %}
-{% if i == '0' %}
-<script>
-  const divS = document.getElementById('success');
-  const p = document.createElement('p');
-  p.innerHTML = M[2][2];
-  divS.appendChild(p);
-  divS.style.display = 'block';
-</script>
-{% endif %}
-{% endfor %}
-{% for i in e %}
-{% if i == '1' %}
-<script>
-  const divE = document.getElementById('error');
-  const p = document.createElement('p');
-  p.innerHTML = M[0][0];
-  divE.appendChild(p);
-  divE.style.display = 'block';
-</script>
-{% endif %}
-{% endfor %}
-{% for i in email %}
-  <script>
-    document.forms['login-form'].email.value = "{{ i }}";
-  </script>
-{% endfor %}
-  <script src="/files/js/lib/validator.js"></script>
-  <script src="/files/js/login.js"></script>
-{% endblock %}
+      <div>
+        <input
+        type="email"
+        name="email"
+        required>
+        <label>ایمیل</label>
+      </div>
+      <div>
+        <input
+        type="password"
+        name="password"
+        maxlength="200"
+        required>
+        <label>رمز عبور</label>
+      </div>
+      <button type="submit">ورود</button>
+        <a href="/code">فعالسازی اکانت</a>
+        <a href="/resend">دوباره فرستادن کد</a>
+    </form>
+    </div>
+    <script src="/files/js/lib/validator.js"></script>
+    <script src="/files/js/recaptcha.js"></script>
+    <script src="/files/js/login.js"></script>
+  </body>
+</html>
