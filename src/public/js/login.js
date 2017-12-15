@@ -1,23 +1,17 @@
 function checkForm() {
   const f = document.forms['login-form'];
-  const divW = document.getElementById('warn');
-  const divE = document.getElementById('error');
-  const divS = document.getElementById('success');
-  divW.innerHTML = '';
-  divE.innerHTML = '';
-  divS.innerHTML = '';
-  divW.style.display = 'none';
-  divE.style.display = 'none';
-  divS.style.display = 'none';
+  document.getElementById('unverified').style.display = 'none';
+  document.getElementById('expired').style.display = 'none';
+  document.getElementById('err').style.display = 'none';
+  document.getElementById('wrong').style.display = 'none';
+  document.getElementById('moving').style.display = 'none';
+  document.getElementById('email-err').style.display = 'none';
   if (
     f.email.value &&
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      const p = document.createElement('p');
-      p.innerHTML = M[1][0];
-      divW.appendChild(p);
-      divW.style.display = 'block';
+      document.getElementById('email-err').style.display = 'block';
     } else {
       fetch('/login', {
         method: 'POST',
@@ -30,32 +24,34 @@ function checkForm() {
           email: f.email.value
         })
       }).then(checkStatus).then(res => res.json()).then(data => {
-        if (data.type === 'e') {
-          const p = document.createElement('p');
-          if (data.code === 0) {
-            p.innerHTML = M[0][5]
-          } else if (data.code === 1) {
-            p.innerHTML = M[0][4];
-          } else if (data.code === 2) {
-            p.innerHTML = M[0][3];
-          } else if (data.code === 3) {
-            p.innerHTML = M[0][0];
+        console.log(data);
+        if (data.type === 0) {
+          if (data.text === 0) {
+            // unverified
+            document.getElementById('unverified').style.display = 'block';
+          } else if (data.text === 1) {
+            // account has expired
+            document.getElementById('expired').style.display = 'block';
+          } else if (data.text === 2) {
+            // wrong pass or no such user
+            document.getElementById('wrong').style.display = 'block';
+          } else if (data.text === 3) {
+            // error happened
+            document.getElementById('err').style.display = 'block';
           }
-          divE.appendChild(p);
-          divE.style.display = 'block';
-        } else if (data.type === 's') {
+        } else if (data.type === 2) {
+          document.getElementById('moving').style.display = 'block';
           window.location.href = '/u';
         }
       }).catch(() => {
-        const p = document.createElement('p');
-        p.innerHTML = M[0][0];
-        divE.appendChild(p);
-        divE.style.display = 'block';
+        // error happened
+        document.getElementById('err').style.display = 'block';
       });
     }
   }
   return false;
 }
+
 function checkStatus(res) {
   if (res.status >= 200 && res.status < 300) {
     return res;
