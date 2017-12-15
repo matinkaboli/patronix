@@ -57,11 +57,10 @@ const schema = new Schema({
     type: String,
     trim: true
   },
-  sites: {
-    type: Number,
-    required: true,
-    default: 0
-  }
+  sites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Site'
+  }]
 });
 
 export default mongoose.model('User', schema);

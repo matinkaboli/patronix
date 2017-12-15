@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -21,7 +22,7 @@ import UserManager from './utils/UserManager';
 
 global.rootRequire = name => require(path.resolve(__dirname, name));
 const routers = require('./routers');
-const sockets = require('./sockets');
+const gates = require('./gates');
 
 /**
  * setting up db
@@ -155,7 +156,7 @@ app.use((req, res, next) => {
  * add LoginManager
  */
 
-function* GetUserDoc(users) {
+function* getUserDoc(users) {
   for (let user of users) {
     yield user.load();
   }
@@ -164,7 +165,7 @@ function* GetUserDoc(users) {
 app.use((req, res, next) => {
   req.user = new UserManager('user', req.session, 'User');
 
-  let iterator = new GetUserDoc([req.user]);
+  let iterator = getUserDoc([req.user]);
   (function loop() {
     let go = iterator.next();
 
@@ -201,12 +202,12 @@ app.use((req, res) => {
 (() => {
   let groups = {};
 
-  for (let socket of sockets) {
-    if (!groups[socket.namespace]) {
-      groups[socket.namespace] = [];
+  for (let gate of gates) {
+    if (!groups[gate.gate]) {
+      groups[gate.gate] = [];
     }
 
-    groups[socket.namespace].push(socket);
+    groups[gate.gate].push(gate);
   }
 
   for (let [namespace, handlers] of Object.entries(groups)) {
@@ -214,7 +215,7 @@ app.use((req, res) => {
 
     nsp.on('connection', socket => {
       for (let handler of handlers) {
-        handler.plug(socket, nsp, io);
+        socket.on(handler._lane, handler.go.bind(handler, socket, nsp, io));
       }
     });
   }

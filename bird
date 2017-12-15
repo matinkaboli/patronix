@@ -79,12 +79,12 @@ bird
   });
 
 bird
-  .command('soket <name>')
-  .description('add new a socket')
+  .command('gate <name>')
+  .description('add new a gate')
   .action(name => {
     fs.copy(
-      './templates/soket.js',
-      `./src/sockets/${name}.js`
+      './templates/gate.js',
+      `./src/gates/${name}.js`
     );
   });
 
@@ -98,6 +98,15 @@ bird
     );
   });
 
+bird
+  .command('guard <name>')
+  .description('add new a guard')
+  .action(name => {
+    fs.copy(
+      './templates/guard.js',
+      `./src/guards/${name}.js`
+    );
+  });
 
 bird
   .command('full <name>')

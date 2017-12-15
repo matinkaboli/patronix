@@ -24,8 +24,7 @@ function taskBabel() {
       'env'
     ],
     plugins: [
-      'add-module-exports',
-      'transform-runtime'
+      'add-module-exports'
     ]
   }))
   .pipe(replace(/@@LINK@@/g, config.url))
