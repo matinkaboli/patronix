@@ -24,7 +24,6 @@ function checkForm() {
           email: f.email.value
         })
       }).then(checkStatus).then(res => res.json()).then(data => {
-        console.log(data);
         if (data.type === 0) {
           if (data.text === 0) {
             // unverified
