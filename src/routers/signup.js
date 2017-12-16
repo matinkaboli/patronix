@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
-import svgCaptcha from 'svg-captcha';
 
 // import send from '../utils/mail';
 const { User, Link }  = rootRequire('./models');
@@ -22,17 +21,7 @@ const limiter = new RateLimit({
 });
 
 router.get('/signup', login, (req, res) => {
-  svgCaptcha.options.width = 220;
-
-  const captcha = svgCaptcha.create({
-    size: 4,
-    ignoreChars: '0o1ilIQ8',
-    noise: 4
-  });
-
-  req.session.captcha = captcha.text.toLowerCase();
-
-  res.render('signup.njk', { captcha: captcha.data });
+  res.render('signup.njk');
 });
 
 router.post('/signup', login, limiter, (req, res) => {
