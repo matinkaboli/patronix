@@ -13,10 +13,10 @@ export default class {
   }
 
   check() {
-    return function* (socket) {
+    return function* (socket, nsp, io) {
       for (let guard of this.guards.values()) {
         yield new Promise(resolve => {
-          guard(socket, resolve);
+          guard(resolve, socket, nsp, io);
         });
       }
     }.bind(this);
