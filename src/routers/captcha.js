@@ -3,7 +3,7 @@ import svgCaptcha from 'svg-captcha';
 
 const router = new Router();
 
-router.get('/recaptcha', (req, res) => {
+router.get('/captcha', (req, res) => {
   const captcha = svgCaptcha.create({
     size: 4,
     ignoreChars: '0o1ilIQ8',
