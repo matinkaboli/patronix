@@ -1,6 +1,6 @@
 const svgElement = document.getElementById('svg-container');
 
-fetch('/recaptcha', {
+fetch('/captcha', {
   credentials: 'include'
 }).then(res => res.json()).then(data => {
   svgElement.innerHTML = data.captcha;
