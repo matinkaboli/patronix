@@ -1,6 +1,6 @@
 const { Chat } = rootRequire('./models');
 
-export default (next, socket, nsp) => {
+export default (next, socket, nsp) => () => {
   if (!socket.data.chat) {
     let chat = new Chat({
       site: socket.data.site.id,

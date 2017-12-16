@@ -1,6 +1,6 @@
 const { Site } = rootRequire('./models');
 
-export default (next, socket) => {
+export default (next, socket) => () => {
   Site.findOne({ token: socket.handshake.query.token }).then(site => {
     if (site) {
       socket.data.site = site;

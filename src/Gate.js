@@ -13,17 +13,17 @@ export default class {
   }
 
   check() {
-    return function* (socket, nsp, io) {
+    return function* (socket, nsp, io, ...args) {
       for (let guard of this.guards.values()) {
         yield new Promise(resolve => {
-          guard(resolve, socket, nsp, io);
+          guard(resolve, socket, nsp, io)(...args);
         });
       }
     }.bind(this);
   }
 
   go(socket, nsp, io, ...args) {
-    let iter = this.check()(socket, nsp, io);
+    let iter = this.check()(socket, nsp, io, ...args);
     let passenger = this._passenger;
 
     (function loop() {
