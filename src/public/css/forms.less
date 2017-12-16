@@ -1,8 +1,5 @@
 @charset "utf-8";
-@body-color: #5a5656;
-@input-background: #e5e5e5;
-@error-color: #f44336;
-@success-color: #cbf078;
+@import "colors";
 
 * {
   border: 0;
@@ -17,7 +14,7 @@
   transition: color 300ms;
 
   &:hover {
-    color: darken(@body-color, 5%);
+    color: darken(@white-2, 5%);
   }
 }
 
@@ -25,7 +22,7 @@
   display: none;
   text-align: center;
   font-family: SB;
-  color: @error-color;
+  color: @red-1;
   padding: 0;
   text-align: center;
   width: 100%;
@@ -34,13 +31,14 @@
   transition: color 500ms;
 
   &:hover {
-    color: darken(@error-color, 15%);
+    color: darken(@red-1, 15%);
   }
 }
 
 .success {
   display: none;
-  color: @success-color;
+  color: green;
+  // change the color
   text-align: center;
   font-size: 15px;
   font-weight: bold;
@@ -49,13 +47,13 @@
   transition: color 500ms;
 
   &:hover {
-    color: darken(@success-color, 15%);
+    color: darken(green, 15%);
+    // change the color
   }
 }
 
 body {
-	background: #f4f4f4;
-	color: @body-color;
+	color: lighten(black, 40%);
 	font: 100% / 1.5em;
   margin: 0;
 
@@ -76,10 +74,10 @@ body {
       fieldset {
 
         input {
-        	background-color: @input-background;
+        	background-color: @white-base;
         	border: none;
         	border-radius: 3px;
-        	color: @body-color;
+        	color: @white-2;
         	font-family: inherit;
         	font-size: 14px;
         	height: 50px;
@@ -90,15 +88,15 @@ body {
           transition: background-color 400ms;
 
           &:hover {
-            background-color: darken(@input-background, 5%);
+            background-color: darken(@white-base, 5%);
           }
         }
 
         button {
-          background-color: #008dde;
+          background-color: blue;
         	border: none;
         	border-radius: 3px;
-        	color: #f4f4f4;
+        	color: white;
         	cursor: pointer;
         	font-family: inherit;
         	height: 50px;
@@ -108,18 +106,18 @@ body {
           transition: background-color 500ms;
 
           &:hover {
-            background-color: darken(#008dde, 10%);
+            background-color: darken(blue, 10%);
           }
         }
 
         a {
-        	color: @body-color;
+        	color: @white-2;
         	font-size: 15px;
           transition: color 500ms;
 
           &:hover {
             text-decoration: underline;
-            color: darken(@body-color, 10%);
+            color: darken(@white-2, 10%);
           }
         }
       }
