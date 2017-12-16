@@ -29,7 +29,8 @@
       </div>
       <div id="list-links">
         <ol>
-          <li><a href="#modal-container">ورود / ثبت نام</a></li>
+          <li><a href="/login">ورود</a></li>
+          <li><a href="/signup">ثبت نام</a></li>
         </ol>
       </div>
       <div>
@@ -40,88 +41,6 @@
     {% block content %}
     {% endblock %}
     </aside>
-    <div id="modal-container">
-    <div id="container">
-      <a id="exit-link" href="#a">
-        <i class="icon-times"></i>
-      </a>
-      <div class="wrap">
-
-        <div class="headings">
-          <a id="sign-in" class="active"><span>ورود</span></a>
-          <a id="sign-up"><span>ثبت نام</span></a>
-        </div>
-
-        <div id="sign-in-container">
-            <form
-              class="login"
-              method="post"
-              action="/login"
-              name="login-form"
-              onsubmit="return checkForm()">
-                <input class="email"
-                 class="draw" type="email"
-                 name="email" placeholder="ایمیل" required>
-                <p class="error" id="email-err">ایمیل معتبر نیست</p>
-                <input class="password"
-                type="password" name="password"
-                placeholder="رمز عبور" required>
-                <div class="capslock error" style="display:none;">
-                  <span>کلید Caps Lock روشن است</span>
-                </div>
-                <button class="btn fifth" type="submit">ورود</button>
-            </form>
-            <a href="/forgot" id="forget-password">فراموشی رمز</a>
-            <p class="error" id="unverified">اول حسابتو تایید کن</p>
-            <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
-            <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
-            <p class="error" id="err">خطا! بعدا امتحان کن</p>
-            <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p>
-        </div>
-        <div id="sign-up-container">
-          <form
-            method="post"
-            action="/signup"
-            name="signup-form"
-            onsubmit="return checkForm()">
-            <input
-            type="text"
-            name="fname"
-            placeholder="نام"
-            required>
-            <input
-            type="text"
-            name="lname"
-            placeholder="نام خانوادگی"
-            required>
-            <input type="email" name="email"
-              placeholder="ایمیل"
-             class="email" required>
-             <div class="email-error error" style="display:none;">
-               <span>ایمیل صحیح نمیباشد</span>
-             </div>
-            <input class="password" type="password"
-            placeholder="رمز عبور"
-            name="password" required>
-            <div class="capslock error" style="display:none;">
-              <span>کلید Caps Lock روشن است</span>
-            </div>
-            {{ captcha | safe }}
-            <div><input
-            type="password"
-            name="captcha"
-            maxlength="10"
-            placeholder="کد امنیتی"
-            required
-            style="display: inline;">
-            <button id="change-captcha">تغییر کد امنیتی</button>
-          </div>
-            <button class="btn fifth" type="submit">ثبت نام</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
     <footer>
       <p>ساخته شده با <i class="icon-heart"></i></p>
     </footer>
