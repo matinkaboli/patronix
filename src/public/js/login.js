@@ -1,17 +1,25 @@
 function checkForm() {
   const f = document.forms['login-form'];
-  document.getElementById('unverified').style.display = 'none';
-  document.getElementById('expired').style.display = 'none';
-  document.getElementById('err').style.display = 'none';
-  document.getElementById('wrong').style.display = 'none';
-  document.getElementById('moving').style.display = 'none';
-  document.getElementById('email-err').style.display = 'none';
+  const unverified = document.getElementById('unverified');
+  const expired = document.getElementById('expired');
+  const err = document.getElementById('err');
+  const wrong = document.getElementById('wrong');
+  const success = document.getElementById('moving');
+  const emailErr = document.getElementById('email-err');
+
+  unverified.style.display = 'none';
+  expired.style.display = 'none';
+  err.style.display = 'none';
+  wrong.style.display = 'none';
+  success.style.display = 'none';
+  emailErr.style.display = 'none';
+
   if (
     f.email.value &&
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      document.getElementById('email-err').style.display = 'block';
+      emailErr.style.display = 'block';
     } else {
       fetch('/login', {
         method: 'POST',
@@ -27,24 +35,24 @@ function checkForm() {
         if (data.type === 0) {
           if (data.text === 0) {
             // unverified
-            document.getElementById('unverified').style.display = 'block';
+            unverified.style.display = 'block';
           } else if (data.text === 1) {
             // account has expired
-            document.getElementById('expired').style.display = 'block';
+            expired.style.display = 'block';
           } else if (data.text === 2) {
             // wrong pass or no such user
-            document.getElementById('wrong').style.display = 'block';
+            wrong.style.display = 'block';
           } else if (data.text === 3) {
-            // error happened
-            document.getElementById('err').style.display = 'block';
+            // error occured
+            err.style.display = 'block';
           }
         } else if (data.type === 2) {
-          document.getElementById('moving').style.display = 'block';
+          success.style.display = 'block';
           window.location.href = '/u';
         }
       }).catch(() => {
-        // error happened
-        document.getElementById('err').style.display = 'block';
+        // error occured
+        err.style.display = 'block';
       });
     }
   }

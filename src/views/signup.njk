@@ -43,6 +43,7 @@
               placeholder="ایمیل"
               required>
           </p>
+          <p class="error" id="taken">این ایمیل توسط یکی دیگه استفاده شده</p>
           <p class="error" id="email-err">ایمیل معتبر نیست</p>
           <p>
             <input
@@ -51,6 +52,7 @@
               placeholder="رمز"
               required>
           </p>
+          <p id="svg-container"></p>
           <p>
             <input
               type="password"
@@ -58,11 +60,9 @@
               placeholder="کد امنیتی"
               required>
           </p>
+          <p class="error" id="captcha-err">کد امنیتی اشتباهه</p>
           <p>حساب داری؟ <a href="/login">وارد شو</a></p>
           <p><button type="submit">ورود</button></p>
-          <p class="error" id="unverified">اول حسابتو تایید کن</p>
-          <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
-          <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
           <p class="error" id="err">خطا! بعدا امتحان کن</p>
           <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p>
         </fieldset>
