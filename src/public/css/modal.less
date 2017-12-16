@@ -1,3 +1,5 @@
+@import "colors";
+
 body {
     margin: 0;
 }
@@ -108,15 +110,6 @@ body {
     margin: 10px 0;
   }
 
-  form p {
-      color: rgba(255, 255, 255, 0.7);
-      text-transform: uppercase;
-      padding: 13px 20px;
-      position: relative;
-      display: block;
-      font-size: 14px;
-  }
-
   .capslock {
       color: #F44336;
       padding: 0;
@@ -220,6 +213,38 @@ body {
 
   #sign-up-container {
       display: none;
+  }
+}
+
+.error {
+  display: none;
+  text-align: center;
+  font-family: SB;
+  color: #F44336;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  text-transform: none;
+  font-size: 16px;
+  transition: color 500ms;
+
+  &:hover {
+    color: darken(#F44336, 15%);
+  }
+}
+
+.success {
+  display: none;
+  color: #cbf078;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: SB;
+  margin: 10px 0;
+  transition: color 500ms;
+
+  &:hover {
+    color: darken(#cbf078, 15%);
   }
 }
 
