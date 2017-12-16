@@ -1,4 +1,6 @@
 @import "colors";
+@error-color: #f44336;
+@success-color: #cbf078;
 
 body {
     margin: 0;
@@ -220,7 +222,7 @@ body {
   display: none;
   text-align: center;
   font-family: SB;
-  color: #F44336;
+  color: @error-color;
   padding: 0;
   text-align: center;
   width: 100%;
@@ -229,13 +231,13 @@ body {
   transition: color 500ms;
 
   &:hover {
-    color: darken(#F44336, 15%);
+    color: darken(@error-color, 15%);
   }
 }
 
 .success {
   display: none;
-  color: #cbf078;
+  color: @success-color;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
@@ -244,7 +246,7 @@ body {
   transition: color 500ms;
 
   &:hover {
-    color: darken(#cbf078, 15%);
+    color: darken(@success-color, 15%);
   }
 }
 

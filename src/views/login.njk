@@ -14,46 +14,42 @@
     <title>@@PROJECTNAME@@</title>
   </head>
   <body>
-    <h1>ورود</h1>
-    <div class="main-agileits">
-      <div class="form-w3-agile">
-        <form
-          action="#"
-          method="post"
-          name="login-form"
-          onsubmit="return checkForm()">
-          <div class="form-sub-w3">
+    <h1 id="title">ورود</h1>
+    <div id="login">
+      <form
+        action="#"
+        method="post"
+        name="login-form"
+        onsubmit="return checkForm()">
+        <fieldset>
+          <p>
             <input
-              type="text"
+              type="email"
               name="email"
-              placeholder="ایمیل"
+              value="ایمیل"
+              onBlur="if(this.value=='')this.value='ایمیل'"
+              onFocus="if(this.value=='ایمیل')this.value=''"
               required>
-            <div class="icon-w3">
-              <i class="icon-envelope" aria-hidden="true"></i>
-            </div>
-          </div>
+          </p>
           <p class="error" id="email-err">ایمیل معتبر نیست</p>
-          <div class="form-sub-w3">
+          <p>
             <input
               type="password"
               name="password"
-              placeholder="رمز"
+              value="رمز"
+              onBlur="if(this.value=='')this.value='رمز'"
+              onFocus="if(this.value=='رمز')this.value=''"
               required>
-            <div class="icon-w3">
-              <i class="icon-unlock-alt" aria-hidden="true"></i>
-            </div>
-          </div>
-          <p class="p-bottom-w3ls">حساب نداری؟ <a class="w3_play_icon1" href="/signup">ثبت نام کن</a></p>
-          <div class="submit-w3l">
-            <button type="submit">ورود</button>
-            <p class="error" id="unverified">اول حسابتو تایید کن</p>
-            <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
-            <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
-            <p class="error" id="err">خطا! بعدا امتحان کن</p>
-            <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p>
-          </div>
-        </form>
-      </div>
+          </p>
+          <p><a href="/forgot">رمز رو فراموش کردی؟</a></p>
+          <p><button type="submit">ورود</button></p>
+          <p class="error" id="unverified">اول حسابتو تایید کن</p>
+          <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
+          <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
+          <p class="error" id="err">خطا! بعدا امتحان کن</p>
+          <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p>
+        </fieldset>
+      </form>
     </div>
     <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/login.js"></script>

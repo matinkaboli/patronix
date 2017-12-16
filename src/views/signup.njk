@@ -14,77 +14,59 @@
     <title>@@PROJECTNAME@@</title>
   </head>
   <body>
-    <h1>ثبت نام</h1>
-    <div class="main-agileits">
-      <div class="form-w3-agile">
-        <!-- <h2>ورود</h2> -->
-        <form
-          action="#"
-          method="post"
-          name="login-form"
-          onsubmit="return checkForm()">
-          <div class="form-sub-w3">
+    <h1 id="title">ثبت نام</h1>
+    <div id="login">
+      <form
+        action="#"
+        method="post"
+        name="signup-form"
+        onsubmit="return checkForm()">
+        <fieldset>
+          <p>
             <input
               type="text"
               name="fname"
               placeholder="نام"
               required>
-            <div class="icon-w3">
-              <i class="icon-user" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="form-sub-w3">
+          </p>
+          <p>
             <input
               type="text"
               name="lname"
               placeholder="نام خانوادگی"
               required>
-            <div class="icon-w3">
-              <i class="icon-user" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="form-sub-w3">
+          </p>
+          <p>
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="ایمیل"
               required>
-            <div class="icon-w3">
-              <i class="icon-envelope" aria-hidden="true"></i>
-            </div>
-          </div>
+          </p>
           <p class="error" id="email-err">ایمیل معتبر نیست</p>
-          <div class="form-sub-w3">
+          <p>
             <input
               type="password"
               name="password"
               placeholder="رمز"
               required>
-            <div class="icon-w3">
-              <i class="icon-unlock-alt" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="form-sub-w3">
+          </p>
+          <p>
             <input
               type="password"
               name="captcha"
               placeholder="کد امنیتی"
               required>
-            <div class="icon-w3">
-              <i class="icon-unlock-alt" aria-hidden="true"></i>
-            </div>
-          </div>
-          <p class="p-bottom-w3ls">حساب داری؟ <a class="w3_play_icon1" href="/login">وارد شو</a></p>
-          <div class="submit-w3l">
-            <button type="submit">ثبت نام</button>
-            <p class="error" id="unverified">اول حسابتو تایید کن</p>
-            <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
-            <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
-            <p class="error" id="err">خطا! بعدا امتحان کن</p>
-            <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p>
-          </div>
-        </form>
-      </div>
+          </p>
+          <p>حساب داری؟ <a href="/login">وارد شو</a></p>
+          <p><button type="submit">ورود</button></p>
+          <p class="error" id="unverified">اول حسابتو تایید کن</p>
+          <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
+          <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
+          <p class="error" id="err">خطا! بعدا امتحان کن</p>
+          <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p>
+        </fieldset>
+      </form>
     </div>
     <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/signup.js"></script>

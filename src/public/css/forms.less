@@ -1,149 +1,46 @@
-@import "colors";
+@charset "utf-8";
+@body-color: #5a5656;
+@input-background: #e5e5e5;
+@error-color: #f44336;
+@success-color: #cbf078;
 
-body {
-  width: 100%;
-  background-color: #EFF1F5;
-  background-image: url(https://images.freecreatives.com/wp-content/uploads/2016/04/Blurred-Web-Backgrounds-HD-Wallpaper.jpg);
-  background-size: cover;
+* {
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
 }
 
-.main-agileits {
-  width: 30%;
-  margin: 0 auto;
-}
-
-.form-w3-agile {
-  background: rgba(4, 4, 4, 0.56);
-  box-shadow: 0px 35px 44px -22px #1f181b;
-  padding: 60px 40px;
-
-  h2 {
-    color: #000;
-    font-size: 20px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 2em;
-  }
-}
-
-h1 {
+#title {
   text-align: center;
-  font-size: 36px;
-  font-weight: bold;
-  margin: 50px 0;
-  color: #000;
-  word-spacing: 4px;
-}
-
-.icon-w3 {
-  display: inline-block;
-  position: absolute;
-  right: 12px;
-  bottom: 43px;
-
-  i {
-    color: #ffffff;
-    font-size: 16px;
-  }
-}
-
-form {
-  margin: 0 auto;
-  width: 100%;
-}
-
-.form-sub-w3 {
-	position:relative;
-
-  input {
-    outline: none;
-    font-size: 15px;
-    color: #ffffff;
-    padding: 15px 40px 15px 10px;
-    width: 87%;
-    border: none;
-    border-bottom: 1px solid #DCCBCF;
-    -webkit-appearance: none;
-    margin-bottom: 30px;
-    background: transparent;
-  }
-
-  input[type="password"] {
-    padding: 15px 35px 18px 10px;
-  }
-}
-
-button {
-  background: #fff;
-  color: #000;
-  outline: none;
-  display: block;
-  margin: 0 auto;
-  border: none;
-  cursor: pointer;
-  padding: 9px 38px;
-  font-size: 14px;
-  margin-top: 55px;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: 0.3s all;
-  font-family: SB;
+  font-size: 35px;
+  margin-top: 20px;
+  transition: color 300ms;
 
   &:hover {
-    background: darken(#fff, 25%);
-    transition: 0.3s all;
-  }
-}
-
-.p-bottom-w3ls {
-  font-size: 17px;
-  color: #eee;
-  margin-top: 1em;
-  text-align: center;
-	text-transform: none;
-
-  a {
-    color: #9a9a9a;
-  	outline:none;
-  	text-decoration:none;
-  	transition: color 500ms;
-
-    &:hover {
-      color: black;
-    }
-  }
-}
-
-.icon-agile {
-	display: inline-block;
-  position: absolute;
-  right: 12px;
-  bottom: 35px;
-
-  i {
-    color: white;
-    font-size: 16px;
+    color: darken(@body-color, 5%);
   }
 }
 
 .error {
   display: none;
-  color: @red-3;
   text-align: center;
-  font-size: 15px;
-  font-weight: bold;
   font-family: SB;
-  margin: 10px 0;
+  color: @error-color;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  text-transform: none;
+  font-size: 16px;
   transition: color 500ms;
 
   &:hover {
-    color: darken(@red-3, 15%);
+    color: darken(@error-color, 15%);
   }
 }
 
 .success {
   display: none;
-  color: #cbf078;
+  color: @success-color;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
@@ -152,333 +49,80 @@ button {
   transition: color 500ms;
 
   &:hover {
-    color: darken(#cbf078, 15%);
+    color: darken(@success-color, 15%);
   }
 }
 
-@media (max-width: 1440px) {
-	h1 {
-		font-size: 30px;
-		margin: 40px 0;
-		word-spacing: 3px;
-	}
+body {
+	background: #f4f4f4;
+	color: @body-color;
+	font: 100% / 1.5em;
+  margin: 0;
 
-	.main-agileits {
-		width: 37%;
-	}
-}
+  div {
+    margin: 50px auto;
+    width: 300px;
 
-@media (max-width: 1366px) {
-	.form-sub-w3 input {
-		width: 88%;
-	}
-}
-
-@media (max-width: 1280px) {
-	h1 {
-		font-size: 27px;
-		margin: 35px 0;
-		letter-spacing: 3px;
-	}
-
-	.form-w3-agile h2 {
-		font-size: 19px;
-		margin-bottom: 1.5em;
-	}
-
-	button {
-		margin-top: 45px;
-	}
-
-	.p-bottom-w3ls {
-		margin-top: 0.8em;
-	}
-
-	.main-agileits {
-		width: 39%;
-	}
-}
-
-@media (max-width: 1080px) {
-	.main-agileits {
-		width: 47%;
-	}
-}
-
-@media (max-width: 991px) {
-	.form-sub-w3 input {
-		width: 87%;
-	}
-}
-
-@media (max-width: 900px) {
-	.main-agileits {
-		width: 50%;
-	}
-
-	.form-sub-w3 input {
-		width: 86%;
-	}
-
-	button {
-		padding: 8px 45px;
-	}
-
-	h1 {
-		font-size: 26px;
-	}
-}
-
-@media (max-width: 800px) {
-	h1 {
-		font-size: 24px;
-		margin: 30px 0;
-	}
-
-	.form-w3-agile {
-		padding: 47px 35px;
-
-    h2 {
-  		font-size: 17.5px;
-  	}
-	}
-
-	.form-sub-w3 input {
-		width: 84%;
-		margin-bottom: 25px;
-	}
-
-	button {
-		padding: 7px 45px;
-	}
-}
-
-@media (max-width: 768px) {
-	h1 {
-		margin: 90px 0 55px;
-	}
-
-	.main-agileits {
-		width: 55%;
-	}
-
-	.form-sub-w3 input {
-		width: 85.5%;
-	}
-
-	.icon-agile {
-		bottom: 38px;
-	}
-}
-
-@media (max-width: 767px) {
-	h1 {
-		margin: 35px;
-	}
-
-	.icon-w3 {
-		bottom: 40px;
-	}
-
-	.form-sub-w3 input {
-		padding: 12px 40px 13px 10px;
-	}
-
-	.p-bottom-w3ls {
-		margin-top: 0.5em;
-	}
-}
-
-@media (max-width: 736px) {
-	.main-agileits {
-		width: 58%;
-	}
-
-	.form-w3-agile h2 {
-		font-size: 17px;
-	}
-}
-
-@media (max-width: 667px) {
-	.main-agileits {
-		width: 62%;
-	}
-
-	h1 {
-		margin: 37px;
-		font-size: 23px;
-		letter-spacing: 2.5px;
-		word-spacing: 2px;
-	}
-}
-
-@media (max-width: 640px) {
-	.main-agileits {
-		width: 65%;
-	}
-
-	.form-w3-agile {
-		padding: 40px 35px;
-	}
-
-	h1 {
-		margin: 35px 0;
-	}
-
-	.icon-agile {
-		bottom: 27px;
-	}
-}
-
-@media (max-width: 600px) {
-	.main-agileits {
-		width: 68%;
-	}
-}
-
-@media (max-width: 568px) {
-	h1 {
-		font-size: 20px;
-		letter-spacing: 2px;
-		word-spacing: 1px;
-	}
-
-	.form-w3-agile h2 {
-		font-size: 16px;
-	}
-
-	button {
-		padding: 6px 40px;
-		font-size: 13px;
-	}
-
-	.main-agileits {
-		width: 72%;
-	}
-}
-
-@media (max-width: 480px) {
-	.main-agileits {
-		width: 78%;
-	}
-
-	.form-sub-w3 input {
-		font-size:14px;
-		width: 84%;
-	}
-
-	.form-w3-agile {
-		padding: 40px 30px;
-	}
-
-	h1 {
-		margin: 37px 0;
-	}
-
-	.icon-agile {
-		right: 6px;
-
-    i {
-      font-size: 15px;
+    a {
+      text-decoration: none;
     }
-	}
 
-	.icon-w3 i {
-		font-size: 15px;
-	}
-}
-
-@media (max-width: 414px) {
-	.main-agileits {
-		width: 83%;
-	}
-
-	.form-sub-w3 input {
-		width: 82%;
-	}
-
-	.form-w3-agile h2 {
-		font-size: 15px;
-	}
-
-	.icon-w3 {
-		bottom: 38px;
-	}
-}
-
-@media (max-width: 384px) {
-	.main-agileits {
-		width: 89%;
-	}
-
-	h1 {
-		margin: 35px 0;
-	}
-}
-
-@media (max-width: 375px) {
-	h1 {
-		font-size: 19px;
-	}
-
-	.icon-agile {
-		right: 10px;
-	}
-}
-
-@media (max-width: 320px) {
-	h1 {
-		font-size: 17px;
-		margin: 28px 0;
-		letter-spacing: 1.5px;
-		word-spacing: .5px;
-	}
-
-	.main-agileits {
-		width: 94%;
-	}
-
-	.form-w3-agile {
-		padding: 30px 23px;
-	}
-
-	.form-sub-w3 input {
-		padding: 10px 34px 10px 6px;
-		margin-bottom: 15px;
-	  font-size: 13px;
-	}
-
-	.p-bottom-w3ls {
-		font-size: 12px;
-	}
-
-	button {
-		margin-top: 40px;
-	}
-
-	.form-w3-agile h2 {
-		font-size: 14px;
-		margin-bottom: 1em;
-	}
-
-	.icon-w3 {
-		bottom: 25px;
-
-    i {
-      font-size: 14px;
+    h1, p {
+    	margin-bottom: 10px;
     }
-	}
 
-	button {
-		padding: 5px 35px;
-		font-size: 12px;
-	}
+    form {
 
-	.icon-agile {
-		bottom: 22px;
+      fieldset {
 
-    i {
-  		font-size: 14px;
-  	}
-	}
+        input {
+        	background-color: @input-background;
+        	border: none;
+        	border-radius: 3px;
+        	color: @body-color;
+        	font-family: inherit;
+        	font-size: 14px;
+        	height: 50px;
+        	outline: none;
+        	padding: 0px 10px;
+        	width: 280px;
+          -webkit-appearance:none;
+          transition: background-color 400ms;
+
+          &:hover {
+            background-color: darken(@input-background, 5%);
+          }
+        }
+
+        button {
+          background-color: #008dde;
+        	border: none;
+        	border-radius: 3px;
+        	color: #f4f4f4;
+        	cursor: pointer;
+        	font-family: inherit;
+        	height: 50px;
+        	text-transform: uppercase;
+        	width: 300px;
+          -webkit-appearance:none;
+          transition: background-color 500ms;
+
+          &:hover {
+            background-color: darken(#008dde, 10%);
+          }
+        }
+
+        a {
+        	color: @body-color;
+        	font-size: 12px;
+          transition: color 500ms;
+
+          &:hover {
+            text-decoration: underline;
+            color: darken(@body-color, 10%);
+          }
+        }
+      }
+    }
+  }
 }
