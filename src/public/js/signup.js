@@ -44,7 +44,6 @@ function checkForm() {
           captcha: f.captcha.value
         })
       }).then(checkStatus).then(res => res.json()).then(data => {
-        console.log(data.report);
         if (data.type === 0) {
           if (data.text === 0) {
             // unverified
@@ -80,3 +79,14 @@ function checkStatus(res) {
     throw error;
   }
 }
+
+document.forms['signup-form'].password.addEventListener('keypress', e => {
+  const kc = e.keyCode ? e.keyCode : e.which;
+  const sk = e.shiftKey ? e.shiftKey : ((kc === 16) ? true : false);
+  const msg = document.getElementById('capslock');
+  if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk)) {
+    msg.style.display = 'block';
+  } else {
+    msg.style.display = 'none';
+  }
+});

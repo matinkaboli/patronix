@@ -1,0 +1,19 @@
+#main-setting {
+  float: right;
+  margin-right: 180px;
+}
+#pass-setting {
+  float: left;
+  margin-left: 180px;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  #main-setting, #pass-setting {
+    float: none;
+    margin: 0;
+  }
+
+  input, button {
+    max-width: 175px;
+  }
+}
