@@ -12,8 +12,8 @@ export default (next, socket, nsp) => {
       socket.data.chat = chat;
 
       nsp
-      .to(socket.data.site.id.toString())
-      .emit('notification', 'damn it');
+      .to(socket.data.site._id.toString())
+      .emit('notification', socket.data.chat);
 
       next();
     }).catch(() => {
