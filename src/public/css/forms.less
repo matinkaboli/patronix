@@ -37,7 +37,7 @@
 
 .success {
   display: none;
-  color: green;
+  color: @green-base;
   // change the color
   text-align: center;
   font-size: 15px;
@@ -47,7 +47,7 @@
   transition: color 500ms;
 
   &:hover {
-    color: darken(green, 15%);
+    color: darken(@green-base, 15%);
     // change the color
   }
 }
@@ -93,7 +93,7 @@ body {
         }
 
         button {
-          background-color: blue;
+          background-color: @blue-base;
         	border: none;
         	border-radius: 3px;
         	color: white;
@@ -106,7 +106,7 @@ body {
           transition: background-color 500ms;
 
           &:hover {
-            background-color: darken(blue, 10%);
+            background-color: darken(@blue-base, 10%);
           }
         }
 
