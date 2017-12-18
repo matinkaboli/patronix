@@ -151,8 +151,15 @@ gulp.task('full:js:prod', ['full:clean'], taskJsProd);
 gulp.task('client:js:dev', ['client:clean'], taskJsDev);
 gulp.task('full:js:dev', ['full:clean'], taskJsDev);
 
-gulp.task('lint', function() {
-  return gulp.src(['src/**/*.js', '!src/public/js/lib/**/*'])
+gulp.task('server:lint', function() {
+  return gulp.src(['src/**/*.js', '!src/public/**/*'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+gulp.task('client:lint', function() {
+  return gulp.src(['src/public/js/**/*.js', '!src/public/js/lib/**/*'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
