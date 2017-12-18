@@ -152,7 +152,7 @@ gulp.task('client:js:dev', ['client:clean'], taskJsDev);
 gulp.task('full:js:dev', ['full:clean'], taskJsDev);
 
 gulp.task('lint', function() {
-  return gulp.src(['src/**/*.js', '!src/public/js/**/*'])
+  return gulp.src('src/**/*.js')
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
