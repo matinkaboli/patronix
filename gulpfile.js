@@ -10,6 +10,7 @@ var babel = require('gulp-babel');
 var htmlmin = require('gulp-htmlmin');
 var replace = require('gulp-replace');
 var del = require('del');
+var nunjucks = require('gulp-nunjucks');
 
 var config = require('./src/config.json');
 
@@ -60,17 +61,23 @@ function taskLess() {
   .pipe(gulp.dest('build/public/css'));
 }
 
-function taskNunjucksProd() {
+function taskMinProd() {
   gulp.src('src/views/**/*.njk')
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
       .pipe(htmlmin({ collapseWhitespace: true }))
       .pipe(gulp.dest('build/views'));
 }
 
-function taskNunjucksDev() {
+function taskMinDev() {
   gulp.src('src/views/**/*.njk')
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
       .pipe(gulp.dest('build/views'));
+}
+
+function taskNunjucks() {
+  return gulp.src('src/public/templates/**/*')
+        .pipe(nunjucks.precompile())
+        .pipe(gulp.dest('build/public/templates'));
 }
 
 /**
@@ -116,7 +123,7 @@ gulp.task('server:copy', function() {
 
 gulp.task('client:copy', function() {
   return [
-    gulp.src(['src/public/**/*', '!src/public/js/**/*', '!src/public/css/**/*'])
+    gulp.src(['src/public/**/*', '!src/public/js/**/*', '!src/public/css/**/*', '!src/public/templates/**/*'])
     .pipe(gulp.dest('build/public/')),
 
     gulp.src(['src/public/js/lib/**/*'])
@@ -132,7 +139,7 @@ gulp.task('full:copy', function() {
     gulp.src(['src/config.json'])
     .pipe(gulp.dest('build')),
 
-    gulp.src(['src/public/**/*', '!src/public/js/**/*', '!src/public/css/**/*'])
+    gulp.src(['src/public/**/*', '!src/public/js/**/*', '!src/public/css/**/*', '!src/public/templates/**/*'])
     .pipe(gulp.dest('build/public/')),
 
     gulp.src(['src/public/js/lib/**/*'])
@@ -151,8 +158,15 @@ gulp.task('full:js:prod', ['full:clean'], taskJsProd);
 gulp.task('client:js:dev', ['client:clean'], taskJsDev);
 gulp.task('full:js:dev', ['full:clean'], taskJsDev);
 
-gulp.task('lint', function() {
-  return gulp.src(['src/**/*.js', '!src/public/js/lib/**/*'])
+gulp.task('server:lint', function() {
+  return gulp.src(['src/**/*.js', '!src/public/**/*'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+gulp.task('client:lint', function() {
+  return gulp.src(['src/public/js/**/*.js', '!src/public/js/lib/**/*'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -161,34 +175,36 @@ gulp.task('lint', function() {
 gulp.task('client:less', ['client:clean'], taskLess);
 gulp.task('full:less', ['full:clean'], taskLess);
 
-gulp.task('client:nunjucks:prod', ['client:clean'], taskNunjucksProd);
-gulp.task('server:nunjucks:prod', ['server:clean'], taskNunjucksProd);
-gulp.task('full:nunjucks:prod', ['full:clean'], taskNunjucksProd);
-gulp.task('client:nunjucks:dev', ['client:clean'], taskNunjucksDev);
-gulp.task('server:nunjucks:dev', ['server:clean'], taskNunjucksDev);
-gulp.task('full:nunjucks:dev', ['full:clean'], taskNunjucksDev);
+gulp.task('client:min:prod', ['client:clean'], taskMinProd);
+gulp.task('server:min:prod', ['server:clean'], taskMinProd);
+gulp.task('full:min:prod', ['full:clean'], taskMinProd);
+gulp.task('client:min:dev', ['client:clean'], taskMinDev);
+gulp.task('server:min:dev', ['server:clean'], taskMinDev);
+gulp.task('full:min:dev', ['full:clean'], taskMinDev);
 
+gulp.task('client:nunjucks', ['client:clean'], taskNunjucks);
+gulp.task('full:nunjucks', ['full:clean'], taskNunjucks);
 
-gulp.task('client:prod', ['client:clean', 'client:less', 'client:nunjucks:prod', 'client:js:prod'], function() {
+gulp.task('client:prod', ['client:clean', 'client:less', 'client:min:prod', 'client:js:prod', 'client:nunjucks'], function() {
   return gulp.start('client:copy');
 });
-gulp.task('client:dev', ['client:clean', 'client:less', 'client:nunjucks:dev', 'client:js:dev'], function() {
+gulp.task('client:dev', ['client:clean', 'client:less', 'client:min:dev', 'client:js:dev', 'client:nunjucks'], function() {
   return gulp.start('client:copy');
 });
 
-gulp.task('server:prod', ['server:clean', 'server:babel', 'server:nunjucks:prod'], function() {
+gulp.task('server:prod', ['server:clean', 'server:babel', 'server:min:prod'], function() {
   return gulp.start('server:copy');
 });
-gulp.task('server:dev', ['server:clean', 'server:babel', 'server:nunjucks:dev'], function() {
+gulp.task('server:dev', ['server:clean', 'server:babel', 'server:min:dev'], function() {
   return gulp.start('server:copy');
 });
 
-gulp.task('full:prod', ['full:clean', 'full:babel', 'full:less', 'full:nunjucks:prod', 'full:js:prod'], function() {
+gulp.task('full:prod', ['full:clean', 'full:babel', 'full:less', 'full:min:prod', 'full:js:prod', 'full:nunjucks'], function() {
   return gulp.start('full:copy');
 });
-gulp.task('full:dev', ['full:clean', 'full:babel', 'full:less', 'full:nunjucks:dev', 'full:js:dev'], function() {
+gulp.task('full:dev', ['full:clean', 'full:babel', 'full:less', 'full:min:dev', 'full:js:dev', 'full:nunjucks'], function() {
   return gulp.start('full:copy');
-})
+});
 
 gulp.task('client:watch', function() {
   gulp.watch('src/**/*', ['client:dev']);
