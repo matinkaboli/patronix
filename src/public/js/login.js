@@ -1,4 +1,14 @@
-function checkForm() {
+function checkStatus(res) {
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  } else {
+    const error = new Error(res.statusText);
+    error.res = res;
+    throw error;
+  }
+}
+
+function checkForm() { //eslint-disable-line
   const f = document.forms['login-form'];
   const unverified = document.getElementById('unverified');
   const expired = document.getElementById('expired');
@@ -59,21 +69,28 @@ function checkForm() {
   return false;
 }
 
-function checkStatus(res) {
-  if (res.status >= 200 && res.status < 300) {
-    return res;
-  } else {
-    const error = new Error(res.statusText);
-    error.res = res;
-    throw error;
-  }
-}
-
 document.forms['login-form'].password.addEventListener('keypress', e => {
-  const kc = e.keyCode ? e.keyCode : e.which;
-  const sk = e.shiftKey ? e.shiftKey : ((kc === 16) ? true : false);
+
+  let kc, sk;
+
+  if (e.keyCode) {
+    kc = e.keyCode;
+  } else {
+    kc = e.which;
+  }
+
+  if (e.shiftKey) {
+    sk = e.shiftKey;
+  } else {
+    if (kc === 16) {
+      sk = true;
+    } else {
+      sk = false;
+    }
+  }
+
   const msg = document.getElementById('capslock');
-  if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk)) {
+  if (kc >= 65 && kc <= 90 && !sk || kc >= 97 && kc <= 122 && sk) {
     msg.style.display = 'block';
   } else {
     msg.style.display = 'none';

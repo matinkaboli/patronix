@@ -1,4 +1,14 @@
-function checkForm() {
+function checkStatus(res) {
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  } else {
+    const error = new Error(res.statusText);
+    error.res = res;
+    throw error;
+  }
+}
+
+function checkForm() { //eslint-disable-line
   const f = document.forms['forgot-form'];
   const divW = document.getElementById('warn');
   const divE = document.getElementById('error');
@@ -55,13 +65,4 @@ function checkForm() {
     }
   }
   return false;
-}
-function checkStatus(res) {
-  if (res.status >= 200 && res.status < 300) {
-    return res;
-  } else {
-    const error = new Error(res.statusText);
-    error.res = res;
-    throw error;
-  }
 }

@@ -1,3 +1,13 @@
+function checkStatus(res) {
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  } else {
+    const error = new Error(res.statusText);
+    error.res = res;
+    throw error;
+  }
+}
+
 const svgElement = document.getElementById('svg-container');
 
 fetch('/captcha', {
@@ -9,7 +19,7 @@ fetch('/captcha', {
 });
 
 
-function checkForm() {
+function checkForm() { //eslint-disable-line
   const f = document.forms['signup-form'];
   const captchaErr = document.getElementById('captcha-err');
   const taken = document.getElementById('taken');
@@ -70,21 +80,27 @@ function checkForm() {
   return false;
 }
 
-function checkStatus(res) {
-  if (res.status >= 200 && res.status < 300) {
-    return res;
-  } else {
-    const error = new Error(res.statusText);
-    error.res = res;
-    throw error;
-  }
-}
-
 document.forms['signup-form'].password.addEventListener('keypress', e => {
-  const kc = e.keyCode ? e.keyCode : e.which;
-  const sk = e.shiftKey ? e.shiftKey : ((kc === 16) ? true : false);
+  let kc, sk;
+
+  if (e.keyCode) {
+    kc = e.keyCode;
+  } else {
+    kc = e.which;
+  }
+
+  if (e.shiftKey) {
+    sk = e.shiftKey;
+  } else {
+    if (kc === 16) {
+      sk = true;
+    } else {
+      sk = false;
+    }
+  }
+
   const msg = document.getElementById('capslock');
-  if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk)) {
+  if (kc >= 65 && kc <= 90 && !sk || kc >= 97 && kc <= 122 && sk) {
     msg.style.display = 'block';
   } else {
     msg.style.display = 'none';

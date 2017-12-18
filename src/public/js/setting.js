@@ -2,7 +2,7 @@
 const settingForm = document.forms['main-form'];
 const passForm = document.forms['pass-form'];
 
-function checkForm() {
+function checkForm() { //eslint-disable-line
   const email = settingForm.email;
   if (!validateEmail(email.value)) {
     alert('Write a correct email.');
@@ -10,7 +10,7 @@ function checkForm() {
   }
   return true;
 }
-function checkPassForm() {
+function checkPassForm() { //eslint-disable-line
   const password = passForm.newpass;
   if (password.value.length < 8) {
     alert('Password is too short.');
