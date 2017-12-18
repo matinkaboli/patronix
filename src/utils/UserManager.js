@@ -21,7 +21,9 @@ export default class {
   load() {
     return new Promise(resolve => {
       if (this.session[this.name]) {
-        models[this.model].findOne({_id: this.session[this.name]}).then(doc => {
+        models[this.model].findOne(
+          { _id: this.session[this.name] }
+        ).then(doc => {
           this.user = doc;
           resolve();
         });

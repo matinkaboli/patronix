@@ -6,8 +6,8 @@ export default class {
     this._passenger = () => {};
   }
 
-  guard() {
-    this.guards.push(...arguments);
+  guard(...args) {
+    this.guards.push(...args);
 
     return this;
   }

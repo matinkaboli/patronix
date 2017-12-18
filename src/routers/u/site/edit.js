@@ -11,7 +11,7 @@ router.get(
   perms.logged,
   perms.u.site.isOwner,
   (req, res) => {
-    res.render('u/site/edit.njk', { site: req.middle.site});
+    res.render('u/site/edit.njk', { site: req.middle.site });
   }
 );
 

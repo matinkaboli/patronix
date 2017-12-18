@@ -17,7 +17,7 @@ const send = (to, text, flag, name = 'mate') => {
     mailOption.html = `Hello ${name}, click here to change your password
                       <a href="@@LINK@@/forgot/changepass/${text}">HERE</a>`;
   }
-  transport.sendMail(mailOption, (err) => {
+  transport.sendMail(mailOption, err => {
     if (err) {
       throw err;
     }

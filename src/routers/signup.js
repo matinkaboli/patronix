@@ -3,7 +3,7 @@ import RateLimit from 'express-rate-limit';
 import { unique } from 'stringing';
 
 // import send from '../utils/mail';
-const { User, Link }  = rootRequire('./models');
+const { User, Link } = rootRequire('./models');
 const { encrypt } = rootRequire('./utils/crypt');
 const { login } = rootRequire('./perms');
 const { dbkey } = rootRequire('./config.json');
@@ -47,20 +47,20 @@ router.post('/signup', login, limiter, (req, res) => {
         });
 
         link.save().then(() => {
-          res.json({ report: { type: 2, text: 0 }});
+          res.json({ report: { type: 2, text: 0 } });
         });
       }).catch(() => {
-        res.json({ report: { type: 0, text: 0 }});
+        res.json({ report: { type: 0, text: 0 } });
       });
     }
 
     else {
-      res.json({ report: { type: 0, text: 0 }});
+      res.json({ report: { type: 0, text: 0 } });
     }
   }
 
   else {
-    res.json({ report: { type: 0, text: 0 }});
+    res.json({ report: { type: 0, text: 0 } });
   }
 });
 
