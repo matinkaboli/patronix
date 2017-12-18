@@ -24,14 +24,13 @@ const f = document.forms['signup-form'];
 f.addEventListener('submit', e => {
   e.preventDefault();
 
+
   const captchaErr = document.getElementById('captcha-err');
   const taken = document.getElementById('taken');
   const err = document.getElementById('err');
-  const success = document.getElementById('moving');
   const emailErr = document.getElementById('email-err');
 
   err.style.display = 'none';
-  success.style.display = 'none';
   emailErr.style.display = 'none';
   captchaErr.style.display = 'none';
   taken.style.display = 'none';
@@ -71,7 +70,6 @@ f.addEventListener('submit', e => {
             err.style.display = 'block';
           }
         } else if (data.type === 2) {
-          success.style.display = 'block';
           window.location.href = '/u';
         }
       }).catch(() => {
