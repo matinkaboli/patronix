@@ -3,11 +3,11 @@ class Q {
     this.el = el;
   }
 
-  get hide() {
+  hide() {
     this.el.style.display = 'none';
   }
 
-  get show() {
+  show() {
     this.el.style.display = '';
   }
 
@@ -19,7 +19,7 @@ class Q {
     this.el.innerHTML += txt;
   }
 
-  get empty() {
+  empty() {
     this.el.innerHTML = '';
   }
 
