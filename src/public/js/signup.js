@@ -19,8 +19,11 @@ fetch('/captcha', {
 });
 
 
-function checkForm() { //eslint-disable-line
-  const f = document.forms['signup-form'];
+const f = document.forms['signup-form'];
+
+f.addEventListener('submit', e => {
+  e.preventDefault();
+
   const captchaErr = document.getElementById('captcha-err');
   const taken = document.getElementById('taken');
   const err = document.getElementById('err');
@@ -77,10 +80,9 @@ function checkForm() { //eslint-disable-line
       });
     }
   }
-  return false;
-}
+});
 
-document.forms['signup-form'].password.addEventListener('keypress', e => {
+f.password.addEventListener('keypress', e => {
   let kc, sk;
 
   if (e.keyCode) {

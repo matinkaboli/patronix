@@ -8,8 +8,11 @@ function checkStatus(res) {
   }
 }
 
-function checkForm() { //eslint-disable-line
-  const f = document.forms['login-form'];
+const f = document.forms['login-form'];
+
+f.addEventListener('submit', e => {
+  e.preventDefault();
+
   const unverified = document.getElementById('unverified');
   const expired = document.getElementById('expired');
   const err = document.getElementById('err');
@@ -41,6 +44,7 @@ function checkForm() { //eslint-disable-line
           password: f.password.value,
           email: f.email.value
         })
+
       }).then(checkStatus).then(res => res.json()).then(data => {
         if (data.type === 0) {
           if (data.text === 0) {
@@ -66,10 +70,9 @@ function checkForm() { //eslint-disable-line
       });
     }
   }
-  return false;
-}
+});
 
-document.forms['login-form'].password.addEventListener('keypress', e => {
+f.password.addEventListener('keypress', e => {
 
   let kc, sk;
 
