@@ -8,16 +8,15 @@ function checkStatus(res) {
   }
 }
 
-const svgElement = document.getElementById('svg-container');
+const svgElement = $('#svg-container');
 
 fetch('/captcha', {
   credentials: 'include'
-}).then(res => res.json()).then(data => {
-  svgElement.innerHTML = data.captcha;
-}).catch(() => {
-  svgElement.innerHTML = 'خطا! بعدا امتحان کنید';
+}).then(checkStatus).then(res => res.json()).then(data => {
+  svgElement.html(data.captcha);
+}).catch(e => {
+  svgElement.html('خطا! بعدا امتحان کنید');
 });
-
 
 const f = document.forms['signup-form'];
 

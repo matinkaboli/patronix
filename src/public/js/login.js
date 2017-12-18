@@ -13,26 +13,26 @@ const f = document.forms['login-form'];
 f.addEventListener('submit', e => {
   e.preventDefault();
 
-  const unverified = document.getElementById('unverified');
-  const expired = document.getElementById('expired');
-  const err = document.getElementById('err');
-  const wrong = document.getElementById('wrong');
-  const success = document.getElementById('moving');
-  const emailErr = document.getElementById('email-err');
+  const unverified = $('#unverified');
+  const expired = $('#expired');
+  const err = $('#err');
+  const wrong = $('#wrong');
+  const success = $('#moving');
+  const emailErr = $('#email-err');
 
-  unverified.style.display = 'none';
-  expired.style.display = 'none';
-  err.style.display = 'none';
-  wrong.style.display = 'none';
-  success.style.display = 'none';
-  emailErr.style.display = 'none';
+  unverified.hide();
+  expired.hide();
+  err.hide();
+  wrong.hide();
+  success.hide();
+  emailErr.hide();
 
   if (
     f.email.value &&
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      emailErr.style.display = 'block';
+      emailErr.show();
     } else {
       fetch('/login', {
         method: 'POST',
@@ -49,24 +49,24 @@ f.addEventListener('submit', e => {
         if (data.type === 0) {
           if (data.text === 0) {
             // unverified
-            unverified.style.display = 'block';
+            unverified.show();
           } else if (data.text === 1) {
             // account has expired
-            expired.style.display = 'block';
+            expired.show();
           } else if (data.text === 2) {
             // wrong pass or no such user
-            wrong.style.display = 'block';
+            wrong.show();
           } else if (data.text === 3) {
             // error occured
-            err.style.display = 'block';
+            err.show();
           }
         } else if (data.type === 2) {
-          success.style.display = 'block';
+          success.show();
           window.location.href = '/u';
         }
       }).catch(() => {
         // error occured
-        err.style.display = 'block';
+        err.hide();
       });
     }
   }
@@ -92,10 +92,10 @@ f.password.addEventListener('keypress', e => {
     }
   }
 
-  const msg = document.getElementById('capslock');
+  const msg = $('#capslock');
   if (kc >= 65 && kc <= 90 && !sk || kc >= 97 && kc <= 122 && sk) {
-    msg.style.display = 'block';
+    msg.show();
   } else {
-    msg.style.display = 'none';
+    msg.hide();
   }
 });
