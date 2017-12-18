@@ -1,4 +1,4 @@
-function Q(el) {
+function $(el) {
   class QGen {
     constructor(el) {
       this.el = document.querySelector(el);
@@ -9,7 +9,7 @@ function Q(el) {
     }
 
     show() {
-      this.el.style.display = '';
+      this.el.style.display = 'block';
     }
 
     append(child) {

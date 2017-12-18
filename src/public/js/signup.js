@@ -25,22 +25,22 @@ f.addEventListener('submit', e => {
   e.preventDefault();
 
 
-  const captchaErr = document.getElementById('captcha-err');
-  const taken = document.getElementById('taken');
-  const err = document.getElementById('err');
-  const emailErr = document.getElementById('email-err');
+  const captchaErr = $('#captcha-err');
+  const taken = $('#taken');
+  const err = $('#err');
+  const emailErr = $('#email-err');
 
-  err.style.display = 'none';
-  emailErr.style.display = 'none';
-  captchaErr.style.display = 'none';
-  taken.style.display = 'none';
+  err.hide();
+  emailErr.hide();
+  captchaErr.hide();
+  taken.hide();
 
   if (
     f.email.value &&
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      emailErr.style.display = 'block';
+      emailErr.show();
     } else {
       fetch('/signup', {
         method: 'POST',
@@ -59,22 +59,22 @@ f.addEventListener('submit', e => {
         if (data.type === 0) {
           if (data.text === 0) {
             // unverified
-            captchaErr.style.display = 'block';
+            captchaErr.show();
           } else if (data.text === 1) {
             // account has expired
           } else if (data.text === 2) {
             // wrong pass or no such user
-            taken.style.display = 'block';
+            taken.show();
           } else if (data.text === 3) {
             // error occured
-            err.style.display = 'block';
+            err.show();
           }
         } else if (data.type === 2) {
           window.location.href = '/u';
         }
       }).catch(() => {
         // error occured
-        err.style.display = 'block';
+        err.show();
       });
     }
   }
@@ -99,10 +99,10 @@ f.password.addEventListener('keypress', e => {
     }
   }
 
-  const msg = document.getElementById('capslock');
+  const msg = $('#capslock');
   if (kc >= 65 && kc <= 90 && !sk || kc >= 97 && kc <= 122 && sk) {
-    msg.style.display = 'block';
+    msg.show();
   } else {
-    msg.style.display = 'none';
+    msg.hide();
   }
 });
