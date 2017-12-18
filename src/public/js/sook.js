@@ -6,6 +6,7 @@ fetch('/u/generate', { credentials: 'include', method: 'POST' })
     socket.emit('op:init', token);
   });
 
-socket.on('notification', site => {
-  console.log('you have something like shit in site:', site);
+socket.on('notification', (chat, site) => {
+  console.log(chat, site);
+  Q('#chat-list').appendText(nunjucks.render('chats.njk', { chat, site }));
 });

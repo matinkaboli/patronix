@@ -2126,6 +2126,14 @@ gulp-less@^3.3.2:
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
+gulp-nunjucks@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-nunjucks/-/gulp-nunjucks-3.0.0.tgz#77cb31d61632a1ae10d2e1f8c0a8cf82659fcf47"
+  dependencies:
+    gulp-util "^3.0.0"
+    nunjucks "^3.0.0"
+    through2 "^2.0.0"
+
 gulp-replace@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/gulp-replace/-/gulp-replace-0.6.1.tgz#11bf8c8fce533e33e2f6a8f2f430b955ba0be066"
@@ -3286,7 +3294,7 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nunjucks@^3.0.1:
+nunjucks@^3.0.0, nunjucks@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/nunjucks/-/nunjucks-3.0.1.tgz#4de74a3e550baf6fa3370323f3d1c7c2a86bdc4d"
   dependencies:

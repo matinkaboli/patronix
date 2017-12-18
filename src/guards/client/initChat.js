@@ -13,7 +13,7 @@ export default (next, socket, nsp) => () => {
 
       nsp
       .to(socket.data.site._id.toString())
-      .emit('notification', socket.data.chat);
+      .emit('notification', socket.data.chat, socket.data.site);
 
       next();
     }).catch(() => {
