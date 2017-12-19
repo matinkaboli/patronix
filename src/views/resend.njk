@@ -1,31 +1,30 @@
-{% extends './layouts/index.njk' %}
+{% extends './layouts/form.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/inputs.css">
-<link rel="stylesheet" href="/files/css/alert.css">
 {% endblock %}
 
 {% block content %}
-<div class="alert" id="error">
+<h1 id="title">فرستادن ایمیل تایید برای تایید حساب</h1>
+<div id="login">
+  <form
+    action="/resend"
+    method="post"
+    name="resend-form"
+    onsubmit="return checkForm()">
+    <fieldset>
+      <p>
+        <input
+          type="email"
+          name="email"
+          placeholder="ایمیل"
+          required>
+      </p>
+      <p>
+        <button type="submit">گرفتن کد فعالسازی</button>
+      </p>
+    </fieldset>
+  </form>
 </div>
-<div class="alert" id="warn">
-</div>
-<div class="alert" id="success">
-</div>
-<form
-  action="/resend"
-  method="post"
-  name="resend-form"
-  onsubmit="return checkForm()">
-  <input
-    type="email"
-    name="email"
-    placeholder="ایمیل"
-    required>
-  <input
-    type="submit"
-    value="گرفتن کد فعالسازی">
-</form>
 {% endblock %}
 
 {% block scripts %}
@@ -34,6 +33,5 @@
     document.forms['resend-form'].email.value = '{{ i }}';
   </script>
 {% endfor %}
-<script src="/files/js/lib/validator.js"></script>
-<script src="/files/js/resend.js"></script>
+  <script src="/files/js/resend.js"></script>
 {% endblock %}

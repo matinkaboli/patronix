@@ -4,15 +4,14 @@
     <meta charset="utf-8">
     <meta name="description" content="پشتیبانی انلاین">
     <meta name="keywords" content="پشتیبانی,انلاین">
-    <meta name="author" content="Matin Kaboli, Ali Movahedi">
+    <meta name="author" content="Patronix Team">
     <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/files/css/font.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <link rel="stylesheet" href="/files/css/site.css">
-    <link href="/files/css/icon.css" rel="stylesheet">
-    <link href="/files/css/modal.css" rel="stylesheet" type="text/css">
-    <script src="/files/js/messages.js"></script>
+    <link rel="stylesheet" href="/files/css/icon.css">
+    <link rel="stylesheet" href="/files/css/modal.css">
     <title>@@PROJECTNAME@@</title>
     {% for item in locals.header %}
       {{ item | safe }}
@@ -51,11 +50,9 @@
     <script>
     const report = {{locals.report}};
     </script>
+    <script src="/files/js/q.js"></script>
     <script src="/files/js/lib/validator.js"></script>
-    <script src="/files/js/linktoggle.js"></script>
     <script src="/files/js/header.js"></script>
-    <script src="/files/js/recaptcha.js"></script>
-    <script src="/files/js/login.js"></script>
     {% block scripts %}
     {% endblock %}
   </body>
