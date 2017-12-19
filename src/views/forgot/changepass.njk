@@ -14,7 +14,9 @@
       <input
         type="password"
         name="password"
-        placeholder="رمز عبور جدید"
+        value="رمز جدید"
+        onBlur="if(this.value=='')this.value='رمز جدید'"
+        onFocus="if(this.value=='رمز جدید')this.value=''"
         required>
     </p>
     <p>

@@ -16,7 +16,9 @@
         <input
           type="email"
           name="email"
-          placeholder="ایمیل"
+          value="ایمیل"
+          onBlur="if(this.value=='')this.value='ایمیل'"
+          onFocus="if(this.value=='ایمیل')this.value=''"
           required>
       </p>
       <p>
