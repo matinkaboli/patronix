@@ -6,7 +6,7 @@
 {% block content %}
 <div id="chat-list">
   {% for chat in chats %}
-  <a href="/u/chats/{{chat._id}}">{{chat.site.name}}</a>
+  <a href="/u/chat/{{chat._id}}">{{chat.site.name}}</a>
   {% endfor %}
 </div>
 {% endblock %}

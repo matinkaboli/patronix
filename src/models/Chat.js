@@ -28,18 +28,17 @@ const chatSchema = new Schema({
     required: true
   },
   operator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    socketId: {
-      type: String,
-      required: true
-    }
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    socketId: String
   },
   client: {
     type: String,
     required: true
   },
-  taken: {
+  done: {
     type: Boolean,
     required: true
   }

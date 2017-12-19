@@ -1,10 +1,10 @@
 const Gate = rootRequire('./Gate');
 const guards = rootRequire('./guards');
 
-const gate = new Gate('/service');
+const gate = new Gate('/client');
 
 gate
-.lane('client:message')
+.lane('message')
 .guard(
   guards.init,
   guards.client.checkSite,

@@ -6,12 +6,12 @@ const middles = rootRequire('./middles');
 const router = new Router();
 
 router.get(
-  '/u/chats/:id',
+  '/u/chat/:id',
   middles.u.chats.getChat,
   perms.logged,
-  perms.u.chats.canTake,
+  perms.u.chat.canSee,
   (req, res) => {
-    res.render('u/chats/chat.njk');
+    res.render('u/chat/chat.njk', { chat: req.middle.chat });
   }
 );
 

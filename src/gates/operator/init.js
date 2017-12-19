@@ -4,11 +4,13 @@ const { User } = rootRequire('./models');
 const { decrypt } = rootRequire('./utils/crypt');
 const { socketkey } = rootRequire('./config.json');
 
-const gate = new Gate('/service');
+const gate = new Gate('/operator');
 
 gate
-.lane('op:init')
-.guard(guards.init)
+.lane('init')
+.guard(
+  guards.init
+)
 .passenger(socket => token => {
   User.findById(decrypt(token, socketkey)).then(user => {
     if (user) {

@@ -1,7 +1,7 @@
 const { Chat } = rootRequire('./models');
 
 export default (req, res, next) => {
-  Chat.findOne({ _id: req.params.id, taken: false }).then(chat => {
+  Chat.findOne({ _id: req.params.id }).then(chat => {
     if (chat) {
       req.middle.chat = chat;
       next();

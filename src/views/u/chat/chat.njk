@@ -1,0 +1,18 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div id="chats">
+
+</div>
+
+<input type="text" id="message" />
+<button id="send">send</button>
+<button id="take" data-id="{{chat._id}}">take</button>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/chat.js"></script>
+{% endblock %}

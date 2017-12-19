@@ -32,7 +32,7 @@ export default class {
       if (next.done) {
         passenger(socket, nsp, io)(...args);
       } else {
-        next.value.then(loop);
+        next.value.then(loop).catch(e => { console.log(e); });
       }
     })();
   }
