@@ -55,6 +55,10 @@ function $(el) {
       this.el.insertBefore(child, this.el.firstChild);
     }
 
+    prependText(txt) {
+      this.el.innerHTML = `${txt}${this.el.innerHTML}`;
+    }
+
     removeClass(cls) {
       this.el.classList.remove(cls);
     }
