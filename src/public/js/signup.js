@@ -19,12 +19,14 @@ f.addEventListener('submit', e => {
   const err = $('#err');
   const emailErr = $('#email-err');
   const passErr = $('#pass-err');
+  const done = $('#signup-done');
 
   err.hide();
   emailErr.hide();
   captchaErr.hide();
   taken.hide();
   passErr.hide();
+  done.hide();
 
   if (
     f.email.value &&
@@ -65,7 +67,7 @@ f.addEventListener('submit', e => {
               err.show();
             }
           } else if (data.type === 2) {
-            window.location.href = '/u';
+            done.show();
           }
         }).catch(() => {
           // error occured
