@@ -17,7 +17,7 @@ gate
     user: socket.data.user._id,
     socketId: socket.id
   };
-  console.log('it gonna save');
+  
   chat.save();
 });
 
