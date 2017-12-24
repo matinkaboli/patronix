@@ -19,8 +19,7 @@ export default (next, socket, nsp, io) => () => {
       socket.join(chat._id.toString());
 
       next();
-    }).catch(e => {
-      console.log(e);
+    }).catch(() => {
       socket.emit('report', { type: 0, text: 0 });
     });
   } else {
