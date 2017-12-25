@@ -15,9 +15,9 @@ gate
 
   chat.operator = {
     user: socket.data.user._id,
-    socketId: socket.id
+    socket: socket.id
   };
-  
+
   chat.save();
 });
 

@@ -11,6 +11,12 @@ gate
   guards.operator.logged
 )
 .passenger(socket => () => {
+  if (socket.data.chat) {
+    socket.data.chat.done = true;
+
+    socket.data.chat.save();
+  }
+  
   SocketStore.findOne({ user: socket.data.user._id }).then(store => {
     store.sockets.splice(store.sockets.indexOf(socket.id), 1);
 

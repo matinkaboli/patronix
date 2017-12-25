@@ -32,7 +32,7 @@ const chatSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    socketId: String
+    socket: String
   },
   client: {
     type: String,
