@@ -2,97 +2,95 @@
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/setting.css">
-<link rel="stylesheet" href="/files/css/forms.css">
 {% endblock %}
 
 {% block content %}
-<article>
-<div id="main-setting">
-  <h1 id="title">تنظیمات</h1>
-  <form
-    action="/u/setting"
-    method="post"
-    name="setting-form"
-    onsubmit="return checkForm()">
-    <fieldset>
-      <p>
-        <input
-          type="text"
-          value="{{ user.name.first }}"
-          placeholder="نام"
-          name="fname"
-          maxlength="20"
-          required>
-      </p>
-      <p>
-        <input
-          type="text"
-          value="{{ user.name.last }}"
-          placeholder="نام خانوادگی"
-          maxlength="20"
-          name="lname"
-          required>
-      </p>
-      <p>
-          <input
-            type="email"
-            name="email"
-            value="{{ user.email }}"
-            placeholder="ایمیل"
-            maxlength="100"
-            required>
-      </p>
-      <p class="error" id="email-err">ایمیل معتبر نیست</p>
-      <p>
-        <input
-          type="password"
-          name="password"
-          value="رمز"
-          onBlur="if(this.value=='')this.value='رمز'"
-          onFocus="if(this.value=='رمز')this.value=''"
-          required>
-      </p>
-      <p><button type="submit">ثبت تغییرات</button></p>
-      {# <p class="error" id="unverified">اول حسابتو تایید کن</p>
-      <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
-      <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
-      <p class="error" id="err">خطا! بعدا امتحان کن</p>
-      <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p> #}
-    </fieldset>
-  </form>
-</div>
-</article>
-<article>
-  <div id="pass-setting">
-  <h1 id="title">تغییر رمز</h1>
+<div id="forms-container">
+  <div class="whole-form" id="main-setting">
+    <h1 id="title">تنظیمات</h1>
     <form
-      action="/u/setting/password"
+      action="/u/setting"
       method="post"
-      name="pass-form"
-      onsubmit="return checkPassForm()">
+      name="setting-form"
+      onsubmit="return checkForm()">
       <fieldset>
-      <p>
-        <input
-          type="password"
-          placeholder="رمز کنونی"
-          name="oldpass"
-          maxlength="200"
-          required>
-      </p>
-      <p>
-        <input
-          type="password"
-          placeholder="رمز جدید"
-          name="newpass"
-          maxlength="200"
-          required>
-      </p>
-      <button type="submit">تغییر رمز</button>
-    </fieldset>
-  </form>
+        <p>
+          <input
+            type="text"
+            value="{{ user.name.first }}"
+            placeholder="نام"
+            name="fname"
+            maxlength="20"
+            required>
+        </p>
+        <p>
+          <input
+            type="text"
+            value="{{ user.name.last }}"
+            placeholder="نام خانوادگی"
+            maxlength="20"
+            name="lname"
+            required>
+        </p>
+        <p>
+            <input
+              type="email"
+              name="email"
+              value="{{ user.email }}"
+              placeholder="ایمیل"
+              maxlength="100"
+              required>
+        </p>
+        <p class="error" id="email-err">ایمیل معتبر نیست</p>
+        <p>
+          <input
+            type="password"
+            name="password"
+            value="رمز"
+            onBlur="if(this.value=='')this.value='رمز'"
+            onFocus="if(this.value=='رمز')this.value=''"
+            required>
+        </p>
+        <p><button type="submit">ثبت تغییرات</button></p>
+        {# <p class="error" id="unverified">اول حسابتو تایید کن</p>
+        <p class="error" id="expired">آخ آخ، حسابت منقضی شده</p>
+        <p class="error" id="wrong">رمز عبور یا حساب کاربری اشتباهه</p>
+        <p class="error" id="err">خطا! بعدا امتحان کن</p>
+        <p class="success" id="moving">موفق! در حال رفتن به داشبورد :)</p> #}
+      </fieldset>
+    </form>
+  </div>
+  <div class="whole-form" id="password-setting">
+    <h1 id="title">تغییر رمز</h1>
+      <form
+        action="/u/setting/password"
+        method="post"
+        name="pass-form"
+        onsubmit="return checkPassForm()">
+        <fieldset>
+        <p>
+          <input
+            type="password"
+            placeholder="رمز کنونی"
+            name="oldpass"
+            maxlength="200"
+            required>
+        </p>
+        <p>
+          <input
+            type="password"
+            placeholder="رمز جدید"
+            name="newpass"
+            maxlength="200"
+            required>
+        </p>
+        <button type="submit">تغییر رمز</button>
+    </form>
+  </div>
 </div>
-</article>
-<button type="submit">حذف حساب</button>
+<div id="delete-form">
+  <button type="submit" id="delete-account">حذف حساب</button>
+</div>
 {% endblock %}
 
 {% block scripts %}
