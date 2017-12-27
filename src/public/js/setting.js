@@ -46,3 +46,40 @@ passSet.addEventListener('submit', e => {
 });
 
 capslock(passSet.newpass);
+
+document.getElementById('delete-account').addEventListener('click', e => {
+  e.preventDefault();
+
+  const err = $('#err3');
+
+  err.hide();
+
+  iziToast.question({
+      timeout: 10000,
+      close: false,
+      overlay: true,
+      toastOnce: true,
+      id: 'question',
+      zindex: 999,
+      rtl: true,
+      title: 'اوپس..',
+      message: 'مطمئنی؟',
+      position: 'center',
+      buttons: [
+        ['<button><b>اره</b></button>', (instance, toast) => {
+          instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
+
+          fetch('/u/setting/delete', {
+            method: 'POST', credentials: 'include'
+          }).then(checkStatus).then(res => res.json()).then(data => {
+            window.href = '/';
+          }).catch(() => {
+            err.show();
+          });
+        }, true],
+        ['<button>نه</button>', (instance, toast) => {
+          instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
+        }]
+      ]
+  });
+});
