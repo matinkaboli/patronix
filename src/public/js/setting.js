@@ -1,26 +1,48 @@
-// THIS FILE MUST BE CHANGED, IT IS NOT COMPLETE, DO NOT USE THIS YET
-const settingForm = document.forms['main-form'];
-const passForm = document.forms['pass-form'];
+const mainSet = document.forms['setting-form'];
+const passSet = document.forms['pass-form'];
 
-function checkForm() { //eslint-disable-line
-  const email = settingForm.email;
+mainSet.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const email = mainSet.email;
+  const emailErr = $('#email-err');
+  const err = $('#err1');
+
+  emailErr.hide();
+  err.hide();
+
   if (!validateEmail(email.value)) {
-    alert('Write a correct email.');
-    return false;
+    emailErr.show();
+  } else {
+    fetch('/u/setting', { method: 'POST', credentials: 'include' })
+      .then(checkStatus).then(res => res.json()).then(data => {
+      console.log(data);
+    }).catch(() => {
+      err.show();
+    });
   }
-  return true;
-}
-function checkPassForm() { //eslint-disable-line
-  const password = passForm.newpass;
+});
+
+passSet.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const password = passSet.newpass;
+  const err = $('#err2');
+  const passErr = $('#pass-err');
+
+  err.hide();
+  passErr.hide();
+
   if (password.value.length < 8) {
-    alert('Password is too short.');
-    return false;
+    passErr.show();
+  } else {
+    fetch('/u/setting/password', { method: 'POST', credentials: 'include' })
+      .then(checkStatus).then(res => res.json()).then(data => {
+        console.log(data);
+      }).catch(() => {
+        err.show();
+      });
   }
-  if (!validatePassword(password.value)) {
-    alert(`Your password should have at lease one
-  number, upper case letter and lower case letter and symbol
-  and at least 8 number.`);
-    return false;
-  }
-  return true;
-}
+});
+
+capslock(passSet.newpass);
