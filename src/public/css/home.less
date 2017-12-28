@@ -28,7 +28,7 @@ aside {
   #about1 {
     display: flex;
     justify-content: space-around;
-    margin: 30px 100px;
+    padding: 30px 100px;
     text-align: center;
 
     .column {
@@ -52,7 +52,7 @@ aside {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 50px 150px;
+    padding: 50px 150px;
 
     h1 {
       margin-bottom: 30px;
@@ -72,9 +72,22 @@ aside {
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
-  #about1, #about2 {
-    flex-direction: column;
-    padding: 0;
-    margin: 0px 0px;
+
+  aside {
+    #about1, #about2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      padding: 5px 0;
+      margin: 0;
+      text-align: center;
+
+      .column {
+        margin-bottom: 20px;
+      }
+    }
   }
 }
