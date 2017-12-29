@@ -34,6 +34,7 @@ f.addEventListener('submit', e => {
   ) {
     if (!validateEmail(f.email.value)) {
       emailErr.show();
+      f.email.select();
     } else {
 
       if (f.password.value.length > 7) {
@@ -75,6 +76,7 @@ f.addEventListener('submit', e => {
         });
       } else {
         passErr.show();
+        f.password.select();
       }
     }
   }

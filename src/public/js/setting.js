@@ -13,6 +13,7 @@ mainSet.addEventListener('submit', e => {
 
   if (!validateEmail(email.value)) {
     emailErr.show();
+    email.select();
   } else {
     fetch('/u/setting', { method: 'POST', credentials: 'include' })
       .then(checkStatus).then(res => res.json()).then(data => {
@@ -35,6 +36,7 @@ passSet.addEventListener('submit', e => {
 
   if (password.value.length < 8) {
     passErr.show();
+    password.select();
   } else {
     fetch('/u/setting/password', { method: 'POST', credentials: 'include' })
       .then(checkStatus).then(res => res.json()).then(data => {

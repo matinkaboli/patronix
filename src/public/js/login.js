@@ -23,6 +23,7 @@ f.addEventListener('submit', e => {
   ) {
     if (!validateEmail(f.email.value)) {
       emailErr.show();
+      f.email.select();
     } else {
       fetch('/login', {
         method: 'POST',
@@ -46,6 +47,7 @@ f.addEventListener('submit', e => {
           } else if (data.text === 2) {
             // wrong pass or no such user
             wrong.show();
+            f.email.select();
           } else if (data.text === 3) {
             // error occured
             err.show();

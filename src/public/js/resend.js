@@ -1,3 +1,4 @@
+// This file need to be changed
 function checkForm() { //eslint-disable-line
   const f = document.forms['resend-form'];
   const divW = document.getElementById('warn');
