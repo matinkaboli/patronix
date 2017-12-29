@@ -1,21 +1,8 @@
 // This file need to be changed
-function checkForm() { //eslint-disable-line
-  const f = document.forms['changepass-form'];
-  const divW = document.getElementById('warn');
-  const divE = document.getElementById('error');
-  const divS = document.getElementById('success');
-  divW.innerHTML = '';
-  divE.innerHTML = '';
-  divS.innerHTML = '';
-  divW.style.display = 'none';
-  divE.style.display = 'none';
-  divS.style.display = 'none';
-
+function checkForm() {
   if (f.password.value) {
+
     if (f.password.value.length < 7) {
-      const p = document.createElement('p');
-      p.innerHTML = M[1][1];
-      divW.appendChild(p);
       divW.style.display = 'block';
     } else {
       fetch('/forgot/changepass', {
@@ -48,5 +35,4 @@ function checkForm() { //eslint-disable-line
       });
     }
   }
-  return false;
 }

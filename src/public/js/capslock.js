@@ -1,4 +1,4 @@
-function capslock(el) {
+function capslock(el, msgEl = '#capslock') {
   el.addEventListener('keypress', e => {
     let kc, sk;
 
@@ -18,7 +18,7 @@ function capslock(el) {
       }
     }
 
-    const msg = $('#capslock');
+    const msg = $(msgEl);
     if (kc >= 65 && kc <= 90 && !sk || kc >= 97 && kc <= 122 && sk) {
       msg.show();
     } else {

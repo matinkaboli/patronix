@@ -1,15 +1,6 @@
 // This file need to be changed
 function checkForm() { //eslint-disable-line
   const f = document.forms['resend-form'];
-  const divW = document.getElementById('warn');
-  const divE = document.getElementById('error');
-  const divS = document.getElementById('success');
-  divW.innerHTML = '';
-  divE.innerHTML = '';
-  divS.innerHTML = '';
-  divW.style.display = 'none';
-  divE.style.display = 'none';
-  divS.style.display = 'none';
 
   if (f.email.value) {
     if (!validateEmail(f.email.value)) {

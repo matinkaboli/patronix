@@ -9,16 +9,13 @@
   <form
     name="forgot-form"
     method="post"
-    action="/forgot"
-    onsubmit="return checkForm()">
+    action="#">
       <fieldset>
         <p>
           <input
             type="email"
             name="email"
-            value="ایمیل"
-            onBlur="if(this.value=='')this.value='ایمیل'"
-            onFocus="if(this.value=='ایمیل')this.value=''"
+            placeholder="ایمیل"
             required>
         </p>
         <p>

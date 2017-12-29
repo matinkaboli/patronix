@@ -6,17 +6,14 @@
 {% block content %}
 <form
   method="post"
-  action="/forgot/changepass"
-  name="changepass-form"
-  onsubmit="return checkForm()">
+  action="#"
+  name="changepass-form">
   <fieldset>
     <p>
       <input
         type="password"
         name="password"
-        value="رمز جدید"
-        onBlur="if(this.value=='')this.value='رمز جدید'"
-        onFocus="if(this.value=='رمز جدید')this.value=''"
+        placeholder="رمز جدید"
         required>
     </p>
     <p>
