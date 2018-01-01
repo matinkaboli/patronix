@@ -5,7 +5,7 @@ fetch('/captcha', {
 }).then(checkStatus).then(res => res.json()).then(data => {
   svgElement.html(data.captcha);
 }).catch(e => {
-  svgElement.html('خطا! بعدا امتحان کنید');
+  svgElement.html(M[0][0]);
 });
 
 const f = document.forms['signup-form'];
@@ -13,27 +13,17 @@ const f = document.forms['signup-form'];
 f.addEventListener('submit', e => {
   e.preventDefault();
 
-
-  const captchaErr = $('#captcha-err');
-  const taken = $('#taken');
-  const err = $('#err');
-  const emailErr = $('#email-err');
-  const passErr = $('#pass-err');
-  const done = $('#signup-done');
-
-  err.hide();
-  emailErr.hide();
-  captchaErr.hide();
-  taken.hide();
-  passErr.hide();
-  done.hide();
-
   if (
     f.email.value &&
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      emailErr.show();
+      iziToast.error({
+        title: 'خطا!',
+        rtl: true,
+        message: M[1][0]
+      });
+
       f.email.select();
     } else {
 
@@ -53,29 +43,42 @@ f.addEventListener('submit', e => {
           })
         }).then(checkStatus).then(res => res.json()).then(result => {
           const data = result.report;
-          console.log(data);
+
           if (data.type === 0) {
             if (data.text === 0) {
-              // unverified
-              captchaErr.show();
-            } else if (data.text === 1) {
-              // account has expired
-            } else if (data.text === 2) {
-              // wrong pass or no such user
-              taken.show();
+              iziToast.warning({
+                title: 'خطا!',
+                rtl: true,
+                message: M[0][1]
+              });
             } else if (data.text === 3) {
-              // error occured
-              err.show();
+              iziToast.error({
+                title: 'خطا!',
+                rtl: true,
+                message: M[0][0]
+              });
             }
           } else if (data.type === 2) {
-            done.show();
+            iziToast.success({
+              title: 'هورا!!',
+              rtl: true,
+              message: M[2][0]
+            });
           }
         }).catch(() => {
-          // error occured
-          err.show();
+          iziToast.error({
+            title: 'خطا!',
+            rtl: true,
+            message: M[0][0]
+          });
         });
       } else {
-        passErr.show();
+        iziToast.warning({
+          title: 'خطا!',
+          rtl: true,
+          message: M[1][1]
+        });
+
         f.password.select();
       }
     }

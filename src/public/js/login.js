@@ -3,26 +3,17 @@ const f = document.forms['login-form'];
 f.addEventListener('submit', e => {
   e.preventDefault();
 
-  const unverified = $('#unverified');
-  const expired = $('#expired');
-  const err = $('#err');
-  const wrong = $('#wrong');
-  const success = $('#moving');
-  const emailErr = $('#email-err');
-
-  unverified.hide();
-  expired.hide();
-  err.hide();
-  wrong.hide();
-  success.hide();
-  emailErr.hide();
-
   if (
     f.email.value &&
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      emailErr.show();
+      iziToast.error({
+        title: 'خطا!',
+        rtl: true,
+        message: M[0][0]
+      });
+
       f.email.select();
     } else {
       fetch('/login', {
@@ -39,29 +30,47 @@ f.addEventListener('submit', e => {
       }).then(checkStatus).then(res => res.json()).then(data => {
         if (data.type === 0) {
           if (data.text === 0) {
-            // unverified
-            unverified.show();
+            iziToast.warning({
+              title: 'خطا!',
+              rtl: true,
+              message: M[0][5]
+            });
           } else if (data.text === 1) {
-            // account has expired
-            expired.show();
+            iziToast.warning({
+              title: 'خطا!',
+              rtl: true,
+              message: M[0][4]
+            });
           } else if (data.text === 2) {
-            // wrong pass or no such user
-            wrong.show();
-            f.email.select();
+            iziToast.warning({
+              title: 'خطا!',
+              rtl: true,
+              message: M[0][3]
+            });
           } else if (data.text === 3) {
-            // error occured
-            err.show();
+            iziToast.warning({
+              title: 'خطا!',
+              rtl: true,
+              message: M[0][0]
+            });
           }
         } else if (data.type === 2) {
-          success.show();
+          iziToast.success({
+            title: 'هورا',
+            rtl: true,
+            message: M[2][3]
+          });
           window.location.href = '/u';
         }
       }).catch(() => {
-        // error occured
-        err.hide();
+        iziToast.warning({
+          title: 'خطا!',
+          rtl: true,
+          message: M[0][0]
+        });
       });
     }
   }
 });
 
-capslock(f.password, '#capslock');
+capslock(f.password);

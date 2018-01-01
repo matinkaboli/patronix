@@ -49,7 +49,7 @@ passSet.addEventListener('submit', e => {
 
 capslock(passSet.newpass);
 
-document.getElementById('delete-account').addEventListener('click', e => {
+$('#delete-account').on('click', e => {
   e.preventDefault();
 
   const err = $('#err3');
