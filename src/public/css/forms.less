@@ -145,6 +145,32 @@ header {
       a {
         color: white;
         font-size: 20px;
+        position: relative;
+        display: inline-block;
+
+        &::before, &::after {
+          position: absolute;
+          color: transparent;
+          top: 50%;
+          transition: all 0.3s;
+        }
+
+        &::before {
+          content: ']';
+          left: -15px;
+          transform: translate(-20px, -50%) scale(0.5, 0.5);
+        }
+
+        &::after {
+          content: '[';
+          right: -15px;
+          transform: translate(20px, -50%) scale(0.5, 0.5);
+        }
+
+        &:hover::before, &:hover::after {
+          color: white;
+          transform: translate(0px, -50%) scale(1, 1);
+        }
 
         &:hover, &:active {
           color: darken(white, 10%);
