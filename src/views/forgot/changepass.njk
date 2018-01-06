@@ -1,32 +1,35 @@
-{% extends locals.path + '/index.njk' %}
+{% extends locals.path + '/form.njk' %}
 
 {% block head %}
 {% endblock %}
 
 {% block content %}
-<form
-  method="post"
-  action="#"
-  name="changepass-form">
-  <fieldset>
-    <p>
-      <input
-        type="password"
-        name="password"
-        placeholder="رمز جدید"
-        required>
-    </p>
-    <p>
-      <input
-        type="hidden"
-        name="code"
-        value="{{ code }}">
-    </p>
-    <p>
-      <button type="submit">تغییر رمز</button>
-    </p>
-  </fieldset>
-</form>
+<h1 id="title">تغییر رمز</h1>
+<div id="whole-form">
+  <form
+    method="post"
+    action="#"
+    name="changepass-form">
+    <fieldset>
+      <p>
+        <input
+          type="password"
+          name="password"
+          placeholder="رمز جدید"
+          required>
+      </p>
+      <p>
+        <input
+          type="hidden"
+          name="code"
+          value="{{ code }}">
+      </p>
+      <p>
+        <button type="submit">تغییر رمز</button>
+      </p>
+    </fieldset>
+  </form>
+</div>
 {% endblock %}
 
 {% block scripts %}

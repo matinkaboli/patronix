@@ -129,3 +129,27 @@ body {
     }
   }
 }
+
+header {
+  width: 100%;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px 0 20px;
+
+    li {
+      display: inline;
+      margin: 0 20px 0 20px;
+
+      a {
+        color: white;
+        font-size: 20px;
+
+        &:hover, &:active {
+          color: darken(white, 10%);
+        }
+      }
+    }
+  }
+}
