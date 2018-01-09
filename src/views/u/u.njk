@@ -1,11 +1,12 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/box.css">
 {% endblock %}
 
 {% block content %}
-<div class="an">
-  <h1>Hello {{ user.name.first }}</h1>
+<div>
+  <div class="box"></div>
 </div>
 {% endblock %}
 

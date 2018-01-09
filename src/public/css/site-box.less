@@ -1,0 +1,98 @@
+@import "colors";
+
+#sites-box {
+  width: 600px;
+  height: auto;
+  background-color: white;
+  color: black;
+  margin: 20px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 54px #eee;
+}
+
+#membership {
+  padding: 10px;
+  color: #333;
+}
+
+#sites-title {
+  font-size: 30px;
+  margin: 20px;
+}
+
+.site {
+  margin: 15px 0 0 0;
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  position: relative;
+}
+
+.site-breaker {
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+}
+
+.site-icon {
+  font-size: 20px;
+  display: inline;
+  color: white;
+  background-color: @blue-1;
+  margin: 0;
+  padding: 8px 10px 0 10px;
+  border-radius: 2px;
+  margin: 0 0 0 20px;
+}
+
+.site-link {
+  color: black;
+
+  &:hover, &:active {
+    text-decoration: underline;
+  }
+}
+
+.site-setting {
+  position: absolute;
+  left: 60px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100px;
+  height: 35px;
+  transition: color 200ms, background-color 200ms;
+
+  &:hover, &:active {
+    color: white;
+    background-color: black;
+  }
+}
+
+#create-site {
+  padding: 20px;
+
+  a {
+    color: @blue-2;
+
+    &:hover, &:active {
+      color: @blue-3;
+    }
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  #sites-box {
+    width: auto;
+  }
+
+  .site-icon {
+    display: none;
+  }
+
+  .site-setting {
+    left: 30px;
+  }
+}

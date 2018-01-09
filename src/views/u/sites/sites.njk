@@ -1,14 +1,27 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/site-box.css">
 {% endblock %}
 
 {% block content %}
-{% for site in sites %}
-<p>
- <a href="/u/site/{{site._id}}">{{site.name}}</a>
-</p>
-{% endfor %}
+{% if sites %}
+<h1 id="sites-title">سایت ها</h1>
+<div id="sites-box">
+  <p id="membership">سایت هایی که شما در آنها عضو هستید</p>
+  {% for site in sites %}
+  <div class="site">
+    <div class="icon-globe site-icon"></div>
+    <a href="/u/site/{{site._id}}" class="site-link">{{ site.name }}</a>
+    <button class="site-setting">تنظیمات</button>
+  </div>
+  <div class="site-breaker"></div>
+  {% endfor %}
+  <div id="create-site">
+    <a href="/u/sites/add">ساخت سایت جدید...</a>
+  </div>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
