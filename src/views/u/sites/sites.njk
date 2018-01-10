@@ -5,18 +5,27 @@
 {% endblock %}
 
 {% block content %}
-{% if sites %}
 <h1 id="sites-title">سایت ها</h1>
+{% if sites | join("") %}
 <div id="sites-box">
   <p id="membership">سایت هایی که شما در آنها عضو هستید</p>
   {% for site in sites %}
   <div class="site">
     <div class="icon-globe site-icon"></div>
     <a href="/u/site/{{site._id}}" class="site-link">{{ site.name }}</a>
-    <button class="site-setting">تنظیمات</button>
+    <a href="/u/site/{{ site._id }}/edit">
+      <button class="site-setting">تنظیمات</button>
+    </a>
   </div>
   <div class="site-breaker"></div>
   {% endfor %}
+  <div id="create-site">
+    <a href="/u/sites/add">ساخت سایت جدید...</a>
+  </div>
+</div>
+{% else %}
+<div id="sites-box">
+  <p id="membership">شما در هیچ سایتی عضو نیستید</p>
   <div id="create-site">
     <a href="/u/sites/add">ساخت سایت جدید...</a>
   </div>
@@ -25,4 +34,5 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/site-created-message.js"></script>
 {% endblock %}
