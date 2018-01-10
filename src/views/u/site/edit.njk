@@ -1,28 +1,47 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/setting.css">
 {% endblock %}
 
 {% block content %}
-<form
-  action="/u/site/{{site._id}}/edit"
-  method="POST">
+<div id="forms-container" style="margin-top: 30px;">
 
-  <input
-    type="text"
-    name="name"
-    value="{{site.name}}">
+  <div class="whole-form">
 
-  <input
-    type="submit"
-    value="submit">
+    <h1>تنظیمات سایت</h1>
 
-</form>
+    <form
+      action="/u/site/{{site._id}}/edit"
+      name="site-setting"
+      method="POST">
 
-<form action="/u/site/{{ site._id }}/remove" method="post">
-  <input type="submit" value="delete site">
-</form>
+      <fieldset>
+
+        <p>
+          <input
+          type="text"
+          name="name"
+          placeholder="نام سایت"
+          maxlength="30"
+          value="{{ site.name }}">
+        </p>
+
+        <p>
+          <button type="submit">ثبت</button>
+        </p>
+
+      </fieldset>
+
+    </form>
+  </div>
+</div>
+
+<div id="delete-form">
+  <button type="submit" id="delete-account">حذف سایت</button>
+</div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/site-edit.js"></script>
 {% endblock %}

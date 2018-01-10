@@ -52,10 +52,6 @@ capslock(passSet.newpass);
 $('#delete-account').on('click', e => {
   e.preventDefault();
 
-  const err = $('#err3');
-
-  err.hide();
-
   iziToast.question({
       timeout: 10000,
       close: false,
@@ -74,9 +70,14 @@ $('#delete-account').on('click', e => {
           fetch('/u/setting/delete', {
             method: 'POST', credentials: 'include'
           }).then(checkStatus).then(res => res.json()).then(data => {
+            localStorage.setItem('delAcc', 2);
             window.href = '/';
           }).catch(() => {
-            err.show();
+            iziToast.error({
+              title: 'خطا!',
+              rtl: true,
+              message: M[0][0]
+            });
           });
         }, true],
         ['<button>نه</button>', (instance, toast) => {
