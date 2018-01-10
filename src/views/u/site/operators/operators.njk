@@ -1,10 +1,27 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/site-box.css">
 {% endblock %}
 
 {% block content %}
-
+<div id="sites-box">
+  <h3 id="membership">پشتیبان ها</h3>
+  {% for operator in operators %}
+  <div class="site">
+    <div class="icon-male site-icon"></div>
+    <span id="op-email">{{operator.email}}</span>
+    <a href="/u/site/{{operator._id}}" class="site-link">{{ operator.name.first }}</a>
+    <a href="/u/site/{{ site._id }}/edit">
+      <button class="site-setting">تنظیمات</button>
+    </a>
+  </div>
+  <div class="site-breaker"></div>
+  {% endfor %}
+  <div id="create-site">
+    <a href="/u/sites/add">اضافه کردن پشتیبان...</a>
+  </div>
+</div>
 {% for operator in operators %}
   <p>
     {{operator.name.first}} {{operator.name.last}} - {{operator.email}}
