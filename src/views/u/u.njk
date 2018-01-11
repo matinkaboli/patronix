@@ -1,12 +1,16 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/box.css">
+<link rel="stylesheet" href="/files/css/user-profile.css">
 {% endblock %}
 
 {% block content %}
-<div>
-  <div class="box"></div>
+<div id="profile">
+  <div id="full-name">
+    <p style="display: inline">{{ user.name.first }}</p>
+    <p style="display: inline">{{ user.name.last }}</p>
+  </div>
+  <p id="email">{{ user.email }}</p>
 </div>
 {% endblock %}
 

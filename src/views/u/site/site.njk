@@ -4,14 +4,9 @@
 {% endblock %}
 
 {% block content %}
-<p>
-  code
-</p>
+<script src="{{ url }}/socket.io/socket.io.js"></script>
 
-<xmp>
-  <script src="{{url}}socket.io/socket.io.js"></script>
-  {{token}}
-</xmp>
+{{ token }}
 {% endblock %}
 
 {% block scripts %}
