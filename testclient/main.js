@@ -1,5 +1,5 @@
 (() => {
-  let token = 'pRSvIKNXqZi0tFCgGTDnQ4A5xYwaoju8cOsLB6UkEemr3zhlMb';
+  let token = 'zu3Q1Gvr8M0mcJBwfS59yqgldtC2s7RPZbapLHYFVxDoj6hiOE';
   let socketUrl = `http://localhost:8010/client?token=${token}`;
 
   let socket = io(socketUrl);
