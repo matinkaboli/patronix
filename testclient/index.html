@@ -2,12 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+    href="http://localhost:8010/files/css/site-client.css">
   </head>
   <body>
-    <input type="text" id="chat"/>
-    <button id="send">Send</button>
-     <script src="http://localhost:8010/socket.io/socket.io.js"></script>
-     <script src="./main.js"></script>
+    <div id="patronix-icon">
+      <p>Patronix</p>
+    </div>
+    <div id="patronix-chatlist">
+
+      <div id="inputs">
+        <input
+          type="text"
+          id="chat"
+          placeholder="چت کن لامصب" />
+        <button id="send">ارسال</button>
+      </div>
+    </div>
+
+    <script src="http://localhost:8010/socket.io/socket.io.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>

@@ -13,3 +13,8 @@
     socket.emit('message', text.value);
   });
 })();
+
+
+document.getElementById('patronix-icon').onclick = function () {
+  document.getElementById('patronix-chatlist').classList.toggle('hidden-list');
+};
