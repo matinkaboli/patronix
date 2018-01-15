@@ -14,7 +14,8 @@
   });
 })();
 
+const chatList = document.getElementById('patronix-chatlist');
 
 document.getElementById('patronix-icon').onclick = function () {
-  document.getElementById('patronix-chatlist').classList.toggle('hidden-list');
+  chatList.classList.toggle('hidden-list');
 };
