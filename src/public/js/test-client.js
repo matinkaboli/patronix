@@ -16,6 +16,8 @@
 
 const chatList = document.getElementById('patronix-chatlist');
 
+chatList.classList.add('hidden-list');
+
 document.getElementById('patronix-icon').onclick = function () {
   chatList.classList.toggle('hidden-list');
 };
