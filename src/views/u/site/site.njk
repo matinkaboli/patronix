@@ -1,12 +1,24 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/show-code.css">
 {% endblock %}
 
 {% block content %}
-<h1>برای استفاده از این سرویس، کد زیر را به کد های سایتتان اضافه کنید</h1>
-<script src="{{ url }}/socket.io/socket.io.js"></script>
-{{ token }}
+<div id="code">
+  <h3>کد زیر را داخل تگ head قرار دهید</h3>
+  <br>
+  &lt;link rel="stylesheet" href="{{ url }}/files/css/site-client.css"&gt;
+  <br>
+  <br>
+  <h3>کد زیر را در اخر تگ body قرار دهید</h3>
+  <br>
+  &lt;script&gt; let token = "{{ token }}"; &lt;/script&gt;
+  <br>
+  &lt;script src="{{ url }}/socket.io/socket.io.js"&gt;&lt;/script&gt;
+  <br>
+  &lt;script src="{{ url }}/files/js/test-client.js"&gt;&lt;/script&gt;
+</div>
 {% endblock %}
 
 {% block scripts %}
