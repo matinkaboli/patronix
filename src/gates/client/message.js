@@ -8,9 +8,11 @@ gate
 .guard(
   guards.init,
   guards.client.checkSite,
-  guards.client.initChat
+  guards.client.initChat,
+  guards.updateChat,
+  guards.rightChat
 )
-.passenger(socket => message => {
+.passenger((socket, nsp, io) => message => {
   let chat = socket.data.chat;
 
   chat.chats.push({
@@ -18,7 +20,12 @@ gate
     sender: 0
   });
 
-  chat.save();
+  chat.save().then(() => {
+    io
+    .of('/operator')
+    .to(chat._id.toString())
+    .emit('message', message);
+  });
 });
 
 export default gate;

@@ -17,7 +17,7 @@ export default class {
       for (let guard of this.guards.values()) {
         yield new Promise(resolve => {
           guard(resolve, socket, nsp, io)(...args);
-        });
+        }).catch(e => { console.log(e); });
       }
     }.bind(this);
   }
@@ -32,7 +32,7 @@ export default class {
       if (next.done) {
         passenger(socket, nsp, io)(...args);
       } else {
-        next.value.then(loop).catch(e => { console.log(e); });
+        next.value.then(loop);
       }
     })();
   }

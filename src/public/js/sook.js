@@ -13,3 +13,7 @@ socket.on('notification', (chat, site) => {
 $('#send').on('click', () => {
   socket.emit('message', $('#message').value);
 });
+
+socket.on('message', message => {
+  console.log(message);
+});

@@ -19,7 +19,10 @@ gate
   };
   chat.take = true;
 
-  chat.save();
+  chat.save().then(() => {
+    socket.join(chat._id.toString());
+  });
+
 });
 
 export default gate;

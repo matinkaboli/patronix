@@ -8,12 +8,18 @@ gate
 .guard(
   guards.init,
   guards.operator.logged,
-  guards.operator.rightChat
+  guards.updateChat,
+  guards.rightChat
 )
-.passenger(socket => message => {
+.passenger((socket, nps, io) => message => {
   socket.data.chat.chats.push({ sender: 1, message });
 
-  socket.data.chat.save();
+  socket.data.chat.save().then(() => {
+    io
+    .of('/client')
+    .to(socket.data.chat._id.toString())
+    .emit('message', message);
+  });
 });
 
 export default gate;
