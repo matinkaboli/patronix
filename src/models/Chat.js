@@ -41,6 +41,10 @@ const chatSchema = new Schema({
   done: {
     type: Boolean,
     required: true
+  },
+  take: {
+    type: Boolean,
+    required: true
   }
 });
 

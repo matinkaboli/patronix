@@ -3,7 +3,7 @@ export default (req, res, next) => {
 
   if (
     sites.includes(req.middle.chat.site.toString()) &&
-    !req.middle.chat.operator.socket
+    !req.middle.chat.take
   ) {
     next();
   } else {

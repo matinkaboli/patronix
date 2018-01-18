@@ -29,7 +29,6 @@
     "no-sparse-arrays": 2,
     "no-unreachable": 2,
     "no-unsafe-negation": 2,
-    "class-methods-use-this": 2,
     "curly": [2, "all"],
     "dot-location": [2, "property"],
     "dot-notation": [2, { "allowKeywords": true }],

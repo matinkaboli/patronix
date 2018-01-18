@@ -11,7 +11,7 @@ gate
 )
 .passenger(socket => () => {
   if (socket.data.chat) {
-    if (!socket.data.chat.operator.socket) {
+    if (!socket.data.chat.take) {
       socket.data.chat.remove().then();
     } else {
       socket.data.chat.done = true;

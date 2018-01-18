@@ -9,3 +9,7 @@ fetch('/u/generate', { credentials: 'include', method: 'POST' })
 socket.on('notification', (chat, site) => {
   $('#chat-list').appendText(nunjucks.render('chats.njk', { chat, site }));
 });
+
+$('#send').on('click', () => {
+  socket.emit('message', $('#message').value);
+});

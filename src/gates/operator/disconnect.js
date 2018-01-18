@@ -16,11 +16,13 @@ gate
 
     socket.data.chat.save();
   }
-  
-  SocketStore.findOne({ user: socket.data.user._id }).then(store => {
-    store.sockets.splice(store.sockets.indexOf(socket.id), 1);
 
-    store.save();
+  SocketStore.findOne({ user: socket.data.user._id }).then(store => {
+    if (store) {
+      store.sockets.splice(store.sockets.indexOf(socket.id), 1);
+
+      store.save();
+    }
   });
 });
 

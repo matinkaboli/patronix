@@ -10,7 +10,7 @@ router.get(
   perms.logged,
   (req, res) => {
     Chat
-    .find({ site: { $in: req.user.user.sites } })
+    .find({ site: { $in: req.user.user.sites }, done: false, take: false })
     .populate('site')
     .exec()
     .then(chats => {

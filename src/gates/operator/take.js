@@ -17,6 +17,7 @@ gate
     user: socket.data.user._id,
     socket: socket.id
   };
+  chat.take = true;
 
   chat.save();
 });

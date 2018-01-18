@@ -5,7 +5,8 @@ export default (next, socket, nsp, io) => () => {
     let chat = new Chat({
       site: socket.data.site.id,
       client: socket.id,
-      done: false
+      done: false,
+      take: false
     });
 
     chat.save().then(() => {
