@@ -8,7 +8,8 @@ gate
 .lane('disconnect')
 .guard(
   guards.init,
-  guards.operator.logged
+  guards.operator.logged,
+  guards.updateChat
 )
 .passenger(socket => () => {
   if (socket.data.chat) {

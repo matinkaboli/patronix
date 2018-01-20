@@ -13,18 +13,18 @@ gate
   guards.rightChat
 )
 .passenger((socket, nsp, io) => message => {
-  let chat = socket.data.chat;
-
-  chat.chats.push({
-    message,
-    sender: 0
+  socket.data.chat.chats.push({
+    sender: 0,
+    message
   });
 
-  chat.save().then(() => {
+  socket.data.chat.save().then(() => {
     io
     .of('/operator')
-    .to(chat._id.toString())
+    .to(socket.data.chat._id.toString())
     .emit('message', message);
+  }).catch(() => {
+    socket.emit('report', { type: 1, text: 0 });
   });
 });
 
