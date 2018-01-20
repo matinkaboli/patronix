@@ -1,18 +1,43 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/chats.css">
 {% endblock %}
 
 {% block content %}
 <div id="chats">
-
+  {% for chat in chat.chats %}
+  <div id="{{ chat.time }}" class="message-box">
+    <p class="chat-message">{{ chat.message }}</p>
+    <script>
+    var d = new Date('{{ chat.time }}');
+    var time = `${d.getHours()}:${d.getMinutes()}`;
+    var p = document.createElement('p');
+    p.setAttribute('class', 'message-time')
+    p.innerHTML = time;
+    document.getElementById('{{ chat.time }}').appendChild(p);
+    </script>
+  </div>
+  {% endfor %}
+  <button id="take" data-id="{{ chat._id }}">قبول کردن چت</button>
+  <div id="send-message-form" class="hidden-el">
+    <input type="text" id="message" />
+    <button id="send">send</button>
+  </div>
 </div>
-
-<input type="text" id="message" />
-<button id="send">send</button>
-<button id="take" data-id="{{chat._id}}">take</button>
 {% endblock %}
 
 {% block scripts %}
 <script src="/files/js/chat.js"></script>
 {% endblock %}
+
+{# { _id: 5a63a5ea52a7a10f3e874d71,
+  site: 5a63a2f4078cec0be6fb466f,
+  client: '/client#TDgKafVh2jaduoDCAAAA',
+  done: false,
+  take: false,
+  __v: 1,
+  chats:
+   [ { message: 'Hey babe',
+       sender: 0,
+       time: 2018-01-20T20:26:18.149Z } ] } #}
