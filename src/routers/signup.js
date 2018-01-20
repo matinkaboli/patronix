@@ -47,20 +47,20 @@ router.post('/signup', login, limiter, (req, res) => {
         });
 
         link.save().then(() => {
-          res.json({ report: { type: 2, text: 0 } });
+          res.json({ type: 2, text: 0 });
         });
       }).catch(() => {
-        res.json({ report: { type: 0, text: 0 } });
+        res.json({ type: 0, text: 0 });
       });
     }
 
     else {
-      res.json({ report: { type: 0, text: 0 } });
+      res.json({ type: 0, text: 0 });
     }
   }
 
   else {
-    res.json({ report: { type: 0, text: 0 } });
+    res.json({ type: 0, text: 0 });
   }
 });
 
