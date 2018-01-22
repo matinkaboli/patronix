@@ -14,10 +14,32 @@
   }
 }
 
+.operator-list-link {
+  max-width: 200px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 3px;
+  background-color: white;
+  text-align: center;
+
+  a {
+    color: black;
+
+    &:hover, &:active, &:focus {
+      color: lighten(black, 20%);
+    }
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   #code {
     width: 80%;
     font-size: 12px;
+    margin: 5px;
+  }
+
+  .operator-list-link {
+    width: 80%;
     margin: 5px;
   }
 }
