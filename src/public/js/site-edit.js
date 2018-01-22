@@ -39,7 +39,7 @@ delAcc.on('click', e => {
               message: 'بعدا امتحان کنید'
             });
           });
-          
+
         }, true],
         ['<button>نه</button>', (instance, toast) => {
           instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
@@ -51,7 +51,12 @@ delAcc.on('click', e => {
 siteSetting.addEventListener('submit', e => {
   e.preventDefault();
 
-  fetch(window.location.href, {
+
+  let URL = window.location.pathname;
+  URL = URL.replace('setting', 'edit');
+
+
+  fetch(URL, {
     method: 'POST',
     credentials: 'include',
     headers: new Headers({

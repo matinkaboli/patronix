@@ -11,24 +11,61 @@
   <div class="site">
     <div class="icon-male site-icon"></div>
     <span id="op-email">{{operator.email}}</span>
-    <a href="/u/site/{{operator._id}}" class="site-link">{{ operator.name.first }}</a>
-    <a href="/u/site/{{ site._id }}/edit">
-      <button class="site-setting">تنظیمات</button>
-    </a>
+    <span class="site-link">{{ operator.name.first }}</span>
+
+    <form
+      action="/u/site/id/operators/remove"
+      id="remove-operator-form"
+      method="post"
+      style="display: inline;">
+
+      <input type="hidden" name="id" value="{{ operator._id }}">
+      <button class="site-setting" type="submit">حذف</button>
+
+    </form>
   </div>
   <div class="site-breaker"></div>
   {% endfor %}
+  <div class="add-operator-box">
+    <form
+      method="post"
+      action="/u/site/id/operators/add"
+      name="add-operator-form"
+      id="add-operator-form"
+      class="hidden-box">
+
+      <input
+        type="text"
+        name="email"
+        required
+        placeholder="ایمیل پشتیبان">
+
+      <button type="submit">اضافه کردن</button>
+
+    </form>
+  </div>
+
   <div id="create-site">
-    <a href="/u/sites/add">اضافه کردن پشتیبان...</a>
+    <a
+      href="/u/site/id/operators/add"
+      id="add-operator">
+      اضافه کردن پشتیبان...
+    </a>
   </div>
 </div>
-{% for operator in operators %}
-  <p>
-    {{operator.name.first}} {{operator.name.last}} - {{operator.email}}
-  </p>
-{% endfor %}
-
 {% endblock %}
 
 {% block scripts %}
+  <script src="/files/js/make-operator-link.js"></script>
+  <script>
+    fixLink('add-operator');
+    fixLink('remove-operator-form', 'action');
+    fixLink('add-operator-form', 'action');
+
+    $('#add-operator').on('click', e => {
+      e.preventDefault();
+
+      $('#add-operator-form').toggleClass('hidden-box');
+    });
+  </script>
 {% endblock %}

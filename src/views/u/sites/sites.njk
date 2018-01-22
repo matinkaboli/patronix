@@ -6,9 +6,9 @@
 
 {% block content %}
 <h1 id="sites-title">سایت ها</h1>
-{% if sites | join("") %}
 <div id="sites-box">
-  <p id="membership">سایت هایی که شما در آنها عضو هستید</p>
+{% if sites | join("") %}
+  <p id="membership">سایت هایی که مالک آنها هستید</p>
   {% for site in sites %}
   <div class="site">
     <div class="icon-globe site-icon"></div>
@@ -19,20 +19,41 @@
   </div>
   <div class="site-breaker"></div>
   {% endfor %}
-  <div id="create-site">
-    <a href="/u/sites/add">ساخت سایت جدید...</a>
-  </div>
-</div>
 {% else %}
-<div id="sites-box">
   <p id="membership">شما در هیچ سایتی عضو نیستید</p>
+{% endif %}
+  <div class="add-operator-box">
+    <form
+      method="post"
+      action="/u/sites/add"
+      name="add-site"
+      id="add-operator-form"
+      class="hidden-box">
+
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="اسم سایت">
+
+      <button type="submit">اضافه کردن</button>
+
+    </form>
+  </div>
   <div id="create-site">
-    <a href="/u/sites/add">ساخت سایت جدید...</a>
+    <a href="/u/sites/add" id="add-one-site">ساخت سایت جدید...</a>
   </div>
 </div>
-{% endif %}
 {% endblock %}
 
 {% block scripts %}
 <script src="/files/js/site-created-message.js"></script>
+<script src="/files/js/site-add.js"></script>
+<script>
+  $('#add-one-site').on('click', e => {
+    e.preventDefault();
+
+    $('#add-operator-form').toggleClass('hidden-box');
+  });
+</script>
 {% endblock %}

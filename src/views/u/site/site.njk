@@ -19,7 +19,15 @@
   <br>
   &lt;script src="{{ url }}/files/js/test-client.js"&gt;&lt;/script&gt;
 </div>
+
+<div class="operator">
+  <a href="/u/site/id/operators/" id="operator-link">لیست پشتیبان ها</a>
+</div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/make-operator-link.js"></script>
+<script>
+  fixLink('operator-link');
+</script>
 {% endblock %}

@@ -83,6 +83,42 @@
   }
 }
 
+#add-operator-form {
+  margin: 20px;
+  padding: 20px;
+
+  input {
+    border: 1px solid #e9e9e9;
+    padding: 6px 10px;
+    border-radius: 3px;
+    margin-left: 10px;
+
+    &:hover, &:focus, &:active {
+      border: 1px solid @blue-base;
+    }
+  }
+
+  button {
+    background-color: #212125;
+    color: white;
+    padding: 6px 10px;
+    border: 0;
+    font-family: SB;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 9px;
+    border-radius: 6px;
+
+    &:hover, &:active, &:focus {
+      background-color: #393e46;
+    }
+  }
+}
+
+.hidden-box {
+  display: none;
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   #sites-box {
     width: auto;
@@ -95,5 +131,16 @@
 
   .site-setting {
     left: 30px;
+  }
+
+  #op-email {
+    display: none;
+  }
+  #add-operator-form {
+
+    input, button {
+      display: block;
+      max-width: 100px;
+    }
   }
 }

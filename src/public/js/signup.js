@@ -42,7 +42,7 @@ f.addEventListener('submit', e => {
             captcha: f.captcha.value
           })
         }).then(checkStatus).then(res => res.json()).then(result => {
-          const data = result.report;
+          const data = result;
 
           if (data.type === 0) {
             if (data.text === 0) {
