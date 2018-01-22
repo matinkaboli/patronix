@@ -15,11 +15,15 @@ router.get(
     Site
     .findById(req.params.id)
     .populate('operators')
+    .populate('owner')
     .exec()
     .then(site => {
       res.render(
         'u/site/operators/operators.njk',
-        { operators: site.operators }
+        {
+          operators: site.operators,
+          owner: site.owner
+        }
       );
     });
   }
