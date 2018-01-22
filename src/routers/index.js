@@ -5,7 +5,6 @@ function getRouters(dir) {
   let result = [];
   let files = fs.readdirSync(dir);
 
-
   for (let file of files) {
     if (file !== 'index.js') {
       fs.lstatSync(resolve(dir, file)).isFile() ?
