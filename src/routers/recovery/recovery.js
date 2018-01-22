@@ -15,22 +15,21 @@ const limiter = new RateLimit({
   }
 });
 
-router.get('/forgot', login, (req, res) => {
-  res.render('forgot/forgot.njk');
+router.get('/recovery', login, (req, res) => {
+  res.render('recovery/recovery.njk');
 });
 
-router.post('/forgot', login, limiter, (req, res) => {
+router.post('/recovery', login, limiter, (req, res) => {
   if (req.body.email) {
     req.body.email = req.body.email.toLowerCase();
 
     User.findOne({ email: req.body.email }).then(user => {
       if (user) {
-        Link.findOne({ user: user._id }).then(code => {
-          if (code) {
-            // send(req.body.email, code.link, 'forgot', user.fname);
+        Link.findOne({ user: user._id }).then(link => {
+          if (link) {
+            // send(req.body.email, link.link, 'forgot', user.fname);
 
-            res.json({ type: 's' });
-            // sent
+            res.json({ type: 2, text: 0 });
           } else {
             const newLink = new Link({
               link: unique(25),
@@ -40,28 +39,18 @@ router.post('/forgot', login, limiter, (req, res) => {
             newLink.save().then(() => {
               // send(req.body.email, newLink.link, 'forgot', user.fname);
 
-              res.json({ type: 's' });
-              // sent
+              res.json({ type: 2, text: 0 });
             }).catch(() => {
-              res.json({ type: 'e', code: 1 });
-              // error
+              res.json({ type: 0, text: 0 });
             });
           }
-        }).catch(() => {
-          res.json({ type: 'e', code: 1 });
-          // error
         });
       } else {
-        res.json({ type: 'e', code: 0 });
-        // no such user
+        res.json({ type: 0, text: 0 });
       }
-    }).catch(() => {
-      res.json({ type: 'e', code: 1 });
-      // error
     });
   } else {
-    res.json({ type: 'e', code: 1 });
-    // error
+    res.json({ type: 0, text: 0 });
   }
 });
 
