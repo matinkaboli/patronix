@@ -32,6 +32,14 @@ mongoose.connect(config.db, {
  useMongoClient: true,
 });
 
+mongoose.connection.on('error', () => {
+  process.exit(0);
+});
+
+mongoose.connection.on('disconnected', () => {
+  process.exit(0);
+});
+
 const app = express();
 
 let server;
