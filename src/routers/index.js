@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { resolve } from 'path';
 
-
 function getRouters(dir) {
   let result = [];
   let files = fs.readdirSync(dir);
