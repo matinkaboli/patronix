@@ -16,6 +16,7 @@
     <form
       action="/u/site/id/operators/remove"
       id="remove-operator-form"
+      name="remove-operator-form"
       method="post"
       style="display: inline;">
 
@@ -56,16 +57,7 @@
 {% endblock %}
 
 {% block scripts %}
+  <script src="/files/js/lib/validator.js"></script>
   <script src="/files/js/make-operator-link.js"></script>
-  <script>
-    fixLink('add-operator');
-    fixLink('remove-operator-form', 'action');
-    fixLink('add-operator-form', 'action');
-
-    $('#add-operator').on('click', e => {
-      e.preventDefault();
-
-      $('#add-operator-form').toggleClass('hidden-box');
-    });
-  </script>
+  <script src="/files/js/add-operator.js"></script>
 {% endblock %}
