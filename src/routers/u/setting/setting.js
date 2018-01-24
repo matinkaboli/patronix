@@ -5,28 +5,11 @@ const { logged } = rootRequire('./perms');
 const { User } = rootRequire('./models');
 
 router.get('/u/setting', logged, (req, res) => {
-  if (req.session.user) {
-    User.findOne({ _id: req.session.user }).then(user => {
-      if (user) {
-        res.render('u/setting/setting.njk', {
-          error: req.flash('error'),
-          success: req.flash('success'),
-          warn: req.flash('warn'),
-          user
-        });
-      }
-      else {
-        req.flash('erorr', 'خطا! بعدا امتحان کنید.');
-        res.redirect('/u');
-      }
-    }).catch(() => {
-      req.flash('erorr', 'خطا! بعدا امتحان کنید.');
-      res.redirect('/u');
-    });
-  } else {
-    req.flash('erorr', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/u');
-  }
+  User.findOne({ _id: req.user.user._id }).then(user => {
+    if (user) {
+      res.render('u/setting/setting.njk', { user });
+    }
+  });
 });
 
 router.post('/u/setting', logged, (req, res) => {
@@ -36,7 +19,7 @@ router.post('/u/setting', logged, (req, res) => {
   ) {
     req.body.email = req.body.email.toLowerCase();
 
-    User.findOne({ _id: req.session.user }).then(user => {
+    User.findOne({ _id: req.user.user._id }).then(user => {
       if (user) {
         user.name.first = req.body.fname;
         user.name.last = req.body.lname;
@@ -46,18 +29,14 @@ router.post('/u/setting', logged, (req, res) => {
           user.name.last = req.body.lname;
 
           user.save().then(() => {
-            req.flash('success', 'تغییرات با موفقیت ثبت شد.');
-            res.redirect('/u');
-
+            res.json({ type: 2, text: 0 });
           }).catch(() => {
-            req.flash('error', 'خطا! بعدا امتحان کنید.');
-            res.redirect('/setting');
+            res.json({ type: 0, text: 0 });
           });
         } else {
           User.findOne({ email: req.body.email }).then(userEmail => {
             if (userEmail) {
-              req.flash('error', 'این ایمیل توسط شخص دیگری استفاده میشود');
-              res.redirect('/setting');
+              res.json({ type: 0, text: 0 });
             }
 
             else {
@@ -66,29 +45,15 @@ router.post('/u/setting', logged, (req, res) => {
               user.email = req.body.email;
 
               user.save().then(() => {
-                req.flash('success', 'تغییرات با موفقیت ثبت شد.');
-                res.redirect('/u');
+                res.json({ type: 2, text: 0 });
               }).catch(() => {
-                req.flash('error', 'خطا! بعدا امتحان کنید.');
-                res.redirect('/setting');
+                res.json({ type: 2, text: 0 });
               });
             }
-          }).catch(() => {
-            req.flash('error', 'خطا! بعدا امتحان کنید.');
-            res.redirect('/setting');
           });
         }
-      } else {
-        req.flash('error', 'خطا! بعدا امتحان کنید.');
-        res.redirect('/u');
       }
-    }).catch(() => {
-      req.flash('error', 'خطا! بعدا امتحان کنید.');
-      res.redirect('/u');
     });
-  } else {
-    req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/setting');
   }
 });
 

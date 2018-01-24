@@ -7,34 +7,24 @@ const { encrypt } = rootRequire('./utils');
 
 router.post('/u/setting/password', logged, (req, res) => {
   if (req.body.oldpass && req.body.newpass) {
-    User.findOne({ _id: req.session.user }).then(user => {
+    User.findOne({ _id: req.user.user._id }).then(user => {
       if (user) {
         if (encrypt(req.body.oldpass, user.email) === user.password) {
           user.password = encrypt(req.body.newpass, user.email);
 
           user.save().then(() => {
-            req.flash('success', 'رمز شما با موفقیت تغییر یافت.');
-            res.redirect('/u');
-          }).catch(() => {
-            req.flash('error', 'خطا! بعدا امتحان کنید.');
-            res.redirect('/setting');
+            res.json({ type: 2, text: 0 });
           });
         }
         else {
-          req.flash('error', 'رمز وارد شده اشتباه میباشد.');
-          res.redirect('/setting');
+          res.json({ type: 0, text: 0 });
         }
       } else {
-        req.flash('error', 'خطا! بعدا امتحان کنید.');
-        res.redirect('/u');
+        res.json({ type: 0, text: 0 });
       }
-    }).catch(() => {
-      req.flash('error', 'خطا! بعدا امتحان کنید.');
-      res.redirect('/setting');
     });
   } else {
-    req.flash('error', 'خطا! بعدا امتحان کنید.');
-    res.redirect('/setting');
+    res.json({ type: 0, text: 0 });
   }
 });
 
