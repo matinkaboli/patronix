@@ -5,21 +5,37 @@ mainSet.addEventListener('submit', e => {
   e.preventDefault();
 
   const email = mainSet.email;
-  const emailErr = $('#email-err');
-  const err = $('#err1');
-
-  emailErr.hide();
-  err.hide();
 
   if (!validateEmail(email.value)) {
-    emailErr.show();
+    iziToast.warning({
+      rtl: true,
+      title: 'ایمیل وارد شده اشتباه است'
+    });
+
     email.select();
+
   } else {
-    fetch('/u/setting', { method: 'POST', credentials: 'include' })
-      .then(checkStatus).then(res => res.json()).then(data => {
-      console.log(data);
-    }).catch(() => {
-      err.show();
+    fetch('/u/setting', {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      body: JSON.stringify({
+        email: mainSet.email.value,
+        fname: mainSet.fname.value,
+        lname: mainSet.lname.value
+      })
+    }).then(checkStatus).then(res => res.json()).then(data => {
+        console.log(data);
+    }).catch(e => {
+      iziToast.error({
+        rtl: true,
+        title: 'خطا!',
+        message: M[0][0]
+      });
+      console.log(e);
     });
   }
 });
@@ -28,21 +44,23 @@ passSet.addEventListener('submit', e => {
   e.preventDefault();
 
   const password = passSet.newpass;
-  const err = $('#err2');
-  const passErr = $('#pass-err');
-
-  err.hide();
-  passErr.hide();
 
   if (password.value.length < 8) {
-    passErr.show();
+    iziToast.warning({
+      rtl: true,
+      title: 'رمز عبور باید حداقل هشت رقم باشد'
+    });
     password.select();
   } else {
     fetch('/u/setting/password', { method: 'POST', credentials: 'include' })
       .then(checkStatus).then(res => res.json()).then(data => {
         console.log(data);
       }).catch(() => {
-        err.show();
+        iziToast.error({
+          rtl: true,
+          title: 'خطا',
+          message: M[0][0]
+        });
       });
   }
 });
@@ -70,8 +88,10 @@ $('#delete-account').on('click', e => {
           fetch('/u/setting/delete', {
             method: 'POST', credentials: 'include'
           }).then(checkStatus).then(res => res.json()).then(data => {
-            localStorage.setItem('delAcc', 2);
-            window.href = '/';
+            if (data.type === 2) {
+              localStorage.setItem('delAcc', 2);
+              window.location.href = '/';
+            }
           }).catch(() => {
             iziToast.error({
               title: 'خطا!',

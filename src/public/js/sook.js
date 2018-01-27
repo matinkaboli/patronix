@@ -7,6 +7,8 @@ fetch('/u/generate', { credentials: 'include', method: 'POST' })
 });
 
 socket.on('notification', (chat, site) => {
+  console.log(chat);
+  console.log(site);
   $('#chat-list').appendText(nunjucks.render('chats.njk', { chat, site }));
 });
 
