@@ -5,8 +5,8 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    client: './src/client/app.js',
-    customer: './src/customer/app.js'
+    client: './src/client/client.js',
+    customer: './src/customer/customer.js'
   },
   output: {
     filename: '[name].js'

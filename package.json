@@ -4,13 +4,11 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
-    "client:build": "gulp client:dev client:watch",
-    "server:build": "gulp server:dev server:watch",
-    "full:build": "gulp full:dev full:watch",
-    "devserver": "nodemon --delay 0.5 build/app.js -e js,njk",
+    "dev:build": "gulp dev watch",
+    "prod:build": "gulp prod",
+    "server": "nodemon --delay 1 build/app.js -e js,njk",
     "compress": "tar -czvf app.tar.gz build package.json",
-    "app": "node build/app.js",
-    "build": "gulp prod"
+    "app": "node build/app.js"
   },
   "repository": {
     "type": "git"
@@ -37,6 +35,7 @@
     "eslint-plugin-react": "^7.6.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
+    "gulp-eslint": "^4.0.2",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "postcss-loader": "^2.0.10",
