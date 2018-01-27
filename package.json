@@ -19,7 +19,12 @@
   ],
   "author": "Ali Movahedi <ali_movahedi@aol.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.1",
+    "morgan": "^1.9.0",
+    "socket.io": "^2.0.4"
+  },
   "devDependencies": {
     "autoprefixer": "^7.2.5",
     "babel-core": "^6.26.0",

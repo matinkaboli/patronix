@@ -1,0 +1,6 @@
+{
+  "port": "8010",
+  "db": "mongodb://localhost/patronix-dev",
+  "title": "Patronix",
+  "url": "http://localhost:8010"
+}
