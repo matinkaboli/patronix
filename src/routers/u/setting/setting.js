@@ -47,7 +47,7 @@ router.post('/u/setting', logged, (req, res) => {
               user.save().then(() => {
                 res.json({ type: 2, text: 0 });
               }).catch(() => {
-                res.json({ type: 2, text: 0 });
+                res.json({ type: 0, text: 0 });
               });
             }
           });
