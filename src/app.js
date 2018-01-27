@@ -27,3 +27,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 app.use('/static', express.static(join(__dirname, './static')));
+
+app.use((req, res) => {
+  res.sendFile(join(__dirname, 'index.html'));
+});

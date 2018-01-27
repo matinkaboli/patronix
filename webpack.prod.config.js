@@ -45,6 +45,12 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      Client: resolve(__dirname, 'src/client'),
+      Customer: resolve(__dirname, 'src/customer')
+    }
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

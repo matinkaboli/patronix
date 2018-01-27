@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const { resolve } = require('path');
 
 module.exports = {
   entry: {
@@ -44,6 +45,12 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    alias: {
+      Client: resolve(__dirname, 'src/client'),
+      Customer: resolve(__dirname, 'src/customer')
+    }
   },
   plugins: [
     new webpack.DefinePlugin({

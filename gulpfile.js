@@ -12,7 +12,8 @@ gulp.task('clean', () =>
 
 gulp.task('copy', ['clean'], () =>
   gulp.src([
-    'src/config.json'
+    'src/config.json',
+    'src/index.html'
   ])
   .pipe(gulp.dest('build/'))
 );
@@ -26,13 +27,13 @@ gulp.task('babel', ['clean'], () =>
 gulp.task('dev:webpack', ['clean'], () =>
   gulp.src('src')
   .pipe(webpack(require('./webpack.dev.config.js')))
-  .pipe(gulp.dest('build/statics'))
+  .pipe(gulp.dest('build/static/js'))
 );
 
 gulp.task('prod:webpack', ['clean'], () =>
   gulp.src('src')
   .pipe(webpack(require('./webpack.prod.config.js')))
-  .pipe(gulp.dest('build/statics'))
+  .pipe(gulp.dest('build/static/js'))
 );
 
 gulp.task('lint', () =>
