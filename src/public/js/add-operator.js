@@ -31,18 +31,10 @@ addOp.addEventListener('submit', e => {
           rtl: true
         });
       } else if (data.type === 0) {
-        iziToast.error({
-          title: 'خطا!',
-          rtl: true,
-          message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
-        });
+        iziErr();
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   } else {
     iziToast.warning({
@@ -70,11 +62,7 @@ removeOp.addEventListener('submit', e => {
     })
   }).then(res => res.json()).then(data => {
     if (data.type === 0) {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
-      });
+      iziErr();
     } else {
       iziToast.success({
         title: 'پشتیبان با موفقیت از سایت حذف شد',
@@ -82,10 +70,6 @@ removeOp.addEventListener('submit', e => {
       });
     }
   }).catch(() => {
-    iziToast.error({
-      title: 'خطا!',
-      rtl: true,
-      message: 'مشکلی پیش آمده است، بعدا امتحان کنید'
-    });
+    iziErr();
   });
 });

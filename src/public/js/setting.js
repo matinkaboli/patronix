@@ -29,13 +29,8 @@ mainSet.addEventListener('submit', e => {
       })
     }).then(checkStatus).then(res => res.json()).then(data => {
         console.log(data);
-    }).catch(e => {
-      iziToast.error({
-        rtl: true,
-        title: 'خطا!',
-        message: M[0][0]
-      });
-      console.log(e);
+    }).catch(() => {
+      iziErr();
     });
   }
 });
@@ -56,11 +51,7 @@ passSet.addEventListener('submit', e => {
       .then(checkStatus).then(res => res.json()).then(data => {
         console.log(data);
       }).catch(() => {
-        iziToast.error({
-          rtl: true,
-          title: 'خطا',
-          message: M[0][0]
-        });
+        iziErr();
       });
   }
 });
@@ -93,11 +84,7 @@ $('#delete-account').on('click', e => {
               window.location.href = '/';
             }
           }).catch(() => {
-            iziToast.error({
-              title: 'خطا!',
-              rtl: true,
-              message: M[0][0]
-            });
+            iziErr();
           });
         }, true],
         ['<button>نه</button>', (instance, toast) => {

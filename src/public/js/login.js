@@ -8,11 +8,7 @@ f.addEventListener('submit', e => {
     f.password.value
   ) {
     if (!validateEmail(f.email.value)) {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: M[0][0]
-      });
+      iziErr();
 
       f.email.select();
     } else {
@@ -48,11 +44,7 @@ f.addEventListener('submit', e => {
               message: M[0][3]
             });
           } else if (data.text === 3) {
-            iziToast.warning({
-              title: 'خطا!',
-              rtl: true,
-              message: M[0][0]
-            });
+            iziErr();
           }
         } else if (data.type === 2) {
           iziToast.success({
@@ -63,11 +55,7 @@ f.addEventListener('submit', e => {
           window.location.href = '/u';
         }
       }).catch(() => {
-        iziToast.warning({
-          title: 'خطا!',
-          rtl: true,
-          message: M[0][0]
-        });
+        iziErr();
       });
     }
   }

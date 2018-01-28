@@ -33,11 +33,7 @@ delAcc.on('click', e => {
               window.location.href = '/u/sites';
             }
           }).catch(err => {
-            iziToast.error({
-              title: 'خطا!',
-              rtl: true,
-              message: 'بعدا امتحان کنید'
-            });
+            iziErr();
           });
 
         }, true],
@@ -70,11 +66,7 @@ siteSetting.addEventListener('submit', e => {
       localStorage.setItem('siteNewVal', siteSetting.name.value);
       location.href = '/u/sites/';
     } else if (data.type === 0) {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'بعدا امتحان کنید'
-      });
+      iziErr();
     }
   }).catch(err => {
 

@@ -10,8 +10,7 @@ if (parseInt(localStorage.getItem('newSite')) === 2) {
 if (parseInt(localStorage.getItem('delSite')) === 2) {
   iziToast.success({
     title: 'سایت با موفقیت حذف شد',
-    rtl: true,
-    message: 'چی بنویسم اینجا ناموسا :|'
+    rtl: true
   });
   localStorage.removeItem('delSite');
 }
