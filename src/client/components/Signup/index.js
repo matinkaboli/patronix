@@ -5,6 +5,10 @@ import socket from 'Client/socket';
 class Signup extends Component {
   @bind
   signup() {
+    socket.once('signup', res => {
+      console.log(res);
+    });
+
     socket.emit('signup', {
       name: {
         first: this.refs.fname.value,
