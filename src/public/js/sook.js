@@ -1,4 +1,5 @@
 let socket = io('/operator');
+const msgs = document.getElementById('messages');
 
 fetch('/u/generate', { credentials: 'include', method: 'POST' })
 .then(data => data.text())
@@ -7,8 +8,6 @@ fetch('/u/generate', { credentials: 'include', method: 'POST' })
 });
 
 socket.on('notification', (chat, site) => {
-  console.log(chat);
-  console.log(site);
   $('#chat-list').appendText(nunjucks.render('chats.njk', { chat, site }));
 });
 
@@ -32,7 +31,8 @@ $('#send').on('click', () => {
   d.appendChild(msg);
   d.appendChild(p);
 
-  document.getElementById('chats').appendChild(d);
+  console.log(msgs.style);
+  msgs.appendChild(d);
 });
 
 socket.on('message', message => {
@@ -52,5 +52,6 @@ socket.on('message', message => {
   d.appendChild(msg);
   d.appendChild(p);
 
-  document.getElementById('chats').appendChild(d);
+  msgs.scroll(0, msgs.scrollHeight + 50);
+  msgs.appendChild(d);
 });
