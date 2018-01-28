@@ -1,32 +1,37 @@
 @import "colors";
 
 #chats {
-  position: absolute;
-  bottom: 30px;
   left: 30px;
+  bottom: 30px;
   top: 30px;
   right: 100px;
+  position: absolute;
+  z-index: -2;
+
   background-color: white;
   box-shadow: 2px 2px 2px 2px #ddd;
-  z-index: -2;
 }
 
 .message-box {
-  position: relative;
   max-width: 300px;
   padding: 3px 6px 20px 6px;
-  overflow-wrap: break-word;
   margin: 10px;
-  border-radius: 10px;
-  background-color: @red-base;
   z-index: 1;
+  position: relative;
+
+  background-color: @red-base;
+
+  overflow-wrap: break-word;
+  border-radius: 10px;
 }
 
 .message-time {
-  position: absolute;
   bottom: 5px;
   left: 5px;
+  position: absolute;
+
   color: #eee;
+
   font-size: 15px;
 }
 
@@ -38,10 +43,11 @@
   right: 0;
 
   #message {
-    border: 3px solid #46A7F5;
     width: 70%;
-    padding: 3px;
     margin: 5px;
+    padding: 3px;
+
+    border: 3px solid #46A7F5;
     border-radius: 8px;
     display: inline;
 
@@ -51,12 +57,14 @@
   }
 
   #send {
-    border: none;
-    border-radius: 3px;
     padding: 8px;
     margin: 5px;
-    background-color: #2780F8;
+
     color: white;
+    background-color: #2780F8;
+
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
     display: inline;
 
@@ -75,10 +83,11 @@
 }
 
 .messages {
-  position: absolute;
   top: 50%;
   right: 0;
   left: 0;
   bottom: 0;
+  position: absolute;
+
   background-color: red;
 }

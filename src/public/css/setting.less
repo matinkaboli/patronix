@@ -6,11 +6,13 @@
 }
 
 #title {
+  margin-top: 20px;
+
+  color: black;
+
   font-size: 35px;
   text-align: center;
-  margin-top: 20px;
   transition: color 300ms;
-  color: black;
 
   &:hover {
     color: lighten(black, 5%);
@@ -18,15 +20,17 @@
 }
 
 .error {
+  width: 100%;
+  padding: 0;
+
+  color: @red-1;
+
   display: none;
   text-align: center;
-  font-family: SB;
-  color: @red-1;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-  text-transform: none;
   font-size: 16px;
+  font-family: SB;
+  text-align: center;
+  text-transform: none;
   transition: color 500ms;
 
   &:hover {
@@ -35,13 +39,15 @@
 }
 
 .success {
-  display: none;
+  margin: 10px 0;
+
   color: @green-base;
+
+  display: none;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
   font-family: SB;
-  margin: 10px 0;
   transition: color 500ms;
 
   &:hover {
@@ -64,16 +70,18 @@ div.whole-form {
     fieldset {
 
       input {
+        width: 280px;
+        height: 50px;
+        padding: 0px 10px;
+
+        color: darken(@white-2, 50%);
       	background-color: @white-base;
+
       	border: none;
       	border-radius: 3px;
-      	color: darken(@white-2, 50%);
       	font-family: inherit;
       	font-size: 14px;
-      	height: 50px;
       	outline: none;
-      	padding: 0px 10px;
-      	width: 280px;
         -webkit-appearance:none;
         transition: background-color 400ms;
 
@@ -83,15 +91,17 @@ div.whole-form {
       }
 
       button {
+        width: 300px;
+        height: 50px;
+
         background-color: @blue-base;
+        color: white;
+
       	border: none;
       	border-radius: 3px;
-      	color: white;
       	cursor: pointer;
       	font-family: inherit;
-      	height: 50px;
       	text-transform: uppercase;
-      	width: 300px;
         -webkit-appearance:none;
         transition: background-color 500ms;
 
@@ -102,6 +112,7 @@ div.whole-form {
 
       a {
       	color: @white-2;
+
       	font-size: 15px;
         transition: color 500ms;
 
@@ -126,16 +137,18 @@ div.whole-form {
   justify-content: center;
 
   button {
+    width: 400px;
+    height: 70px;
     margin: 40px 0 0 0;
+
     background-color: @red-base;
+    color: white;
+
     border: none;
     border-radius: 3px;
-    color: white;
     cursor: pointer;
     font-family: inherit;
-    height: 70px;
     text-transform: uppercase;
-    width: 400px;
     font-size: 20px;
     -webkit-appearance:none;
     transition: background-color 500ms;

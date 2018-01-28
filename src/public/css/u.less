@@ -1,82 +1,90 @@
 @import "colors";
 
 nav {
-  position: fixed;
   width: 70px;
   height: 100%;
   bottom: 0;
   top: 0;
   right: 0;
-  background-color: @midnight-base;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
+  position: fixed;
   padding-top: 20px;
 
+  background-color: @midnight-base;
+
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+
   ul {
-    list-style: none;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    list-style: none;
 
     li {
-      display: block;
       width: 100%;
+      display: block;
       text-align: center;
       box-sizing: border-box;
 
       a {
-        text-decoration: none;
         color: white;
         position: relative;
         display: block;
-        transition: all 0.3s;
+        text-decoration: none;
 
         &:hover {
           background-color: #256FA0;
         }
 
         span {
-          font-size: 15px;
-          visibility: hidden;
           width: 90px;
-          background-color: @midnight-3;
-          color: white;
-          text-align: center;
-          border-radius: 6px;
-          padding: 2px 5px 5px 5px;
-          position: absolute;
           top: 13px;
           right: 50%;
+          padding: 2px 5px 5px 5px;
+          position: absolute;
+
+          background-color: @midnight-3;
+          color: white;
+
           opacity: 0;
+          visibility: hidden;
+
+          font-size: 15px;
+          text-align: center;
+          border-radius: 6px;
           transition: opacity 500ms, right 300ms;
 
           &::after {
-            content: "";
-            position: absolute;
             top: 50%;
             left: 100%;
             margin-top: -5px;
+
+            position: absolute;
             border-width: 5px;
+            content: "";
             border-style: solid;
             border-color: transparent transparent transparent @midnight-3;
           }
         }
 
         &:hover span {
+          right: 115%;
+
           visibility: visible;
           opacity: 1;
-          right: 115%;
         }
 
         div.icon {
-          font-size: 35px;
           height: 100%;
+          padding: 10px;
+
+          font-size: 35px;
+
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding: 10px;
         }
       }
     }

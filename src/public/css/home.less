@@ -3,19 +3,22 @@
 aside {
 
   .bg {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    align-self: center;
-    justify-content: center;
-    text-align: center;
     width: 100%;
     height: 300px;
+
+    color: white;
     background-color: @navy-base;
+
     font-family: SB;
     font-weight: bold;
-    color: white;
     font-size: 33px;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   #bg1 {
@@ -76,13 +79,14 @@ aside {
   aside {
     #about1, #about2 {
       width: 100%;
+      padding: 5px 0;
+      margin: 0;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       align-content: center;
-      padding: 5px 0;
-      margin: 0;
       text-align: center;
 
       .column {
