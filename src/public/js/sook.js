@@ -31,7 +31,7 @@ $('#send').on('click', () => {
   d.appendChild(msg);
   d.appendChild(p);
 
-  console.log(msgs.style);
+  msgs.scroll(0, msgs.scrollHeight);
   msgs.appendChild(d);
 });
 
@@ -52,6 +52,6 @@ socket.on('message', message => {
   d.appendChild(msg);
   d.appendChild(p);
 
-  msgs.scroll(0, msgs.scrollHeight + 50);
+  msgs.scroll(0, msgs.scrollHeight);
   msgs.appendChild(d);
 });

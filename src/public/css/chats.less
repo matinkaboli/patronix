@@ -10,6 +10,7 @@
 
   background-color: white;
   box-shadow: 2px 2px 2px 2px #ddd;
+  overflow: scroll;
 }
 
 .message-box {
@@ -37,23 +38,20 @@
 
 #send-message-form {
   z-index: 2;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: fixed;
+  bottom: 30px;
+  right: 100px;
+  left: 10px;
 
   #message {
     width: 70%;
     margin: 5px;
     padding: 3px;
 
-    border: 3px solid #46A7F5;
+    border: 3px solid @blue-base;
     border-radius: 8px;
     display: inline;
 
-    &:hover, &:active {
-      box-shadow: 1px 1px 1px 1px #46A7F5;
-    }
   }
 
   #send {
@@ -61,7 +59,7 @@
     margin: 5px;
 
     color: white;
-    background-color: #2780F8;
+    background-color: @blue-3;
 
     border: none;
     border-radius: 3px;
@@ -82,12 +80,6 @@
   background-color: @blue-1;
 }
 
-.messages {
-  top: 50%;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  position: absolute;
+#messages {
 
-  background-color: red;
 }
