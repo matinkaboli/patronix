@@ -30,6 +30,7 @@
   position: fixed;
   box-shadow: 1px 1px 10px 5px #eee;
   transition: opacity 300ms;
+  overflow: scroll;
 }
 
 #inputs {
@@ -76,4 +77,33 @@
 
 .hidden-list {
   display: none;
+}
+
+.message-box {
+  font-family: S;
+  max-width: 250px;
+  padding: 3px;
+  margin: 3px;
+  z-index: 1;
+  position: relative;
+
+  background-color: @red-base;
+
+  overflow-wrap: break-word;
+  border-radius: 10px;
+}
+
+.message-time {
+  font-family: S;
+  bottom: 5px;
+  left: 5px;
+  position: absolute;
+
+  color: #eee;
+
+  font-size: 15px;
+}
+
+.op {
+  background-color: @blue-base;
 }
