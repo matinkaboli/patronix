@@ -1,5 +1,5 @@
 (() => {
-  var msgs = document.getElementById('patronix-chatlist');
+  let msgs = document.getElementById('patronix-chatlist');
 
   let socketUrl = `http://localhost:8010/client?token=${token}`;
 
