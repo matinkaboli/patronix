@@ -1,6 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
+import { unique } from 'stringing';
 
-const { User } = rootRequire('./models');
+const { User, AL } = rootRequire('./models');
 
 let socket = new SocketEvent();
 
@@ -16,7 +17,14 @@ socket
   });
 
   user.save().then(() => {
-    socket.emit('signup', { success: 1 });
+    let al = new AL({
+      code: unique(30),
+      user: user._id
+    });
+
+    al.then(() => {
+      socket.emit('signup', { success: 1 });
+    });
   }).catch(() => {
     socket.emit('signup', { success: 0, text: 0 });
   });

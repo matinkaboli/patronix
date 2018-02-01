@@ -25,15 +25,25 @@ gulp.task('babel', ['clean'], () =>
 );
 
 gulp.task('dev:webpack', ['clean'], () =>
-  gulp.src('src')
-  .pipe(webpack(require('./webpack.dev.config.js')))
-  .pipe(gulp.dest('build/static/js'))
+[
+  gulp.src('src/client/client.js')
+  .pipe(webpack(require('./webpack/client/dev.js')))
+  .pipe(gulp.dest('build/static/js')),
+  gulp.src('src/customer/customer.js')
+  .pipe(webpack(require('./webpack/customer/dev.js')))
+  .pipe(gulp.dest('build/static/js')),
+]
 );
 
 gulp.task('prod:webpack', ['clean'], () =>
-  gulp.src('src')
-  .pipe(webpack(require('./webpack.prod.config.js')))
-  .pipe(gulp.dest('build/static/js'))
+  [
+    gulp.src('src/client/client.js')
+    .pipe(webpack(require('./webpack/client/prod.js')))
+    .pipe(gulp.dest('build/static/js')),
+    gulp.src('src/customer/customer.js')
+    .pipe(webpack(require('./webpack/customer/prod.js')))
+    .pipe(gulp.dest('build/static/js')),
+  ]
 );
 
 gulp.task('lint', () =>

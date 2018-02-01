@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import bind from 'Client/bind';
-import socket from 'Client/socket';
+import bind from 'Root/bind';
+import socket from 'Root/socket';
 
 class Signup extends Component {
   @bind
