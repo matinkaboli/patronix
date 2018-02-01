@@ -6,7 +6,7 @@ const { resolve } = require('path');
 
 module.exports = {
   output: {
-    filename: '[name].js'
+    filename: 'client.js'
   },
   module: {
     rules: [

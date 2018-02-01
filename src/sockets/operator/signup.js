@@ -22,7 +22,7 @@ socket
       user: user._id
     });
 
-    al.then(() => {
+    al.save().then(() => {
       socket.emit('signup', { success: 1 });
     });
   }).catch(() => {
