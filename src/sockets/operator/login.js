@@ -17,12 +17,15 @@ socket
     socket.data.logged = true;
 
     socket.emit('login', {
-      success: 1,
+      status: 1,
+      text: 0
+    }, {
       name: user.name,
-      email: user.email
-    }, sign({ user: user._id }, jwtkey));
+      email: user.email,
+      token: sign({ id: user._id }, jwtkey)
+    });
   } else {
-    socket.emit('login', { success: 0 });
+    socket.emit('login', { status: 0, text: 0 });
   }
 });
 

@@ -25,9 +25,9 @@ socket
     });
 
     await al.save();
-    socket.emit('signup', { success: 1 });
+    socket.emit('signup', { status: 1, text: 0 });
   } catch (e) {
-    socket.emit('signup', { success: 0, text: 0 });
+    socket.emit('signup', { status: 0, text: 0 });
   }
 });
 

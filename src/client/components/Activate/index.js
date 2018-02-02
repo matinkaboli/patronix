@@ -10,7 +10,7 @@ class Activate extends Component {
     socket.emit('activate', this.props.match.params.code);
 
     socket.once('activate', res => {
-      if (res.success) {
+      if (res.status) {
         this.setState({
           loading: false,
           res: 'good'
