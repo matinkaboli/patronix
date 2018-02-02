@@ -8,7 +8,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/operator')
 .name('signup')
-.handler(socket => data => {
+.handler(socket => async data => {
   let user = new User({
     name: data.name,
     email: data.email,
@@ -16,18 +16,19 @@ socket
     status: 0
   });
 
-  user.save().then(() => {
+  try {
+    await user.save();
+
     let al = new AL({
       code: unique(30),
       user: user._id
     });
 
-    al.save().then(() => {
-      socket.emit('signup', { success: 1 });
-    });
-  }).catch(() => {
+    await al.save();
+    socket.emit('signup', { success: 1 });
+  } catch (e) {
     socket.emit('signup', { success: 0, text: 0 });
-  });
+  }
 });
 
 export default socket;

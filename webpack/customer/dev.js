@@ -17,7 +17,7 @@ module.exports = {
         query: {
           cacheDirectory: true,
           presets: ['env', 'react'],
-          plugins: ['add-module-exports', 'transform-decorators-legacy']
+          plugins: ['add-module-exports', 'transform-decorators-legacy', 'transform-class-properties']
         }
       }, {
         test: /\.(css|less)$/,

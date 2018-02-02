@@ -7,6 +7,7 @@ import {
 
 import Login from './Login';
 import Signup from './Signup';
+import Activate from './Activate';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
+          <Route path='/activate/:code' component={Activate} />
         </Switch>
       </Router>
     );
