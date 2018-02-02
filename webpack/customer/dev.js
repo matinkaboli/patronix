@@ -3,6 +3,7 @@
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const { resolve } = require('path');
+const babelConfig = require('../babel.config.json');
 
 module.exports = {
   output: {
@@ -16,8 +17,8 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           cacheDirectory: true,
-          presets: ['env', 'react'],
-          plugins: ['add-module-exports', 'transform-decorators-legacy', 'transform-class-properties']
+          presets: babelConfig.presets,
+          plugins: babelConfig.plugins
         }
       }, {
         test: /\.(css|less)$/,

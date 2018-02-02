@@ -2,5 +2,6 @@
   "port": "8010",
   "db": "mongodb://localhost/patronix-dev",
   "title": "Patronix",
-  "url": "http://localhost:8010"
+  "url": "http://localhost:8010",
+  "jwtkey": "l4E7MDeLCt3SbrIoY2UHWBiONVh9f1RPGvg"
 }
