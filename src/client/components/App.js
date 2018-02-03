@@ -8,6 +8,8 @@ import {
 import Login from './Login';
 import Signup from './Signup';
 import Activate from './Activate';
+import ProtectedRoute from './ProtectedRoute';
+import UserPanel from './UserPanel';
 
 class App extends Component {
   render() {
@@ -17,6 +19,9 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route path='/activate/:code' component={Activate} />
+          <ProtectedRoute path='/u'>
+            <UserPanel />
+          </ProtectedRoute>
         </Switch>
       </Router>
     );

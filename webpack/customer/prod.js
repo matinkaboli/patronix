@@ -45,7 +45,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Shared: resolve(__dirname, '../../', 'src/customer/shared'),
+      Components: resolve(__dirname, '../../', 'src/customer/components'),
       Root: resolve(__dirname, '../../', 'src/customer')
     }
   },
