@@ -7,9 +7,7 @@ class ProtectedRoute extends Component {
   render() {
     if (this.props.logged) {
       return (
-        <Route path={this.props.path}>
-          {this.props.children}
-        </Route>
+        <Route {...this.props} />
       );
     }
     return <Denied />;

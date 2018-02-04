@@ -19,9 +19,7 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route path='/activate/:code' component={Activate} />
-          <ProtectedRoute path='/u'>
-            <UserPanel />
-          </ProtectedRoute>
+          <ProtectedRoute path='/u' component={UserPanel} />
         </Switch>
       </Router>
     );
