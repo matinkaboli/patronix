@@ -43,7 +43,7 @@ const schema = new Schema({
     required: true,
     trim: true
   },
-  image: {
+  avatar: {
     type: String,
     trim: true
   },

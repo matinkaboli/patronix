@@ -14,6 +14,9 @@ socket
     const { id } = verify(token, jwtkey);
 
     let user = await User.findById(id);
+    
+    socket.data.user = user;
+    socket.data.logged = true;
 
     socket.emit('relogin', {
       status: 1

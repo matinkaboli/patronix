@@ -4,10 +4,26 @@ import socket from 'Root/socket';
 
 class LoadingRoute extends Component {
   state = {
-    loading: true
+    loading: true,
+    permission: false
   }
 
   componentDidMount() {
+    socket.once('get', res => {
+      if (res.success) {
+        this.setState({
+          loading: false,
+          data: res.data,
+          permission: true
+        });
+      } else {
+        this.setState({
+          loading: false,
+          permission: false
+        });
+      }
+    });
+
     socket.emit('get', {
       path: this.props.computedMatch.path,
       params: this.props.computedMatch.params
@@ -16,9 +32,11 @@ class LoadingRoute extends Component {
 
   render() {
     if (!this.state.loading) {
-      return (
-        <p>Shit</p>
-      );
+      if (this.state.permission) {
+        return <this.props.component data={this.state.data} />;
+      }
+
+      return <Denied />;
     }
 
     return <div />;

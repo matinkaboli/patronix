@@ -7,7 +7,13 @@ const babel = require('gulp-babel');
 const lint = require('gulp-eslint');
 
 gulp.task('clean', () =>
-  del('build')
+  del([
+    'build/**',
+    '!build',
+    '!build/static',
+    '!build/static/uploads',
+    '!build/static/uploads/**'
+  ])
 );
 
 gulp.task('copy', ['clean'], () =>
