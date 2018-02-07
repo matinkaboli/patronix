@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const logged = rootRequire('./middles/operator/logged');
+const middles = rootRequire('./middles');
 const routerHandler = rootRequire('./routerHandler');
 
 let socket = new SocketEvent();
@@ -9,7 +9,7 @@ socket
 .namespace('/operator')
 .name('get')
 .middleware(
-  logged
+  middles.operator.checkToken
 )
 .handler(socket => data => {
   routerHandler(socket.data.user, data).then(res => {

@@ -22,7 +22,11 @@ socket
 
     if (user) {
       socket.data.user = user;
-      socket.data.logged = true;
+
+      socket.handshake.query = {
+        ...socket.handshake.query,
+        token
+      };
 
       socket.emit('relogin', {
         status: true

@@ -8,11 +8,11 @@ import { connect, applyMiddleware } from 'socket.io-manager';
 import logger from 'socket.io-manager-logger';
 import requireasarray from 'requireasarray';
 import config from './config';
-import { init } from './middles';
 
 global.rootRequire = file => require(join(__dirname, file));
 
 let sockets = requireasarray(join(__dirname, 'sockets'));
+const { init } = require('./middles');
 sockets = applyMiddleware([init], sockets);
 
 mongoose.Promise = global.Promise;

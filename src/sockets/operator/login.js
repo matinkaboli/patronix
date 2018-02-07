@@ -31,7 +31,6 @@ socket
     await token.save();
 
     socket.data.user = user;
-    socket.data.logged = true;
 
     socket.emit('login', {
       status: true,
