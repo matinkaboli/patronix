@@ -32,7 +32,13 @@ const io = socketIO(server);
 
 if (process.env.NODE_ENV !== 'development') {
   app.use(morgan('short'));
-  sockets = applyMiddleware([logger], sockets);
+  let filtered = ['uploadAvatar'];
+  sockets = [
+    ...sockets.filter(so => filtered.includes(so._name)),
+    ...applyMiddleware([logger],
+      sockets.filter(so => !filtered.includes(so._name))
+    )
+  ];
 }
 
 app.use('/static', express.static(join(__dirname, './static')));

@@ -1,8 +1,9 @@
 import { SocketEvent } from 'socket.io-manager';
 import { sign } from 'jsonwebtoken';
 
-const { User } = rootRequire('./models');
-const { jwtkey } = rootRequire('./config');
+const { User, Token } = rootRequire('./models');
+const { jwtkey, enkey } = rootRequire('./config');
+const { encrypt } = rootRequire('./crypt');
 
 let socket = new SocketEvent();
 
@@ -10,22 +11,38 @@ socket
 .namespace('/operator')
 .name('login')
 .handler(socket => async credentials => {
-  let user = await User.findOne({ ...credentials, status: 1 });
+  let user = await User.findOne({ ...credentials, status: true });
 
   if (user) {
+    let token = await Token.findOne({ user: user._id });
+
+    if (token) {
+      token.remove();
+    }
+
+    token = new Token({
+      user: user._id,
+      token: sign(
+        encrypt(JSON.stringify({ id: user._id }), enkey),
+        jwtkey
+      )
+    });
+
+    await token.save();
+
     socket.data.user = user;
     socket.data.logged = true;
 
     socket.emit('login', {
-      status: 1,
+      status: true,
       text: 0
     }, {
       name: user.name,
       email: user.email,
-      token: sign({ id: user._id }, jwtkey)
+      token: token.token
     });
   } else {
-    socket.emit('login', { status: 0, text: 0 });
+    socket.emit('login', { status: false, text: 0 });
   }
 });
 

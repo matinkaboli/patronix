@@ -10,7 +10,7 @@ class LoadingRoute extends Component {
 
   componentDidMount() {
     socket.once('get', res => {
-      if (res.success) {
+      if (res.status) {
         this.setState({
           loading: false,
           data: res.data,

@@ -18,9 +18,9 @@ socket
     await user.save();
     await al.remove();
 
-    socket.emit('activate', { status: 1, text: 0 });
+    socket.emit('activate', { status: true, text: 0 });
   } else {
-    socket.emit('activate', { status: 0, text: 0 });
+    socket.emit('activate', { status: false, text: 0 });
   }
 });
 

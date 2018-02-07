@@ -1,8 +1,9 @@
 import { SocketEvent } from 'socket.io-manager';
 import { verify } from 'jsonwebtoken';
 
-const { User } = rootRequire('./models');
-const { jwtkey } = rootRequire('./config');
+const { User, Token } = rootRequire('./models');
+const { jwtkey, enkey } = rootRequire('./config');
+const { decrypt } = rootRequire('./crypt');
 
 let socket = new SocketEvent();
 
@@ -10,23 +11,36 @@ socket
 .namespace('/operator')
 .name('relogin')
 .handler(socket => async token => {
-  try {
-    const { id } = verify(token, jwtkey);
+  let isValid = await Token.findOne({ token });
 
-    let user = await User.findById(id);
-    
-    socket.data.user = user;
-    socket.data.logged = true;
+  if (isValid) {
+    let user = await User.findById(
+      JSON.parse(decrypt(
+        verify(token, jwtkey), enkey
+      )).id
+    );
 
-    socket.emit('relogin', {
-      status: 1
-    }, {
-      name: user.name,
-      email: user.email
-    });
-  } catch (e) {
-    socket.emit('relogin', { status: 0, text: 0 });
+    if (user) {
+      socket.data.user = user;
+      socket.data.logged = true;
+
+      socket.emit('relogin', {
+        status: true
+      }, {
+        name: user.name,
+        email: user.email
+      });
+    }
+
+    else {
+      socket.emit('relogin', { status: false, text: 0 });
+    }
   }
+
+  else {
+    socket.emit('relogin', { status: false, text: 0 });
+  }
+
 });
 
 export default socket;

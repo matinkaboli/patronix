@@ -18,7 +18,6 @@ gulp.task('clean', () =>
 
 gulp.task('copy', ['clean'], () =>
   gulp.src([
-    'src/config.json',
     'src/index.html'
   ])
   .pipe(gulp.dest('build/'))
