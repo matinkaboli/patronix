@@ -1,5 +1,6 @@
 export default {
   LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
   START_LOADING: 'START_LOADING',
   STOP_LOADING: 'STOP_LOADING'
 };

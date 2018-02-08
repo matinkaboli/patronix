@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Denied from 'Components/Denied';
+import { withRouter } from 'react-router';
 
 class ProtectedRoute extends Component {
-  render() {
-    if (this.props.logged) {
-      return (
-        <Route {...this.props} />
-      );
+  componentWillMount() {
+    if (!this.props.logged) {
+      this.props.history.push('/denied');
     }
-    return <Denied />;
+  }
+
+  render() {
+    return (
+      <Route {...this.props} />
+    );
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({ logged: state.user.logged })
-)(ProtectedRoute);
+)(ProtectedRoute));

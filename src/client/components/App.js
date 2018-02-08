@@ -12,6 +12,7 @@ import ProtectedRoute from './ProtectedRoute';
 import UserPanel from './UserPanel';
 import Denied from './Denied';
 import NotFound from './NotFound';
+import Logout from './Logout';
 
 class App extends Component {
   render() {
@@ -19,10 +20,11 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path='/login' component={Login} />
+          <Route exact path='/logout' component={Logout} />
           <Route exact path='/signup' component={Signup} />
-          <Route path='/activate/:code' component={Activate} />
+          <Route exact path='/activate/:code' component={Activate} />
+          <ProtectedRoute path='/panel' component={UserPanel} />
           <Route exact path='/denied' component={Denied} />
-          <ProtectedRoute path='/u' component={UserPanel} />
           <Route exact path='/notfound' component={NotFound} />
           <Route component={NotFound} />
         </Switch>

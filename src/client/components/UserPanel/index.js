@@ -11,8 +11,8 @@ class UserPanel extends Component {
       <div>
         <Sidebar />
         <Switch>
-          <LoadingRoute path='/u/setting' component={Setting} />
-          <LoadingRoute path='/u/sites' component={Sites} />
+          <LoadingRoute path='/panel/setting' component={Setting} />
+          <LoadingRoute path='/panel/sites' component={Sites} />
         </Switch>
       </div>
     );

@@ -1,4 +1,4 @@
-export const path = '/u/setting';
+export const path = '/panel/setting';
 
 export async function handler(user) {
   return {
