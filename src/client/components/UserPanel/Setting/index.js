@@ -14,11 +14,29 @@ class Setting extends Component {
     reader.readAsBinaryString(this.refs.file.files[0]);
   }
 
+  @bind
+  renderImage() {
+    if (this.props.data.avatar) {
+      return (
+        <img src={this.props.data.avatar} />
+      );
+    }
+
+    else {
+      return (
+        <p>you dont have avatar</p>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
-        <input type='file' ref='file' />
-        <button onClick={this.click}>click</button>
+        <div>
+          {this.renderImage()}
+          <input type='file' ref='file' />
+          <button onClick={this.click}>click</button>
+        </div>
       </div>
     );
   }
