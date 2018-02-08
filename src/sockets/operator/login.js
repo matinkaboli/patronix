@@ -24,7 +24,9 @@ socket
       user: user._id,
       token: sign(
         encrypt(JSON.stringify({ id: user._id }), enkey),
-        jwtkey
+        jwtkey, {
+          expiresIn: '7d'
+        }
       )
     });
 

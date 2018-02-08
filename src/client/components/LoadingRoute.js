@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Denied from 'Components/Denied';
+import { withRouter } from 'react-router';
 import socket from 'Root/socket';
 
 class LoadingRoute extends Component {
@@ -30,17 +30,19 @@ class LoadingRoute extends Component {
     });
   }
 
-  render() {
-    if (!this.state.loading) {
-      if (this.state.permission) {
-        return <this.props.component data={this.state.data} />;
-      }
+  componentDidUpdate() {
+    if (!this.state.permission) {
+      this.props.history.push('/denied');
+    }
+  }
 
-      return <Denied />;
+  render() {
+    if (!this.state.loading && this.state.permission) {
+      return <this.props.component data={this.state.data} />;
     }
 
     return <div />;
   }
 }
 
-export default LoadingRoute;
+export default withRouter(LoadingRoute);
