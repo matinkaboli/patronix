@@ -23,7 +23,7 @@ class Login extends Component {
         email: data.email
       });
 
-      push('/u');
+      push('/panel');
     });
   }
 
