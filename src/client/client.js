@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './components/App';
 import relogin from './relogin';
+import './libs/index.less';
 
 window.onload = () => {
   relogin.then(() => {

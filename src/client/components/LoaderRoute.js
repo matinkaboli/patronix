@@ -9,11 +9,11 @@ class LoadingRoute extends Component {
   }
 
   componentDidMount() {
-    socket.once('get', res => {
-      if (res.status) {
+    socket.once('get', ({ status, ...rest }) => {
+      if (status) {
         this.setState({
           loading: false,
-          data: res.data,
+          data: rest,
           permission: true
         });
       } else {
