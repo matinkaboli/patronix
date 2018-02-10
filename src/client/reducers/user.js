@@ -1,12 +1,11 @@
 import types from 'Root/actions';
 
-export default (state = {}, action) => {
-  switch (action.type) {
+export default (state = {}, { type, ...rest }) => {
+  switch (type) {
     case types.LOGIN: {
       return {
-        name: action.name,
-        email: action.email,
-        logged: true
+        logged: true,
+        ...rest
       };
     }
 

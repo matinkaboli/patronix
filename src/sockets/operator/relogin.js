@@ -1,9 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
-import { verify } from 'jsonwebtoken';
 
-const { User, Token } = rootRequire('./models');
-const { jwtkey, enkey } = rootRequire('./config');
-const { decrypt } = rootRequire('./crypt');
+const { Token } = rootRequire('./models');
 
 let socket = new SocketEvent();
 
@@ -11,33 +8,24 @@ socket
 .namespace('/operator')
 .name('relogin')
 .handler(socket => async token => {
-  let isValid = await Token.findOne({ token });
+  let isValid = await Token
+  .findOne({ token })
+  .populate('user')
+  .exec();
 
   if (isValid) {
-    let user = await User.findById(
-      JSON.parse(decrypt(
-        verify(token, jwtkey), enkey
-      )).id
-    );
+    socket.data.user = isValid.user;
 
-    if (user) {
-      socket.data.user = user;
+    socket.handshake.query.token = token;
 
-      socket.handshake.query.token = token;
-
-      socket.emit('relogin', {
-        status: true,
-        user: {
-          name: user.name,
-          email: user.email,
-          avatar: user.avatar
-        }
-      });
-    }
-
-    else {
-      socket.emit('relogin', { status: false, text: 0 });
-    }
+    socket.emit('relogin', {
+      status: true,
+      user: {
+        name: isValid.user.name,
+        email: isValid.user.email,
+        avatar: isValid.user.avatar
+      }
+    });
   }
 
   else {
