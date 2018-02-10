@@ -34,7 +34,7 @@ class Signup extends Component {
           placeholder='نام خانوادگی' />
 
         <input
-          type='text'
+          type='email'
           ref='email'
           placeholder='ایمیل' />
 

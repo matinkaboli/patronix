@@ -18,7 +18,7 @@ class Login extends Component {
       <div>
 
         <input
-          type='text'
+          type='email'
           ref='email'
           placeholder='ایمیل'/>
 
