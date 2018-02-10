@@ -41,7 +41,7 @@ class LoadingRoute extends Component {
       return <this.props.component data={this.state.data} />;
     }
 
-    return <div />;
+    return null;
   }
 }
 

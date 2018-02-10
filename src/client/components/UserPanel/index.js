@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import LoadingRoute from 'Components/LoadingRoute';
+import { Switch } from 'react-router-dom';
+import LoaderRoute from 'Components/LoaderRoute';
 import Sidebar from './Sidebar';
 import Sites from './Sites';
 import Setting from './Setting';
@@ -11,8 +11,8 @@ class UserPanel extends Component {
       <div>
         <Sidebar />
         <Switch>
-          <LoadingRoute path='/panel/setting' component={Setting} />
-          <LoadingRoute path='/panel/sites' component={Sites} />
+          <LoaderRoute path='/panel/setting' component={Setting} />
+          <LoaderRoute path='/panel/sites' component={Sites} />
         </Switch>
       </div>
     );
