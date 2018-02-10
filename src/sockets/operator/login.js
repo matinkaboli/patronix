@@ -32,12 +32,14 @@ socket
 
     socket.data.user = user;
 
+    // sedning neccessary data to User
     socket.emit('login', {
       status: true,
-      text: 0
-    }, {
-      name: user.name,
-      email: user.email,
+      user: {
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar
+      },
       token: token.token
     });
   } else {

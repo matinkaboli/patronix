@@ -1,30 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import bind from 'Root/bind';
-import socket from 'Root/socket';
-import store from 'Root/store';
-import { LOGIN } from 'Root/actions';
+import loginAct from 'Root/actions/login';
 
 class Login extends Component {
   @bind
   login() {
-    const { push } = this.props.history;
-
-    socket.emit('login', {
+    this.props.dispatch(loginAct({
       email: this.refs.email.value,
-      password: this.refs.password.value
-    });
-
-    socket.once('login', (res, data) => {
-      localStorage.token = data.token;
-
-      store.dispatch({
-        type: LOGIN,
-        name: data.name,
-        email: data.email
-      });
-
-      push('/panel');
-    });
+      password: this.refs.password.value,
+      push: this.props.history.push
+    }));
   }
 
   render() {
@@ -40,4 +26,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect()(Login);

@@ -13,7 +13,7 @@ socket
     name: data.name,
     email: data.email,
     password: data.password,
-    status: false
+    status: 0
   });
 
   try {
@@ -25,9 +25,9 @@ socket
     });
 
     await al.save();
-    socket.emit('signup', { status: true, text: 0 });
+    socket.emit('signup', { status: true });
   } catch (e) {
-    socket.emit('signup', { status: false, text: 0 });
+    socket.emit('signup', { status: false });
   }
 });
 

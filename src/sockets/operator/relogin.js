@@ -23,16 +23,15 @@ socket
     if (user) {
       socket.data.user = user;
 
-      socket.handshake.query = {
-        ...socket.handshake.query,
-        token
-      };
+      socket.handshake.query.token = token;
 
       socket.emit('relogin', {
-        status: true
-      }, {
-        name: user.name,
-        email: user.email
+        status: true,
+        user: {
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar
+        }
       });
     }
 

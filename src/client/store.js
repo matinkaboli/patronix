@@ -2,4 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
-export default createStore(reducers, applyMiddleware(thunk));
+let store = createStore(reducers, applyMiddleware(thunk));
+window.store = store;
+
+export default store;
