@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
+import './index.less';
 
 class Login extends Component {
   @bind
