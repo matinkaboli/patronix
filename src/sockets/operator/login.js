@@ -32,7 +32,6 @@ socket
 
     socket.data.user = user;
 
-    // sedning neccessary data to User
     socket.emit('login', {
       status: true,
       user: {
