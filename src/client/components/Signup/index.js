@@ -22,11 +22,29 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <input type='text' ref='fname' />
-        <input type='text' ref='lname' />
-        <input type='text' ref='email' />
-        <input type='password' ref='password' />
-        <button onClick={this.signup}>signup</button>
+
+        <input
+          type='text'
+          ref='fname'
+          placeholder='نام' />
+
+        <input
+          type='text'
+          ref='lname'
+          placeholder='نام خانوادگی' />
+
+        <input
+          type='text'
+          ref='email'
+          placeholder='ایمیل' />
+
+        <input
+          type='password'
+          ref='password'
+          placeholder='رمز' />
+
+        <button onClick={this.signup}>ثبت نام</button>
+
       </div>
     );
   }

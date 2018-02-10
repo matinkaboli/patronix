@@ -16,11 +16,19 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <input type='text' ref='email' />
-        <input type='password' ref='password' />
-        <button onClick={this.login}>
-          login
-        </button>
+
+        <input
+          type='text'
+          ref='email'
+          placeholder='ایمیل'/>
+
+        <input
+          type='password'
+          ref='password'
+          placeholder='رمز' />
+
+        <button onClick={this.login}>ورود</button>
+
       </div>
     );
   }
