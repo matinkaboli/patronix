@@ -29,7 +29,7 @@
     "require-directory": "^2.1.1",
     "requireasarray": "^0.3.0",
     "socket.io": "^2.0.4",
-    "socket.io-manager": "^0.7.3",
+    "socket.io-manager": "^0.8.0",
     "socket.io-manager-logger": "^0.3.2",
     "stringing": "^1.7.1"
   },

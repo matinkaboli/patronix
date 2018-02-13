@@ -5576,9 +5576,9 @@ socket.io-manager-logger@^0.3.2:
   dependencies:
     colors "^1.1.2"
 
-socket.io-manager@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/socket.io-manager/-/socket.io-manager-0.7.3.tgz#4e2e1b0bcce3d714f43fe9629bb20c083e44c647"
+socket.io-manager@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/socket.io-manager/-/socket.io-manager-0.8.0.tgz#0a4155a8c5724402cde1a1570dacf4f8b9841f97"
 
 socket.io-parser@~3.1.1:
   version "3.1.2"
