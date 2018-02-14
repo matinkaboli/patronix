@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
 const middles = rootRequire('./middles');
-const { Token } = rootRequire('./models');
+const { OperatorToken } = rootRequire('./models');
 
 let socket = new SocketEvent();
 
@@ -12,7 +12,7 @@ socket
   middles.operator.checkToken
 )
 .handler(socket => async() => {
-  await Token.remove({ token: socket.handshake.query.token });
+  await OperatorToken.remove({ token: socket.handshake.query.token });
 
   socket.handshake.query.token = '';
 

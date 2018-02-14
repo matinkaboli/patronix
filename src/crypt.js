@@ -1,7 +1,4 @@
-import { AES, enc } from 'crypto-js';
+import { HmacSHA512 as hmacal, enc } from 'crypto-js';
 
-export const encrypt = (text, key) =>
-  AES.encrypt(text, key).toString();
-
-export const decrypt = (text, key) =>
-  AES.decrypt(text, key).toString(enc.Utf8);
+export const hmac = (text, key) =>
+  hmacal(text, key).toString(enc.Base64);

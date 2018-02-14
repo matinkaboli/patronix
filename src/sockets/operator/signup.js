@@ -2,6 +2,8 @@ import { SocketEvent } from 'socket.io-manager';
 import { unique } from 'stringing';
 
 const { User, AL } = rootRequire('./models');
+const { dbkey } = rootRequire('./config');
+const { hmac } = rootRequire('./crypt');
 
 let socket = new SocketEvent();
 
@@ -12,7 +14,7 @@ socket
   let user = new User({
     name: data.name,
     email: data.email,
-    password: data.password,
+    password: hmac(data.password, dbkey),
     status: 0
   });
 
@@ -20,7 +22,7 @@ socket
     await user.save();
 
     let al = new AL({
-      code: unique(30),
+      code: unique(50),
       user: user._id
     });
 

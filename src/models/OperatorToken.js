@@ -8,7 +8,6 @@ const schema = new Schema({
   },
   token: {
     type: String,
-    required: true,
     unique: true
   },
   createdAt: {
@@ -18,4 +17,4 @@ const schema = new Schema({
   }
 });
 
-export default mongoose.model('Token', schema);
+export default mongoose.model('OperatorToken', schema);
