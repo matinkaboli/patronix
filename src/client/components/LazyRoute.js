@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import lazyLoad from 'Root/actions/lazyLoad';
-import ResponseHandler from 'Libs/ResponseHandler';
 
 class LazyRoute extends Component {
   componentDidMount() {
@@ -13,21 +11,12 @@ class LazyRoute extends Component {
   }
 
   render() {
-    if (this.props.lazy.loading) {
-      return null;
+    if (!this.props.lazy.loading && this.props.lazy.status === 200) {
+      return <this.props.component data={this.props.lazy.data} />;
     }
 
-    let handler = new ResponseHandler();
-
-    return handler
-    .handle('success', () =>
-      <this.props.component data={this.props.lazy.data} />
-    )
-
-    .handle('error', () => <Redirect to='/denied' />)
-
-    .status(this.props.lazy.status);
+    return null;
   }
 }
 
-export default withRouter(connect(state => ({ lazy: state.lazy }))(LazyRoute));
+export default connect(state => ({ lazy: state.lazy }))(LazyRoute);
