@@ -13,7 +13,7 @@ socket
   let user = await User.findOne({
     ...credentials,
     password: hmac(credentials.password, dbkey),
-    status: true
+    status: 1
   });
 
   if (user) {
@@ -30,8 +30,7 @@ socket
 
     socket.data.user = user;
 
-    socket.emit('login', {
-      status: true,
+    socket.emit('login', 200, {
       user: {
         name: user.name,
         email: user.email,
@@ -39,8 +38,10 @@ socket
       },
       token: token.token
     });
-  } else {
-    socket.emit('login', { status: false, text: 0 });
+  }
+
+  else {
+    socket.emit('login', 401);
   }
 });
 

@@ -16,7 +16,7 @@ socket
 
   socket.handshake.query.token = '';
 
-  socket.emit('logout', { status: true });
+  socket.emit('logout', 200);
 });
 
 export default socket;

@@ -18,8 +18,8 @@ socket
 
     socket.handshake.query.token = token;
 
-    socket.emit('relogin', {
-      status: true,
+    socket.emit('relogin', 200,
+    {
       user: {
         name: isValid.user.name,
         email: isValid.user.email,
@@ -29,7 +29,7 @@ socket
   }
 
   else {
-    socket.emit('relogin', { status: false, text: 0 });
+    socket.emit('relogin', 401);
   }
 
 });

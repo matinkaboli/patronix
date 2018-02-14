@@ -1,22 +1,32 @@
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 import { LOGIN } from 'Root/actions';
+import ResponseHandler from 'Libs/ResponseHandler';
 
 export default new Promise(resolve => {
   if (localStorage.token) {
-    socket.emit('relogin', localStorage.token);
+    socket.once('relogin', (status, res) => {
+      let handler = new ResponseHandler();
 
-    socket.once('relogin', res => {
-      if (res.status) {
+      handler
+      .handle('success', () => {
         dispatch({
           type: LOGIN,
-          ...res.user
+          ...res
         });
-      }
+      })
+      .handle('unauth', () => {
+        console.log('bad password');
+      })
+      .status(status);
 
       resolve();
     });
-  } else {
+
+    socket.emit('relogin', localStorage.token);
+  }
+
+  else {
     resolve();
   }
 });

@@ -9,5 +9,5 @@ export default (user, { path, params }) => {
     }
   }
 
-  return Promise.resolve({ success: false });
+  return Promise.resolve({ status: 404 });
 };

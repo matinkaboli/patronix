@@ -2,7 +2,7 @@ export const path = '/panel/setting';
 
 export async function handler(user) {
   return {
-    status: true,
+    status: 200,
     data: {
       name: user.name,
       email: user.email,

@@ -1,11 +1,13 @@
 import socket from 'Root/socket';
 import { LOGIN } from 'Root/actions';
+import ResponseHandler from 'Libs/ResponseHandler';
 
 export default ({ push, ...credentials }) => dispatch => {
-  socket.emit('login', credentials);
+  socket.once('login', (status, res) => {
+    let handler = new ResponseHandler();
 
-  socket.once('login', res => {
-    if (res.status) {
+    handler
+    .handle('success', () => {
       localStorage.token = res.token;
 
       dispatch({
@@ -14,8 +16,14 @@ export default ({ push, ...credentials }) => dispatch => {
       });
 
       push('/panel');
-    } else {
+    })
+
+    .handle('unauth', () => {
       push('/denied');
-    }
+    })
+
+    .status(status);
   });
+
+  socket.emit('login', credentials);
 };
