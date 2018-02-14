@@ -8,33 +8,23 @@ export default class {
   status(status) {
     switch (status) {
       case 200: {
-        this.success();
-
-        break;
+        return this.success();
       }
 
       case 404: {
-        this.notfound();
-
-        break;
+        return this.notfound();
       }
 
       case 400: {
-        this.error();
-
-        break;
+        return this.error();
       }
 
       case 403: {
-        this.forbidden();
-
-        break;
+        return this.forbidden();
       }
 
       case 401: {
-        this.unauth();
-        
-        break;
+        return this.unauth();
       }
     }
   }

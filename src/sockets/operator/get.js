@@ -13,7 +13,7 @@ socket
 )
 .handler(socket => data => {
   routerHandler(socket.data.user, data).then(res => {
-    socket.emit('get', res);
+    socket.emit('get', res.status, res.data);
   });
 });
 

@@ -9,6 +9,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Activate from './Activate';
 import ProtectedRoute from './ProtectedRoute';
+import LazyRoute from './LazyRoute';
 import UserPanel from './UserPanel';
 import Denied from './Denied';
 import NotFound from './NotFound';
@@ -22,7 +23,7 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path='/activate/:code' component={Activate} />
+          <LazyRoute exact path='/activate/:code' component={Activate} />
           <ProtectedRoute path='/panel' component={UserPanel} />
           <Route exact path='/denied' component={Denied} />
           <Route exact path='/notfound' component={NotFound} />
