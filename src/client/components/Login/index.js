@@ -1,35 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import izitoast from 'izitoast';
+import { Link } from 'react-router-dom';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
-import './index.less';
+import { e } from 'Root/libs/validator';
+
+import styles from './index.less';
 
 class Login extends Component {
   @bind
   login() {
-    this.props.dispatch(loginAct({
-      email: this.refs.email.value,
-      password: this.refs.password.value,
-      push: this.props.history.push
-    }));
+    if (e(this.refs.email.value)) {
+      this.props.dispatch(loginAct({
+        email: this.refs.email.value,
+        password: this.refs.password.value,
+        push: this.props.history.push
+      }));
+    } else {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل اشتباه است'
+      });
+      this.refs.email.focus();
+    }
   }
 
   render() {
     return (
-      <div className='login-form'>
+      <div className={styles.container}>
 
-        <input
-          type='email'
-          ref='email'
-          placeholder='ایمیل'/>
+        <div className={styles.form}>
 
-        <input
-          type='password'
-          ref='password'
-          placeholder='رمز' />
+          <input
+            type='email'
+            ref='email'
+            placeholder='ایمیل'/>
 
-        <button onClick={this.login}>ورود</button>
+          <input
+            type='password'
+            ref='password'
+            placeholder='رمز' />
+
+          <button onClick={this.login}>ورود</button>
+          
+          <Link to='/signup'>ثبت نام</Link>
+          <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
+
+        </div>
 
       </div>
     );
