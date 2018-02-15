@@ -3,6 +3,7 @@ const { User, AL } = rootRequire('./models');
 export const path = '/activate/:code';
 
 export async function handler(user, { code }) {
+  console.log(code);
   let al = await AL.findOne({ code });
 
   if (al) {

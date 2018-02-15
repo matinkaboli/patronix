@@ -15,9 +15,6 @@ export default new Promise(resolve => {
           ...res
         });
       })
-      .handle('unauth', () => {
-        console.log('bad password');
-      })
       .status(status);
 
       resolve();

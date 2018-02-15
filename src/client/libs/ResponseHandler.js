@@ -6,26 +6,30 @@ export default class {
   }
 
   status(status) {
+    let method = 'error';
+
     switch (status) {
       case 200: {
-        return this.success();
+        method = 'success';
+        break;
       }
 
       case 404: {
-        return this.notfound();
-      }
-
-      case 400: {
-        return this.error();
+        method = 'notfound';
+        break;
       }
 
       case 403: {
-        return this.forbidden();
+        method = 'forbidden';
+        break;
       }
 
       case 401: {
-        return this.unauth();
+        method = 'unauth';
+        break;
       }
     }
+
+    return (this[method] || (() => {}))();
   }
 }
