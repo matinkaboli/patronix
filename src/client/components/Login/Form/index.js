@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
@@ -47,4 +48,4 @@ class Form extends Component {
   }
 }
 
-export default connect()(Form);
+export default withRouter(connect()(Form));

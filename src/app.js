@@ -10,6 +10,7 @@ import requireasarray from 'requireasarray';
 import config from './config';
 
 global.rootRequire = file => require(join(__dirname, file));
+global.rootDir = __dirname;
 
 let sockets = requireasarray(join(__dirname, 'sockets'));
 const { init } = require('./middles');

@@ -1,5 +1,5 @@
 import { SocketEvent } from 'socket.io-manager';
-import { unique } from 'stringing';
+import { randomBytes } from 'crypto';
 
 const { User, AL } = rootRequire('./models');
 const { dbkey } = rootRequire('./config');
@@ -22,7 +22,7 @@ socket
     await user.save();
 
     let al = new AL({
-      code: unique(50),
+      code: randomBytes(25).toString('hex'),
       user: user._id
     });
 
