@@ -5,6 +5,8 @@ import store from './store';
 import App from './components/App';
 import relogin from './relogin';
 import './libs/index.less';
+import './libs/font-fa.less';
+import './libs/iziToast.min.css';
 
 window.onload = () => {
   relogin.then(() => {
