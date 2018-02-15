@@ -1,4 +1,7 @@
-import { HmacSHA512 as hmacal, enc } from 'crypto-js';
+import { createHmac } from 'crypto';
 
-export const hmac = (text, key) =>
-  hmacal(text, key).toString(enc.Base64);
+export const hmac = (text, key) => {
+  let hmac = createHmac('sha512', key);
+  hmac.update(text);
+  return hmac.digest('hex');
+};
