@@ -5,6 +5,7 @@ import izitoast from 'izitoast';
 import { Link } from 'react-router-dom';
 
 import { e, p } from 'Root/libs/validator';
+import Menu from 'Components/Menu';
 
 import styles from './index.less';
 
@@ -43,32 +44,35 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className={styles.form}>
+      <div>
+        <Menu />
+        <div className={styles.form}>
 
-        <input
-          type='text'
-          ref='fname'
-          placeholder='نام' />
+          <input
+            type='text'
+            ref='fname'
+            placeholder='نام' />
 
-        <input
-          type='text'
-          ref='lname'
-          placeholder='نام خانوادگی' />
+          <input
+            type='text'
+            ref='lname'
+            placeholder='نام خانوادگی' />
 
-        <input
-          type='email'
-          ref='email'
-          placeholder='ایمیل' />
+          <input
+            type='email'
+            ref='email'
+            placeholder='ایمیل' />
 
-        <input
-          type='password'
-          ref='password'
-          placeholder='رمز' />
+          <input
+            type='password'
+            ref='password'
+            placeholder='رمز' />
 
-        <button onClick={this.signup}>ثبت نام</button>
+          <button onClick={this.signup}>ثبت نام</button>
 
-        <Link to='/login'>حساب داری؟</Link>
+          <Link to='/login'>حساب داری؟</Link>
 
+        </div>
       </div>
     );
   }
