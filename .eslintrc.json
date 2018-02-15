@@ -14,8 +14,8 @@
     "react"
   ],
   "globals": {
-    "shared": true,
-    "rootRequire": true
+    "rootRequire": true,
+    "rootDir": true
   },
   "rules": {
     "react/display-name": 0,
