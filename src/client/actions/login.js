@@ -2,7 +2,7 @@ import socket from 'Root/socket';
 import { LOGIN } from 'Root/actions';
 import ResponseHandler from 'Libs/ResponseHandler';
 
-export default ({ push, ...credentials }) => dispatch => {
+export default ({ push, failure, ...credentials }) => dispatch => {
   socket.once('login', (status, res) => {
     let handler = new ResponseHandler();
 
@@ -18,9 +18,7 @@ export default ({ push, ...credentials }) => dispatch => {
       push('/panel');
     })
 
-    .handle('unauth', () => {
-      push('/denied');
-    })
+    .handle('unauth', failure)
 
     .status(status);
   });
