@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import bind from 'Root/bind';
 import socket from 'Root/socket';
 import izitoast from 'izitoast';
+import { Link } from 'react-router-dom';
 
 import { e, p } from 'Root/libs/validator';
 
@@ -65,6 +66,8 @@ class Signup extends Component {
           placeholder='رمز' />
 
         <button onClick={this.signup}>ثبت نام</button>
+
+        <Link to='/login'>حساب داری؟</Link>
 
       </div>
     );

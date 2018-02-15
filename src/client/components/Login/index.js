@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
+import { Link } from 'react-router-dom';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
@@ -43,9 +44,9 @@ class Login extends Component {
             placeholder='رمز' />
 
           <button onClick={this.login}>ورود</button>
-
-          <a href='/signup'>ثبت نام کن</a>
-          <a href='/recovery'>رمزت رو فراموش کردی؟</a>
+          
+          <Link to='/signup'>ثبت نام</Link>
+          <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
 
         </div>
 
