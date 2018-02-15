@@ -1,8 +1,8 @@
 import requireasarray from 'requireasarray';
 
-let routers = requireasarray(__dirname);
+export const routers = requireasarray(__dirname);
 
-export default (user, { path, params }) => {
+export function routerHandler(user, { path, params }) {
   for (let router of routers.values()) {
     if (router.path === path) {
       return router.handler(user, params);
@@ -10,4 +10,4 @@ export default (user, { path, params }) => {
   }
 
   return Promise.resolve({ status: 404 });
-};
+}

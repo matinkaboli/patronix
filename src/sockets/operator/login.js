@@ -24,7 +24,7 @@ socket
     }
 
     token = new OperatorToken({ user: user._id });
-    token.token = hmac(token._id, otkey);
+    token.token = hmac(token._id.toString(), otkey);
 
     await token.save();
 
