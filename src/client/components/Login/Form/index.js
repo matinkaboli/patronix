@@ -43,9 +43,6 @@ class Form extends Component {
 
         <button onClick={this.login}>ورود</button>
 
-        <Link to='/signup'>ثبت نام</Link>
-        <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
-
       </div>
     );
   }
