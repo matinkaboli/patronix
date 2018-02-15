@@ -1,0 +1,27 @@
+@import '../../libs/colors.less';
+
+:local(.header) {
+  padding: 10px 40px;
+  width: 100%;
+  height: auto;
+  background-color: @red-base;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+
+    li {
+      display: inline;
+
+      a {
+        font-size: 15px;
+      }
+    }
+  }
+}

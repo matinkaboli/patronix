@@ -5,6 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 
+import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import Activate from './Activate';
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
+          <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
           <Route exact path='/signup' component={Signup} />
