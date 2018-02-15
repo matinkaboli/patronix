@@ -18,10 +18,48 @@
 
     li {
       display: inline;
+      margin: 0 20px;
 
       a {
-        font-size: 15px;
+        font-size: 16px;
+        color: white;
+        position: relative;
+        display: inline-block;
+
+        &::before, &::after {
+          position: absolute;
+          color: transparent;
+          top: 50%;
+          transition: all 0.3s;
+        }
+
+        &::before {
+          content: ']';
+          left: -15px;
+          transform: translate(-20px, -50%) scale(0.5, 0.5);
+        }
+
+        &::after {
+          content: '[';
+          right: -15px;
+          transform: translate(20px, -50%) scale(0.5, 0.5);
+        }
+
+        &:hover::before, &:hover::after {
+          color: white;
+          transform: translate(0px, -50%) scale(1, 1);
+        }
+
+        &:hover {
+          color: #eee;
+        }
       }
     }
   }
+}
+
+:local(.titleName) {
+  font-family: SB;
+  color: white;
+  text-shadow: 2px 2px #333;
 }

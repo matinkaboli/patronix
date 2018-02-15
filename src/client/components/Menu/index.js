@@ -7,7 +7,7 @@ class Menu extends Component {
   render() {
     return (
       <div className={styles.header}>
-        <h1><Link to='/'>Patronix</Link></h1>
+        <h1><Link to='/' className={styles.titleName}>Patronix</Link></h1>
         <ul>
           <li><Link to='/login'>ورود</Link></li>
           <li><Link to='/signup'>ثبت نام</Link></li>
