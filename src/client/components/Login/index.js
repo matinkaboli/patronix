@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
-import './index.less';
+import styles from './index.less';
 
 class Login extends Component {
   @bind
@@ -17,7 +17,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='login-form'>
+      <div className={styles.form}>
 
         <input
           type='email'
@@ -30,6 +30,9 @@ class Login extends Component {
           placeholder='رمز' />
 
         <button onClick={this.login}>ورود</button>
+
+        <a href='/signup'>ثبت نام کن</a>
+        <a href='/recovery'>رمزت رو فراموش کردی؟</a>
 
       </div>
     );
