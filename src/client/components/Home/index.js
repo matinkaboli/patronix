@@ -37,25 +37,6 @@ class Home extends Component {
     return (
       <div>
         <Menu />
-        <div>
-
-          <input
-            type='email'
-            ref='email'
-            placeholder='ایمیل'/>
-
-          <input
-            type='password'
-            ref='password'
-            placeholder='رمز' />
-
-          <button onClick={this.login}>ورود</button>
-
-          <Link to='/signup'>ثبت نام</Link>
-          <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
-
-        </div>
-
       </div>
     );
   }

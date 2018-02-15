@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
-import { Link } from 'react-router-dom';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
+import Form from './Form';
+
 import { e } from 'Root/libs/validator';
 
 import styles from './index.less';
@@ -30,26 +31,7 @@ class Login extends Component {
   render() {
     return (
       <div className={styles.container}>
-
-        <div className={styles.form}>
-
-          <input
-            type='email'
-            ref='email'
-            placeholder='ایمیل'/>
-
-          <input
-            type='password'
-            ref='password'
-            placeholder='رمز' />
-
-          <button onClick={this.login}>ورود</button>
-          
-          <Link to='/signup'>ثبت نام</Link>
-          <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
-
-        </div>
-
+        <Form />
       </div>
     );
   }
