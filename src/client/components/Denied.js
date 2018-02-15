@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+import Menu from 'Components/Menu';
+
 class Denied extends Component {
   render() {
     return (
-      <p>
-        denied!
-      </p>
+      <div>
+        <Menu />
+        <h1>شما اجازه ورود به این صفحه را ندارید</h1>
+      </div>
     );
   }
 }

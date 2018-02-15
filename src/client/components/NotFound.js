@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+import Menu from 'Components/Menu';
+
 class Denied extends Component {
   render() {
     return (
-      <p>
-        not found !
-      </p>
+      <div>
+        <Menu />
+        <h1>صفحه مورد نظر یافت نشد</h1>
+      </div>
     );
   }
 }
