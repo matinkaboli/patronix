@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 import { Link } from 'react-router-dom';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
-import Menu from '../Menu/index';
-import { e } from 'Root/libs/validator';
+import Menu from './Menu';
+import { email, password } from 'Libs/validator';
 
 class Home extends Component {
   @bind
   login() {
-    if (e(this.refs.email.value)) {
+    if (email(this.refs.email.value) && password(this.refs.password.value)) {
       this.props.dispatch(loginAct({
         email: this.refs.email.value,
         password: this.refs.password.value,
@@ -54,4 +53,4 @@ class Home extends Component {
   }
 }
 
-export default connect()(Home);
+export default Home;
