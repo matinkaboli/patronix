@@ -44,8 +44,8 @@ const schema = new Schema({
     trim: true
   },
   avatar: {
-    type: String,
-    trim: true
+    path: String,
+    url: String
   },
   sites: [{
     type: Schema.Types.ObjectId,

@@ -4,11 +4,16 @@ import socket from 'Root/socket';
 
 class Setting extends Component {
   @bind
-  click() {
+  upload() {
     let reader = new FileReader();
+    let file = this.refs.file.files[0];
 
     reader.addEventListener('loadend', () => {
-      socket.emit('uploadAvatar', reader.result);
+      socket.emit('uploadAvatar', {
+        type: file.type.split('/')[1],
+        size: file.size,
+        file: reader.result
+      });
     });
 
     reader.readAsBinaryString(this.refs.file.files[0]);
@@ -16,9 +21,9 @@ class Setting extends Component {
 
   @bind
   renderImage() {
-    if (this.props.data.avatar) {
+    if (this.props.data.avatar.url) {
       return (
-        <img src={this.props.data.avatar} />
+        <img src={this.props.data.avatar.url} />
       );
     }
 
@@ -35,7 +40,7 @@ class Setting extends Component {
         <div>
           {this.renderImage()}
           <input type='file' ref='file' />
-          <button onClick={this.click}>click</button>
+          <button onClick={this.upload}>upload</button>
         </div>
       </div>
     );
