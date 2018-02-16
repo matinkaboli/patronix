@@ -8,6 +8,7 @@ import {
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import Recovery from './Recovery';
 import Activate from './Activate';
 import ProtectedRoute from './ProtectedRoute';
 import LazyRoute from './LazyRoute';
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
           <Route exact path='/signup' component={Signup} />
+          <Route exact path='/recovery' component={Recovery} />
           <LazyRoute exact path='/activate/:code' component={Activate} />
           <ProtectedRoute path='/panel' component={UserPanel} />
           <Route exact path='/denied' component={Denied} />

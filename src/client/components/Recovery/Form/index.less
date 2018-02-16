@@ -1,0 +1,16 @@
+:local(.form) {
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+
+  input, button {
+    display: block;
+  }
+}
+
+.displayValidateError input:invalid {
+  background-color: red;
+}

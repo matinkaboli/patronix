@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
-import loginAct from 'Root/actions/login';
+import signupAct from 'Root/actions/signup';
 import { email, password } from 'Root/libs/validator';
 
 import styles from './index.less';
@@ -24,10 +24,20 @@ class Form extends Component {
 
     if (email(this.refs.email.value)) {
       if (password(this.refs.password.value)) {
-        this.props.dispatch(loginAct({
+        this.props.dispatch(signupAct({
+          name: {
+            first: this.refs.fname.value,
+            last: this.refs.lname.value
+          },
           email: this.refs.email.value,
           password: this.refs.password.value,
-          push: this.props.history.push
+          push: this.props.history.push,
+          failure() {
+            izitoast.error({
+              rtl: true,
+              title: 'ایمیل یا رمز اشتباه وارد شده است'
+            });
+          }
         }));
       } else {
         izitoast.warning({
