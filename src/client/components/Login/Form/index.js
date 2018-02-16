@@ -9,10 +9,9 @@ import { email } from 'Libs/validator';
 import styles from './index.less';
 
 class Form extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  state = {
+    displayValidateError: false
+  };
 
   @bind
   login(e) {
