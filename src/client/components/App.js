@@ -28,7 +28,6 @@ class App extends Component {
           <LazyRoute exact path='/activate/:code' component={Activate} />
           <ProtectedRoute path='/panel' component={UserPanel} />
           <Route exact path='/denied' component={Denied} />
-          <Route exact path='/notfound' component={NotFound} />
           <Route component={NotFound} />
         </Switch>
       </Router>

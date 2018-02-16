@@ -9,8 +9,21 @@ import { email } from 'Libs/validator';
 import styles from './index.less';
 
 class Form extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
   @bind
-  login() {
+  login(e) {
+    e.preventDefault();
+
+    if (!e.target.checkValidity()) {
+      this.setState({ displayValidateError: true });
+      return;
+    }
+    this.setState({ displayValidateError: false });
+
     if (email(this.refs.email.value)) {
       this.props.dispatch(loginAct({
         email: this.refs.email.value,
@@ -19,7 +32,7 @@ class Form extends Component {
         failure() {
           izitoast.error({
             rtl: true,
-            title: 'ایمیل یا رمز اشبتاه وارد شده است'
+            title: 'ایمیل یا رمز اشتباه وارد شده است'
           });
         }
       }));
@@ -33,22 +46,30 @@ class Form extends Component {
   }
 
   render() {
+    const { displayValidateError } = this.state;
+
     return (
-      <div className={styles.form}>
+      <form
+        className={`${styles.form}
+        ${displayValidateError ? 'displayValidateError' : ''}`}
+        onSubmit={this.login}
+        noValidate>
 
         <input
           type='email'
           ref='email'
+          required
           placeholder='ایمیل'/>
 
         <input
           type='password'
           ref='password'
+          required
           placeholder='رمز' />
 
-        <button onClick={this.login}>ورود</button>
+          <button type='submit'>ورود</button>
 
-      </div>
+      </form>
     );
   }
 }
