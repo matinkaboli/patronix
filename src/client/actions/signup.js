@@ -4,11 +4,11 @@ import ResponseHandler from 'Libs/ResponseHandler';
 
 export default data => dispatch => {
   socket.once('signup', (status, res) => {
+    console.log(res);
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
-      localStorage.token = res.token;
 
       dispatch({
         type: SIGNUP,

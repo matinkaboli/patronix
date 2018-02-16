@@ -31,7 +31,6 @@ class Form extends Component {
           },
           email: this.refs.email.value,
           password: this.refs.password.value,
-          push: this.props.history.push,
           failure() {
             izitoast.error({
               rtl: true,
