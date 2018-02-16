@@ -1,12 +1,13 @@
 import socket from 'Root/socket';
 import types from 'Root/actions';
 
-export default ({ path, params }) => dispatch => {
-  socket.once('get', (status, res) => {
+export default ({ path, params, type }) => dispatch => {
+  socket.once('get', (status, data) => {
+    dispatch({ type, data });
+
     dispatch({
       type: types.STOP_LOADING,
-      status,
-      data: res
+      status
     });
   });
 

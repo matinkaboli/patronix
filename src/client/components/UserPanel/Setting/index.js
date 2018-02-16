@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import bind from 'Root/bind';
 import socket from 'Root/socket';
 
@@ -21,7 +23,7 @@ class Setting extends Component {
 
   @bind
   renderImage() {
-    if (this.props.data.avatar.url) {
+    if (this.props.setting.avatar.url) {
       return (
         <img src={this.props.data.avatar.url} />
       );
@@ -47,4 +49,4 @@ class Setting extends Component {
   }
 }
 
-export default Setting;
+export default connect(state => ({ setting: state.setting }))(Setting);
