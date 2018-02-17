@@ -33,7 +33,7 @@ const io = socketIO(server);
 
 if (process.env.NODE_ENV !== 'development') {
   app.use(morgan('short'));
-  let filtered = ['uploadAvatar'];
+  let filtered = ['setAvatar'];
   sockets = [
     ...sockets.filter(so => filtered.includes(so._name)),
     ...applyMiddleware([logger],

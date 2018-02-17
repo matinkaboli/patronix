@@ -9,7 +9,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/operator')
-.name('uploadAvatar')
+.name('setAvatar')
 .middleware(
   middles.operator.checkToken
 )

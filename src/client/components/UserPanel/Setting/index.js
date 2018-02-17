@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import bind from 'Root/bind';
-import upload from 'Root/actions/setting/upload';
+import setAvatar from 'Root/actions/setting/setAvatar';
 
 class Setting extends Component {
   @bind
-  upload() {
+  setAvatar() {
     let reader = new FileReader();
     let file = this.refs.file.files[0];
     let { dispatch } = this.props;
 
     reader.addEventListener('loadend', () => {
-      dispatch(upload({
+      dispatch(setAvatar({
         type: file.type.split('/')[1],
         size: file.size,
         file: reader.result
@@ -38,13 +38,12 @@ class Setting extends Component {
   }
 
   render() {
-    console.log(this.props.setting);
     return (
       <div>
         <div>
           {this.renderImage()}
           <input type='file' ref='file' />
-          <button onClick={this.upload}>upload</button>
+          <button onClick={this.setAvatar}>upload</button>
         </div>
       </div>
     );
