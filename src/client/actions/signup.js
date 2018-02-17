@@ -1,6 +1,6 @@
 import socket from 'Root/socket';
 import { SIGNUP } from 'Root/actions';
-import ResponseHandler from 'Libs/ResponseHandler';
+import ResponseHandler from 'Root/libs/ResponseHandler';
 
 export default data => dispatch => {
   socket.once('signup', (status, res) => {

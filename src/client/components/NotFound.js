@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Menu from 'Components/Menu';
+import Menu from 'Root/components/Menu';
 
 class Denied extends Component {
   render() {

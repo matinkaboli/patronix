@@ -5,7 +5,7 @@ import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
-import { email } from 'Libs/validator';
+import { email } from 'Root/libs/validator';
 import styles from './index.less';
 
 class Form extends Component {

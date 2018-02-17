@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
-import { email } from 'Libs/validator';
+import { email } from 'Root/libs/validator';
 import styles from './index.less';
 
 class Form extends Component {

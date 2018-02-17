@@ -45,9 +45,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Components: resolve(__dirname, '../../', 'src/client/components'),
       Root: resolve(__dirname, '../../', 'src/client'),
-      Libs: resolve(__dirname, '../../', 'src/client/libs')
     }
   },
   plugins: [

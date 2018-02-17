@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
-import Menu from 'Components/Menu';
-import { email, password } from 'Libs/validator';
+import Menu from 'Root/components/Menu';
+import { email, password } from 'Root/libs/validator';
 
 class Home extends Component {
   @bind

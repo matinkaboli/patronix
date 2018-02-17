@@ -1,5 +1,5 @@
 import types from 'Root/actions';
-import ResponseHandler from 'Libs/ResponseHandler';
+import ResponseHandler from 'Root/libs/ResponseHandler';
 import socket from 'Root/socket';
 
 export default ({ type, size, file }) => dispatch => {

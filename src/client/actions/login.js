@@ -1,6 +1,6 @@
 import socket from 'Root/socket';
 import { LOGIN } from 'Root/actions';
-import ResponseHandler from 'Libs/ResponseHandler';
+import ResponseHandler from 'Root/libs/ResponseHandler';
 
 export default ({ push, failure, ...credentials }) => dispatch => {
   socket.once('login', (status, res) => {

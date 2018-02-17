@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Menu from 'Components/Menu';
+import Menu from 'Root/components/Menu';
 import Form from './Form';
 
 import styles from './index.less';
