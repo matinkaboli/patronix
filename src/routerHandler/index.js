@@ -2,10 +2,10 @@ import requireasarray from 'requireasarray';
 
 export const routers = requireasarray(__dirname);
 
-export function routerHandler(user, { path, params }) {
+export function routerHandler(socket, { path, params }) {
   for (let router of routers.values()) {
     if (router.path === path) {
-      return router.handler(user, params);
+      return router.handler(socket, params);
     }
   }
 

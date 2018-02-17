@@ -12,7 +12,7 @@ socket
   middles.operator.get
 )
 .handler(socket => data => {
-  routerHandler(socket.data.user, data).then(res => {
+  routerHandler(socket, data).then(res => {
     socket.emit('get', res.status, res.data);
   });
 });

@@ -4,7 +4,7 @@ export const path = '/activate/:code';
 
 export const needLogin = false;
 
-export async function handler(user, { code }) {
+export async function handler(socket, { code }) {
   let al = await AL.findOne({ code });
 
   if (al) {

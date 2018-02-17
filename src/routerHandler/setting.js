@@ -1,12 +1,12 @@
 export const path = '/panel/setting';
 
-export async function handler(user) {
+export async function handler(socket) {
   return {
     status: 200,
     data: {
-      name: user.name,
-      email: user.email,
-      avatar: user.avatar.url
+      name: socket.data.user.name,
+      email: socket.data.user.email,
+      avatar: socket.data.user.avatar.url
     }
   };
 }
