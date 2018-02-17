@@ -11,7 +11,7 @@ export async function handler(socket) {
     color: true
   });
 
-  socket.data.captcha = text;
+  socket.data.captcha = text.toLowerCase();
 
   return {
     status: 200,
