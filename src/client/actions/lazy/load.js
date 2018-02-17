@@ -3,7 +3,9 @@ import types from 'Root/actions';
 
 export default ({ path, params, type }) => dispatch => {
   socket.once('get', (status, data) => {
-    dispatch({ type, data });
+    if (type) {
+      dispatch({ type, data });
+    }
 
     dispatch({
       type: types.lazy.STOP_LOADING,
