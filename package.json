@@ -6,7 +6,7 @@
   "scripts": {
     "dev:build": "gulp dev watch",
     "prod:build": "gulp prod",
-    "server": "nodemon --delay 1 build/app.js -e js,njk",
+    "server": "nodemon --delay 1 build/app.js -e js -w build/",
     "compress": "tar -czvf app.tar.gz build package.json",
     "app": "node build/app.js"
   },
