@@ -12,9 +12,13 @@ export default (next, socket) => async() => {
 
       next();
     }
-    
-    socket.emit(socket.eventName, 403);
+
+    else {
+      socket.emit(socket.eventName, 403);
+    }
   }
 
-  socket.emit(socket.eventName, 403);
+  else {
+    socket.emit(socket.eventName, 403);
+  }
 };

@@ -10,6 +10,13 @@ export default (state = defaultState, action) => {
       return action.data;
     }
 
+    case types.SET_AVATAR: {
+      return {
+        ...state,
+        avatar: action.avatar
+      };
+    }
+
     default: {
       return state;
     }

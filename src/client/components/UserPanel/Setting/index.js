@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import bind from 'Root/bind';
-import socket from 'Root/socket';
+import uploadAvatar from 'Root/actions/uploadAvatar';
 
 class Setting extends Component {
   @bind
   upload() {
     let reader = new FileReader();
     let file = this.refs.file.files[0];
+    let { dispatch } = this.props;
 
     reader.addEventListener('loadend', () => {
-      socket.emit('uploadAvatar', {
+      dispatch(uploadAvatar({
         type: file.type.split('/')[1],
         size: file.size,
         file: reader.result
-      });
+      }));
     });
 
     reader.readAsBinaryString(this.refs.file.files[0]);
@@ -23,9 +24,9 @@ class Setting extends Component {
 
   @bind
   renderImage() {
-    if (this.props.setting.avatar.url) {
+    if (this.props.setting.avatar) {
       return (
-        <img src={this.props.data.avatar.url} />
+        <img src={this.props.setting.avatar} />
       );
     }
 
