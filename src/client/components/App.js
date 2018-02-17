@@ -5,6 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 
+import types from 'Root/actions';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
@@ -26,7 +27,10 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path='/recovery' component={Recovery} />
+          <LazyRoute
+            type={types.recovery.SET_CAPTCHA}
+            exact
+            path='/recovery' component={Recovery} />
           <LazyRoute exact path='/activate/:code' component={Activate} />
           <ProtectedRoute path='/panel' component={UserPanel} />
           <Route exact path='/denied' component={Denied} />

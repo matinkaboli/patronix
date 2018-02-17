@@ -9,5 +9,8 @@ export default {
   setting: {
     LOAD: 'setting/LOAD',
     SET_AVATAR: 'setting/SET_AVATAR'
+  },
+  recovery: {
+    SET_CAPTCHA: 'recovery/SET_CAPTCHA'
   }
 };
