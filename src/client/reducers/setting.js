@@ -6,11 +6,11 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case types.LOAD_SETTING: {
+    case types.setting.LOAD: {
       return action.data;
     }
 
-    case types.SET_AVATAR: {
+    case types.setting.SET_AVATAR: {
       return {
         ...state,
         avatar: action.avatar

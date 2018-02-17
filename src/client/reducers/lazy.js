@@ -2,13 +2,13 @@ import types from 'Root/actions';
 
 export default (state = { loading: false }, { type, ...rest }) => {
   switch (type) {
-    case types.START_LOADING: {
+    case types.lazy.START_LOADING: {
       return {
         loading: true
       };
     }
 
-    case types.STOP_LOADING: {
+    case types.lazy.STOP_LOADING: {
       return {
         loading: false,
         ...rest

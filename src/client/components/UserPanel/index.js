@@ -14,7 +14,7 @@ class UserPanel extends Component {
         <Sidebar />
         <Switch>
           <LazyRoute
-            type={types.LOAD_SETTING}
+            type={types.setting.LOAD}
             path='/panel/setting'
             component={Setting} />
           <LazyRoute path='/panel/sites' component={Sites} />

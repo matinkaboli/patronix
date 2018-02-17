@@ -6,13 +6,13 @@ export default ({ path, params, type }) => dispatch => {
     dispatch({ type, data });
 
     dispatch({
-      type: types.STOP_LOADING,
+      type: types.lazy.STOP_LOADING,
       status
     });
   });
 
   dispatch({
-    type: types.START_LOADING
+    type: types.lazy.START_LOADING
   });
 
   socket.emit('get', { path, params });

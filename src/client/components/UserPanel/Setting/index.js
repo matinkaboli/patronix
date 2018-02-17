@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import bind from 'Root/bind';
-import uploadAvatar from 'Root/actions/uploadAvatar';
+import upload from 'Root/actions/setting/upload';
 
 class Setting extends Component {
   @bind
@@ -12,7 +12,7 @@ class Setting extends Component {
     let { dispatch } = this.props;
 
     reader.addEventListener('loadend', () => {
-      dispatch(uploadAvatar({
+      dispatch(upload({
         type: file.type.split('/')[1],
         size: file.size,
         file: reader.result
@@ -38,6 +38,7 @@ class Setting extends Component {
   }
 
   render() {
+    console.log(this.props.setting);
     return (
       <div>
         <div>

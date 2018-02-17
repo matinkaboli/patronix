@@ -9,7 +9,7 @@ export default ({ type, size, file }) => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.SET_AVATAR,
+        type: types.setting.SET_AVATAR,
         avatar: res.url
       });
     })

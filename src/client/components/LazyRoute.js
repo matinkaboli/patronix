@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import lazyLoad from 'Root/actions/lazyLoad';
+import load from 'Root/actions/lazy/load';
 
 class LazyRoute extends Component {
   componentWillMount() {
-    this.props.dispatch(lazyLoad({
+    this.props.dispatch(load({
       path: this.props.computedMatch.path,
       params: this.props.computedMatch.params,
       type: this.props.type
