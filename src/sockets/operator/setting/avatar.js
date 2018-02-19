@@ -1,6 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 import { writeFile, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
+import { randomBytes } from 'crypto';
 
 const { uploadDir } = rootRequire('./config');
 const middles = rootRequire('./middles');
@@ -37,7 +38,8 @@ socket
 
         await socket.data.user.save();
 
-        socket.emit('setAvatar', 200, socket.data.user.avatar.url);
+        socket.emit('setAvatar', 200,
+        `${socket.data.user.avatar.url}?${randomBytes(5).toString('hex')}`);
       }
     });
   }
