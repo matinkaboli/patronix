@@ -29,7 +29,7 @@ class Form extends Component {
         className={`${styles.form} ${this.props.formStyle}
         ${displayValidateError ? 'displayValidateError' : ''}`}
         onSubmit={e => {
-          this.props.submitFunction(e, this.refs);
+          this.props.submitFunction(e);
           this.checkInputsValidate(e);
         }}
         noValidate>
