@@ -20,8 +20,8 @@ socket
 
   if (
     data.file.length === data.size &&
-    data.size < 512000 &&
-    ['jpg', 'png'].includes(data.type)
+    data.size < 1048576 &&
+    ['jpg', 'jpeg', 'png'].includes(data.type)
   ) {
     let path = resolve(uploadDir, `${socket.data.user.id}.${data.type}`);
     writeFile(path, data.file, 'binary', async err => {

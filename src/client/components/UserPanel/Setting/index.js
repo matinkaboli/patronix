@@ -10,10 +10,11 @@ class Setting extends Component {
   setAvatar() {
     let reader = new FileReader();
     let file = this.refs.file.files[0];
+    let type = file.type.split('/')[1];
     let { dispatch } = this.props;
 
     reader.addEventListener('loadend', () => {
-      if (file.size > 512000) {
+      if (file.size > 1048576) {
         izitoast.warning({
           rtl: true,
           title: 'حجم فایل باید حداکثر ۵۱۲ کیلوبایت باشد.'
@@ -22,7 +23,7 @@ class Setting extends Component {
         return;
       }
 
-      if (!['jpg', 'png'].includes(file.type)) {
+      if (!['jpg', 'jpeg', 'png'].includes(type)) {
         izitoast.warning({
           rtl: true,
           title: 'فرمت فایل باید jpg یا png باشد'
@@ -32,7 +33,7 @@ class Setting extends Component {
       }
 
       dispatch(setAvatar({
-        type: file.type.split('/')[1],
+        type,
         size: file.size,
         file: reader.result
       }));
