@@ -22,7 +22,7 @@ socket
 
     else {
       rl = new RL({
-        link: randomBytes(20).toString('hex'),
+        code: randomBytes(20).toString('hex'),
         user: user._id
       });
 

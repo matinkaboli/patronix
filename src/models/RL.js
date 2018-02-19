@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 let schema = new Schema({
-  link: {
+  code: {
     type: String,
     required: true,
     unique: true

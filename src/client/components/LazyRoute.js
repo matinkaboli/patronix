@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
+
 import load from 'Root/actions/lazy/load';
 
 class LazyRoute extends Component {
@@ -14,6 +16,10 @@ class LazyRoute extends Component {
   render() {
     if (!this.props.lazy.loading && this.props.lazy.status === 200) {
       return <this.props.component />;
+    }
+
+    if (!this.props.lazy.loading && this.props.lazy.status === 404) {
+      return <Redirect to='/notfound' />;
     }
 
     return null;
