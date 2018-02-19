@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Menu from 'Root/components/Menu';
+import Form from 'Root/components/Form';
 import bind from 'Root/bind';
 import signup from 'Root/actions/signup';
 import captcha from 'Root/actions/captcha';
 import styles from './index.less';
 
+
 class Signup extends Component {
   @bind
-  signup() {
+  signup(e) {
     signup({
       name: {
-        first: this.refs.fname.value,
-        last: this.refs.lname.value
+        first: e.target.fname.value,
+        last: e.target.lname.value
       },
-      email: this.refs.email.value,
-      password: this.refs.password.value
-    }, this.refs.captcha.value);
+      email: e.target.email.value,
+      password: e.target.password.value
+    }, e.target.captcha.value);
   }
 
   componentDidMount() {
@@ -26,40 +28,53 @@ class Signup extends Component {
   }
 
   render() {
+    const inputs = [
+      {
+        type: 'text',
+        name: 'fname',
+        placeholder: 'نام',
+        required: true
+      },
+      {
+        type: 'text',
+        name: 'lname',
+        placeholder: 'نام خانوادگی',
+        required: true
+      },
+      {
+        type: 'email',
+        name: 'email',
+        placeholder: 'ایمیل',
+        required: true
+      },
+      {
+        type: 'password',
+        name: 'password',
+        placeholder: 'رمز عبور',
+        required: true
+      },
+      {
+        type: 'text',
+        name: 'captcha',
+        placeholder: 'کد امنیتی',
+        required: true
+      }
+    ];
+
     return (
       <div>
         <Menu />
         <div className={styles.formContainer}>
-          <input
-            type='text'
-            ref='fname'
-            placeholder='نام' />
 
-          <input
-            type='text'
-            ref='lname'
-            placeholder='نام خانوادگی' />
+          <Form
+            inputs={inputs}
+            submitValue='ثبت نام'
+            submitFunction={this.signup} />
 
-          <input
-            type='email'
-            ref='email'
-            placeholder='ایمیل' />
+            <div dangerouslySetInnerHTML={{
+              __html: this.props.captcha
+            }} />
 
-          <input
-            type='password'
-            ref='password'
-            placeholder='رمز' />
-
-          <div dangerouslySetInnerHTML={{
-            __html: this.props.captcha
-          }} />
-
-          <input
-            type='text'
-            ref='captcha'
-            placeholder='captcha' />
-
-          <button onClick={this.signup}>ثبت نام</button>
           <Link to='/login'>حساب داری؟</Link>
         </div>
       </div>
