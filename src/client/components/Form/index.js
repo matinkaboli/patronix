@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import bind from 'Root/bind';
-
 import styles from './index.less';
 
 class Form extends Component {
