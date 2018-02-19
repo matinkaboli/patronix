@@ -10,26 +10,30 @@ let socket = new SocketEvent();
 socket
 .namespace('/operator')
 .name('signup')
-.handler(socket => async data => {
-  let user = new User({
-    name: data.name,
-    email: data.email,
-    password: hmac(data.password, dbkey),
-    status: 0
-  });
-
-  try {
-    await user.save();
-
-    let al = new AL({
-      code: randomBytes(25).toString('hex'),
-      user: user._id
+.handler(socket => async (data, captcha) => {
+  if (captcha !== socket.data.captcha) {
+    socket.emit('signup', 400);
+  } else {
+    let user = new User({
+      name: data.name,
+      email: data.email,
+      password: hmac(data.password, dbkey),
+      status: 0
     });
 
-    await al.save();
-    socket.emit('signup', 200);
-  } catch (e) {
-    socket.emit('signup', 400);
+    try {
+      await user.save();
+
+      let al = new AL({
+        code: randomBytes(25).toString('hex'),
+        user: user._id
+      });
+
+      await al.save();
+      socket.emit('signup', 200);
+    } catch (e) {
+      socket.emit('signup', 400);
+    }
   }
 });
 
