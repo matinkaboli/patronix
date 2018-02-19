@@ -1,0 +1,90 @@
+@import '~Root/libs/colors.less';
+
+:local(.nav) {
+  width: 70px;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  position: fixed;
+  padding-top: 20px;
+
+  background-color: @midnight-base;
+
+  display: flex;
+  justify-content: center;
+
+  ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    li {
+      width: 100%;
+      display: block;
+      text-align: center;
+
+      a {
+        color: white;
+        position: relative;
+        display: block;
+        text-decoration: none;
+
+        &:hover {
+          background-color: #256FA0;
+        }
+
+        span {
+          width: 90px;
+          top: 13px;
+          right: 50%;
+          padding: 2px 5px 5px 5px;
+          position: absolute;
+
+          background-color: @midnight-3;
+          color: white;
+
+          opacity: 0;
+          visibility: hidden;
+
+          font-size: 15px;
+          text-align: center;
+          border-radius: 6px;
+          transition: opacity 500ms, right 300ms;
+
+          &::after {
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+
+            position: absolute;
+            border-width: 5px;
+            content: "";
+            border-style: solid;
+            border-color: transparent transparent transparent @midnight-3;
+          }
+        }
+
+        &:hover span {
+          right: 115%;
+
+          visibility: visible;
+          opacity: 1;
+        }
+
+        div.icon {
+          max-height: 60px;
+          padding: 20px 10px;
+
+          font-size: 35px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

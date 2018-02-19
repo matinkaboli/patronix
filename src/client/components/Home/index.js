@@ -16,7 +16,7 @@ class Home extends Component {
           </div>
           <div className={styles.about1}>
             <div className={styles.column}>
-              <div className={`${styles.iconBolt} ${styles.icon}`}>
+              <div className="icon-bolt icon">
                 &nbsp;
               </div>
               <h1>Speeds up development</h1>
@@ -28,7 +28,7 @@ class Home extends Component {
                </p>
             </div>
             <div className={styles.column}>
-              <div className={`${styles.iconUsers} ${styles.icon}`}>
+              <div className="icon-users icon">
                 &nbsp;
               </div>
               <h1>Speeds up development</h1>
@@ -41,7 +41,7 @@ class Home extends Component {
                </p>
             </div>
             <div className={styles.column}>
-              <div className={`${styles.iconCog} ${styles.icon}`}>
+              <div className="icon-cog icon">
                 &nbsp;
               </div>
               <h1>Speeds up development</h1>
