@@ -32,11 +32,19 @@ class Form extends Component {
         onSubmit={this.checkInputsValidate}
         noValidate>
 
-        {this.props.inputs.map((v, i) =>
-          <v.tag {...v.attrs} key={i} />
-        )}
+        <fieldset>
+          {this.props.inputs.map((v, i) =>
+            <p>
+              <v.tag {...v.attrs} key={i} />
+            </p>
+          )}
+        </fieldset>
 
-      <button type='submit'>{ this.props.submitValue }</button>
+      <button
+        type='submit'
+        className={styles.button}>
+        { this.props.submitValue }
+      </button>
 
       </form>
     );
