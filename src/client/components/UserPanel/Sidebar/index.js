@@ -11,31 +11,31 @@ class Sidebar extends Component {
         <ul>
           <li>
             <Link to='/panel'>
-              <div className="icon-user icon">&nbsp;</div>
+              <div className="icon-user icon"></div>
               <span>داشبورد</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/setting'>
-              <div className="icon-cog icon">&nbsp;</div>
+              <div className="icon-cog icon"></div>
               <span>تنظیمات</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/sites'>
-              <div className="icon-globe icon">&nbsp;</div>
+              <div className="icon-globe icon"></div>
               <span>سایت ها</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/chats'>
-              <div className="icon-comment icon">&nbsp;</div>
+              <div className="icon-comment icon"></div>
               <span>چت ها</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/logout'>
-              <div className="icon-sign-out icon">&nbsp;</div>
+              <div className="icon-sign-out icon"></div>
               <span>خروج</span>
             </Link>
           </li>
