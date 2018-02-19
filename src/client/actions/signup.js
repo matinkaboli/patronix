@@ -11,7 +11,7 @@ export default (credentials, captcha) => {
     .handle('success', () => {
       izitoast.success({
         rtl: true,
-        title: 'ثتب نام موقیت آمیز بود'
+        title: 'ثبت نام موفقیت آمیز بود'
       });
     })
 

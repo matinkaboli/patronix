@@ -13,10 +13,13 @@ class Index extends Component {
   render() {
     const inputs = [
       {
-        type: 'email',
-        placeholder: 'ایمیل',
-        name: 'email',
-        required: true
+        tag: 'input',
+        attrs: {
+          type: 'email',
+          placeholder: 'ایمیل',
+          name: 'email',
+          required: true
+        }
       }
     ];
 

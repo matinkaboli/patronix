@@ -42,16 +42,22 @@ class Login extends Component {
   render() {
     const inputs = [
       {
-        type: 'email',
-        placeholder: 'ایمیل',
-        required: true,
-        name: 'email'
+        tag: 'input',
+        attrs: {
+          type: 'email',
+          placeholder: 'ایمیل',
+          required: true,
+          name: 'email'
+        }
       },
       {
-        type: 'password',
-        placeholder: 'رمز عبور',
-        required: true,
-        name: 'password'
+        tag: 'input',
+        attrs: {
+          type: 'password',
+          placeholder: 'رمز عبور',
+          required: true,
+          name: 'password'
+        }
       }
     ];
 

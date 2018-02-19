@@ -30,34 +30,57 @@ class Signup extends Component {
   render() {
     const inputs = [
       {
-        type: 'text',
-        name: 'fname',
-        placeholder: 'نام',
-        required: true
+        tag: 'input',
+        attrs: {
+          type: 'text',
+          name: 'fname',
+          placeholder: 'نام',
+          required: true
+        }
       },
       {
-        type: 'text',
-        name: 'lname',
-        placeholder: 'نام خانوادگی',
-        required: true
+        tag: 'input',
+        attrs: {
+          type: 'text',
+          name: 'lname',
+          placeholder: 'نام خانوادگی',
+          required: true
+        }
       },
       {
-        type: 'email',
-        name: 'email',
-        placeholder: 'ایمیل',
-        required: true
+        tag: 'input',
+        attrs: {
+          type: 'email',
+          name: 'email',
+          placeholder: 'ایمیل',
+          required: true
+        }
       },
       {
-        type: 'password',
-        name: 'password',
-        placeholder: 'رمز عبور',
-        required: true
+        tag: 'input',
+        attrs: {
+          type: 'password',
+          name: 'password',
+          placeholder: 'رمز عبور',
+          required: true
+        }
       },
       {
-        type: 'text',
-        name: 'captcha',
-        placeholder: 'کد امنیتی',
-        required: true
+        tag: 'div',
+        attrs: {
+          dangerouslySetInnerHTML: {
+            __html: this.props.captcha
+          }
+        }
+      },
+      {
+        tag: 'input',
+        attrs: {
+          type: 'text',
+          name: 'captcha',
+          placeholder: 'کد امنیتی',
+          required: true
+        }
       }
     ];
 
@@ -70,10 +93,6 @@ class Signup extends Component {
             inputs={inputs}
             submitValue='ثبت نام'
             submitFunction={this.signup} />
-
-            <div dangerouslySetInnerHTML={{
-              __html: this.props.captcha
-            }} />
 
           <Link to='/login'>حساب داری؟</Link>
         </div>

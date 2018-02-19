@@ -17,6 +17,8 @@ class Form extends Component {
       return;
     }
     this.setState({ displayValidateError: false });
+
+    this.props.submitFunction(e);
   }
 
   render() {
@@ -24,23 +26,14 @@ class Form extends Component {
 
     return (
       <form
-        method='post'
+        method={this.props.method}
         className={`${styles.form} ${this.props.formStyle}
         ${displayValidateError ? 'displayValidateError' : ''}`}
-        onSubmit={e => {
-          this.props.submitFunction(e);
-          this.checkInputsValidate(e);
-        }}
+        onSubmit={this.checkInputsValidate}
         noValidate>
 
         {this.props.inputs.map((v, i) =>
-          <input
-            type={v.type}
-            value={v.value}
-            key={i}
-            name={v.name}
-            placeholder={v.placeholder}
-            required={v.required} />
+          <v.tag {...v.attrs} key={i} />
         )}
 
       <button type='submit'>{ this.props.submitValue }</button>
