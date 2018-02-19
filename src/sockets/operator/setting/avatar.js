@@ -26,7 +26,7 @@ socket
     let path = resolve(uploadDir, `${socket.data.user.id}.${data.type}`);
     writeFile(path, data.file, 'binary', async err => {
       if (err) {
-        socket.emit('uploadAvatar', 400);
+        socket.emit('setAvatar', 400);
       }
 
       else {
@@ -37,7 +37,7 @@ socket
 
         await socket.data.user.save();
 
-        socket.emit('uploadAvatar', 200, { url: socket.data.user.avatar.url });
+        socket.emit('setAvatar', 200, socket.data.user.avatar.url);
       }
     });
   }

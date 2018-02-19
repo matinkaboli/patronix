@@ -1,16 +1,23 @@
+import izitoast from 'izitoast';
+
 import types from 'Root/actions';
 import ResponseHandler from 'Root/libs/ResponseHandler';
 import socket from 'Root/socket';
 
 export default ({ type, size, file }) => dispatch => {
-  socket.once('setAvatar', (status, res) => {
+  socket.once('setAvatar', (status, avatar) => {
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
       dispatch({
         type: types.setting.SET_AVATAR,
-        avatar: res.url
+        avatar
+      });
+
+      izitoast.success({
+        rtl: true,
+        title: 'با موفقبت آپلود شد.'
       });
     })
     .status(status);
