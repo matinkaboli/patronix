@@ -1,19 +1,72 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import izitoast from 'izitoast';
 
-import Form from './Form';
+import { email } from 'Root/libs/validator';
+
 import Menu from 'Root/components/Menu';
+import bind from 'Root/bind';
+import loginAct from 'Root/actions/login';
+
+import Form from 'Root/components/Form';
 
 import styles from './index.less';
 
 class Login extends Component {
+  @bind
+  login(e) {
+
+    if (email(e.target.email.value)) {
+      this.props.dispatch(loginAct({
+        email: e.target.email.value,
+        password: e.target.password.value,
+        push: this.props.history.push,
+        failure() {
+          izitoast.error({
+            rtl: true,
+            title: 'ایمیل یا رمز اشتباه وارد شده است'
+          });
+        }
+      }));
+    } else {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل اشتباه است'
+      });
+      e.target.email.focus();
+    }
+  }
+
   render() {
+    const inputs = [
+      {
+        type: 'email',
+        placeholder: 'ایمیل',
+        required: true,
+        name: 'email'
+      },
+      {
+        type: 'password',
+        placeholder: 'رمز عبور',
+        required: true,
+        name: 'password'
+      }
+    ];
+
     return (
       <div>
         <Menu />
         <div className={styles.formContainer}>
-          <Form />
+
+          <Form
+            inputs={inputs}
+            submitValue='ورود'
+            submitFunction={this.login} />
+
           <Link to='/signup'>ثبت نام</Link>
+
           <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
         </div>
       </div>
@@ -21,4 +74,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(connect()(Login));
