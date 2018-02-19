@@ -1,40 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router';
 
+import LazyRoute from 'Root/components/LazyRoute';
 import Menu from 'Root/components/Menu';
-import Form from 'Root/components/Form';
-import bind from 'Root/bind';
-import recovery from 'Root/actions/recovery/recovery';
-
-import styles from './index.less';
+import Code from './Code';
+import Index from './Index';
 
 class Recovery extends Component {
-  @bind
-  recovery(e) {
-    recovery(e.target.email.value);
-  }
-
   render() {
-    const inputs = [
-      {
-        type: 'email',
-        placeholder: 'ایمیل',
-        name: 'email',
-        required: true
-      }
-    ];
 
     return (
       <div>
         <Menu />
-        <div className={styles.formContainer}>
-
-          <Form
-            inputs={inputs}
-            submitValue='بازیابی رمز عبور'
-            submitFunction={this.recovery} />
-        
-        </div>
+        <Switch>
+          <Route exact path='/recovery' component={Index} />
+          <LazyRoute path='/recovery/:code' component={Code} />
+        </Switch>
       </div>
     );
   }
