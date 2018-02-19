@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import izitoast from 'izitoast';
 
 import Menu from 'Root/components/Menu';
 
@@ -8,13 +7,6 @@ import styles from './index.less';
 class Home extends Component {
 
   render() {
-    if (localStorage.getItem('recovery_wrong_code')) {
-      izitoast.error({
-        rtl: true,
-        title: 'کد وارد شده اشتباه است'
-      });
-      localStorage.removeItem('recovery_wrong_code');
-    }
     return (
       <div>
         <Menu />
@@ -22,9 +14,11 @@ class Home extends Component {
           <div className={`${styles.bg} ${styles.bg1}`}>
             <h1>ارائه دهنده پشتیبانی آنلاین</h1>
           </div>
-          <div id="about1">
+          <div className={styles.about1}>
             <div className={styles.column}>
-              <div className="icon-bolt icon"></div>
+              <div className={`${styles.iconBolt} ${styles.icon}`}>
+                &nbsp;
+              </div>
               <h1>Speeds up development</h1>
               <p className={styles.detailColumn}>We did most of the heavy
                 lifting for you to provide a default
@@ -34,7 +28,9 @@ class Home extends Component {
                </p>
             </div>
             <div className={styles.column}>
-              <div className="icon-users icon"></div>
+              <div className={`${styles.iconUsers} ${styles.icon}`}>
+                &nbsp;
+              </div>
               <h1>Speeds up development</h1>
               <p className={styles.detailColumn}>
                 We have provided detailed documentation
@@ -45,7 +41,9 @@ class Home extends Component {
                </p>
             </div>
             <div className={styles.column}>
-              <div className="icon-cog icon"></div>
+              <div className={`${styles.iconCog} ${styles.icon}`}>
+                &nbsp;
+              </div>
               <h1>Speeds up development</h1>
               <p className={styles.detailColumn}>
                 By utilizing elements and principles
@@ -63,7 +61,7 @@ class Home extends Component {
               A modern responsive front-end framework based on Material Design
             </h1>
           </div>
-          <div id="about2">
+          <div className={styles.about2}>
             <h1>Contact Us</h1>
             <p>Lorem ipsum dolor sit amet,
             consectetur adipiscing elit.
