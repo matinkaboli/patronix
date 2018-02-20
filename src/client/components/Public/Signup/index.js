@@ -93,6 +93,8 @@ class Signup extends Component {
     return (
       <div className={styles.formContainer}>
 
+        <h1>ثبت نام</h1>
+        
         <Form
           inputs={inputs}
           submitFunction={this.signup} />
