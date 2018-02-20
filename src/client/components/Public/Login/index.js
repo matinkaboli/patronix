@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import izitoast from 'izitoast';
 
-import { email } from 'Root/libs/validator';
+import { email } from 'Root/js/validator';
 
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';

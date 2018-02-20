@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './components/App';
 import relogin from './relogin';
-import './libs/index.less';
-import './libs/font-fa.less';
-import './libs/iziToast.min.css';
+import 'Root/styles/index.less';
+import 'Root/styles/font-fa.less';
+import 'Root/styles/iziToast.min.css';
 
 window.onload = () => {
   relogin.then(() => {

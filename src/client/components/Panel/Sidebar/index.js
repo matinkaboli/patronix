@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './index.less';
-import 'Root/libs/icon.less';
+import 'Root/styles/icon.less';
 
 class Sidebar extends Component {
   render() {
