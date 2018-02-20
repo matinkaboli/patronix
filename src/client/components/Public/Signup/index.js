@@ -80,6 +80,13 @@ class Signup extends Component {
           placeholder: 'کد امنیتی',
           required: true
         }
+      },
+      {
+        tag: 'button',
+        html: 'ثبت نام',
+        attrs: {
+          type: 'submit'
+        }
       }
     ];
 
@@ -88,7 +95,6 @@ class Signup extends Component {
 
         <Form
           inputs={inputs}
-          submitValue='ثبت نام'
           submitFunction={this.signup} />
 
         <Link to='/login'>حساب داری؟</Link>

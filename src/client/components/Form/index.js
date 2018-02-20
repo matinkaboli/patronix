@@ -35,17 +35,20 @@ class Form extends Component {
         <fieldset>
           {this.props.inputs.map((v, i) =>
             <div key={i}>
-              <v.tag {...v.attrs} />
+              {(() => {
+                if (v.tag === 'button') {
+                  return (
+                    <v.tag {...v.attrs} className={styles.button}>
+                      { v.html }
+                    </v.tag>
+                  );
+                } else {
+                  return <v.tag {...v.attrs} />;
+                }
+              })()}
             </div>
           )}
         </fieldset>
-
-      <button
-        type='submit'
-        className={styles.button}>
-        { this.props.submitValue }
-      </button>
-
       </form>
     );
   }

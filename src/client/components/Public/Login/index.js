@@ -57,6 +57,30 @@ class Login extends Component {
           required: true,
           name: 'password'
         }
+      },
+      {
+        tag: 'input',
+        attrs: {
+          type: 'text',
+          placeholder: 'کد امنیتی',
+          required: true,
+          name: 'captcha'
+        }
+      },
+      {
+        tag: 'div',
+        attrs: {
+          dangerouslySetInnerHTML: {
+            __html: this.props.captcha
+          }
+        }
+      },
+      {
+        tag: 'button',
+        html: 'ورود',
+        attrs: {
+          type: 'submit'
+        }
       }
     ];
 
@@ -65,7 +89,6 @@ class Login extends Component {
 
         <Form
           inputs={inputs}
-          submitValue='ورود'
           submitFunction={this.login} />
 
         <Link to='/signup'>ثبت نام</Link>

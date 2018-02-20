@@ -20,6 +20,13 @@ class Index extends Component {
           name: 'email',
           required: true
         }
+      },
+      {
+        tag: 'button',
+        html: 'بازیابی رمز عبور',
+        attrs: {
+          type: 'submit'
+        }
       }
     ];
 
@@ -28,7 +35,6 @@ class Index extends Component {
 
         <Form
           inputs={inputs}
-          submitValue='بازیابی رمز عبور'
           submitFunction={this.recovery} />
 
       </div>
