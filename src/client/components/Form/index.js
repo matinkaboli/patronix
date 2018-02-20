@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import bind from 'Root/bind';
 import styles from './index.less';
 
 class Form extends Component {
+  static propTypes = {
+    formStyle: PropTypes.string,
+    inputs: PropTypes.shape({
+      tag: PropTypes.string.isRequired,
+      attrs: PropTypes.object.isRequired
+    })
+  }
+
   state = {
     displayValidateError: false
   };
@@ -26,7 +35,6 @@ class Form extends Component {
 
     return (
       <form
-        method={this.props.method}
         className={`${styles.form} ${this.props.formStyle}
         ${displayValidateError ? 'displayValidateError' : ''}`}
         onSubmit={this.checkInputsValidate}
