@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Menu from 'Root/components/Menu';
-
 import styles from './index.less';
 
 class Home extends Component {
@@ -9,7 +7,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Menu />
         <aside className={styles.aside}>
           <div className={`${styles.bg} ${styles.bg1}`}>
             <h1>ارائه دهنده پشتیبانی آنلاین</h1>

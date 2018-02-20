@@ -6,7 +6,6 @@ import izitoast from 'izitoast';
 
 import { email } from 'Root/libs/validator';
 
-import Menu from 'Root/components/Menu';
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/login';
 
@@ -62,19 +61,16 @@ class Login extends Component {
     ];
 
     return (
-      <div>
-        <Menu />
-        <div className={styles.formContainer}>
+      <div className={styles.formContainer}>
 
-          <Form
-            inputs={inputs}
-            submitValue='ورود'
-            submitFunction={this.login} />
+        <Form
+          inputs={inputs}
+          submitValue='ورود'
+          submitFunction={this.login} />
 
-          <Link to='/signup'>ثبت نام</Link>
+        <Link to='/signup'>ثبت نام</Link>
 
-          <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
-        </div>
+        <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
       </div>
     );
   }

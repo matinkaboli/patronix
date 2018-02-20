@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Menu from 'Root/components/Menu';
 import Form from 'Root/components/Form';
 import bind from 'Root/bind';
 import signup from 'Root/actions/signup';
@@ -85,17 +84,14 @@ class Signup extends Component {
     ];
 
     return (
-      <div>
-        <Menu />
-        <div className={styles.formContainer}>
+      <div className={styles.formContainer}>
 
-          <Form
-            inputs={inputs}
-            submitValue='ثبت نام'
-            submitFunction={this.signup} />
+        <Form
+          inputs={inputs}
+          submitValue='ثبت نام'
+          submitFunction={this.signup} />
 
-          <Link to='/login'>حساب داری؟</Link>
-        </div>
+        <Link to='/login'>حساب داری؟</Link>
       </div>
     );
   }

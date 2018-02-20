@@ -34,9 +34,9 @@ class Form extends Component {
 
         <fieldset>
           {this.props.inputs.map((v, i) =>
-            <p>
-              <v.tag {...v.attrs} key={i} />
-            </p>
+            <div key={i}>
+              <v.tag {...v.attrs} />
+            </div>
           )}
         </fieldset>
 

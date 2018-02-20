@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router';
 
 import LazyRoute from 'Root/components/LazyRoute';
-import Menu from 'Root/components/Menu';
 import Code from './Code';
 import Index from './Index';
 
@@ -12,7 +11,6 @@ class Recovery extends Component {
 
     return (
       <div>
-        <Menu />
         <Switch>
           <Route exact path='/recovery' component={Index} />
           <LazyRoute path='/recovery/:code' component={Code} />
