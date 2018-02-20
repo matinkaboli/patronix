@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router';
 
 import LazyRoute from 'Root/components/LazyRoute';
@@ -8,7 +7,6 @@ import Index from './Index';
 
 class Recovery extends Component {
   render() {
-
     return (
       <div>
         <Switch>
@@ -20,4 +18,4 @@ class Recovery extends Component {
   }
 }
 
-export default connect(state => ({ recovery: state.recovery }))(Recovery);
+export default Recovery;
