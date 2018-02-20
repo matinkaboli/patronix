@@ -7,8 +7,9 @@ import load from 'Root/actions/lazy/load';
 
 class LazyRoute extends Component {
   static propTypes = {
-    type: PropTypes.func,
-    component: PropTypes.instanceOf(Component).isRequired
+    type: PropTypes.string,
+    // you should pass a component
+    component: PropTypes.func.isRequired
   }
 
   componentWillMount() {

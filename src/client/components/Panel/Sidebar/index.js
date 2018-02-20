@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import styles from './index.less';
+import bind from 'Root/bind';
+import logout from 'Root/actions/logout';
 import 'Root/styles/icon.less';
 
 class Sidebar extends Component {
+  @bind
+  logout() {
+    this.props.dispatch(logout);
+  }
+
   render() {
     return (
       <nav className={styles.nav}>
@@ -34,7 +42,7 @@ class Sidebar extends Component {
             </Link>
           </li>
           <li>
-            <Link to='/panel/logout'>
+            <Link to='#' onClick={this.logout}>
               <div className="icon-sign-out icon"></div>
               <span>خروج</span>
             </Link>
@@ -45,4 +53,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default connect()(Sidebar);

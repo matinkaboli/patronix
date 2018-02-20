@@ -7,10 +7,10 @@ import styles from './index.less';
 class Form extends Component {
   static propTypes = {
     formStyle: PropTypes.string,
-    inputs: PropTypes.shape({
+    inputs: PropTypes.arrayOf(PropTypes.shape({
       tag: PropTypes.string.isRequired,
       attrs: PropTypes.object.isRequired
-    })
+    })).isRequired
   }
 
   state = {

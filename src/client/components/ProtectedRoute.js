@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter, Redirect } from 'react-router';
 
 class ProtectedRoute extends Component {
-  componentWillMount() {
-    if (!this.props.logged) {
-      this.props.history.push('/denied');
-    }
-  }
-
   render() {
-    return (
-      <Route {...this.props} />
-    );
+    if (this.props.logged) {
+      return <Route {...this.props} />;
+    }
+
+    return <Redirect to='/login' />;
   }
 }
 

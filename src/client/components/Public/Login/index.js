@@ -59,23 +59,6 @@ class Login extends Component {
         }
       },
       {
-        tag: 'input',
-        attrs: {
-          type: 'text',
-          placeholder: 'کد امنیتی',
-          required: true,
-          name: 'captcha'
-        }
-      },
-      {
-        tag: 'div',
-        attrs: {
-          dangerouslySetInnerHTML: {
-            __html: this.props.captcha
-          }
-        }
-      },
-      {
         tag: 'button',
         html: 'ورود',
         attrs: {
@@ -88,7 +71,7 @@ class Login extends Component {
       <div className={styles.formContainer}>
 
         <h1>ورود</h1>
-        
+
         <Form
           inputs={inputs}
           submitFunction={this.login} />
