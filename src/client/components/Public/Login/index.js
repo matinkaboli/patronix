@@ -5,18 +5,13 @@ import { withRouter } from 'react-router';
 import izitoast from 'izitoast';
 
 import { email } from 'Root/js/validator';
-
 import bind from 'Root/bind';
 import loginAct from 'Root/actions/user/login';
-
 import Form from 'Root/components/Form';
-
-import styles from './index.less';
 
 class Login extends Component {
   @bind
   login(e) {
-
     if (email(e.target.email.value)) {
       this.props.dispatch(loginAct({
         email: e.target.email.value,
@@ -68,14 +63,12 @@ class Login extends Component {
     ];
 
     return (
-      <div className={styles.formContainer}>
-
-        <h1>ورود</h1>
-
+      <div>
         <Form
           inputs={inputs}
-          submitFunction={this.login} />
-
+          submitFunction={this.login}>
+          <h1>ورود</h1>
+        </Form>
         <Link to='/signup'>ثبت نام</Link>
 
         <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>

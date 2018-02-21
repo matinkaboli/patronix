@@ -33,11 +33,11 @@ class Index extends Component {
     return (
       <div>
 
-        <h1>بازیابی رمز عبور</h1>
-
         <Form
           inputs={inputs}
-          submitFunction={this.recovery} />
+          submitFunction={this.recovery}>
+          <h1>بازیابی رمز عبور</h1>
+        </Form>
 
       </div>
     );

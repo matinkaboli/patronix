@@ -6,7 +6,6 @@ import Form from 'Root/components/Form';
 import bind from 'Root/bind';
 import signup from 'Root/actions/signup';
 import captcha from 'Root/actions/captcha';
-import styles from './index.less';
 
 
 class Signup extends Component {
@@ -79,13 +78,13 @@ class Signup extends Component {
     ];
 
     return (
-      <div className={styles.formContainer}>
-
-        <h1>ثبت نام</h1>
+      <div>
 
         <Form
           inputs={inputs}
-          submitFunction={this.signup} />
+          submitFunction={this.signup}>
+          <h1>ثبت نام</h1>
+        </Form>
 
         <Link to='/login'>حساب داری؟</Link>
       </div>

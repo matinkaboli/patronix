@@ -10,7 +10,8 @@ class Form extends Component {
     inputs: PropTypes.arrayOf(PropTypes.shape({
       tag: PropTypes.string.isRequired,
       attrs: PropTypes.object.isRequired
-    })).isRequired
+    })).isRequired,
+    children: PropTypes.node
   }
 
   state = {
@@ -31,33 +32,39 @@ class Form extends Component {
   }
 
   render() {
+    console.log(styles);
     const { displayValidateError } = this.state;
 
     return (
-      <form
-        className={`${styles.form} ${this.props.formStyle}
-        ${displayValidateError ? 'displayValidateError' : ''}`}
-        onSubmit={this.checkInputsValidate}
-        noValidate>
+      <div className={styles.container}>
 
-        <fieldset>
-          {this.props.inputs.map((v, i) =>
-            <div key={i}>
-              {(() => {
-                if (v.tag === 'button') {
-                  return (
-                    <v.tag {...v.attrs} className={styles.button}>
-                      { v.html }
-                    </v.tag>
-                  );
-                } else {
-                  return <v.tag {...v.attrs} />;
-                }
-              })()}
-            </div>
-          )}
-        </fieldset>
-      </form>
+        {this.props.children}
+
+        <form
+          className={`${styles.form} ${this.props.formStyle}
+          ${displayValidateError ? 'displayValidateError' : ''}`}
+          onSubmit={this.checkInputsValidate}
+          noValidate>
+
+          <fieldset>
+            {this.props.inputs.map((v, i) =>
+              <div key={i}>
+                {(() => {
+                  if (v.tag === 'button') {
+                    return (
+                      <v.tag {...v.attrs} className={styles.button}>
+                        { v.html }
+                      </v.tag>
+                    );
+                  } else {
+                    return <v.tag {...v.attrs} className={styles.input}/>;
+                  }
+                })()}
+              </div>
+            )}
+          </fieldset>
+        </form>
+      </div>
     );
   }
 }
