@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
-import setAvatar from 'Root/actions/user/setAvatar';
+import updateAvatar from 'Root/actions/user/updateAvatar';
 
 class Setting extends Component {
   @bind
-  setAvatar() {
+  updateAvatar() {
     let reader = new FileReader();
     let file = this.refs.file.files[0];
     let type = file.type.split('/')[1];
@@ -32,7 +32,7 @@ class Setting extends Component {
         return;
       }
 
-      dispatch(setAvatar({
+      dispatch(updateAvatar({
         type,
         size: file.size,
         file: reader.result
@@ -63,7 +63,7 @@ class Setting extends Component {
         <div>
           {this.renderImage()}
           <input type='file' ref='file' />
-          <button onClick={this.setAvatar}>upload</button>
+          <button onClick={this.updateAvatar}>upload</button>
         </div>
 
         <div>
