@@ -62,7 +62,9 @@ class Form extends Component {
               </div>
             )}
           </fieldset>
+
         </form>
+        
       </div>
     );
   }
