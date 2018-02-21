@@ -69,12 +69,8 @@ class Setting extends Component {
         <div>
           <input
             type='text'
-            ref='fname'
-            defaultValue={this.props.user.name.first} />
-          <input
-            type='text'
-            ref='lname'
-            defaultValue={this.props.user.name.last} />
+            ref='name'
+            defaultValue={this.props.user.name} />
         </div>
       </div>
     );

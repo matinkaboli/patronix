@@ -13,10 +13,7 @@ class Signup extends Component {
   @bind
   signup(e) {
     signup({
-      name: {
-        first: e.target.fname.value,
-        last: e.target.lname.value
-      },
+      name: e.target.name.value,
       email: e.target.email.value,
       password: e.target.password.value
     }, e.target.captcha.value);
@@ -32,17 +29,8 @@ class Signup extends Component {
         tag: 'input',
         attrs: {
           type: 'text',
-          name: 'fname',
+          name: 'name',
           placeholder: 'نام',
-          required: true
-        }
-      },
-      {
-        tag: 'input',
-        attrs: {
-          type: 'text',
-          name: 'lname',
-          placeholder: 'نام خانوادگی',
           required: true
         }
       },
@@ -94,7 +82,7 @@ class Signup extends Component {
       <div className={styles.formContainer}>
 
         <h1>ثبت نام</h1>
-        
+
         <Form
           inputs={inputs}
           submitFunction={this.signup} />
