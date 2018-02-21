@@ -32,7 +32,6 @@ class Form extends Component {
   }
 
   render() {
-    console.log(styles);
     const { displayValidateError } = this.state;
 
     return (
@@ -52,12 +51,12 @@ class Form extends Component {
                 {(() => {
                   if (v.tag === 'button') {
                     return (
-                      <v.tag {...v.attrs} className={styles.button}>
+                      <v.tag {...v.attrs} className={styles[v.tag]}>
                         { v.html }
                       </v.tag>
                     );
                   } else {
-                    return <v.tag {...v.attrs} className={styles.input}/>;
+                    return <v.tag {...v.attrs} className={styles[v.tag]}/>;
                   }
                 })()}
               </div>
