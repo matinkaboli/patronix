@@ -23,7 +23,7 @@ socket
       user: {
         name: isValid.user.name,
         email: isValid.user.email,
-        avatar: isValid.user.avatar
+        avatar: isValid.user.avatar.url
       }
     });
   }

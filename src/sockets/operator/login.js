@@ -34,7 +34,7 @@ socket
       user: {
         name: user.name,
         email: user.email,
-        avatar: user.avatar
+        avatar: user.avatar.url
       },
       token: token.token
     });
