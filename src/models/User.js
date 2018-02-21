@@ -4,18 +4,10 @@ const emailValidate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".
 
 const schema = new Schema({
   name: {
-    first: {
-      type: String,
-      trim: true,
-      required: [true, 'First name required'],
-      maxlength: 20
-    },
-    last: {
-      type: String,
-      trim: true,
-      required: [true, 'Last name required'],
-      maxlength: 20
-    }
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 40
   },
   email: {
     type: String,
