@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './index.less';
 import bind from 'Root/bind';
-import logout from 'Root/actions/logout';
+import logout from 'Root/actions/user/logout';
 import 'Root/styles/icon.less';
 
 class Sidebar extends Component {

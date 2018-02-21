@@ -11,7 +11,7 @@ export default ({ type, size, file }) => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.setting.SET_AVATAR,
+        type: types.user.SET_AVATAR,
         avatar
       });
 

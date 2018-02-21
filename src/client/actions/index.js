@@ -1,14 +1,15 @@
 export default {
   LOGIN: 'LOGIN',
-  SIGNUP: 'SIGNUP',
   LOGOUT: 'LOGOUT',
+  SET_CAPTCHA: 'SET_CAPTCHA',
   lazy: {
     START_LOADING: 'lazy/START_LOADING',
     STOP_LOADING: 'lazy/STOP_LOADING'
   },
-  setting: {
-    LOAD: 'setting/LOAD',
-    SET_AVATAR: 'setting/SET_AVATAR'
-  },
-  SET_CAPTCHA: 'SET_CAPTCHA'
+  user: {
+    LOAD: 'user/LOAD',
+    SET_AVATAR: 'user/SET_AVATAR',
+    LOGIN: 'user/LOGIN',
+    LOGOUT: 'user/LOGOUT'
+  }
 };

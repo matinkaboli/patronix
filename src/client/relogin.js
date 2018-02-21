@@ -1,6 +1,6 @@
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
-import { LOGIN } from 'Root/actions';
+import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
 
 export default new Promise(resolve => {
@@ -11,8 +11,8 @@ export default new Promise(resolve => {
       handler
       .handle('success', () => {
         dispatch({
-          type: LOGIN,
-          ...res
+          type: types.user.LOGIN,
+          ...res.user
         });
       })
       .status(status);

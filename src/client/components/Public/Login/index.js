@@ -7,7 +7,7 @@ import izitoast from 'izitoast';
 import { email } from 'Root/js/validator';
 
 import bind from 'Root/bind';
-import loginAct from 'Root/actions/login';
+import loginAct from 'Root/actions/user/login';
 
 import Form from 'Root/components/Form';
 

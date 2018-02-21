@@ -1,5 +1,5 @@
 import socket from 'Root/socket';
-import { LOGIN } from 'Root/actions';
+import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
 
 export default ({ push, failure, ...credentials }) => dispatch => {
@@ -11,7 +11,7 @@ export default ({ push, failure, ...credentials }) => dispatch => {
       localStorage.token = res.token;
 
       dispatch({
-        type: LOGIN,
+        type: types.user.LOGIN,
         ...res.user
       });
 

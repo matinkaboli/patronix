@@ -1,9 +1,9 @@
-import { LOGOUT } from 'Root/actions';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default dispatch => {
   dispatch({
-    type: LOGOUT
+    type: types.user.LOGOUT
   });
 
   socket.emit('logout');

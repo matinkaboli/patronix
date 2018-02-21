@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
-import setAvatar from 'Root/actions/setting/setAvatar';
+import setAvatar from 'Root/actions/user/setAvatar';
 
 class Setting extends Component {
   @bind
@@ -44,9 +44,9 @@ class Setting extends Component {
 
   @bind
   renderImage() {
-    if (this.props.setting.avatar) {
+    if (this.props.user.avatar) {
       return (
-        <img src={this.props.setting.avatar} />
+        <img src={this.props.user.avatar} />
       );
     }
 
@@ -65,9 +65,20 @@ class Setting extends Component {
           <input type='file' ref='file' />
           <button onClick={this.setAvatar}>upload</button>
         </div>
+
+        <div>
+          <input
+            type='text'
+            ref='fname'
+            defaultValue={this.props.user.name.first} />
+          <input
+            type='text'
+            ref='lname'
+            defaultValue={this.props.user.name.last} />
+        </div>
       </div>
     );
   }
 }
 
-export default connect(state => ({ setting: state.setting }))(Setting);
+export default connect(state => ({ user: state.user }))(Setting);
