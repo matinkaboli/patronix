@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './index.less';
 
 class Home extends Component {
-
   render() {
     return (
+      // <div>
+      // </div>
       <div>
+        <div className={styles.header}>
+          <h1><Link to='/' className={styles.titleName}>Patronix</Link></h1>
+          <div className={styles.normalLinks}>
+            <ul>
+              <li><Link to='/login'>ورود</Link></li>
+              <li><Link to='/signup'>ثبت نام</Link></li>
+              <li><Link to='/about-us'>درباره ما</Link></li>
+            </ul>
+          </div>
+          <p className={styles.responsiveLinks}>لینک ها</p>
+        </div>
         <aside className={styles.aside}>
           <div className={`${styles.bg} ${styles.bg1}`}>
             <h1>ارائه دهنده پشتیبانی آنلاین</h1>

@@ -8,7 +8,7 @@ import {
 import ProtectedRoute from './ProtectedRoute';
 import Panel from './Panel';
 import Public from './Public';
-import NotFound from './NotFound';
+import Home from './Home';
 
 class App extends Component {
   render() {
@@ -16,8 +16,8 @@ class App extends Component {
       <Router>
         <Switch>
           <ProtectedRoute path='/panel' component={Panel} />
+          <Route exact path='/' component={Home} />
           <Route path='/' component={Public} />
-          <Route component={NotFound} />
         </Switch>
       </Router>
     );
