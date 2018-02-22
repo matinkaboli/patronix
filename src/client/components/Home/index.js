@@ -6,8 +6,6 @@ import styles from './index.less';
 class Home extends Component {
   render() {
     return (
-      // <div>
-      // </div>
       <div>
         <div className={styles.header}>
           <h1><Link to='/' className={styles.titleName}>Patronix</Link></h1>
