@@ -61,7 +61,13 @@ class Login extends Component {
         }
       }
     ];
-
+    if (localStorage.getItem('activationSuccessful')) {
+      izitoast.success({
+        rtl: true,
+        title: 'حساب شما با موفقیت تایید شد'
+      });
+      localStorage.removeItem('activationSuccessful');
+    }
     return (
       <div>
         <Form
