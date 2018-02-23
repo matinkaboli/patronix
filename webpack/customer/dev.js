@@ -7,7 +7,7 @@ const babelConfig = require('../babel.config.json');
 
 module.exports = {
   output: {
-    filename: 'client.js'
+    filename: 'customer.js'
   },
   module: {
     rules: [
