@@ -69,8 +69,8 @@ class Login extends Component {
           submitFunction={this.login}>
           <h1>ورود</h1>
         </Form>
-        <Link to='/signup'>ثبت نام</Link>
 
+        <Link to='/signup'>ثبت نام</Link>
         <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
       </div>
     );

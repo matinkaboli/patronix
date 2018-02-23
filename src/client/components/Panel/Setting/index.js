@@ -4,6 +4,7 @@ import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
 import updateAvatar from 'Root/actions/user/updateAvatar';
+import styles from './index.less';
 
 class Setting extends Component {
   @bind
@@ -46,31 +47,94 @@ class Setting extends Component {
   renderImage() {
     if (this.props.user.avatar) {
       return (
-        <img src={this.props.user.avatar} />
+        <img src={this.props.user.avatar} className={styles.avatarImage} />
       );
     }
-
-    else {
-      return (
-        <p>you dont have avatar</p>
-      );
-    }
+    return (
+      <p>you dont have avatar</p>
+    );
   }
 
   render() {
     return (
       <div>
-        <div>
-          {this.renderImage()}
-          <input type='file' ref='file' />
-          <button onClick={this.updateAvatar}>upload</button>
-        </div>
+        <div className={styles.setting}>
+          <p className={styles.settingTitle}>تنظیمات مشخصات کاربر</p>
+          <div className={styles.hr} />
 
-        <div>
-          <input
-            type='text'
-            ref='name'
-            defaultValue={this.props.user.name} />
+          <section className={styles.section}>
+
+            <div className={styles.butttons}>
+              <label>
+                <input
+                  type='file'
+                  ref='file'
+                  className={styles.avatarInput}
+                  onChange={this.updateAvatar} />
+                  <p className={styles.updateBtn}>به روز رسانی</p>
+              </label>
+              <p className={styles.deleteBtn}>حذف</p>
+            </div>
+
+            <div className={styles.currentValue}>
+              {this.renderImage()}
+              <p>عکس کاربر</p>
+            </div>
+          </section>
+
+          <section className={styles.section}>
+
+            <div>
+              <p className={styles.updateBtn}>به روز رسانی</p>
+
+              {/* <input
+                type='text'
+                ref='name'
+                defaultValue={this.props.user.name} /> */}
+            </div>
+
+            <div className={styles.currentValue}>
+              <p>{this.props.user.name}</p>
+              <p>نام</p>
+            </div>
+
+          </section>
+
+          <section className={styles.section}>
+
+            <div>
+              <p className={styles.updateBtn}>به روز رسانی</p>
+
+              {/* <input
+                type='text'
+                ref='name'
+                defaultValue={this.props.user.name} /> */}
+            </div>
+
+            <div className={styles.currentValue}>
+              <p>*****</p>
+              <p>رمز</p>
+            </div>
+
+          </section>
+
+          <section className={styles.section}>
+
+            <div>
+              <p className={styles.updateBtn}>به روز رسانی</p>
+
+              {/* <input
+                type='text'
+                ref='name'
+                defaultValue={this.props.user.name} /> */}
+            </div>
+
+            <div className={styles.currentValue}>
+              <p>{this.props.user.email}</p>
+              <p>ایمیل</p>
+            </div>
+
+          </section>
         </div>
       </div>
     );
