@@ -35,7 +35,7 @@ class Form extends Component {
     const { displayValidateError } = this.state;
 
     return (
-      <div className={styles.container}>
+      <div>
 
         {this.props.children}
 
@@ -64,7 +64,7 @@ class Form extends Component {
           </fieldset>
 
         </form>
-        
+
       </div>
     );
   }
