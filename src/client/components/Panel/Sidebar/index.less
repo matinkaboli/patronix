@@ -37,7 +37,7 @@
           background-color: #256FA0;
         }
 
-        span {
+        :local(.tooltip) {
           width: 90px;
           top: 13px;
           right: 50%;
@@ -68,7 +68,7 @@
           }
         }
 
-        &:hover span {
+        &:hover :local(.tooltip) {
           right: 115%;
 
           visibility: visible;
@@ -88,5 +88,11 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.buttonText) {
+    display: none;
   }
 }

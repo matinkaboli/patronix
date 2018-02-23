@@ -19,32 +19,37 @@ class Sidebar extends Component {
         <ul>
           <li>
             <Link to='/panel'>
-              <div className="icon-user icon"></div>
-              <span>داشبورد</span>
+              <div className="icon-user icon" />
+              <span className={styles.tooltip}>داشبورد</span>
+              <span className={styles.buttonText}>داشبورد</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/setting'>
-              <div className="icon-cog icon"></div>
-              <span>تنظیمات</span>
+              <div className="icon-cog icon" />
+              <span className={styles.tooltip}>تنظیمات</span>
+              <span className={styles.buttonText}>تنظیمات</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/sites'>
-              <div className="icon-globe icon"></div>
-              <span>سایت ها</span>
+              <div className="icon-globe icon" />
+              <span className={styles.tooltip}>سایت ها</span>
+              <span className={styles.buttonText}>سایت ها</span>
             </Link>
           </li>
           <li>
             <Link to='/panel/chats'>
-              <div className="icon-comment icon"></div>
-              <span>چت ها</span>
+              <div className="icon-comment icon" />
+              <span className={styles.tooltip}>چت ها</span>
+              <span className={styles.buttonText}>چت ها</span>
             </Link>
           </li>
           <li>
             <Link to='#' onClick={this.logout}>
-              <div className="icon-sign-out icon"></div>
-              <span>خروج</span>
+              <div className="icon-sign-out icon" />
+              <span className={styles.tooltip}>خروج</span>
+              <span className={styles.buttonText}>خروج</span>
             </Link>
           </li>
         </ul>
