@@ -5,6 +5,7 @@ import izitoast from 'izitoast';
 import bind from 'Root/bind';
 import updateAvatar from 'Root/actions/user/updateAvatar';
 import styles from './index.less';
+import defaultImage from 'Root/images/user-default.png';
 
 class Setting extends Component {
   @bind
@@ -51,11 +52,17 @@ class Setting extends Component {
       );
     }
     return (
-      <p>you dont have avatar</p>
+      <img src={defaultImage} className={styles.avatarImage} />
     );
   }
 
   render() {
+    let profileImage = null;
+
+    if (this.props.user.avatar) {
+      profileImage = <p className={styles.deleteBtn}>حذف</p>;
+    }
+
     return (
       <div>
         <div className={styles.setting}>
@@ -73,7 +80,7 @@ class Setting extends Component {
                   onChange={this.updateAvatar} />
                   <p className={styles.updateBtn}>به روز رسانی</p>
               </label>
-              <p className={styles.deleteBtn}>حذف</p>
+              { profileImage }
             </div>
 
             <div className={styles.currentValue}>
