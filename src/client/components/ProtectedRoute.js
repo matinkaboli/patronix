@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 
 class ProtectedRoute extends Component {
   render() {
@@ -13,6 +13,6 @@ class ProtectedRoute extends Component {
   }
 }
 
-export default withRouter(connect(
+export default connect(
   state => ({ logged: state.user.logged })
-)(ProtectedRoute));
+)(ProtectedRoute);

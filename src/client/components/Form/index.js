@@ -28,7 +28,7 @@ class Form extends Component {
     }
     this.setState({ displayValidateError: false });
 
-    this.props.submitFunction(e);
+    this.props.submitFunction(this.refs);
   }
 
   render() {
@@ -49,6 +49,8 @@ class Form extends Component {
             {this.props.inputs.map((v, i) =>
               <div key={i}>
                 {(() => {
+                  v.attrs.ref = v.attrs.name;
+
                   if (v.tag === 'button') {
                     return (
                       <v.tag {...v.attrs} className={styles[v.tag]}>

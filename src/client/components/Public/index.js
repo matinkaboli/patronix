@@ -11,7 +11,7 @@ import Activate from './Activate';
 import LazyRoute from 'Root/components/LazyRoute';
 import styles from './index.less';
 
-class App extends Component {
+class Public extends Component {
   render() {
     return (
       <div className={styles.root}>
@@ -28,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Public;

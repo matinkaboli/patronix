@@ -10,12 +10,12 @@ import captcha from 'Root/actions/captcha';
 
 class Signup extends Component {
   @bind
-  signup(e) {
+  signup(refs) {
     signup({
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: e.target.password.value
-    }, e.target.captcha.value);
+      name: refs.name.value,
+      email: refs.email.value,
+      password: refs.password.value
+    }, refs.captcha.value);
   }
 
   componentDidMount() {

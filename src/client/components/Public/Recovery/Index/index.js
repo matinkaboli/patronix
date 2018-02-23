@@ -6,8 +6,8 @@ import Form from 'Root/components/Form';
 
 class Index extends Component {
   @bind
-  recovery(e) {
-    recovery(e.target.email.value);
+  recovery(refs) {
+    recovery(refs.email.value);
   }
 
   render() {

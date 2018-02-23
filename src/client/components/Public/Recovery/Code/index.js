@@ -8,10 +8,10 @@ import bind from 'Root/bind';
 
 class Code extends Component {
   @bind
-  recover(e) {
-    if (e.target.pass1.value === e.target.pass2.value) {
+  recover(refs) {
+    if (refs.pass1.value === refs.pass2.value) {
       recover(
-        e.target.pass1.value,
+        refs.pass1.value,
         matchPath(this.props.location.pathname, {
           path: '/recovery/:code'
         }).params.code

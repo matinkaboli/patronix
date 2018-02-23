@@ -11,11 +11,11 @@ import Form from 'Root/components/Form';
 
 class Login extends Component {
   @bind
-  login(e) {
-    if (email(e.target.email.value)) {
+  login(refs) {
+    if (email(refs.email.value)) {
       this.props.dispatch(loginAct({
-        email: e.target.email.value,
-        password: e.target.password.value,
+        email: refs.email.value,
+        password: refs.password.value,
         push: this.props.history.push,
         failure() {
           izitoast.error({
@@ -29,7 +29,7 @@ class Login extends Component {
         rtl: true,
         title: 'ایمیل اشتباه است'
       });
-      e.target.email.focus();
+      refs.email.focus();
     }
   }
 
