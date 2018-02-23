@@ -35,7 +35,7 @@ class Form extends Component {
     const { displayValidateError } = this.state;
 
     return (
-      <div>
+      <React.Fragment>
 
         {this.props.children}
 
@@ -67,7 +67,7 @@ class Form extends Component {
 
         </form>
 
-      </div>
+      </React.Fragment>
     );
   }
 }

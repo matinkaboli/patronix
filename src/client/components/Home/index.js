@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import styles from './index.less';
 
 class Home extends Component {
   render() {
+    let links;
+
+    if (this.props.logged) {
+      links = <li><Link to='/panel'>داشبورد</Link></li>;
+    } else {
+      links =
+        <React.Fragment>
+          <li><Link to='/login'>ورود</Link></li>
+          <li><Link to='/signup'>ثبت نام</Link></li>
+          <li><Link to='/about-us'>درباره ما</Link></li>
+        </React.Fragment>;
+    }
+
     return (
       <div>
         <div className={styles.header}>
           <h1><Link to='/' className={styles.titleName}>Patronix</Link></h1>
           <div className={styles.normalLinks}>
             <ul>
-              <li><Link to='/login'>ورود</Link></li>
-              <li><Link to='/signup'>ثبت نام</Link></li>
-              <li><Link to='/about-us'>درباره ما</Link></li>
+              { links }
             </ul>
           </div>
           <p className={styles.responsiveLinks}>لینک ها</p>
@@ -102,4 +114,6 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect(
+  state => ({ logged: state.user.logged })
+)(Home);
