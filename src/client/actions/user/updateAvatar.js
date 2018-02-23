@@ -23,5 +23,6 @@ export default ({ type, size, file }) => dispatch => {
     .status(status);
   });
 
+      console.log('a');
   socket.emit('updateAvatar', { type, file, size });
 };
