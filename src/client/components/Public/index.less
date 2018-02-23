@@ -1,8 +1,12 @@
 @import '~Root/styles/colors.less';
+@import '~Root/styles/mixins.less';
 
 :local(.root) {
   position: fixed;
-  top: 0; bottom: 0; left: 0; right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -14,5 +18,5 @@
   padding: 20px;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 1px 5px rgba(0,0,0,.1);
+  &:extend(.boxShadow);
 }
