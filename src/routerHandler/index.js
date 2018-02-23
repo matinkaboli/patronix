@@ -1,11 +1,7 @@
-import activate from './activate';
-import recovery from './recovery';
-import setting from './setting';
-
 export const routers = [
-  activate,
-  recovery,
-  setting
+  require('./activate'),
+  require('./recovery'),
+  require('./setting')
 ];
 
 export function routerHandler(socket, { path, params }) {
