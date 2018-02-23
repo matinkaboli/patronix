@@ -86,7 +86,7 @@ class Signup extends Component {
           <h1>ثبت نام</h1>
         </Form>
 
-        <Link to='/login'>حساب داری؟</Link>
+        <Link to='/login'>حساب داری؟ وارد شو</Link>
       </div>
     );
   }

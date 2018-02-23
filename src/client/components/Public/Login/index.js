@@ -70,8 +70,12 @@ class Login extends Component {
           <h1>ورود</h1>
         </Form>
 
-        <Link to='/signup'>ثبت نام</Link>
-        <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
+        <div>
+          <Link to='/signup'>ثبت نام</Link>
+        </div>
+        <div>
+          <Link to='/recovery'>رمزت رو فراموش کردی؟</Link>
+        </div>
       </div>
     );
   }
