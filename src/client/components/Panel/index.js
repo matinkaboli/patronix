@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-router-dom';
-import LazyRoute from 'Root/components/LazyRoute';
 
+import LazyRoute from 'Root/components/LazyRoute';
 // import Sidebar from './Sidebar';
 import Sites from './Sites';
 import Setting from './Setting';
