@@ -65,24 +65,13 @@ gulp.task('prod:server', ['clean'], () =>
   .pipe(gulp.dest('build/'))
 );
 
-gulp.task('prod:webpack', ['clean'], () =>
-  [
-    gulp.src('src/client/client.js')
-    .pipe(webpack(require('./webpack/client/prod.js')))
-    .pipe(gulp.dest('build/static/js')),
-    gulp.src('src/customer/customer.js')
-    .pipe(webpack(require('./webpack/customer/prod.js')))
-    .pipe(gulp.dest('build/static/js')),
-  ]
-);
-
 gulp.task('lint', () =>
   gulp.src('src/**/*.js')
   .pipe(lint())
 );
 
-gulp.task('dev', ['clean', 'copy', 'babel', 'dev:webpack']);
-gulp.task('prod', ['clean', 'copy', 'babel', 'prod:webpack']);
+gulp.task('dev', ['clean', 'copy', 'babel', 'dev:client', 'dev:customer', 'dev:server']);
+gulp.task('prod', ['clean', 'copy', 'babel', 'prod:client', 'prod:customer', 'prod:server']);
 
 gulp.task('watch', () =>
   gulp.watch('src/**/*', ['dev'])
