@@ -1,4 +1,4 @@
-const { OperatorToken } = rootRequire('./models');
+import { OperatorToken } from 'Root/models';
 
 export default (next, socket) => async() => {
   if (socket.handshake.query.token) {

@@ -3,8 +3,8 @@ import { writeFile, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 import { randomBytes } from 'crypto';
 
-const { uploadDir } = rootRequire('./config');
-const middles = rootRequire('./middles');
+import { uploadDir } from 'Root/config';
+import middles from 'Root/middles';
 
 let socket = new SocketEvent();
 

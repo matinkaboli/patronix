@@ -1,8 +1,8 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const { User, OperatorToken } = rootRequire('./models');
-const { otkey, dbkey } = rootRequire('./config');
-const { hmac } = rootRequire('./crypt');
+import { User, OperatorToken } from 'Root/models';
+import { otkey, dbkey } from 'Root/config';
+import { hmac } from 'Root/crypt';
 
 let socket = new SocketEvent();
 

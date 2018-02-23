@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const { User, AL } = rootRequire('./models');
+import { User, AL } from 'Root/models';
 
 let socket = new SocketEvent();
 

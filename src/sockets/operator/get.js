@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const middles = rootRequire('./middles');
-const { routerHandler } = rootRequire('./routerHandler');
+import middles from 'Root/middles';
+import { routerHandler } from 'Root/routerHandler';
 
 let socket = new SocketEvent();
 

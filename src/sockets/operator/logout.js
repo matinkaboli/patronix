@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const middles = rootRequire('./middles');
-const { OperatorToken } = rootRequire('./models');
+import middles from 'Root/middles';
+import { OperatorToken } from 'Root/models';
 
 let socket = new SocketEvent();
 

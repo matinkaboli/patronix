@@ -1,7 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 import captcha from 'svg-captcha';
 
-
 let socket = new SocketEvent();
 
 socket

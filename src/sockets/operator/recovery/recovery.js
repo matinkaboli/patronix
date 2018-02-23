@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 import { randomBytes } from 'crypto';
 
-const { RL, User } = rootRequire('./models');
+import { RL, User } from 'Root/models';
 
 let socket = new SocketEvent();
 

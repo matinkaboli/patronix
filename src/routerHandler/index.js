@@ -1,6 +1,12 @@
-import requireasarray from 'requireasarray';
+import activate from './activate';
+import recovery from './recovery';
+import setting from './setting';
 
-export const routers = requireasarray(__dirname);
+export const routers = [
+  activate,
+  recovery,
+  setting
+];
 
 export function routerHandler(socket, { path, params }) {
   for (let router of routers.values()) {

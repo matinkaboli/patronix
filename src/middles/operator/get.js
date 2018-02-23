@@ -1,5 +1,5 @@
-const { OperatorToken } = rootRequire('./models');
-const { routers } = rootRequire('./routerHandler');
+import { OperatorToken } from 'Root/models';
+import { routers } from 'Root/routerHandler';
 
 export default (next, socket) => async({ path }) => {
   for (let router of routers.values()) {

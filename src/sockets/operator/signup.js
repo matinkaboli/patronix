@@ -1,9 +1,9 @@
 import { SocketEvent } from 'socket.io-manager';
 import { randomBytes } from 'crypto';
 
-const { User, AL } = rootRequire('./models');
-const { dbkey } = rootRequire('./config');
-const { hmac } = rootRequire('./crypt');
+import { User, AL } from 'Root/models';
+import { dbkey } from 'Root/config';
+import { hmac } from 'Root/crypt';
 
 let socket = new SocketEvent();
 

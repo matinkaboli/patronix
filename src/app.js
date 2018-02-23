@@ -6,15 +6,13 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import { connect, applyMiddleware } from 'socket.io-manager';
 import logger from 'socket.io-manager-logger';
-import requireasarray from 'requireasarray';
+import process from 'process';
+
+import sockets from './sockets';
+import { init } from './middles';
 import config from './config';
 
-global.rootRequire = file => require(join(__dirname, file));
-global.rootDir = __dirname;
-
-let sockets = requireasarray(join(__dirname, 'sockets'));
-const { init } = require('./middles');
-sockets = applyMiddleware([init], sockets);
+let modified = applyMiddleware([init], sockets);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db);
@@ -34,18 +32,20 @@ const io = socketIO(server);
 if (process.env.NODE_ENV !== 'development') {
   app.use(morgan('short'));
   let filtered = ['updateAvatar'];
-  sockets = [
-    ...sockets.filter(so => filtered.includes(so._name)),
+  modified = [
+    ...modified.filter(so => filtered.includes(so._name)),
     ...applyMiddleware([logger],
-      sockets.filter(so => !filtered.includes(so._name))
+      modified.filter(so => !filtered.includes(so._name))
     )
   ];
 }
 
+console.log(__dirname);
+
 app.use('/static', express.static(join(__dirname, './static')));
 
 app.use((req, res) => {
-  res.sendFile(join(__dirname, 'index.html'));
+  res.sendFile('Root/index.html');
 });
 
-connect(io, sockets);
+connect(io, modified);

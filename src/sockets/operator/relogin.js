@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const { OperatorToken } = rootRequire('./models');
+import { OperatorToken } from 'Root/models';
 
 let socket = new SocketEvent();
 

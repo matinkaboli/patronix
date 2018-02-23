@@ -1,4 +1,4 @@
-const { User, AL } = rootRequire('./models');
+import { User, AL } from 'Root/models';
 
 export const path = '/activate/:code';
 

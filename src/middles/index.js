@@ -1,3 +1,4 @@
-import reqdir from 'require-directory';
-
-export default reqdir(module);
+export default {
+  operator: require('./operator'),
+  init: require('./init')
+};

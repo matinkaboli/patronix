@@ -1,8 +1,8 @@
 import { SocketEvent } from 'socket.io-manager';
 
-const { RL, User } = rootRequire('./models');
-const { hmac } = rootRequire('./crypt');
-const { dbkey } = rootRequire('./config');
+import { RL, User } from 'Root/models';
+import { hmac } from 'Root/crypt';
+import { dbkey } from 'Root/config';
 
 let socket = new SocketEvent();
 

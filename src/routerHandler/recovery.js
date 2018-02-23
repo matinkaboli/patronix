@@ -1,4 +1,4 @@
-const { RL } = rootRequire('./models');
+import { RL } from 'Root/models';
 
 export const path = '/recovery/:code';
 
