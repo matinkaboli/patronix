@@ -50,16 +50,13 @@ class Form extends Component {
               <div key={i}>
                 {(() => {
                   v.attrs.ref = v.attrs.name;
-
                   if (v.tag === 'button') {
-                    return (
-                      <v.tag {...v.attrs} className={styles[v.tag]}>
-                        { v.html }
-                      </v.tag>
-                    );
-                  } else {
-                    return <v.tag {...v.attrs} className={styles[v.tag]}/>;
+                    v.attrs.dangerouslySetInnerHTML = {
+                      __html: v.html
+                    };
                   }
+
+                  return <v.tag {...v.attrs} className={styles[v.tag]}/>;
                 })()}
               </div>
             )}
