@@ -20,7 +20,7 @@ class Home extends Component {
           <li><Link to='/login'>ورود</Link></li>
           <li><Link to='/signup'>ثبت نام</Link></li>
           <li><Link to='/about'>درباره ما</Link></li>
-        </React.Fragment>;
+      </React.Fragment>;
     }
 
     return (
