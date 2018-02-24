@@ -9,13 +9,17 @@ class Home extends Component {
     let links;
 
     if (this.props.logged) {
-      links = <li><Link to='/panel'>داشبورد</Link></li>;
+      links =
+      <React.Fragment>
+        <li><Link to='/panel'>داشبورد</Link></li>
+        <li><Link to='/about'>درباره ما</Link></li>
+      </React.Fragment>;
     } else {
       links =
-        <React.Fragment>
+      <React.Fragment>
           <li><Link to='/login'>ورود</Link></li>
           <li><Link to='/signup'>ثبت نام</Link></li>
-          <li><Link to='/about-us'>درباره ما</Link></li>
+          <li><Link to='/about'>درباره ما</Link></li>
         </React.Fragment>;
     }
 
