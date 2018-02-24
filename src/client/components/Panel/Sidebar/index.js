@@ -19,37 +19,47 @@ class Sidebar extends Component {
         <ul>
           <li>
             <Link to='/panel'>
-              <div className="icon-user icon" />
-              <span className={styles.tooltip}>داشبورد</span>
-              <span className={styles.buttonText}>داشبورد</span>
+              <div className={styles.sidebarLink}>
+                <div className="icon-user icon" />
+                <span className={styles.tooltip}>داشبورد</span>
+                <span className={styles.buttonText}>داشبورد</span>
+              </div>
             </Link>
           </li>
           <li>
             <Link to='/panel/setting'>
-              <div className="icon-cog icon" />
-              <span className={styles.tooltip}>تنظیمات</span>
-              <span className={styles.buttonText}>تنظیمات</span>
+              <div className={styles.sidebarLink}>
+                <div className="icon-cog icon" />
+                <span className={styles.tooltip}>تنظیمات</span>
+                <span className={styles.buttonText}>تنظیمات</span>
+              </div>
             </Link>
           </li>
           <li>
             <Link to='/panel/sites'>
-              <div className="icon-globe icon" />
-              <span className={styles.tooltip}>سایت ها</span>
-              <span className={styles.buttonText}>سایت ها</span>
+              <div className={styles.sidebarLink}>
+                <div className="icon-globe icon" />
+                <span className={styles.tooltip}>سایت ها</span>
+                <span className={styles.buttonText}>سایت ها</span>
+              </div>
             </Link>
           </li>
           <li>
             <Link to='/panel/chats'>
-              <div className="icon-comment icon" />
-              <span className={styles.tooltip}>چت ها</span>
-              <span className={styles.buttonText}>چت ها</span>
+              <div className={styles.sidebarLink}>
+                <div className="icon-comment icon" />
+                <span className={styles.tooltip}>چت ها</span>
+                <span className={styles.buttonText}>چت ها</span>
+              </div>
             </Link>
           </li>
           <li>
             <Link to='#' onClick={this.logout}>
-              <div className="icon-sign-out icon" />
-              <span className={styles.tooltip}>خروج</span>
-              <span className={styles.buttonText}>خروج</span>
+              <div className={styles.sidebarLink}>
+                <div className="icon-sign-out icon" />
+                <span className={styles.tooltip}>خروج</span>
+                <span className={styles.buttonText}>خروج</span>
+              </div>
             </Link>
           </li>
         </ul>
