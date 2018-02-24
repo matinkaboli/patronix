@@ -60,6 +60,13 @@ class Signup extends Component {
         }
       },
       {
+        tag: 'i',
+        attrs: {
+          className: 'icon icon-refresh',
+          onClick() { console.log('Hello'); }
+        }
+      },
+      {
         tag: 'input',
         attrs: {
           type: 'text',

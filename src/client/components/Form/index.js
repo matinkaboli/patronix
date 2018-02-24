@@ -56,7 +56,8 @@ class Form extends Component {
                     };
                   }
 
-                  return <v.tag {...v.attrs} className={styles[v.tag]}/>;
+                  return <v.tag {...v.attrs}
+                    className={`${styles[v.tag]} ${v.attrs.className}`} />;
                 })()}
               </div>
             )}
