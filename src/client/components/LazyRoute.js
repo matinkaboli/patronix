@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import { Redirect, Route } from 'react-router-dom';
 
 import load from 'Root/actions/lazy/load';
 
@@ -22,7 +22,7 @@ class LazyRoute extends Component {
 
   render() {
     if (!this.props.lazy.loading && this.props.lazy.status === 200) {
-      return <this.props.component />;
+      return <Route {...this.props} />;
     }
 
     if (!this.props.lazy.loading && this.props.lazy.status === 404) {

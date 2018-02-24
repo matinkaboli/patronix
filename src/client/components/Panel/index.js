@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import LazyRoute from 'Root/components/LazyRoute';
 import Sidebar from './Sidebar';
@@ -20,7 +20,7 @@ class UserPanel extends Component {
               type={types.user.LOAD}
               path='/panel/setting'
               component={Setting} />
-            <LazyRoute path='/panel/sites' component={Sites} />
+            <Route path='/panel/sites' component={Sites} />
           </Switch>
         </div>
       </div>

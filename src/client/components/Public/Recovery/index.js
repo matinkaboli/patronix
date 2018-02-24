@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 
 import LazyRoute from 'Root/components/LazyRoute';
 import Code from './Code';

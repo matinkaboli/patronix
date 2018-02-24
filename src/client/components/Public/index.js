@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {
   Route,
   Switch,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 import Login from './Login';
 import Signup from './Signup';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import izitoast from 'izitoast';
-import { withRouter, matchPath } from 'react-router';
+import { withRouter, matchPath } from 'react-router-dom';
 
 import Form from 'Root/components/Form';
 import recover from 'Root/actions/recovery/recover';
