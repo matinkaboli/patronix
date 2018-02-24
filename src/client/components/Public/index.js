@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 
 import Login from './Login';
+import About from './About';
 import Signup from './Signup';
 import Recovery from './Recovery';
 import Activate from './Activate';
@@ -25,6 +26,8 @@ class Public extends Component {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/signup' component={Signup} />
                 <Route path='/recovery' component={Recovery} />
+                <Route path='/about' component={About} />
+                <Redirect from='/about-us' to='/about' />
                 <LazyRoute exact path='/activate/:code' component={Activate} />
               </Switch>
             </div>
