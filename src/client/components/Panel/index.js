@@ -11,7 +11,7 @@ import styles from './index.less';
 class UserPanel extends Component {
   render() {
     return (
-      <div className={styles.root}>
+      <div>
         <div>
           <Sidebar />
 
