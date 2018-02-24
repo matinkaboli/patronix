@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const webpack = require('webpack-stream');
 const del = require('del');
-const babel = require('gulp-babel');
 const lint = require('gulp-eslint');
 
 gulp.task('clean', () =>
