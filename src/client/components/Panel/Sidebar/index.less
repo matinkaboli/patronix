@@ -1,13 +1,12 @@
 @import '~Root/styles/colors.less';
 
 :local(.nav) {
-  width: 180px;
+  width: 140px;
   height: 100%;
   bottom: 0;
   top: 0;
   right: 0;
   position: fixed;
-  padding-top: 20px;
 
   background-color: @midnight-base;
 
@@ -39,7 +38,7 @@
 
         :local(.tooltip) {
           width: 90px;
-          top: 13px;
+          top: 11px;
           right: 50%;
           padding: 2px 5px 5px 5px;
           position: absolute;
@@ -78,9 +77,9 @@
         div.icon {
           display: inline;
           height: 100%;
-          padding: 10px;
+          padding: 10px 0 10px 10px;
 
-          font-size: 35px;
+          font-size: 28px;
 
           display: flex;
           flex-direction: column;
@@ -97,6 +96,7 @@
 }
 
 :local(.buttonText) {
+  font-size: 14px;
   display: flex;
 
   align-items: center;
@@ -107,7 +107,8 @@
 
 :local(.sidebarLink) {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 10px 0 25px;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
@@ -120,6 +121,6 @@
   }
 
   :local(.nav) {
-    width: 70px;
+    width: 50px;
   }
 }
