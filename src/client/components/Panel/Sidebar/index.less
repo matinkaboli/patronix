@@ -1,23 +1,17 @@
 @import '~Root/styles/colors.less';
 
 :local(.nav) {
-  width: 140px;
+  width: 200px;
   height: 100%;
   bottom: 0;
   top: 0;
   right: 0;
   position: fixed;
-
   background-color: @midnight-base;
-
-  display: flex;
-  justify-content: center;
   box-sizing: border-box;
 
   ul {
     width: 100%;
-    display: flex;
-    flex-direction: column;
     list-style: none;
 
     li {
@@ -96,7 +90,7 @@
 }
 
 :local(.buttonText) {
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
 
   align-items: center;
@@ -107,7 +101,6 @@
 
 :local(.sidebarLink) {
   display: flex;
-  justify-content: space-between;
   padding: 0 10px 0 25px;
 }
 
