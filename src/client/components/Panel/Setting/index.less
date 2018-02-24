@@ -1,4 +1,5 @@
 @import '~Root/styles/colors.less';
+@import '~Root/styles/mixins.less';
 
 :local(.setting) {
   width: 70%;
@@ -7,6 +8,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  &:extend(.boxShadow);
 }
 
 :local(.hr) {

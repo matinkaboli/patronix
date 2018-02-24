@@ -11,17 +11,19 @@ import styles from './index.less';
 class UserPanel extends Component {
   render() {
     return (
-      <div>
-        <Sidebar />
+      <div className={styles.root}>
+        <div>
+          <Sidebar />
 
-        <div className={styles.container}>
-          <Switch>
-            <LazyRoute
-              type={types.user.LOAD}
-              path='/panel/setting'
-              component={Setting} />
-            <LazyRoute path='/panel/sites' component={Sites} />
-          </Switch>
+          <div className={styles.container}>
+            <Switch>
+              <LazyRoute
+                type={types.user.LOAD}
+                path='/panel/setting'
+                component={Setting} />
+              <LazyRoute path='/panel/sites' component={Sites} />
+            </Switch>
+          </div>
         </div>
       </div>
     );
