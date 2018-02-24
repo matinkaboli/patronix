@@ -1,11 +1,15 @@
 @import '~Root/styles/colors.less';
 
+:local(.root) {
+  display: flex;
+  flex-direction: row;
+}
+
 :local(.container) {
-  margin-right: 140px;
+  width: 100%;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.container) {
-    margin-right: 50px;
   }
 }
