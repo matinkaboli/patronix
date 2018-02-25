@@ -7,6 +7,7 @@ import Field from 'Root/components/Panel/Field';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import styles from './index.less';
 import defaultImage from 'Root/images/user-default.png';
+
 class Setting extends Component {
   @bind
   updateAvatar() {
@@ -63,20 +64,6 @@ class Setting extends Component {
     if (this.props.user.avatar) {
       profileImage = <p className={styles.deleteBtn}>حذف</p>;
     }
-    const fields = [
-      {
-        currentValue: this.props.user.name,
-        name: 'نام'
-      },
-      {
-        currentValue: '******',
-        name: 'رمز عبور'
-      },
-      {
-        currentValue: this.props.user.email,
-        name: 'ایمیل'
-      }
-    ];
 
     return (
       <div>
@@ -104,7 +91,21 @@ class Setting extends Component {
             </div>
           </section>
 
-          <Field fields={fields} />
+          <Field
+            currentValue={this.props.user.name}
+            name='نام'
+          />
+
+          <Field
+            currentValue='******'
+            name='رمز عبور'
+          />
+
+          <Field
+            currentValue={this.props.user.email}
+            name='ایمیل'
+          />
+          
         </div>
       </div>
     );
