@@ -1,3 +1,3 @@
 import io from 'socket.io-client';
 
-export default io('/operator');
+export default io('/client');

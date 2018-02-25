@@ -1,4 +1,4 @@
 export default {
-  operator: require('./operator'),
+  client: require('./client'),
   init: require('./init')
 };

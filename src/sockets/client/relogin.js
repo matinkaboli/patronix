@@ -5,7 +5,7 @@ import { OperatorToken } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('relogin')
 .handler(socket => async token => {
   let isValid = await OperatorToken

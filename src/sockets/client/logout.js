@@ -6,10 +6,10 @@ import { OperatorToken } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('logout')
 .middleware(
-  middlewares.operator.checkToken
+  middlewares.client.checkToken
 )
 .handler(socket => async() => {
   await OperatorToken.remove({ token: socket.handshake.query.token });

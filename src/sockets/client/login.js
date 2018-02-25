@@ -7,7 +7,7 @@ import { hmac } from 'Root/crypt';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('login')
 .handler(socket => async credentials => {
   let user = await User.findOne({

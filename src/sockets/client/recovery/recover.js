@@ -7,7 +7,7 @@ import { dbkey } from 'Root/config';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('recover')
 .handler(socket => async(password, code) => {
   let rl = await RL.findOne({ code });

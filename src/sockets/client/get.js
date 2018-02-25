@@ -6,10 +6,10 @@ import { routerHandler } from 'Root/routerHandler';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('get')
 .middleware(
-  middlewares.operator.get
+  middlewares.client.get
 )
 .handler(socket => data => {
   routerHandler(socket, data).then(res => {

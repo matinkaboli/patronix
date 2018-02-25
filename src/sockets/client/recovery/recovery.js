@@ -6,7 +6,7 @@ import { RL, User } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('recovery')
 .handler(socket => async email => {
   let user = await User.findOne({ email });

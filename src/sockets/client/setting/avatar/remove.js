@@ -5,13 +5,13 @@ import middlewares from 'Root/middlewares';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
-.name('updateName')
+.namespace('operator')
+.name('setting/avatar/remove')
 .middleware(
-  middlewares.operator.checkToken
+  middlewares.client.checkToken
 )
-.handler(socket => name => {
-  console.log(socket, name);
+.handler(socket => () => {
+
 });
 
 export default socket;

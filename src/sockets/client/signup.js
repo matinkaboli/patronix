@@ -8,7 +8,7 @@ import { hmac } from 'Root/crypt';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('signup')
 .handler(socket => async(data, captcha) => {
   if (captcha !== socket.data.captcha) {

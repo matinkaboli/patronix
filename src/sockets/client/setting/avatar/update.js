@@ -9,10 +9,10 @@ import middlewares from 'Root/middlewares';
 let socket = new SocketEvent();
 
 socket
-.namespace('/operator')
+.namespace('client')
 .name('setting/avatar/update')
 .middleware(
-  middlewares.operator.checkToken
+  middlewares.client.checkToken
 )
 .handler(socket => data => {
   if (!existsSync(uploadDir)) {
