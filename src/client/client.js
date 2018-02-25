@@ -7,6 +7,7 @@ import relogin from './relogin';
 import 'Root/styles/index.less';
 import 'Root/styles/font-fa.less';
 import 'izitoast/dist/css/iziToast.min.css';
+import 'izimodal/css/iziModal.min.css';
 
 window.onload = () => {
   relogin.then(() => {
