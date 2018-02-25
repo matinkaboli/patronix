@@ -5,12 +5,14 @@
   align-items: center;
   align-content: center;
   margin: 30px 0;
-}
 
-:local(.currentValue) {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
+  > div:nth-of-type(2) {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
 }
 
 :local(.updateBtn) {
