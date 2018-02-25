@@ -19,7 +19,7 @@ class Setting extends Component {
       if (file.size > 1048576) {
         izitoast.warning({
           rtl: true,
-          title: 'حجم فایل باید حداکثر ۵۱۲ کیلوبایت باشد.'
+          title: 'حجم فایل حداکثر می تواند ۱ مگابایت باشد.'
         });
 
         return;
@@ -51,6 +51,7 @@ class Setting extends Component {
         <img src={this.props.user.avatar} className={styles.avatarImage} />
       );
     }
+    
     return (
       <img src={defaultImage} className={styles.avatarImage} />
     );
