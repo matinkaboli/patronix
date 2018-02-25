@@ -51,7 +51,7 @@ class Setting extends Component {
         <img src={this.props.user.avatar} className={styles.avatarImage} />
       );
     }
-    
+
     return (
       <img src={defaultImage} className={styles.avatarImage} />
     );
