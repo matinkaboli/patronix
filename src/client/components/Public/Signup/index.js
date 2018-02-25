@@ -63,9 +63,7 @@ class Signup extends Component {
         tag: 'i',
         attrs: {
           className: 'icon icon-refresh',
-          onClick() {
-            captcha();
-          }
+          onClick: captcha
         }
       },
       {
