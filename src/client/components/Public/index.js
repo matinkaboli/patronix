@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom';
 
 import Login from './Login';
@@ -23,9 +22,6 @@ class Public extends Component {
               <Route exact path='/signup' component={Signup} />
               <Route path='/recovery' component={Recovery} />
               <LazyRoute exact path='/activate/:code' component={Activate} />
-              <Route>
-                <Redirect to='/notfound' />
-              </Route>
             </Switch>
           </div>
         </div>
