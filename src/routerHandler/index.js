@@ -1,7 +1,8 @@
 export const routers = [
   require('./activate'),
   require('./recovery'),
-  require('./setting')
+  require('./setting'),
+  require('./sites')
 ];
 
 export function routerHandler(socket, { path, params }) {
