@@ -31,7 +31,7 @@ const io = socketIO(server);
 
 if (process.env.NODE_ENV !== 'development') {
   app.use(morgan('short'));
-  let filtered = ['updateAvatar'];
+  let filtered = ['setting/avatar/update'];
   modified = [
     ...modified.filter(so => filtered.includes(so._name)),
     ...applyMiddleware([logger],

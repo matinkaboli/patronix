@@ -10,7 +10,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/operator')
-.name('updateAvatar')
+.name('setting/avatar/update')
 .middleware(
   middlewares.operator.checkToken
 )
@@ -27,7 +27,7 @@ socket
     let path = resolve(uploadDir, `${socket.data.user.id}.${data.type}`);
     writeFile(path, data.file, 'binary', async err => {
       if (err) {
-        socket.emit('updateAvatar', 400);
+        socket.emit('setting/avatar/update', 400);
       }
 
       else {
@@ -38,7 +38,7 @@ socket
 
         await socket.data.user.save();
 
-        socket.emit('updateAvatar', 200,
+        socket.emit('setting/avatar/update', 200,
         `${socket.data.user.avatar.url}?${randomBytes(5).toString('hex')}`);
       }
     });

@@ -5,7 +5,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 
 export default ({ type, size, file }) => dispatch => {
-  socket.once('updateAvatar', (status, avatar) => {
+  socket.once('setting/avatar/update', (status, avatar) => {
     let handler = new ResponseHandler();
 
     handler
@@ -23,6 +23,5 @@ export default ({ type, size, file }) => dispatch => {
     .status(status);
   });
 
-      console.log('a');
-  socket.emit('updateAvatar', { type, file, size });
+  socket.emit('setting/avatar/update', { type, file, size });
 };

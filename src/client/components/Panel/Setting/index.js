@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
-import updateAvatar from 'Root/actions/user/updateAvatar';
+import updateAvatar from 'Root/actions/user/avatar/update';
 import styles from './index.less';
 import defaultImage from 'Root/images/user-default.png';
 
