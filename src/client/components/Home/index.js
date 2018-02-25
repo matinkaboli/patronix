@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -10,17 +10,17 @@ class Home extends Component {
 
     if (this.props.logged) {
       links =
-      <React.Fragment>
+      <Fragment>
         <li><Link to='/panel'>داشبورد</Link></li>
         <li><Link to='/about'>درباره ما</Link></li>
-      </React.Fragment>;
+      </Fragment>;
     } else {
       links =
-      <React.Fragment>
+      <Fragment>
           <li><Link to='/login'>ورود</Link></li>
           <li><Link to='/signup'>ثبت نام</Link></li>
           <li><Link to='/about'>درباره ما</Link></li>
-      </React.Fragment>;
+      </Fragment>;
     }
 
     return (

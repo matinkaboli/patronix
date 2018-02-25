@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 
 import bind from 'Root/bind';
@@ -35,7 +35,7 @@ class Form extends Component {
     const { displayValidateError } = this.state;
 
     return (
-      <React.Fragment>
+      <Fragment>
 
         {this.props.children}
 
@@ -65,7 +65,7 @@ class Form extends Component {
 
         </form>
 
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
