@@ -46,6 +46,7 @@
     "eslint-plugin-react": "^7.6.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2",
+    "izimodal": "^1.5.1",
     "izitoast": "^1.2.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
