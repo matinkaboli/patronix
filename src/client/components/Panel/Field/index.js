@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 
 import styles from './index.less';
 
 class Field extends Component {
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
             {this.props.fields.map((v, i) =>
                 (() =>
                   <div key={i} className={styles.section}>
@@ -20,7 +20,7 @@ class Field extends Component {
                   </div>
                 )()
             )}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
