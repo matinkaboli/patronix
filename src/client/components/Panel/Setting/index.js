@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
+import Field from 'Root/components/Panel/Field';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import styles from './index.less';
 import defaultImage from 'Root/images/user-default.png';
-
 class Setting extends Component {
   @bind
   updateAvatar() {
@@ -63,6 +63,20 @@ class Setting extends Component {
     if (this.props.user.avatar) {
       profileImage = <p className={styles.deleteBtn}>حذف</p>;
     }
+    const fields = [
+      {
+        currentValue: this.props.user.name,
+        name: 'نام'
+      },
+      {
+        currentValue: '******',
+        name: 'رمز عبور'
+      },
+      {
+        currentValue: this.props.user.email,
+        name: 'ایمیل'
+      }
+    ];
 
     return (
       <div>
@@ -72,7 +86,7 @@ class Setting extends Component {
 
           <section className={styles.section}>
 
-            <div className={styles.butttons}>
+            <div>
               <label>
                 <input
                   type='file'
@@ -90,59 +104,7 @@ class Setting extends Component {
             </div>
           </section>
 
-          <section className={styles.section}>
-
-            <div>
-              <p className={styles.updateBtn}>به روز رسانی</p>
-
-              {/* <input
-                type='text'
-                ref='name'
-                defaultValue={this.props.user.name} /> */}
-            </div>
-
-            <div className={styles.currentValue}>
-              <p>{this.props.user.name}</p>
-              <p>نام</p>
-            </div>
-
-          </section>
-
-          <section className={styles.section}>
-
-            <div>
-              <p className={styles.updateBtn}>به روز رسانی</p>
-
-              {/* <input
-                type='text'
-                ref='name'
-                defaultValue={this.props.user.name} /> */}
-            </div>
-
-            <div className={styles.currentValue}>
-              <p>*****</p>
-              <p>رمز</p>
-            </div>
-
-          </section>
-
-          <section className={styles.section}>
-
-            <div>
-              <p className={styles.updateBtn}>به روز رسانی</p>
-
-              {/* <input
-                type='text'
-                ref='name'
-                defaultValue={this.props.user.name} /> */}
-            </div>
-
-            <div className={styles.currentValue}>
-              <p>{this.props.user.email}</p>
-              <p>ایمیل</p>
-            </div>
-
-          </section>
+          <Field fields={fields} />
         </div>
       </div>
     );

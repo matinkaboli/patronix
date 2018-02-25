@@ -1,0 +1,29 @@
+:local(.section) {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin: 30px 0;
+}
+
+:local(.currentValue) {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+:local(.updateBtn) {
+  font-size: 16px;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-radius: 3px;
+  font-family: SB;
+  color: #444;
+  cursor: pointer;
+
+  &:hover {
+    color: #111;
+    border: 1px solid #999;
+  }
+}
