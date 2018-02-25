@@ -84,7 +84,7 @@ class Setting extends Component {
               { profileImage }
             </div>
 
-            <div className={styles.currentValue}>
+            <div>
               {this.renderImage()}
               <p>عکس کاربر</p>
             </div>
