@@ -71,9 +71,8 @@ class Setting extends Component {
           <p className={styles.settingTitle}>تنظیمات مشخصات کاربر</p>
           <div className={styles.hr} />
 
-          <section className={styles.section}>
-
-            <div>
+          <Field>
+            <div className={styles.buttons}>
               <label>
                 <input
                   type='file'
@@ -85,27 +84,46 @@ class Setting extends Component {
               { profileImage }
             </div>
 
-            <div className={styles.currentValue}>
+            <div>
               {this.renderImage()}
               <p>عکس کاربر</p>
             </div>
-          </section>
+          </Field>
 
-          <Field
-            currentValue={this.props.user.name}
-            name='نام'
-          />
+          <Field>
 
-          <Field
-            currentValue='******'
-            name='رمز عبور'
-          />
+            <div>
+              <p className={styles.updateBtn}>به روز رسانی</p>
+            </div>
 
-          <Field
-            currentValue={this.props.user.email}
-            name='ایمیل'
-          />
-          
+            <div>
+              <p>{this.props.user.name}</p>
+              <p>نام</p>
+            </div>
+          </Field>
+
+          <Field>
+            <div>
+              <p className={styles.updateBtn}>به روز رسانی</p>
+            </div>
+
+            <div>
+              <p>******</p>
+              <p>رمز عبور</p>
+            </div>
+          </Field>
+
+          <Field>
+            <div>
+              <p className={styles.updateBtn}>به روز رسانی</p>
+            </div>
+
+            <div>
+              <p>{this.props.user.email}</p>
+              <p>ایمیل</p>
+            </div>
+          </Field>
+
         </div>
       </div>
     );
