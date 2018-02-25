@@ -72,7 +72,7 @@ class Setting extends Component {
           <div className={styles.hr} />
 
           <Field>
-            <div>
+            <div className={styles.buttons}>
               <label>
                 <input
                   type='file'
