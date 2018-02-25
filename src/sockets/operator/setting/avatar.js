@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { randomBytes } from 'crypto';
 
 import { uploadDir } from 'Root/config';
-import middles from 'Root/middles';
+import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
 
@@ -12,7 +12,7 @@ socket
 .namespace('/operator')
 .name('updateAvatar')
 .middleware(
-  middles.operator.checkToken
+  middlewares.operator.checkToken
 )
 .handler(socket => data => {
   if (!existsSync(uploadDir)) {

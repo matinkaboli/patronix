@@ -1,3 +1,4 @@
 export default [
-  require('./avatar')
+  require('./avatar'),
+  require('./name')
 ];

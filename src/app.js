@@ -9,7 +9,7 @@ import logger from 'socket.io-manager-logger';
 import process from 'process';
 
 import sockets from './sockets';
-import { init } from './middles';
+import { init } from './middlewares';
 import config from './config';
 
 let modified = applyMiddleware([init], sockets);

@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import middles from 'Root/middles';
+import middlewares from 'Root/middlewares';
 import { routerHandler } from 'Root/routerHandler';
 
 let socket = new SocketEvent();
@@ -9,7 +9,7 @@ socket
 .namespace('/operator')
 .name('get')
 .middleware(
-  middles.operator.get
+  middlewares.operator.get
 )
 .handler(socket => data => {
   routerHandler(socket, data).then(res => {
