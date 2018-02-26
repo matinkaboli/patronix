@@ -1,6 +1,29 @@
+@import '~Root/styles/index.less';
+
 :local(.btn) {
   padding: 10px;
-  border: 1px solid #eee;
   border-radius: 4px;
   font-family: SB;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 300ms, color 300ms;
+}
+
+:local(.grey) {
+  border: 1px solid #eee;
+
+  &:hover, &:active {
+    background-color: white;
+  }
+}
+
+:local(.red) {
+  border: 1px solid @red-1;
+  background-color: @red-base;
+  color: white;
+
+  &:hover, &:active {
+    background-color: white;
+    color: @red-base;
+  }
 }

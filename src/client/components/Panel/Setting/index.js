@@ -63,7 +63,7 @@ class Setting extends Component {
     let profileImage = null;
 
     if (this.props.user.avatar) {
-      profileImage = <Button>حذف</Button>;
+      profileImage = <Button color='red'>حذف</Button>;
     }
 
     return (
@@ -80,7 +80,7 @@ class Setting extends Component {
                   ref='file'
                   className={styles.avatarInput}
                   onChange={this.updateAvatar} />
-                  <Button>به روز رسانی</Button>
+                  <Button color='grey'>به روز رسانی</Button>
               </label>
               { profileImage }
             </div>
@@ -94,7 +94,7 @@ class Setting extends Component {
           <Field>
 
             <div>
-              <Button>به روز رسانی</Button>
+              <Button color='grey'>به روز رسانی</Button>
             </div>
 
             <div>
@@ -105,7 +105,7 @@ class Setting extends Component {
 
           <Field>
             <div>
-              <Button>به روز رسانی</Button>
+              <Button color='grey'>به روز رسانی</Button>
             </div>
 
             <div>
@@ -116,7 +116,7 @@ class Setting extends Component {
 
           <Field>
             <div>
-              <Button>به روز رسانی</Button>
+              <Button color='grey'>به روز رسانی</Button>
             </div>
 
             <div>
