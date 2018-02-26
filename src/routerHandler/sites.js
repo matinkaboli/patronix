@@ -1,9 +1,12 @@
+import { Site } from 'Root/models';
+
 export const path = '/panel/sites';
 
 export async function handler(socket) {
-  console.log(socket.data.user);
-
+  let sites = await Site.find({ owner: socket.data.user._id });
+  
   return {
-    status: 403
+    status: 200,
+    data: sites
   };
 }

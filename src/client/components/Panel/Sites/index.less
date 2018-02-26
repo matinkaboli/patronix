@@ -1,0 +1,11 @@
+@import '~Root/styles/mixins.less';
+
+:local(.container) {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    background-color: white;
+    &:extend(.boxShadow);
+  }
+}

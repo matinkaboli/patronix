@@ -11,5 +11,9 @@ export default {
     SET_AVATAR: 'user/SET_AVATAR',
     LOGIN: 'user/LOGIN',
     LOGOUT: 'user/LOGOUT'
+  },
+  sites: {
+    LOAD: 'sites/LOAD',
+    ADD: 'sites/ADD'
   }
 };

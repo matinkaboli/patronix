@@ -22,7 +22,10 @@ class Panel extends Component {
               type={types.user.LOAD}
               path='/panel/setting'
               component={Setting} />
-            <LazyRoute path='/panel/sites' component={Sites} />
+            <LazyRoute
+              type={types.sites.LOAD}
+              path='/panel/sites'
+              component={Sites} />
             <Route>
               <Redirect to='/notfound' />
             </Route>
