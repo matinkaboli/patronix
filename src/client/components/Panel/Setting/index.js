@@ -4,6 +4,7 @@ import izitoast from 'izitoast';
 
 import bind from 'Root/bind';
 import Field from 'Root/components/Panel/Field';
+import Button from 'Root/components/Button';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import styles from './index.less';
 import defaultImage from 'Root/images/user-default.png';
@@ -62,7 +63,7 @@ class Setting extends Component {
     let profileImage = null;
 
     if (this.props.user.avatar) {
-      profileImage = <p className={styles.deleteBtn}>حذف</p>;
+      profileImage = <Button>حذف</Button>;
     }
 
     return (
@@ -79,7 +80,7 @@ class Setting extends Component {
                   ref='file'
                   className={styles.avatarInput}
                   onChange={this.updateAvatar} />
-                  <p className={styles.updateBtn}>به روز رسانی</p>
+                  <Button>به روز رسانی</Button>
               </label>
               { profileImage }
             </div>
@@ -93,7 +94,7 @@ class Setting extends Component {
           <Field>
 
             <div>
-              <p className={styles.updateBtn}>به روز رسانی</p>
+              <Button>به روز رسانی</Button>
             </div>
 
             <div>
@@ -104,7 +105,7 @@ class Setting extends Component {
 
           <Field>
             <div>
-              <p className={styles.updateBtn}>به روز رسانی</p>
+              <Button>به روز رسانی</Button>
             </div>
 
             <div>
@@ -115,7 +116,7 @@ class Setting extends Component {
 
           <Field>
             <div>
-              <p className={styles.updateBtn}>به روز رسانی</p>
+              <Button>به روز رسانی</Button>
             </div>
 
             <div>
