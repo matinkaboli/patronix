@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import bind from 'Root/bind';
 import recovery from 'Root/actions/recovery/recovery';
@@ -39,6 +40,7 @@ class Index extends Component {
           <h1>بازیابی رمز عبور</h1>
         </Form>
 
+        <Link to='/login'>وارد شو</Link>
       </div>
     );
   }

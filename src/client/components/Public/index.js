@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Route,
   Switch,
-  Redirect
+  Redirect,
+  Link
 } from 'react-router-dom';
 
 import Login from './Login';
@@ -19,7 +20,8 @@ class Public extends Component {
   render() {
     return (
       <div className={styles.root}>
-        <div>
+        <div className={styles.verticalRoot}>
+          <Link to='/' className={styles.homeLink}>صفحه اصلی</Link>
           <div className={styles.container}>
             <Switch>
               <LoggedRoute exact path='/login' component={Login} />
