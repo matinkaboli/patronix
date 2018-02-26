@@ -20,39 +20,8 @@
   font-size: 20px;
 }
 
-
 :local(.avatarInput) {
   display: none;
-}
-
-:local(.updateBtn) {
-  font-size: 16px;
-  border: 1px solid #eee;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: SB;
-  color: #444;
-  cursor: pointer;
-
-  &:hover {
-    color: #111;
-    border: 1px solid #999;
-  }
-}
-
-:local(.deleteBtn) {
-  font-size: 16px;
-  border: 1px solid @red-2;
-  background-color: @red-base;
-  font-family: SB;
-  padding: 5px;
-  border-radius: 3px;
-  color: white;
-  cursor: pointer;
-
-  &:hover {
-    background-color: @red-2;
-  }
 }
 
 :local(.avatarImage) {
@@ -63,4 +32,10 @@
 
 :local(.buttons) {
   display: flex;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.setting) {
+    padding: 10px;
+  }
 }

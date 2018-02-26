@@ -73,6 +73,11 @@ class Setting extends Component {
           <div className={styles.hr} />
 
           <Field>
+            <div>
+              <div>عکس کاربر</div>
+              {this.renderImage()}
+            </div>
+
             <div className={styles.buttons}>
               <label>
                 <input
@@ -84,44 +89,38 @@ class Setting extends Component {
               </label>
               { profileImage }
             </div>
-
-            <div>
-              <div>عکس کاربر</div>
-              {this.renderImage()}
-            </div>
           </Field>
 
           <Field>
-
-            <div>
-              <Button color='grey'>به روز رسانی</Button>
-            </div>
-
             <div>
               <div>نام</div>
               <p>{this.props.user.name}</p>
             </div>
-          </Field>
 
-          <Field>
             <div>
               <Button color='grey'>به روز رسانی</Button>
             </div>
+          </Field>
 
+          <Field>
             <div>
               <div>رمز عبور</div>
               <p>******</p>
             </div>
+
+            <div>
+              <Button color='grey'>به روز رسانی</Button>
+            </div>
           </Field>
 
           <Field>
             <div>
-              <Button color='grey'>به روز رسانی</Button>
+              <div>ایمیل</div>
+              <p>{this.props.user.email}</p>
             </div>
 
             <div>
-              <div>ایمیل</div>
-              <p>{this.props.user.email}</p>
+              <Button color='grey'>به روز رسانی</Button>
             </div>
           </Field>
 

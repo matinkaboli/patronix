@@ -1,6 +1,5 @@
 :local(.section) {
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   align-content: center;
@@ -10,7 +9,7 @@
     display: inline;
   }
 
-  > div:nth-of-type(2) {
+  > div:nth-of-type(1) {
     position: relative;
     width: 250px;
     display: flex;
@@ -22,17 +21,18 @@
   }
 }
 
-:local(.updateBtn) {
-  font-size: 16px;
-  border: 1px solid #eee;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: SB;
-  color: #444;
-  cursor: pointer;
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.section) {
+    flex-direction: column;
+    padding: 0;
+    margin: 0 0 50px 0;
 
-  &:hover {
-    color: #111;
-    border: 1px solid #999;
+    > div:nth-of-type(1) {
+      width: auto;
+
+      div {
+        min-width: 70px;
+      }
+    }
   }
 }
