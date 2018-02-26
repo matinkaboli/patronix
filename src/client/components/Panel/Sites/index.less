@@ -1,8 +1,9 @@
 @import '~Root/styles/mixins.less';
 
 :local(.container) {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  grid-column-gap: 25px;
 
   > div {
     h3 {
