@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Box from 'Root/components/Box';
 import styles from './index.less';
 
 class Sites extends Component {
@@ -8,10 +9,14 @@ class Sites extends Component {
     console.log(this.props);
     return (
       <div className={styles.container}>
-        <div>
-          <p>sfas</p>
-        </div>
-        <div />
+        <Box>
+          <h3>
+            لیست سایت های شما:
+          </h3>
+        </Box>
+        <Box>
+          
+        </Box>
       </div>
     );
   }
