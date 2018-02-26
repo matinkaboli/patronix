@@ -85,8 +85,8 @@ class Setting extends Component {
             </div>
 
             <div>
+              <div>عکس کاربر</div>
               {this.renderImage()}
-              <p>عکس کاربر</p>
             </div>
           </Field>
 
@@ -97,8 +97,8 @@ class Setting extends Component {
             </div>
 
             <div>
+              <div>نام</div>
               <p>{this.props.user.name}</p>
-              <p>نام</p>
             </div>
           </Field>
 
@@ -108,8 +108,8 @@ class Setting extends Component {
             </div>
 
             <div>
+              <div>رمز عبور</div>
               <p>******</p>
-              <p>رمز عبور</p>
             </div>
           </Field>
 
@@ -119,8 +119,8 @@ class Setting extends Component {
             </div>
 
             <div>
+              <div>ایمیل</div>
               <p>{this.props.user.email}</p>
-              <p>ایمیل</p>
             </div>
           </Field>
 
