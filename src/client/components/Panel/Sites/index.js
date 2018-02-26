@@ -8,7 +8,9 @@ class Sites extends Component {
     console.log(this.props);
     return (
       <div className={styles.container}>
-        <div />
+        <div>
+          <p>sfas</p>
+        </div>
         <div />
       </div>
     );
