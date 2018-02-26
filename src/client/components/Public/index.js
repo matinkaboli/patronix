@@ -11,6 +11,7 @@ import Recovery from './Recovery';
 import Activate from './Activate';
 import LazyRoute from 'Root/components/LazyRoute';
 import NotFound from 'Root/components/NotFound';
+import Denied from 'Root/components/Denied';
 import styles from './index.less';
 
 class Public extends Component {
@@ -25,6 +26,7 @@ class Public extends Component {
               <Route path='/recovery' component={Recovery} />
               <LazyRoute exact path='/activate/:code' component={Activate} />
               <Route path='/notfound' component={NotFound} />
+              <Route path='/denied' component={Denied} />
               <Route>
                 <Redirect to='/notfound' />
               </Route>

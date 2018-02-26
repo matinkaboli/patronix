@@ -29,9 +29,9 @@ class LazyRoute extends Component {
       return <Redirect to='/notfound' />;
     }
 
-    // if (!this.props.lazy.loading && this.props.lazy.status === 403) {
-    //   return <Redirect to='/denied' />;
-    // }
+    if (!this.props.lazy.loading && this.props.lazy.status === 403) {
+      return <Redirect to='/denied' />;
+    }
 
     return null;
   }
