@@ -60,6 +60,11 @@ class Setting extends Component {
     );
   }
 
+  @bind
+  openInput() {
+    this.refs.file.click();
+  }
+
   render() {
     let profileImage = null;
 
@@ -81,13 +86,12 @@ class Setting extends Component {
             <input
               type='file'
               ref='file'
-              id='file'
               className={styles.avatarInput}
               onChange={this.updateAvatar} />
 
-            <label htmlFor='file'>
+            <div onClick={this.openInput}>
               <Button color='grey'>به روز رسانی</Button>
-            </label>
+            </div>
             { profileImage }
           </div>
         </Field>
