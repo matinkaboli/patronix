@@ -1,11 +1,11 @@
 @import '~Root/styles/mixins.less';
 
 :local(.container) {
-  display: grid;
-  grid-template-columns: repeat(2, 0.5fr);
-  grid-column-gap: 25px;
+  &:extend(.flexRow);
 
   > div {
+    margin: 0 10px;
+
     h3 {
       &:extend(.headerTitle);
     }

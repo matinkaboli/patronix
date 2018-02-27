@@ -1,11 +1,10 @@
 @import '~Root/styles/colors.less';
 
 :local(.container) {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-
+  &:extend(.flexRow);
+  
   > div:nth-child(2) {
     margin: 25px;
+    width: 100%;
   }
 }

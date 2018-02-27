@@ -15,7 +15,7 @@ class Sites extends Component {
           </h3>
         </Box>
         <Box>
-          
+
         </Box>
       </div>
     );
