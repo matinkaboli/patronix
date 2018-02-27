@@ -1,23 +1,8 @@
 @import '~Root/styles/colors.less';
 @import '~Root/styles/mixins.less';
 
-:local(.setting) {
-  padding: 30px 20px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  &:extend(.boxShadow);
-}
-
-:local(.hr) {
-  border-top: 1px solid #eee;
-}
-
-:local(.settingTitle) {
-  font-family: SB;
-  color: #444;
-  padding: 10px 0;
-  font-size: 20px;
+:local(.title) {
+  &:extend(.headerTitle);
 }
 
 :local(.avatarInput) {

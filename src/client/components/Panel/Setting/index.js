@@ -5,9 +5,10 @@ import izitoast from 'izitoast';
 import bind from 'Root/bind';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
+import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
-import styles from './index.less';
 import defaultImage from 'Root/images/user-default.png';
+import styles from './index.less';
 
 class Setting extends Component {
   @bind
@@ -67,25 +68,23 @@ class Setting extends Component {
     }
 
     return (
-      <div>
-        <div className={styles.setting}>
-          <p className={styles.settingTitle}>تنظیمات مشخصات کاربر</p>
-          <div className={styles.hr} />
+      <Box>
+        <h3 className={styles.title}>تنظیمات مشخصات کاربر</h3>
 
-          <Field>
-            <div>
-              <div>عکس کاربر</div>
-              {this.renderImage()}
-            </div>
+        <Field>
+          <div>
+            <div>عکس کاربر</div>
+            {this.renderImage()}
+          </div>
 
-            <div className={styles.buttons}>
-              <label>
-                <input
-                  type='file'
-                  ref='file'
-                  className={styles.avatarInput}
-                  onChange={this.updateAvatar} />
-                  <Button color='grey'>به روز رسانی</Button>
+          <div className={styles.buttons}>
+            <label>
+              <input
+                type='file'
+                ref='file'
+                className={styles.avatarInput}
+                onChange={this.updateAvatar} />
+                <Button color='grey'>به روز رسانی</Button>
               </label>
               { profileImage }
             </div>
@@ -124,8 +123,7 @@ class Setting extends Component {
             </div>
           </Field>
 
-        </div>
-      </div>
+      </Box>
     );
   }
 }

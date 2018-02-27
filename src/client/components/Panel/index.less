@@ -1,17 +1,10 @@
 @import '~Root/styles/colors.less';
 
-:local(.root) {
+:local(.container) {
   display: flex;
   flex-direction: row;
-}
 
-:local(.container) {
-  width: 100%;
-  padding: 30px;
-}
-
-@media (min-width: 120px) and (max-width: 580px) {
-  :local(.container) {
-    padding: 0;
+  > div:nth-child(2) {
+    margin: 25px;
   }
 }

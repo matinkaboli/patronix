@@ -12,25 +12,23 @@ import styles from './index.less';
 class Panel extends Component {
   render() {
     return (
-      <div className={styles.root}>
+      <div className={styles.container}>
         <Sidebar />
 
-        <div className={styles.container}>
-          <Switch className={styles.width}>
-            <Route exact path='/panel' component={HomePanel} />
-            <LazyRoute
-              type={types.user.LOAD}
-              path='/panel/setting'
-              component={Setting} />
-            <LazyRoute
-              type={types.sites.LOAD}
-              path='/panel/sites'
-              component={Sites} />
-            <Route>
-              <Redirect to='/notfound' />
-            </Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path='/panel' component={HomePanel} />
+          <LazyRoute
+            type={types.user.LOAD}
+            path='/panel/setting'
+            component={Setting} />
+          <LazyRoute
+            type={types.sites.LOAD}
+            path='/panel/sites'
+            component={Sites} />
+          <Route>
+            <Redirect to='/notfound' />
+          </Route>
+        </Switch>
       </div>
     );
   }
