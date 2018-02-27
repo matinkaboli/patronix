@@ -17,7 +17,7 @@ export default ({ type, size, file }) => dispatch => {
 
       izitoast.success({
         rtl: true,
-        title: 'با موفقبت آپلود شد.'
+        title: 'با موفقیت به روز رسانی شد'
       });
     })
     .status(status);
