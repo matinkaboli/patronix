@@ -78,51 +78,52 @@ class Setting extends Component {
           </div>
 
           <div className={styles.buttons}>
-            <label>
-              <input
-                type='file'
-                ref='file'
-                className={styles.avatarInput}
-                onChange={this.updateAvatar} />
-                <Button color='grey'>به روز رسانی</Button>
-              </label>
-              { profileImage }
-            </div>
-          </Field>
+            <input
+              type='file'
+              ref='file'
+              id='file'
+              className={styles.avatarInput}
+              onChange={this.updateAvatar} />
 
-          <Field>
-            <div>
-              <div>نام</div>
-              <p>{this.props.user.name}</p>
-            </div>
-
-            <div>
+            <label htmlFor='file'>
               <Button color='grey'>به روز رسانی</Button>
-            </div>
-          </Field>
+            </label>
+            { profileImage }
+          </div>
+        </Field>
 
-          <Field>
-            <div>
-              <div>رمز عبور</div>
-              <p>******</p>
-            </div>
+        <Field>
+          <div>
+            <div>نام</div>
+            <p>{this.props.user.name}</p>
+          </div>
 
-            <div>
-              <Button color='grey'>به روز رسانی</Button>
-            </div>
-          </Field>
+          <div>
+            <Button color='grey'>به روز رسانی</Button>
+          </div>
+        </Field>
 
-          <Field>
-            <div>
-              <div>ایمیل</div>
-              <p>{this.props.user.email}</p>
-            </div>
+        <Field>
+          <div>
+            <div>رمز عبور</div>
+            <p>******</p>
+          </div>
 
-            <div>
-              <Button color='grey'>به روز رسانی</Button>
-            </div>
-          </Field>
+          <div>
+            <Button color='grey'>به روز رسانی</Button>
+          </div>
+        </Field>
 
+        <Field>
+          <div>
+            <div>ایمیل</div>
+            <p>{this.props.user.email}</p>
+          </div>
+
+          <div>
+            <Button color='grey'>به روز رسانی</Button>
+          </div>
+        </Field>
       </Box>
     );
   }
