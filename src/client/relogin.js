@@ -1,7 +1,7 @@
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 import types from 'Root/actions';
-import ResponseHandler from 'Root/js/ResponseHandler';
+import ResponseHandler from 'Root/ResponseHandler';
 
 export default new Promise(resolve => {
   if (localStorage.token) {

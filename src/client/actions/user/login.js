@@ -2,7 +2,7 @@ import izitoast from 'izitoast';
 
 import socket from 'Root/socket';
 import types from 'Root/actions';
-import ResponseHandler from 'Root/js/ResponseHandler';
+import ResponseHandler from 'Root/ResponseHandler';
 
 export default ({ push, ...credentials }) => dispatch => {
   socket.once('login', (status, res) => {
