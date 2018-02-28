@@ -5,6 +5,7 @@ import { withRouter, matchPath } from 'react-router-dom';
 import Form from 'Root/components/Form';
 import recover from 'Root/actions/recovery/recover';
 import bind from 'Root/bind';
+import lazy from 'Root/lazy';
 
 class Code extends Component {
   @bind
@@ -61,4 +62,6 @@ class Code extends Component {
   }
 }
 
-export default withRouter(Code);
+export default lazy({
+  component: withRouter(Code)
+});

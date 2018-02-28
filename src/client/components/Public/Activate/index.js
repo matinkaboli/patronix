@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
+import lazy from 'Root/lazy';
+
 class Activate extends Component {
   render() {
-    localStorage.setItem('activationSuccessful', 1);
     return <Redirect to='/login' />;
   }
 }
 
-export default Activate;
+export default lazy({
+  component: Activate
+});

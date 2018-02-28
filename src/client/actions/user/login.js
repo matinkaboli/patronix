@@ -1,8 +1,10 @@
+import izitoast from 'izitoast';
+
 import socket from 'Root/socket';
 import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
 
-export default ({ push, failure, ...credentials }) => dispatch => {
+export default ({ push, ...credentials }) => dispatch => {
   socket.once('login', (status, res) => {
     let handler = new ResponseHandler();
 
@@ -18,7 +20,12 @@ export default ({ push, failure, ...credentials }) => dispatch => {
       push('/panel');
     })
 
-    .handle('unauth', failure)
+    .handle('unauth', () => {
+      izitoast.error({
+        rtl: true,
+        title: 'ایمیل یا رمز اشتباه وارد شده است'
+      });
+    })
 
     .status(status);
   });

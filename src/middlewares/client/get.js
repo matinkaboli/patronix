@@ -14,10 +14,18 @@ export default (next, socket) => async({ path }) => {
           socket.data.user = token.user;
 
           next();
+          break;
         }
-        socket.emit('get', 403);
-      } else {
+
+        else {
+          socket.emit('get', 403);
+          break;
+        }
+      }
+
+      else {
         next();
+        break;
       }
     }
   }

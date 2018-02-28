@@ -15,13 +15,7 @@ class Login extends Component {
       this.props.dispatch(loginAct({
         email: refs.email.value,
         password: refs.password.value,
-        push: this.props.history.push,
-        failure() {
-          izitoast.error({
-            rtl: true,
-            title: 'ایمیل یا رمز اشتباه وارد شده است'
-          });
-        }
+        push: this.props.history.push
       }));
     } else {
       izitoast.warning({
@@ -60,13 +54,7 @@ class Login extends Component {
         }
       }
     ];
-    if (localStorage.getItem('activationSuccessful')) {
-      izitoast.success({
-        rtl: true,
-        title: 'حساب شما با موفقیت تایید شد'
-      });
-      localStorage.removeItem('activationSuccessful');
-    }
+
     return (
       <div>
         <Form

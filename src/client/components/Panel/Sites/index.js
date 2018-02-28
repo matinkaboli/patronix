@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Box from 'Root/components/Box';
+import lazy from 'Root/lazy';
+import types from 'Root/actions';
 import styles from './index.less';
 
 class Sites extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className={styles.container}>
         <Box>
@@ -22,4 +23,9 @@ class Sites extends Component {
   }
 }
 
-export default connect(state => ({ sites: state.sites }))(Sites);
+export default lazy({
+  component: connect(
+    state => ({ sites: state.sites })
+  )(Sites),
+  type: types.sites.LOAD
+});
