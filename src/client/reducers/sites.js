@@ -7,7 +7,7 @@ export default (state = [], { type, ...rest }) => {
     }
 
     case types.sites.LOAD: {
-      return [...state, ...rest.data];
+      return rest.data;
     }
 
     default: {
