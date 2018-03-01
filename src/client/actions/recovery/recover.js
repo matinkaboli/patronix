@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
 import socket from 'Root/socket';
-import ResponseHandler from 'Root/ResponseHandler';
+import ResponseHandler from 'Root/js/ResponseHandler';
 
 export default (password, code) => {
   socket.once('recover', status => {

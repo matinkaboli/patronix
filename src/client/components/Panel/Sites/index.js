@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Box from 'Root/components/Box';
-import lazy from 'Root/lazy';
+import lazy from 'Root/js/lazy';
 import types from 'Root/actions';
 import styles from './index.less';
 

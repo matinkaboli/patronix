@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import styles from './index.less';
-import bind from 'Root/bind';
+import bind from 'Root/js/bind';
 import logout from 'Root/actions/user/logout';
 import 'Root/styles/icon.less';
 

@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
 import types from 'Root/actions';
-import ResponseHandler from 'Root/ResponseHandler';
+import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 
 export default ({ type, size, file }) => dispatch => {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import { email } from 'Root/js/validator';
-import bind from 'Root/bind';
+import bind from 'Root/js/bind';
 import loginAct from 'Root/actions/user/login';
 import Form from 'Root/components/Form';
 

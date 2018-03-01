@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
-import bind from 'Root/bind';
-import lazy from 'Root/lazy';
+import bind from 'Root/js/bind';
+import lazy from 'Root/js/lazy';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';

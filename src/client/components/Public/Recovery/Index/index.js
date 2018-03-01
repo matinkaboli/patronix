@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import bind from 'Root/bind';
+import bind from 'Root/js/bind';
 import recovery from 'Root/actions/recovery/recovery';
 import Form from 'Root/components/Form';
 

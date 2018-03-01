@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Form from 'Root/components/Form';
-import bind from 'Root/bind';
+import bind from 'Root/js/bind';
 import signup from 'Root/actions/signup';
 import captcha from 'Root/actions/captcha';
 
