@@ -25,7 +25,6 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'less-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -33,7 +32,8 @@ module.exports = {
                 return [autoprefixer];
               }
             }
-          }
+          },
+          'less-loader'
         ]
       }, {
         test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)$/,

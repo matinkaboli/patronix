@@ -1,13 +1,13 @@
 @import '~Root/styles/mixins.less';
 
 :local(.container) {
-  &:extend(.flexRow);
+  .flexRow();
 
   > div {
     margin: 0 10px;
 
     h3 {
-      &:extend(.headerTitle);
+      .headerTitle();
     }
   }
 }
