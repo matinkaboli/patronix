@@ -4,7 +4,9 @@ import styles from './index.less';
 
 class Button extends Component {
   render() {
-    return <button className={`${styles.btn} ${styles[this.props.color]}`}>
+    return <button
+      onClick={this.props.handleClick.bind(this)}
+      className={`${styles.btn} ${styles[this.props.color]}`}>
       { this.props.children }
     </button>;
   }

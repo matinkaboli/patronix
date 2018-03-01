@@ -67,11 +67,19 @@ class Setting extends Component {
     this.refs.file.click();
   }
 
+  showName() {
+    console.log('Hello');
+  }
+
   render() {
     let profileImage = null;
 
     if (this.props.user.avatar) {
-      profileImage = <Button color='red'>حذف</Button>;
+      profileImage = <Button
+        color='red'
+        handleClick={this.showName.bind(this)}>
+        حذف
+      </Button>;
     }
 
     return (
@@ -92,7 +100,11 @@ class Setting extends Component {
               onChange={this.updateAvatar} />
 
             <div onClick={this.openInput}>
-              <Button color='grey'>به روز رسانی</Button>
+              <Button
+                color='grey'
+                handleClick={this.showName.bind(this)}>
+                به روز رسانی
+              </Button>
             </div>
             { profileImage }
           </div>
@@ -105,7 +117,11 @@ class Setting extends Component {
           </div>
 
           <div>
-            <Button color='grey'>به روز رسانی</Button>
+            <Button
+              color='grey'
+              handleClick={this.showName.bind(this)}>
+              به روز رسانی
+            </Button>
           </div>
         </Field>
 
@@ -116,7 +132,11 @@ class Setting extends Component {
           </div>
 
           <div>
-            <Button color='grey'>به روز رسانی</Button>
+            <Button
+              color='grey'
+              handleClick={this.showName.bind(this)}>
+              به روز رسانی
+            </Button>
           </div>
         </Field>
 
@@ -127,7 +147,11 @@ class Setting extends Component {
           </div>
 
           <div>
-            <Button color='grey'>به روز رسانی</Button>
+            <Button
+              color='grey'
+              handleClick={this.showName.bind(this)}>
+              به روز رسانی
+            </Button>
           </div>
         </Field>
       </Box>
