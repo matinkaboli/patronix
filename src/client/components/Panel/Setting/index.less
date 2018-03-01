@@ -2,7 +2,7 @@
 @import '~Root/styles/mixins.less';
 
 :local(.title) {
-  &:extend(.headerTitle);
+  .headerTitle();
 }
 
 :local(.avatarInput) {
@@ -13,10 +13,6 @@
   width: 80px;
   height: 80px;
   border-radius: 100%;
-}
-
-:local(.buttons) {
-  display: flex;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {

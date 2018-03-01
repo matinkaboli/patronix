@@ -84,7 +84,7 @@ class Setting extends Component {
             {this.renderImage()}
           </div>
 
-          <div className={styles.buttons}>
+          <div>
             <input
               type='file'
               ref='file'
