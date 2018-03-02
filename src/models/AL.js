@@ -15,6 +15,11 @@ const schema = new Schema({
     ref: 'User',
     unique: true,
     required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    expires: 60 * 60 * 24
   }
 });
 

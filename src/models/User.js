@@ -42,7 +42,11 @@ const schema = new Schema({
   sites: [{
     type: Schema.Types.ObjectId,
     ref: 'Site'
-  }]
+  }],
+  verifyTime: {
+    type: Date,
+    expires: 60 * 60 * 24
+  }
 });
 
 export default mongoose.model('User', schema);

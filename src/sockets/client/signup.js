@@ -18,7 +18,8 @@ socket
       name: data.name,
       email: data.email,
       password: hmac(data.password, dbkey),
-      status: 0
+      status: 0,
+      verifyTime: Date.now()
     });
 
     try {

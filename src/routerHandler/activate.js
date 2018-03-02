@@ -11,6 +11,7 @@ export async function handler(socket, { code }) {
     let user = await User.findById(al.user);
 
     user.status = 1;
+    user.verifyTime = null;
 
     await user.save();
     await al.remove();

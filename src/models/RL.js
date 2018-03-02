@@ -14,7 +14,7 @@ let schema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 60 * 60 * 12
+    expires: 60 * 60 * 24
   }
 });
 
