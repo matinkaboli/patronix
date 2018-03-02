@@ -10,7 +10,7 @@ let socket = new SocketEvent();
 socket
 .namespace('client')
 .name('signup')
-.handler(socket => async(data, captcha) => {
+.handler(socket => async (data, captcha) => {
   if (captcha !== socket.data.captcha) {
     socket.emit('signup', 400);
   } else {

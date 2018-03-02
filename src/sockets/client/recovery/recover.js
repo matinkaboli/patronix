@@ -9,7 +9,7 @@ let socket = new SocketEvent();
 socket
 .namespace('client')
 .name('recover')
-.handler(socket => async(password, code) => {
+.handler(socket => async (password, code) => {
   let rl = await RL.findOne({ code });
 
   if (rl) {

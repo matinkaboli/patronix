@@ -61,6 +61,8 @@ gulp.task('prod:server', ['clean'], () =>
 gulp.task('lint', () =>
   gulp.src('src/**/*.js')
   .pipe(lint())
+  .pipe(lint.format())
+  .pipe(lint.failAfterError())
 );
 
 gulp.task('dev', ['clean', 'copy', 'dev:client', 'dev:customer', 'dev:server']);

@@ -1,6 +1,6 @@
 import { OperatorToken } from 'Root/models';
 
-export default (next, socket) => async() => {
+export default (next, socket) => async () => {
   if (socket.handshake.query.token) {
     let token = await OperatorToken
     .findOne({ token: socket.handshake.query.token })
