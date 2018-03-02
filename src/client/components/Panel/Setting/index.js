@@ -84,17 +84,13 @@ class Setting extends Component {
     this.refs.file.click();
   }
 
-  showName() {
-    console.log('Hello');
-  }
-
   render() {
     let profileImage = null;
 
     if (this.props.user.avatar) {
       profileImage = <Button
         color='red'
-        handleClick={this.showName}>
+        handleClick={this.show}>
         حذف
       </Button>;
     }
@@ -118,8 +114,7 @@ class Setting extends Component {
 
             <div onClick={this.openInput}>
               <Button
-                color='grey'
-                handleClick={this.showName}>
+                color='grey'>
                 به روز رسانی
               </Button>
             </div>
