@@ -14,6 +14,7 @@ export default (next, socket) => async() => {
     }
 
     else {
+      socket.handshake.query.token = null;
       socket.emit(socket.eventName, 403);
     }
   }
