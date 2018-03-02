@@ -23,3 +23,12 @@ socket.emit('setting/name', name);
 socket.once('setting/name', status);
 
 status: 200 => successful
+
+
+# change email
+
+socket.emit('setting/email', email, password);
+
+socket.once('setting/email', status);
+
+status: 200 => successful, 400 => bad email or password
