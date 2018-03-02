@@ -9,6 +9,7 @@ import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
+import removeAvatar from 'Root/actions/user/avatar/remove';
 import name from 'Root/actions/user/name';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
@@ -81,6 +82,12 @@ class Setting extends Component {
   }
 
   @bind
+  removeAvatar() {
+    const { dispatch } = this.props;
+    dispatch(removeAvatar({}));
+  }
+
+  @bind
   renderImage() {
     if (this.props.user.avatar) {
       return (
@@ -100,7 +107,7 @@ class Setting extends Component {
 
   @bind
   update(el) {
-    let { dispatch } = this.props;
+    const { dispatch } = this.props;
 
     if (el === 'name') {
       dispatch(name({
@@ -118,6 +125,7 @@ class Setting extends Component {
 
     if (this.props.user.avatar) {
       profileImage = <Button
+        handleClick={this.removeAvatar}
         color='red'>
         حذف
       </Button>;
@@ -125,7 +133,7 @@ class Setting extends Component {
 
     return (
       <Box>
-        <h3 className={styles.title}>تنظیمات مشخصات کاربر</h3>
+        <h3 className={styles.title}>تنظیمات</h3>
 
         <Field>
           <div>

@@ -10,6 +10,7 @@ export default {
     LOAD: 'user/LOAD',
     SET_AVATAR: 'user/SET_AVATAR',
     UPDATE_NAME: 'user/UPDATE_NAME',
+    REMOVE_AVATAR: 'user/REMOVE_AVATAR',
     LOGIN: 'user/LOGIN',
     LOGOUT: 'user/LOGOUT'
   },

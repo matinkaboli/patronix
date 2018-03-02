@@ -36,6 +36,13 @@ export default (state = {}, { type, ...rest }) => {
       };
     }
 
+    case types.user.REMOVE_AVATAR: {
+      return {
+        ...state,
+        avatar: null
+      };
+    }
+
     default: {
       return state;
     }
