@@ -29,6 +29,13 @@ export default (state = {}, { type, ...rest }) => {
       };
     }
 
+    case types.user.UPDATE_NAME: {
+      return {
+        ...state,
+        name: rest.name
+      };
+    }
+
     default: {
       return state;
     }
