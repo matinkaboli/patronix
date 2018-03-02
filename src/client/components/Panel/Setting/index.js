@@ -7,7 +7,6 @@ import bind from 'Root/js/bind';
 import lazy from 'Root/js/lazy';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
-import Input from 'Root/components/Input';
 import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import types from 'Root/actions';
@@ -17,17 +16,31 @@ import 'rodal/lib/rodal.css';
 
 class Setting extends Component {
   state = {
-    visible: false
+    nameVisible: false,
+    passVisible: false,
+    emailVisible: false
   };
 
   @bind
-  show() {
-    this.setState({ visible: true });
+  show(el) {
+    if (el === 'name') {
+      this.setState({ nameVisible: true });
+    } else if (el === 'pass') {
+      this.setState({ passVisible: true });
+    } else {
+      this.setState({ emailVisible: true });
+    }
   }
 
   @bind
-  hide() {
-    this.setState({ visible: false });
+  hide(el) {
+    if (el === 'name') {
+      this.setState({ nameVisible: false });
+    } else if (el === 'pass') {
+      this.setState({ passVisible: false });
+    } else {
+      this.setState({ emailVisible: false });
+    }
   }
 
   @bind
@@ -84,13 +97,23 @@ class Setting extends Component {
     this.refs.file.click();
   }
 
+  @bind
+  update(el) {
+    if (el === 'name') {
+      console.log(this.refs[el].value); // Name
+    } else if (name === 'pass') {
+      console.log(this.refs[el].value); // Pass
+    } else {
+      console.log(this.refs[el].value); // Email
+    }
+  }
+
   render() {
     let profileImage = null;
 
     if (this.props.user.avatar) {
       profileImage = <Button
-        color='red'
-        handleClick={this.show}>
+        color='red'>
         حذف
       </Button>;
     }
@@ -122,6 +145,8 @@ class Setting extends Component {
           </div>
         </Field>
 
+
+
         <Field>
           <div>
             <div>نام</div>
@@ -131,27 +156,34 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.show}>
+              handleClick={() => { this.show('name'); }}>
               به روز رسانی
             </Button>
             <Rodal
-              visible={this.state.visible}
+              visible={this.state.nameVisible}
               animation='flip'
-              onClose={this.hide}>
+              onClose={() => { this.hide('name'); }}>
 
-              <Input
+              <input
                 type='text'
                 placeholder='نام'
+                ref='name'
+                className={styles.fieldInput}
                 defaultValue={this.props.user.name}
               />
               <Button
                 color='blue'
-                handleClick={this.hide}>
+                handleClick={() => {
+                  this.hide('name');
+                  this.update('name');
+                }}>
                 به روز رسانی
               </Button>
             </Rodal>
           </div>
         </Field>
+
+
 
         <Field>
           <div>
@@ -162,21 +194,26 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.show}>
+              handleClick={() => { this.show('pass'); }}>
               به روز رسانی
             </Button>
             <Rodal
-              visible={this.state.visible}
+              visible={this.state.passVisible}
               animation='flip'
-              onClose={this.hide}>
+              onClose={() => { this.hide('pass'); }}>
 
-              <Input
+              <input
                 type='text'
+                ref='pass'
+                className={styles.fieldInput}
                 placeholder='رمز'
               />
               <Button
                 color='blue'
-                handleClick={this.hide}>
+                handleClick={() => {
+                  this.hide('pass');
+                  this.update('pass');
+                }}>
                 به روز رسانی
               </Button>
             </Rodal>
@@ -192,22 +229,27 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.show}>
+              handleClick={() => { this.show('email'); }}>
               به روز رسانی
             </Button>
             <Rodal
-              visible={this.state.visible}
+              visible={this.state.emailVisible}
               animation='flip'
-              onClose={this.hide}>
+              onClose={() => { this.hide('email'); }}>
 
-              <Input
-                type='text'
-                placeholder='رمز'
+              <input
+                type='email'
+                ref='email'
+                className={styles.fieldInput}
+                placeholder='ایمیل'
                 defaultValue={this.props.user.email}
               />
               <Button
                 color='blue'
-                handleClick={this.hide}>
+                handleClick={() => {
+                  this.hide('email');
+                  this.update('email');
+                }}>
                 به روز رسانی
               </Button>
             </Rodal>

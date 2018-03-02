@@ -15,6 +15,18 @@
   border-radius: 100%;
 }
 
+:local(.fieldInput) {
+  border: 1px solid #eee;
+  padding: 5px;
+  color: #222;
+  margin: 5px;
+  padding: 5px;
+
+  &:focus, &:hover {
+    border: 1px solid #999;
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.setting) {
     padding: 10px;
