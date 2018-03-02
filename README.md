@@ -22,3 +22,11 @@ socket.emit('setting/password', old, new);
 socket.once('setting/password', status);
 
 status: 200 => successful, 403 => old pass was wrong
+
+## change name
+
+socket.emit('setting/name', name);
+
+socket.once('setting/name', status);
+
+status: 200 => successful
