@@ -36,6 +36,13 @@ export default (state = {}, { type, ...rest }) => {
       };
     }
 
+    case types.user.UPDATE_EMAIL: {
+      return {
+        ...state,
+        email: rest.email
+      };
+    }
+
     case types.user.REMOVE_AVATAR: {
       return {
         ...state,

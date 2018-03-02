@@ -11,6 +11,7 @@ export default {
     SET_AVATAR: 'user/SET_AVATAR',
     UPDATE_NAME: 'user/UPDATE_NAME',
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',
+    UPDATE_EMAIL: 'user/UPDATE_EMAIL',
     LOGIN: 'user/LOGIN',
     LOGOUT: 'user/LOGOUT'
   },

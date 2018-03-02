@@ -20,7 +20,7 @@ socket
     let token = await ClientToken.findOne({ user: user._id });
 
     if (token) {
-      token.remove();
+      await token.remove();
     }
 
     token = new ClientToken({ user: user._id });

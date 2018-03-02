@@ -4,13 +4,16 @@ import izitoast from 'izitoast';
 import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
+import { email } from 'Root/js/validator';
 import lazy from 'Root/js/lazy';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import removeAvatar from 'Root/actions/user/avatar/remove';
-import name from 'Root/actions/user/name';
+import updateName from 'Root/actions/user/name';
+import updatePass from 'Root/actions/user/pass';
+import updateEmail from 'Root/actions/user/email';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
@@ -110,13 +113,28 @@ class Setting extends Component {
     const { dispatch } = this.props;
 
     if (el === 'name') {
-      dispatch(name({
-        name: this.refs[el].value
+      dispatch(updateName({
+        name: this.refs.name.value
       }));
-    } else if (name === 'pass') {
-      console.log(this.refs[el].value); // Pass
+    } else if (el === 'pass') {
+      updatePass({
+        old: this.refs.oldpass.value,
+        fresh: this.refs.freshpass.value
+      });
     } else {
-      console.log(this.refs[el].value); // Email
+      console.log(this.refs.email.value);
+      console.log(this.refs.password.value);
+      if (email(this.refs.email.value)) {
+        dispatch(updateEmail({
+          email: this.refs.email.value,
+          password: this.refs.password.value
+        }));
+      } else {
+        izitoast.warning({
+          rtl: true,
+          title: 'ایمیل صحیح نمیباشد'
+        });
+      }
     }
   }
 
@@ -217,10 +235,18 @@ class Setting extends Component {
 
               <input
                 type='text'
-                ref='pass'
+                ref='oldpass'
                 className={styles.fieldInput}
-                placeholder='رمز'
+                placeholder='رمز کنونی'
               />
+
+              <input
+                type='text'
+                ref='freshpass'
+                className={styles.fieldInput}
+                placeholder='رمز کنونی'
+              />
+
               <Button
                 color='blue'
                 handleClick={() => {
@@ -257,6 +283,15 @@ class Setting extends Component {
                 placeholder='ایمیل'
                 defaultValue={this.props.user.email}
               />
+
+              <input
+                type='password'
+                ref='password'
+                className={styles.fieldInput}
+                placeholder='رمز'
+                defaultValue={this.props.user.email}
+              />
+
               <Button
                 color='blue'
                 handleClick={() => {
