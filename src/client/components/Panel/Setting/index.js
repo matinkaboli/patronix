@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Rodal from 'rodal';
 import izitoast from 'izitoast';
+import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
 import lazy from 'Root/js/lazy';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
+import Input from 'Root/components/Input';
 import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
+import 'rodal/lib/rodal.css';
 
 class Setting extends Component {
+  state = {
+    visible: false
+  };
+
+  @bind
+  show() {
+    this.setState({ visible: true });
+  }
+
+  @bind
+  hide() {
+    this.setState({ visible: false });
+  }
+
   @bind
   updateAvatar() {
     let reader = new FileReader();
@@ -119,9 +136,25 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.showName}>
+              handleClick={this.show}>
               به روز رسانی
             </Button>
+            <Rodal
+              visible={this.state.visible}
+              animation='flip'
+              onClose={this.hide}>
+
+              <Input
+                type='text'
+                placeholder='نام'
+                defaultValue={this.props.user.name}
+              />
+              <Button
+                color='blue'
+                handleClick={this.hide}>
+                به روز رسانی
+              </Button>
+            </Rodal>
           </div>
         </Field>
 
@@ -134,9 +167,24 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.showName}>
+              handleClick={this.show}>
               به روز رسانی
             </Button>
+            <Rodal
+              visible={this.state.visible}
+              animation='flip'
+              onClose={this.hide}>
+
+              <Input
+                type='text'
+                placeholder='رمز'
+              />
+              <Button
+                color='blue'
+                handleClick={this.hide}>
+                به روز رسانی
+              </Button>
+            </Rodal>
           </div>
         </Field>
 
@@ -149,9 +197,25 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.showName}>
+              handleClick={this.show}>
               به روز رسانی
             </Button>
+            <Rodal
+              visible={this.state.visible}
+              animation='flip'
+              onClose={this.hide}>
+
+              <Input
+                type='text'
+                placeholder='رمز'
+                defaultValue={this.props.user.email}
+              />
+              <Button
+                color='blue'
+                handleClick={this.hide}>
+                به روز رسانی
+              </Button>
+            </Rodal>
           </div>
         </Field>
       </Box>

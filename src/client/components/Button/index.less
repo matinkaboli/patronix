@@ -28,6 +28,17 @@
   }
 }
 
+:local(.blue) {
+  border: 1px solid @blue-1;
+  background-color: @blue-base;
+  color: white;
+
+  &:hover, &:active {
+    background-color: white;
+    color: @blue-base;
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.btn) {
     margin: 0;
