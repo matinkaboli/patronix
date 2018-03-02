@@ -13,7 +13,14 @@ socket
   middlewares.client.checkToken
 )
 .handler(socket => async (old, fresh) => {
+  if (hmac(old, dbkey) === socket.data.user.password) {
+    socket.data.user.password = hmac(fresh, dbkey);
+    await socket.data.user.save();
 
+    socket.emit('setting/password', 200);
+  } else {
+    socket.emit('setting/password', 403);
+  }
 });
 
 export default socket;
