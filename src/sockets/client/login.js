@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, OperatorToken } from 'Root/models';
+import { User, ClientToken } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
@@ -17,13 +17,13 @@ socket
   });
 
   if (user) {
-    let token = await OperatorToken.findOne({ user: user._id });
+    let token = await ClientToken.findOne({ user: user._id });
 
     if (token) {
       token.remove();
     }
 
-    token = new OperatorToken({ user: user._id });
+    token = new ClientToken({ user: user._id });
     token.token = hmac(token._id.toString(), otkey);
 
     await token.save();

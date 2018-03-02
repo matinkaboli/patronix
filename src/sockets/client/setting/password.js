@@ -19,7 +19,7 @@ socket
 
     socket.emit('setting/password', 200);
   } else {
-    socket.emit('setting/password', 403);
+    socket.emit('setting/password', 400);
   }
 });
 

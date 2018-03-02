@@ -18,4 +18,4 @@ const schema = new Schema({
   }
 });
 
-export default mongoose.model('OperatorToken', schema);
+export default mongoose.model('ClientToken', schema);

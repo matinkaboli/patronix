@@ -1,6 +1,6 @@
 export default {
   AL: require('./AL'),
-  OperatorToken: require('./OperatorToken'),
+  ClientToken: require('./ClientToken'),
   RL: require('./RL'),
   User: require('./User'),
   Site: require('./Site')

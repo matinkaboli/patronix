@@ -1,8 +1,8 @@
-import { OperatorToken } from 'Root/models';
+import { ClientToken } from 'Root/models';
 
 export default (next, socket) => async () => {
   if (socket.handshake.query.token) {
-    let token = await OperatorToken
+    let token = await ClientToken
     .findOne({ token: socket.handshake.query.token })
     .populate('user')
     .exec();

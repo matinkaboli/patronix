@@ -1,11 +1,11 @@
-import { OperatorToken } from 'Root/models';
+import { ClientToken } from 'Root/models';
 import { routers } from 'Root/routerHandler';
 
 export default (next, socket) => async ({ path }) => {
   for (let router of routers.values()) {
     if (router.path === path) {
       if (router.needLogin) {
-        let token = await OperatorToken
+        let token = await ClientToken
         .findOne({ token: socket.handshake.query.token })
         .populate('user')
         .exec();

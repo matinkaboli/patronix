@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { OperatorToken } from 'Root/models';
+import { ClientToken } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -8,7 +8,7 @@ socket
 .namespace('client')
 .name('relogin')
 .handler(socket => async token => {
-  let isValid = await OperatorToken
+  let isValid = await ClientToken
   .findOne({ token })
   .populate('user')
   .exec();
