@@ -5,7 +5,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 
 export default ({ name }) => dispatch => {
-  socket.once('setting/name', (status, name) => {
+  socket.once('setting/name', status => {
 
     let handler = new ResponseHandler();
 
@@ -24,5 +24,5 @@ export default ({ name }) => dispatch => {
     .status(status);
   });
 
-  socket.emit('setting/name', { name });
+  socket.emit('setting/name', name);
 };

@@ -9,7 +9,7 @@ import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
-import name from 'Root/actions/user/info/name';
+import name from 'Root/actions/user/name';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
