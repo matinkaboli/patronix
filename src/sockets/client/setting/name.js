@@ -10,8 +10,11 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => name => {
-  console.log(name);
+.handler(socket => async name => {
+  socket.data.user.name = name;
+  await socket.data.user.save();
+
+  socket.emit('setting/name', 200);
 });
 
 export default socket;
