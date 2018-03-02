@@ -6,12 +6,12 @@ let socket = new SocketEvent();
 
 socket
 .namespace('client')
-.name('updateName')
+.name('setting/name')
 .middleware(
   middlewares.client.checkToken
 )
 .handler(socket => name => {
-  console.log(socket, name);
+  console.log(name);
 });
 
 export default socket;
