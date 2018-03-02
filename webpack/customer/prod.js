@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const { resolve } = require('path');
 const babelConfig = require('../babel.config.json');

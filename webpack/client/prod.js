@@ -3,6 +3,7 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const { resolve } = require('path');
+const webpack = require('webpack');
 const babelConfig = require('../babel.config.json');
 
 module.exports = {
