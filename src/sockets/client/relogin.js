@@ -29,6 +29,7 @@ socket
   }
 
   else {
+    socket.handshake.query.token = null;
     socket.emit('relogin', 401);
   }
 
