@@ -29,7 +29,7 @@ const app = express();
 const server = app.listen(config.port);
 const io = socketIO(server);
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan('short'));
   let filtered = ['setting/avatar/update'];
   modified = [
