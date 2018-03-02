@@ -9,6 +9,7 @@ export default {
   user: {
     LOAD: 'user/LOAD',
     SET_AVATAR: 'user/SET_AVATAR',
+    UPDATE_NAME: 'user/UPDATE_NAME',
     LOGIN: 'user/LOGIN',
     LOGOUT: 'user/LOGOUT'
   },

@@ -9,6 +9,7 @@ import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
 import updateAvatar from 'Root/actions/user/avatar/update';
+import name from 'Root/actions/user/info/name';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
@@ -99,8 +100,12 @@ class Setting extends Component {
 
   @bind
   update(el) {
+    let { dispatch } = this.props;
+
     if (el === 'name') {
-      console.log(this.refs[el].value); // Name
+      dispatch(name({
+        name: this.refs[el].value
+      }));
     } else if (name === 'pass') {
       console.log(this.refs[el].value); // Pass
     } else {
