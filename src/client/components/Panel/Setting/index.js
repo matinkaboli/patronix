@@ -77,7 +77,7 @@ class Setting extends Component {
     if (this.props.user.avatar) {
       profileImage = <Button
         color='red'
-        handleClick={this.showName.bind(this)}>
+        handleClick={this.showName}>
         حذف
       </Button>;
     }
@@ -102,7 +102,7 @@ class Setting extends Component {
             <div onClick={this.openInput}>
               <Button
                 color='grey'
-                handleClick={this.showName.bind(this)}>
+                handleClick={this.showName}>
                 به روز رسانی
               </Button>
             </div>
@@ -119,7 +119,7 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.showName.bind(this)}>
+              handleClick={this.showName}>
               به روز رسانی
             </Button>
           </div>
@@ -134,7 +134,7 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.showName.bind(this)}>
+              handleClick={this.showName}>
               به روز رسانی
             </Button>
           </div>
@@ -149,7 +149,7 @@ class Setting extends Component {
           <div>
             <Button
               color='grey'
-              handleClick={this.showName.bind(this)}>
+              handleClick={this.showName}>
               به روز رسانی
             </Button>
           </div>
