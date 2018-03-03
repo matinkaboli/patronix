@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'development') {
   ];
 }
 
-app.use('/static', express.static(join(__dirname, './static')));
+app.use('/statics', express.static(join(__dirname, './statics')));
 
 app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));

@@ -43,6 +43,7 @@
     "eslint-plugin-react": "^7.6.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2",
+    "gulp-util": "^3.0.8",
     "izitoast": "^1.2.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
@@ -58,7 +59,7 @@
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "url-loader": "^0.6.2",
-    "webpack-node-externals": "^1.6.0",
-    "webpack-stream": "^4.0.0"
+    "webpack": "^4.0.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }
