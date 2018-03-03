@@ -86,8 +86,7 @@ class Setting extends Component {
 
   @bind
   removeAvatar() {
-    const { dispatch } = this.props;
-    dispatch(removeAvatar({}));
+    this.props.dispatch(removeAvatar({}));
   }
 
   @bind
