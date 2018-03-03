@@ -37,29 +37,29 @@ gulp.task('copy', ['clean'], () =>
   .pipe(gulp.dest('dist/'))
 );
 
-gulp.task('dev:client', ['clean'], done =>
-  webpack(require('./webpack/client/dev.js'), wp('dev:client', done))
-);
+gulp.task('dev:client', ['clean'], done => {
+  webpack(require('./webpack/client/dev.js'), wp('dev:client', done));
+});
 
-gulp.task('dev:customer', ['clean'], done =>
-  webpack(require('./webpack/customer/dev.js'), wp('dev:customer', done))
-);
+gulp.task('dev:customer', ['clean'], done => {
+  webpack(require('./webpack/customer/dev.js'), wp('dev:customer', done));
+});
 
-gulp.task('dev:server', ['clean'], done =>
-  webpack(require('./webpack/server/dev.js'), wp('dev:server', done))
-);
+gulp.task('dev:server', ['clean'], done => {
+  webpack(require('./webpack/server/dev.js'), wp('dev:server', done));
+});
 
-gulp.task('prod:client', ['clean'], done =>
-  webpack(require('./webpack/client/prod.js'), wp('prod:client', done))
-);
+gulp.task('prod:client', ['clean'], done => {
+  webpack(require('./webpack/client/prod.js'), wp('prod:client', done));
+});
 
-gulp.task('prod:customer', ['clean'], done =>
-  webpack(require('./webpack/customer/prod.js'), wp('prod:customer', done))
-);
+gulp.task('prod:customer', ['clean'], done => {
+  webpack(require('./webpack/customer/prod.js'), wp('prod:customer', done));
+});
 
-gulp.task('prod:server', ['clean'], done =>
-  webpack(require('./webpack/server/prod.js'), wp('prod:server', done))
-);
+gulp.task('prod:server', ['clean'], done => {
+  webpack(require('./webpack/server/prod.js'), wp('prod:server', done));
+});
 
 gulp.task('lint', () =>
   gulp.src('src/**/*.js')
