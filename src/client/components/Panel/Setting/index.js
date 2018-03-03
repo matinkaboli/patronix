@@ -122,8 +122,6 @@ class Setting extends Component {
         fresh: this.refs.freshpass.value
       });
     } else {
-      console.log(this.refs.email.value);
-      console.log(this.refs.password.value);
       if (email(this.refs.email.value)) {
         dispatch(updateEmail({
           email: this.refs.email.value,
@@ -166,12 +164,11 @@ class Setting extends Component {
               className={styles.avatarInput}
               onChange={this.updateAvatar} />
 
-            <div onClick={this.openInput}>
-              <Button
-                color='grey'>
-                به روز رسانی
-              </Button>
-            </div>
+            <Button
+              handleClick={this.openInput}
+              color='grey'>
+              به روز رسانی
+            </Button>
             { profileImage }
           </div>
         </Field>
