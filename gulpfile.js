@@ -34,7 +34,7 @@ gulp.task('copy', ['clean'], () =>
   gulp.src([
     'src/index.html'
   ])
-  .pipe(gulp.dest('build/'))
+  .pipe(gulp.dest('dist/'))
 );
 
 gulp.task('dev:client', ['clean'], done =>
