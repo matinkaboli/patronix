@@ -14,7 +14,6 @@ const schema = new Schema({
   },
   token: {
     type: String,
-    length: 70,
     required: true,
     unique: true
   }

@@ -1,5 +1,5 @@
 import { SocketEvent } from 'socket.io-manager';
-import { randomBytes } from 'crypto';
+import uid from 'uuid/v4';
 
 import { dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
@@ -23,7 +23,7 @@ socket
       await socket.data.user.save();
 
       let al = new AL({
-        code: randomBytes(25).toString('hex'),
+        code: uid(),
         user: socket.data.user._id
       });
 

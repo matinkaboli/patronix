@@ -1,5 +1,5 @@
 import { SocketEvent } from 'socket.io-manager';
-import { randomBytes } from 'crypto';
+import uid from 'uuid/v4';
 
 import { Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
@@ -16,8 +16,8 @@ socket
   let site = await Site.findOne({ owner: socket.data.user._id });
 
   if (site) {
-    site.token = randomBytes(35).toString('hex');
-    
+    site.token = uid();
+
     try {
       await site.save();
       socket.emit('sites/setting/revokeToken');

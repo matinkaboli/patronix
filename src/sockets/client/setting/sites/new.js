@@ -1,9 +1,8 @@
 import { SocketEvent } from 'socket.io-manager';
-import { randomBytes } from 'crypto';
+import uid from 'uuid/v4';
 
 import { Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
-import config from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -20,7 +19,7 @@ socket
     let site = new Site({
       name,
       owner: socket.data.user._id,
-      token: randomBytes(config.lengths.siteToken).toString('hex')
+      token: uid()
     });
 
     try {

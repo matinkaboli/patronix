@@ -1,8 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
-import { randomBytes } from 'crypto';
+import uid from 'uuid/v4';
 
 import { RL, User } from 'Root/models';
-import config from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -23,7 +22,7 @@ socket
 
     else {
       rl = new RL({
-        code: randomBytes(config.lengths.recoveryLink).toString('hex'),
+        code: uid(),
         user: user._id
       });
 

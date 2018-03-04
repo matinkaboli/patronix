@@ -1,8 +1,8 @@
 import { SocketEvent } from 'socket.io-manager';
-import { randomBytes } from 'crypto';
+import uid from 'uuid/v4';
 
 import { User, AL } from 'Root/models';
-import config, { dbkey } from 'Root/config';
+import { dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
 let socket = new SocketEvent();
@@ -26,7 +26,7 @@ socket
       await user.save();
 
       let al = new AL({
-        code: randomBytes(config.lengths.activateLink).toString('hex'),
+        code: uid(),
         user: user._id
       });
 
