@@ -9,12 +9,12 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async site => {
+.handler(socket => async name => {
   if (socket.data.user.site) {
     socket.emit('sites/new', 400);
   } else {
     socket.data.user.site = {
-      name: site.name,
+      name,
       owner: socket.data.user._id
     };
 
