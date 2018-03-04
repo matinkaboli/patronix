@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import saveSS from 'Root/helpers/saveSS';
+import { SocketStore } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -12,7 +12,11 @@ socket
   middlewares.client.checkToken
 )
 .handler(socket => async () => {
-  await saveSS(socket.id, socket.token._id);
+  let store = new SocketStore({
+    socket: socket.id,
+    token: socket.token._id
+  });
+  await store.save();
 });
 
 export default socket;

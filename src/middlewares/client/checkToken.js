@@ -20,11 +20,15 @@ export default (next, socket) => async () => {
     else {
       socket.handshake.query.token = null;
       socket.token = null;
-      socket.emit(socket.eventName, 403);
+      if (socket.eventName !== 'disconnect') {
+        socket.emit(socket.eventName, 403);
+      }
     }
   }
 
   else {
-    socket.emit(socket.eventName, 403);
+    if (socket.eventName !== 'disconnect') {
+      socket.emit(socket.eventName, 403);
+    }
   }
 };

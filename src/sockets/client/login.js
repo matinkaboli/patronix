@@ -3,7 +3,6 @@ import { SocketEvent } from 'socket.io-manager';
 import { User, ClientToken, SocketStore } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
-import saveSS from 'Root/helpers/saveSS';
 
 let socket = new SocketEvent();
 
@@ -20,7 +19,7 @@ socket
   if (user) {
     let token = await ClientToken.findOne({ user: user._id });
     if (token) {
-      await SocketStore.remove({ token: token.token });
+      await SocketStore.remove({ token: token._id });
       await token.remove();
     }
 
@@ -30,7 +29,11 @@ socket
 
     socket.data.user = user;
 
-    await saveSS(socket.id, token._id);
+    let store = new SocketStore({
+      socket: socket.id,
+      token: token._id
+    });
+    await store.save();
 
     socket.handshake.query.token = token.token;
 
