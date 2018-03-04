@@ -2,6 +2,7 @@ import { SocketEvent } from 'socket.io-manager';
 import { randomBytes } from 'crypto';
 
 import { RL, User } from 'Root/models';
+import config from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -22,7 +23,7 @@ socket
 
     else {
       rl = new RL({
-        code: randomBytes(20).toString('hex'),
+        code: randomBytes(config.lengths.recoveryLink).toString('hex'),
         user: user._id
       });
 

@@ -7,5 +7,10 @@ export default {
   url: 'http://localhost:8010',
   uploadDir: resolve(__dirname, 'static/uploads'),
   otkey: 'l4E7MDeLCt3SbrIoY2UHWBiONVh9f1RPGvg',
-  dbkey: 'Me1vfSudFwiPqhl78yRbTA1kW9VoIZ'
+  dbkey: 'Me1vfSudFwiPqhl78yRbTA1kW9VoIZ',
+  lengths: {
+    activateLink: 50,
+    recoveryLink: 50,
+    siteToken: 80
+  }
 };
