@@ -7,10 +7,8 @@ const { resolve } = require('path');
 const babelConfig = require('../babel.config.json');
 
 module.exports = {
-  entry: resovle(__dirname, '../../src/customer/customer.js'),
   output: {
-    filename: 'customer.js',
-    path: resolve(__dirname, '../../dist/statics')
+    filename: 'customer.js'
   },
   module: {
     rules: [
@@ -51,7 +49,6 @@ module.exports = {
       Root: resolve(__dirname, '../../', 'src/customer')
     }
   },
-  mode: 'production',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

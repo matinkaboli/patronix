@@ -1,16 +1,13 @@
 /* eslint-disable */
 
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { resolve } = require('path');
 var nodeExternals = require('webpack-node-externals')
 const babelConfig = require('../babel.config.json');
 
 module.exports = {
-  entry: resolve(__dirname, '../../src/app.js'),
   output: {
-    filename: 'app.js',
-    path: resolve(__dirname, '../../dist')
+    filename: 'app.js'
   },
   module: {
     rules: [
@@ -36,7 +33,6 @@ module.exports = {
   node: {
     __dirname: false
   },
-  mode: 'development',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

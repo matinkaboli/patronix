@@ -1,32 +1,17 @@
 /* eslint-disable */
 
 const gulp = require('gulp');
+const webpack = require('webpack-stream');
 const del = require('del');
-const webpack = require('webpack');
-const gutil = require('gulp-util');
 const lint = require('gulp-eslint');
-
-const wp = (taskName, done) => (err, stats) => {
-  if (err) {
-    throw new gutil.PluginError(taskName, err);
-  }
-
-  gutil.log(`[${taskName}] Completed\n` + stats.toString({
-    colors: true,
-    chunks: false,
-    modules: false
-  }));
-
-  done();
-}
 
 gulp.task('clean', () =>
   del([
-    'dist/**',
-    '!dist',
-    '!dist/statics',
-    '!dist/statics/uploads',
-    '!dist/statics/uploads/**'
+    'build/**',
+    '!build',
+    '!build/static',
+    '!build/static/uploads',
+    '!build/static/uploads/**'
   ])
 );
 
@@ -34,32 +19,44 @@ gulp.task('copy', ['clean'], () =>
   gulp.src([
     'src/index.html'
   ])
-  .pipe(gulp.dest('dist/'))
+  .pipe(gulp.dest('build/'))
 );
 
-gulp.task('dev:client', ['clean'], done => {
-  webpack(require('./webpack/client/dev.js'), wp('dev:client', done));
-});
+gulp.task('dev:client', ['clean'], () =>
+  gulp.src('src/client/client.js')
+  .pipe(webpack(require('./webpack/client/dev.js')))
+  .pipe(gulp.dest('build/static/js'))
+);
 
-gulp.task('dev:customer', ['clean'], done => {
-  webpack(require('./webpack/customer/dev.js'), wp('dev:customer', done));
-});
+gulp.task('dev:customer', ['clean'], () =>
+  gulp.src('src/customer/customer.js')
+  .pipe(webpack(require('./webpack/customer/dev.js')))
+  .pipe(gulp.dest('build/static/js'))
+);
 
-gulp.task('dev:server', ['clean'], done => {
-  webpack(require('./webpack/server/dev.js'), wp('dev:server', done));
-});
+gulp.task('dev:server', ['clean'], () =>
+  gulp.src('src/app.js')
+  .pipe(webpack(require('./webpack/server/dev.js')))
+  .pipe(gulp.dest('build/'))
+);
 
-gulp.task('prod:client', ['clean'], done => {
-  webpack(require('./webpack/client/prod.js'), wp('prod:client', done));
-});
+gulp.task('prod:client', ['clean'], () =>
+  gulp.src('src/client/client.js')
+  .pipe(webpack(require('./webpack/client/prod.js')))
+  .pipe(gulp.dest('build/static/js'))
+);
 
-gulp.task('prod:customer', ['clean'], done => {
-  webpack(require('./webpack/customer/prod.js'), wp('prod:customer', done));
-});
+gulp.task('prod:customer', ['clean'], () =>
+  gulp.src('src/customer/customer.js')
+  .pipe(webpack(require('./webpack/customer/prod.js')))
+  .pipe(gulp.dest('build/static/js'))
+);
 
-gulp.task('prod:server', ['clean'], done => {
-  webpack(require('./webpack/server/prod.js'), wp('prod:server', done));
-});
+gulp.task('prod:server', ['clean'], () =>
+  gulp.src('src/app.js')
+  .pipe(webpack(require('./webpack/server/prod.js')))
+  .pipe(gulp.dest('build/'))
+);
 
 gulp.task('lint', () =>
   gulp.src('src/**/*.js')
