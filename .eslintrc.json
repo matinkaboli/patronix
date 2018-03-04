@@ -65,7 +65,7 @@
     "no-self-compare": 2,
     "no-throw-literal": 2,
     "no-unused-labels": 2,
-    "no-useless-call": 2,
+    "no-useless-call": 0,
     "no-useless-escape": 2,
     "no-void": 2,
     "no-with": 2,
