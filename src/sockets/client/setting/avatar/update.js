@@ -9,7 +9,7 @@ import middlewares from 'Root/middlewares';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('setting/avatar/update')
 .middleware(
   middlewares.client.checkToken

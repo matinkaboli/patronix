@@ -6,7 +6,7 @@ import { routerHandler } from 'Root/routerHandler';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('get')
 .middleware(
   middlewares.client.get

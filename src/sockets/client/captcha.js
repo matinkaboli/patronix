@@ -4,7 +4,7 @@ import captcha from 'svg-captcha';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('captcha')
 .handler(socket => () => {
   let { data, text } = captcha.create({

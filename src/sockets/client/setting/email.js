@@ -9,7 +9,7 @@ import { AL, ClientToken } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('setting/email')
 .middleware(
   middlewares.client.checkToken

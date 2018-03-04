@@ -6,7 +6,7 @@ import { ClientToken } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('logout')
 .middleware(
   middlewares.client.checkToken

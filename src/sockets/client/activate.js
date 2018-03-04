@@ -5,7 +5,7 @@ import { User, AL } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('activate')
 .handler(socket => async code => {
   let al = await AL.findOne({ code });

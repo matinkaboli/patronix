@@ -6,7 +6,7 @@ import { SocketStore } from 'Root/models';
 let socket = new SocketEvent();
 
 socket
-.namespace('client')
+.namespace('/client')
 .name('connection')
 .middleware(
   middlewares.client.checkToken
