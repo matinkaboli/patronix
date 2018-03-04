@@ -1,4 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
+
+import { Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
@@ -13,13 +15,17 @@ socket
   if (socket.data.user.site) {
     socket.emit('sites/new', 400);
   } else {
-    socket.data.user.site = {
+    let site = new Site({
       name,
       owner: socket.data.user._id
-    };
-
+    });
+    
     try {
+      await site.save();
+      socket.data.user.site = site._id;
       await socket.data.user.save();
+
+      socket.emit('sites/new', 200);
     } catch (e) {
       socket.emit('sites/new', 400);
     }
