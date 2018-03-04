@@ -1,4 +1,5 @@
 import { SocketEvent } from 'socket.io-manager';
+import { randomBytes } from 'crypto';
 
 import { Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
@@ -7,24 +8,24 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/client')
-.name('sites/setting/name')
+.name('sites/setting/revokeToken')
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async name => {
+.handler(socket => async () => {
   let site = await Site.findOne({ owner: socket.data.user._id });
 
   if (site) {
-    site.name = name;
+    site.token = randomBytes(35).toString('hex');
     
     try {
       await site.save();
-      socket.emit('sites/setting/name');
+      socket.emit('sites/setting/revokeToken');
     } catch (e) {
-      socket.emit('sites/setting/name', 400);
+      socket.emit('sites/setting/revokeToken', 400);
     }
   } else {
-    socket.emit('sites/setting/name', 400);
+    socket.emit('sites/setting/revokeToken', 400);
   }
 });
 
