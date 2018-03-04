@@ -3,5 +3,6 @@ export default {
   ClientToken: require('./ClientToken'),
   RL: require('./RL'),
   User: require('./User'),
-  Site: require('./Site')
+  Site: require('./Site'),
+  Invitation: require('./Invitation')
 };
