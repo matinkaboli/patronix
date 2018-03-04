@@ -7,5 +7,6 @@ export default [
   require('./relogin'),
   require('./signup'),
   require('./recovery'),
-  require('./setting')
+  require('./setting'),
+  require('./connect')
 ];
