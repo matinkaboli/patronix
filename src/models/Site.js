@@ -11,6 +11,12 @@ const schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  token: {
+    type: String,
+    length: 70,
+    required: true,
+    unique: true
   }
 });
 

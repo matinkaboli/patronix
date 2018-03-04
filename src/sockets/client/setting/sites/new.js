@@ -1,4 +1,5 @@
 import { SocketEvent } from 'socket.io-manager';
+import { randomBytes } from 'crypto';
 
 import { Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
@@ -17,9 +18,10 @@ socket
   } else {
     let site = new Site({
       name,
-      owner: socket.data.user._id
+      owner: socket.data.user._id,
+      token: randomBytes(35).toString('hex')
     });
-    
+
     try {
       await site.save();
       socket.data.user.site = site._id;
