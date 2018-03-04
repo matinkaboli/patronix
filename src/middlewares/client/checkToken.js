@@ -9,12 +9,14 @@ export default (next, socket) => async () => {
 
     if (token) {
       socket.data.user = token.user;
+      socket.token = token.token;
 
       next();
     }
 
     else {
       socket.handshake.query.token = null;
+      socket.token = null;
       socket.emit(socket.eventName, 403);
     }
   }
