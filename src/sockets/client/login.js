@@ -3,6 +3,7 @@ import { SocketEvent } from 'socket.io-manager';
 import { User, ClientToken } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
+import saveSS from 'Root/helpers/saveSS';
 
 let socket = new SocketEvent();
 
@@ -29,6 +30,8 @@ socket
     await token.save();
 
     socket.data.user = user;
+
+    await saveSS(socket.id, user._id);
 
     socket.emit('login', 200, {
       user: {

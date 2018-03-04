@@ -1,28 +1,18 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { SocketStore } from 'Root/models';
 import middlewares from 'Root/middlewares';
+import saveSS from 'Root/helpers/saveSS';
 
 let socket = new SocketEvent();
 
 socket
 .namespace('client')
-.name('connect')
+.name('connection')
 .middleware(
   middlewares.client.checkToken
 )
 .handler(socket => async () => {
-  let store = SocketStore.findOne({ user: socket.data.user._id });
-  if (store) {
-    await store.remove();
-  }
-
-  store = new SocketStore({
-    socket: socket.id,
-    user: socket.data.user._id
-  });
-
-  await store.save();
+  await saveSS(socket.id, socket.data.user._id);
 });
 
 export default socket;
