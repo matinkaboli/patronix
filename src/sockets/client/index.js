@@ -8,5 +8,6 @@ export default [
   require('./signup'),
   require('./recovery'),
   require('./setting'),
-  require('./connect')
+  require('./connect'),
+  require('./disconnect')
 ];
