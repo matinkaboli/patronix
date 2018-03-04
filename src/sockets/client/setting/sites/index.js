@@ -1,4 +1,5 @@
 export default [
   require('./new'),
-  require('./remove')
+  require('./remove'),
+  require('./setting')
 ];
