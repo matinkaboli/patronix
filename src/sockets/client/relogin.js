@@ -16,8 +16,6 @@ socket
   if (isValid) {
     socket.data.user = isValid.user;
 
-    socket.handshake.query.token = token;
-
     socket.emit('relogin', 200,
     {
       user: {

@@ -3,12 +3,18 @@ import mongoose, { Schema } from 'mongoose';
 let schema = new Schema({
   socket: {
     type: String,
-    require: true
+    require: true,
+    unique: true
   },
-  user: {
+  token: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'ClientToken',
     required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    expires: 60 * 60 * 24 * 7
   }
 });
 
