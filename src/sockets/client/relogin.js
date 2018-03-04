@@ -15,6 +15,7 @@ socket
 
   if (isValid) {
     socket.data.user = isValid.user;
+    socket.data.logged = true;
 
     socket.handshake.query.token = token;
 

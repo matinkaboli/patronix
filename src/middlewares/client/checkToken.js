@@ -1,7 +1,7 @@
 import { ClientToken } from 'Root/models';
 
 export default (next, socket) => async () => {
-  if (socket.handshake.query.token) {
+  if (socket.data.logged && socket.handshake.query.token) {
     let token = await ClientToken
     .findOne({ token: socket.handshake.query.token })
     .populate('user')
