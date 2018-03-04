@@ -19,19 +19,19 @@ socket
 
   if (user) {
     let token = await ClientToken.findOne({ user: user._id });
-
     if (token) {
       await token.remove();
     }
 
     token = new ClientToken({ user: user._id });
     token.token = hmac(token._id.toString(), otkey);
-
     await token.save();
 
     socket.data.user = user;
 
-    await saveSS(socket.id, user._id);
+    await saveSS(socket.id, token._id);
+
+    socket.handshake.query.token = token.token;
 
     socket.emit('login', 200, {
       user: {

@@ -1,14 +1,10 @@
 import { SocketStore } from 'Root/models';
 
-export default async (socket, user) => {
-  let store = SocketStore.findOne({ user });
-  if (store) {
-    await store.remove();
-  }
-
-  store = new SocketStore({
+export default async (socket, token) => {
+  let store = new SocketStore({
     socket,
-    user
+    token
   });
+  
   return await store.save();
 };

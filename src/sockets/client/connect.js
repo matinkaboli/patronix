@@ -12,7 +12,7 @@ socket
   middlewares.client.checkToken
 )
 .handler(socket => async () => {
-  await saveSS(socket.id, socket.data.user._id);
+  await saveSS(socket.id, socket.token._id);
 });
 
 export default socket;

@@ -1,36 +1,24 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { ClientToken } from 'Root/models';
+import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
 
 socket
 .namespace('client')
 .name('relogin')
-.handler(socket => async token => {
-  let isValid = await ClientToken
-  .findOne({ token })
-  .populate('user')
-  .exec();
-
-  if (isValid) {
-    socket.data.user = isValid.user;
-
-    socket.emit('relogin', 200,
-    {
-      user: {
-        name: isValid.user.name,
-        email: isValid.user.email,
-        avatar: isValid.user.avatar.url
-      }
-    });
-  }
-
-  else {
-    socket.handshake.query.token = null;
-    socket.emit('relogin', 401);
-  }
-
+.middleware(
+  middlewares.client.checkToken
+)
+.handler(socket => () => {
+  socket.emit('relogin', 200,
+  {
+    user: {
+      name: socket.data.user.name,
+      email: socket.data.user.email,
+      avatar: socket.data.user.avatar.url
+    }
+  });
 });
 
 export default socket;

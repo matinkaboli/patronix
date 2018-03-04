@@ -20,7 +20,7 @@ export default new Promise(resolve => {
       resolve();
     });
 
-    socket.emit('relogin', localStorage.token);
+    socket.emit('relogin');
   }
 
   else {
