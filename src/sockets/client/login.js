@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, ClientToken } from 'Root/models';
+import { User, ClientToken, SocketStore } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 import saveSS from 'Root/helpers/saveSS';
@@ -20,6 +20,7 @@ socket
   if (user) {
     let token = await ClientToken.findOne({ user: user._id });
     if (token) {
+      await SocketStore.remove({ token: token.token });
       await token.remove();
     }
 
