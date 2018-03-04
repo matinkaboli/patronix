@@ -7,7 +7,7 @@ import middlewares from 'Root/middlewares';
 let socket = new SocketEvent();
 
 socket
-.namespace('/client')
+.namespace('client')
 .name('sites/new')
 .middleware(
   middlewares.client.checkToken
