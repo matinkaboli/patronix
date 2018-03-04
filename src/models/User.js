@@ -39,7 +39,7 @@ const schema = new Schema({
     path: String,
     url: String
   },
-  sites: {
+  site: {
     type: Schema.Types.ObjectId,
     ref: 'Site'
   },
