@@ -16,7 +16,8 @@ const schema = new Schema({
     type: String,
     required: true,
     unique: true
-  }
+  },
+  operators: [Schema.Types.ObjectId]
 });
 
 export default mongoose.model('Site', schema);
