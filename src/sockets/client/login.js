@@ -9,7 +9,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('login')
-.handler(socket => async credentials => {
+.handler((socket, nsp) => async credentials => {
   let user = await User.findOne({
     ...credentials,
     password: hmac(credentials.password, dbkey),
@@ -19,7 +19,16 @@ socket
   if (user) {
     let token = await ClientToken.findOne({ user: user._id });
     if (token) {
-      await SocketStore.remove({ token: token._id });
+      let sstores = await SocketStore.find({ token: token._id });
+      for (let sstore of sstores) {
+        let target = nsp.sockets[sstore.socket];
+        if (target) {
+          target.emit('kick');
+          target.disconnect();
+        }
+      }
+
+      await SocketStore.find({ token: token._id });
       await token.remove();
     }
 
