@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, ClientToken } from 'Root/models';
+import { User, ClientToken, Invitation } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
@@ -37,10 +37,13 @@ socket
     await token.save();
 
     socket.data.user = user;
-
     socket.join(token.token);
-
     socket.handshake.query.token = token.token;
+
+    let invitations = await Invitation
+    .find({ user: user._id })
+    .populate({ path: 'from', select: 'name' })
+    .exec();
 
     socket.emit('login', 200, {
       user: {
@@ -48,7 +51,11 @@ socket
         email: user.email,
         avatar: user.avatar.url
       },
-      token: token.token
+      token: token.token,
+      invitations: invitations.map(i => ({
+        from: i.from.name,
+        code: i.code
+      }))
     });
   }
 
