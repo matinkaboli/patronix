@@ -1,7 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import { SocketStore } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -12,11 +11,7 @@ socket
   middlewares.client.checkToken
 )
 .handler(socket => async () => {
-  let store = new SocketStore({
-    socket: socket.id,
-    token: socket.token._id
-  });
-  await store.save();
+  socket.join(socket.token.token);
 });
 
 export default socket;

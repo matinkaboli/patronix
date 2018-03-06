@@ -4,6 +4,5 @@ export default {
   RL: require('./RL'),
   User: require('./User'),
   Site: require('./Site'),
-  Invitation: require('./Invitation'),
-  SocketStore: require('./SocketStore')
+  Invitation: require('./Invitation')
 };

@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, ClientToken, SocketStore } from 'Root/models';
+import { User, ClientToken } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
@@ -19,16 +19,7 @@ socket
   if (user) {
     let token = await ClientToken.findOne({ user: user._id });
     if (token) {
-      let sstores = await SocketStore.find({ token: token._id });
-      for (let sstore of sstores) {
-        let target = nsp.sockets[sstore.socket];
-        if (target) {
-          target.emit('kick');
-          target.disconnect();
-        }
-      }
-
-      await SocketStore.find({ token: token._id });
+      nsp.to(token.token).emit('kick');
       await token.remove();
     }
 
@@ -38,11 +29,7 @@ socket
 
     socket.data.user = user;
 
-    let store = new SocketStore({
-      socket: socket.id,
-      token: token._id
-    });
-    await store.save();
+    socket.join(token.token);
 
     socket.handshake.query.token = token.token;
 
