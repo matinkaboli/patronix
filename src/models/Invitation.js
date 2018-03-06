@@ -10,6 +10,10 @@ let schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Site',
     required: true
+  },
+  code: {
+    type: String,
+    required: true
   }
 });
 

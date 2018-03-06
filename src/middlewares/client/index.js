@@ -1,4 +1,5 @@
 export default {
   checkToken: require('./checkToken'),
-  get: require('./get')
+  get: require('./get'),
+  hasSite: require('./hasSite')
 };
