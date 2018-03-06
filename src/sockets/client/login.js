@@ -9,7 +9,16 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('login')
-.handler((socket, nsp) => async credentials => {
+.handler((socket, nsp) => async (credentials, captcha) => {
+  if (!socket.attempt) {
+    socket.attempt = 1;
+  }
+
+  if (socket.attempt > 1 && !socket.data.captcha === captcha.toLowerCase()) {
+    socket.emit('login', 400);
+    return;
+  }
+
   let user = await User.findOne({
     ...credentials,
     password: hmac(credentials.password, dbkey),
@@ -44,6 +53,7 @@ socket
   }
 
   else {
+    socket.attempt = socket.attempt + 1;
     socket.emit('login', 401);
   }
 });
