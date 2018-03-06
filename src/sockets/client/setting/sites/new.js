@@ -19,7 +19,8 @@ socket
     let site = new Site({
       name,
       owner: socket.data.user._id,
-      token: uid()
+      token: uid(),
+      operators: [socket.data.user._id]
     });
 
     try {
