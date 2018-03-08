@@ -134,7 +134,7 @@ class Setting extends Component {
               onChange={this.updateAvatar} />
             <Button
               handleClick={this.openInput}
-              color='grey'>
+              color='blue'>
               به روز رسانی
             </Button>
             { profileImage }
