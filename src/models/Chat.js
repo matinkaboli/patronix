@@ -32,7 +32,9 @@ const schema = new Schema({
     ref: 'Site',
     required: true
   },
-  chats: [chats]
+  chats: [chats],
+  done: Boolean,
+  taken: Boolean
 });
 
 export default mongoose.model('Chat', schema);
