@@ -2,7 +2,9 @@ import io from 'socket.io-client';
 
 let socket = io(
   'http://localhost:8010/customer',
-  { query: `token=${localStorage.token}` }
+  { query: `token=${
+    document.getElementById('patronix-data').getAttribute('token')
+  }` }
 );
 
 if (process.env.NODE_ENV === 'development') {
