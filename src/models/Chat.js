@@ -25,8 +25,11 @@ const chats = new Schema({
 const schema = new Schema({
   operator: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    unique: true
+    ref: 'User'
+  },
+  site: {
+    type: Schema.Types.ObjectId,
+    ref: 'Site'
   },
   chats: [chats]
 });
