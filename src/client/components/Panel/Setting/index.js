@@ -63,12 +63,18 @@ class Setting extends Component {
   renderImage() {
     if (this.props.user.avatar) {
       return (
-        <img src={this.props.user.avatar} className={styles.avatarImage} />
+        <img
+          src={this.props.user.avatar}
+          alt='عکس کاربر'
+          className={styles.avatarImage} />
       );
     }
 
     return (
-      <img src={defaultImage} className={styles.avatarImage} />
+      <img
+        src={defaultImage}
+        alt='عکس کاربر'
+        className={styles.avatarImage} />
     );
   }
 
@@ -78,30 +84,38 @@ class Setting extends Component {
   }
 
   @bind
-  update(el) {
+  updateName() {
     const { dispatch } = this.props;
 
-    if (el === 'name') {
-      dispatch(updateName({
-        name: this.refs.name.value
+    dispatch(updateName({
+      name: this.refs.name.value
+    }));
+  }
+
+  @bind
+  updatePass() {
+    const { dispatch } = this.props;
+
+    updatePass({
+      old: this.refs.oldpass.value,
+      fresh: this.refs.freshpass.value
+    });
+  }
+
+  @bind
+  updateEmail() {
+    const { dispatch } = this.props;
+
+    if (email(this.refs.email.value)) {
+      dispatch(updateEmail({
+        email: this.refs.email.value,
+        password: this.refs.password.value
       }));
-    } else if (el === 'pass') {
-      updatePass({
-        old: this.refs.oldpass.value,
-        fresh: this.refs.freshpass.value
-      });
     } else {
-      if (email(this.refs.email.value)) {
-        dispatch(updateEmail({
-          email: this.refs.email.value,
-          password: this.refs.password.value
-        }));
-      } else {
-        izitoast.warning({
-          rtl: true,
-          title: 'ایمیل صحیح نمیباشد'
-        });
-      }
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل صحیح نمیباشد'
+      });
     }
   }
 
@@ -119,11 +133,11 @@ class Setting extends Component {
     return (
       <div className={styles.container}>
         <Box>
-          <h3 className={styles.title}>تنظیمات</h3>
+          <h3 className={styles.title}>عکس</h3>
 
           <Field>
             <div>
-              <div>عکس کاربر</div>
+              <p>عکس</p>
               {this.renderImage()}
             </div>
 
@@ -141,10 +155,13 @@ class Setting extends Component {
                 { profileImage }
               </div>
             </Field>
+          </Box>
 
+          <Box>
+            <h3 className={styles.title}>نام</h3>
             <Field>
               <div className={styles.currentValue}>
-                <div>نام</div>
+                <p>نام</p>
                 <input
                   type='text'
                   placeholder='نام'
@@ -157,61 +174,7 @@ class Setting extends Component {
               <div>
                 <Button
                   color='blue'
-                  handleClick={() => { this.update('name'); }}>
-                  به روز رسانی
-                </Button>
-              </div>
-            </Field>
-
-            <Field>
-              <div>
-                <div>رمز عبور</div>
-                <input
-                  type='text'
-                  ref='oldpass'
-                  className={styles.fieldInput}
-                  placeholder='رمز کنونی'
-                />
-                <input
-                  type='text'
-                  ref='freshpass'
-                  className={styles.fieldInput}
-                  placeholder='رمز کنونی'
-                />
-              </div>
-
-              <div>
-                <Button
-                  color='blue'
-                  handleClick={() => { this.update('pass'); }}>
-                  به روز رسانی
-                </Button>
-              </div>
-            </Field>
-
-            <Field>
-              <div>
-                <div>ایمیل</div>
-                <input
-                  type='email'
-                  ref='email'
-                  className={styles.fieldInput}
-                  placeholder='ایمیل'
-                  defaultValue={this.props.user.email}
-                />
-                <input
-                  type='password'
-                  ref='password'
-                  className={styles.fieldInput}
-                  placeholder='رمز'
-                  defaultValue={this.props.user.email}
-                />
-              </div>
-
-              <div>
-                <Button
-                  color='blue'
-                  handleClick={() => { this.update('email'); }}>
+                  handleClick={this.updateName}>
                   به روز رسانی
                 </Button>
               </div>
@@ -230,11 +193,6 @@ class Setting extends Component {
                   placeholder='ایمیل'
                   defaultValue={this.props.user.email}
                 />
-              </div>
-            </Field>
-            <Field>
-              <div>
-                <p>رمز</p>
                 <input
                   type='password'
                   ref='password'
@@ -247,7 +205,36 @@ class Setting extends Component {
               <div>
                 <Button
                   color='blue'
-                  handleClick={() => { this.update('email'); }}>
+                  handleClick={this.udateEmail}>
+                  به روز رسانی
+                </Button>
+              </div>
+            </Field>
+          </Box>
+
+          <Box>
+            <h3 className={styles.title}>رمز عبور</h3>
+            <Field>
+              <div>
+                <p>رمز</p>
+                <input
+                  type='text'
+                  ref='oldpass'
+                  className={styles.fieldInput}
+                  placeholder='رمز کنونی'
+                />
+                <input
+                  type='text'
+                  ref='freshpass'
+                  className={styles.fieldInput}
+                  placeholder='رمز کنونی'
+                />
+              </div>
+
+              <div>
+                <Button
+                  color='blue'
+                  handleClick={this.updatePass}>
                   به روز رسانی
                 </Button>
               </div>

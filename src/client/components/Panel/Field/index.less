@@ -15,6 +15,9 @@
     display: flex;
     align-items: center;
 
+    > p:nth-of-type(1) {
+      min-width: 100px;
+    }
     div {
       min-width: 100px;
     }
@@ -43,6 +46,10 @@
       width: 100%;
       text-align: center;
       flex-direction: column;
+
+      > p:nth-of-type(1) {
+        min-width: 0;
+      }
 
       input {
         width: 100%;
