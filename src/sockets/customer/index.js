@@ -1,3 +1,4 @@
 export default [
-  require('./connect')
+  require('./connect'),
+  require('./message')
 ];
