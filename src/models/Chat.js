@@ -29,7 +29,8 @@ const schema = new Schema({
   },
   site: {
     type: Schema.Types.ObjectId,
-    ref: 'Site'
+    ref: 'Site',
+    required: true
   },
   chats: [chats]
 });
