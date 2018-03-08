@@ -12,7 +12,6 @@ socket
   middlewares.client.hasChat
 )
 .handler(socket => async message => {
-  console.log('here');
   socket.data.chat.chats.push({
     sender: 1,
     message
