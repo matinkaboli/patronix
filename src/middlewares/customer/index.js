@@ -1,3 +1,4 @@
 export default {
-  checkToken: require('./checkToken')
+  checkToken: require('./checkToken'),
+  hasChat: require('./hasChat')
 };
