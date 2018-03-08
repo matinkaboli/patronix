@@ -117,105 +117,143 @@ class Setting extends Component {
     }
 
     return (
-      <Box>
-        <h3 className={styles.title}>تنظیمات</h3>
+      <div className={styles.container}>
+        <Box>
+          <h3 className={styles.title}>تنظیمات</h3>
 
-        <Field>
-          <div>
-            <div>عکس کاربر</div>
-            {this.renderImage()}
-          </div>
+          <Field>
+            <div>
+              <div>عکس کاربر</div>
+              {this.renderImage()}
+            </div>
 
-          <div>
-            <input
-              type='file'
-              ref='file'
-              className={styles.avatarInput}
-              onChange={this.updateAvatar} />
-            <Button
-              handleClick={this.openInput}
-              color='blue'>
-              به روز رسانی
-            </Button>
-            { profileImage }
-          </div>
-        </Field>
+            <div>
+              <input
+                type='file'
+                ref='file'
+                className={styles.avatarInput}
+                onChange={this.updateAvatar} />
+                <Button
+                  handleClick={this.openInput}
+                  color='blue'>
+                  به روز رسانی
+                </Button>
+                { profileImage }
+              </div>
+            </Field>
 
-        <Field>
-          <div className={styles.currentValue}>
-            <div>نام</div>
-            <input
-              type='text'
-              placeholder='نام'
-              ref='name'
-              className={styles.fieldInput}
-              defaultValue={this.props.user.name}
-            />
-          </div>
+            <Field>
+              <div className={styles.currentValue}>
+                <div>نام</div>
+                <input
+                  type='text'
+                  placeholder='نام'
+                  ref='name'
+                  className={styles.fieldInput}
+                  defaultValue={this.props.user.name}
+                />
+              </div>
 
-          <div>
-            <Button
-              color='blue'
-              handleClick={() => { this.update('name'); }}>
-              به روز رسانی
-            </Button>
-          </div>
-        </Field>
+              <div>
+                <Button
+                  color='blue'
+                  handleClick={() => { this.update('name'); }}>
+                  به روز رسانی
+                </Button>
+              </div>
+            </Field>
 
-        <Field>
-          <div>
-            <div>رمز عبور</div>
-            <input
-              type='text'
-              ref='oldpass'
-              className={styles.fieldInput}
-              placeholder='رمز کنونی'
-            />
-            <input
-              type='text'
-              ref='freshpass'
-              className={styles.fieldInput}
-              placeholder='رمز کنونی'
-            />
-          </div>
+            <Field>
+              <div>
+                <div>رمز عبور</div>
+                <input
+                  type='text'
+                  ref='oldpass'
+                  className={styles.fieldInput}
+                  placeholder='رمز کنونی'
+                />
+                <input
+                  type='text'
+                  ref='freshpass'
+                  className={styles.fieldInput}
+                  placeholder='رمز کنونی'
+                />
+              </div>
 
-          <div>
-            <Button
-              color='blue'
-              handleClick={() => { this.update('pass'); }}>
-              به روز رسانی
-            </Button>
-          </div>
-        </Field>
+              <div>
+                <Button
+                  color='blue'
+                  handleClick={() => { this.update('pass'); }}>
+                  به روز رسانی
+                </Button>
+              </div>
+            </Field>
 
-        <Field>
-          <div>
-            <div>ایمیل</div>
-            <input
-              type='email'
-              ref='email'
-              className={styles.fieldInput}
-              placeholder='ایمیل'
-              defaultValue={this.props.user.email}
-            />
-            <input
-              type='password'
-              ref='password'
-              className={styles.fieldInput}
-              placeholder='رمز'
-              defaultValue={this.props.user.email}
-            />
-          </div>
+            <Field>
+              <div>
+                <div>ایمیل</div>
+                <input
+                  type='email'
+                  ref='email'
+                  className={styles.fieldInput}
+                  placeholder='ایمیل'
+                  defaultValue={this.props.user.email}
+                />
+                <input
+                  type='password'
+                  ref='password'
+                  className={styles.fieldInput}
+                  placeholder='رمز'
+                  defaultValue={this.props.user.email}
+                />
+              </div>
 
-          <div>
-            <Button
-              color='blue'
-              handleClick={() => { this.update('email'); }}>
-              به روز رسانی
-            </Button>
-          </div>
-        </Field>
-      </Box>
+              <div>
+                <Button
+                  color='blue'
+                  handleClick={() => { this.update('email'); }}>
+                  به روز رسانی
+                </Button>
+              </div>
+            </Field>
+          </Box>
+
+          <Box>
+            <h3 className={styles.title}>ایمیل</h3>
+            <Field>
+              <div>
+                <p>ایمیل</p>
+                <input
+                  type='email'
+                  ref='email'
+                  className={styles.fieldInput}
+                  placeholder='ایمیل'
+                  defaultValue={this.props.user.email}
+                />
+              </div>
+            </Field>
+            <Field>
+              <div>
+                <p>رمز</p>
+                <input
+                  type='password'
+                  ref='password'
+                  className={styles.fieldInput}
+                  placeholder='رمز'
+                  defaultValue={this.props.user.email}
+                />
+              </div>
+
+              <div>
+                <Button
+                  color='blue'
+                  handleClick={() => { this.update('email'); }}>
+                  به روز رسانی
+                </Button>
+              </div>
+            </Field>
+          </Box>
+      </div>
     );
   }
 }
