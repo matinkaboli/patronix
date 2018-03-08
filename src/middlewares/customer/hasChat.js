@@ -12,6 +12,9 @@ export default (next, socket) => async message => {
   }
 
   else {
+    let chat = await Chat.findById(socket.data.chat._id);
+    socket.data.chat = chat;
+    
     next();
   }
 };
