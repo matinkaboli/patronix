@@ -9,5 +9,6 @@ export default [
   require('./recovery'),
   require('./setting'),
   require('./connect'),
-  require('./disconnect')
+  require('./disconnect'),
+  require('./chat')
 ];
