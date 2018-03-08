@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Rodal from 'rodal';
 import izitoast from 'izitoast';
 import { connect } from 'react-redux';
 
@@ -17,37 +16,8 @@ import updateEmail from 'Root/actions/user/email';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
-import 'rodal/lib/rodal.css';
 
 class Setting extends Component {
-  state = {
-    nameVisible: false,
-    passVisible: false,
-    emailVisible: false
-  };
-
-  @bind
-  show(el) {
-    if (el === 'name') {
-      this.setState({ nameVisible: true });
-    } else if (el === 'pass') {
-      this.setState({ passVisible: true });
-    } else {
-      this.setState({ emailVisible: true });
-    }
-  }
-
-  @bind
-  hide(el) {
-    if (el === 'name') {
-      this.setState({ nameVisible: false });
-    } else if (el === 'pass') {
-      this.setState({ passVisible: false });
-    } else {
-      this.setState({ emailVisible: false });
-    }
-  }
-
   @bind
   updateAvatar() {
     let reader = new FileReader();
@@ -162,7 +132,6 @@ class Setting extends Component {
               ref='file'
               className={styles.avatarInput}
               onChange={this.updateAvatar} />
-
             <Button
               handleClick={this.openInput}
               color='grey'>
@@ -172,131 +141,78 @@ class Setting extends Component {
           </div>
         </Field>
 
-
-
         <Field>
-          <div>
+          <div className={styles.currentValue}>
             <div>نام</div>
-            <p>{this.props.user.name}</p>
+            <input
+              type='text'
+              placeholder='نام'
+              ref='name'
+              className={styles.fieldInput}
+              defaultValue={this.props.user.name}
+            />
           </div>
 
           <div>
             <Button
-              color='grey'
-              handleClick={() => { this.show('name'); }}>
+              color='blue'
+              handleClick={() => { this.update('name'); }}>
               به روز رسانی
             </Button>
-            <Rodal
-              visible={this.state.nameVisible}
-              animation='flip'
-              onClose={() => { this.hide('name'); }}>
-
-              <input
-                type='text'
-                placeholder='نام'
-                ref='name'
-                className={styles.fieldInput}
-                defaultValue={this.props.user.name}
-              />
-              <Button
-                color='blue'
-                handleClick={() => {
-                  this.hide('name');
-                  this.update('name');
-                }}>
-                به روز رسانی
-              </Button>
-            </Rodal>
           </div>
         </Field>
-
-
 
         <Field>
           <div>
             <div>رمز عبور</div>
-            <p>******</p>
+            <input
+              type='text'
+              ref='oldpass'
+              className={styles.fieldInput}
+              placeholder='رمز کنونی'
+            />
+            <input
+              type='text'
+              ref='freshpass'
+              className={styles.fieldInput}
+              placeholder='رمز کنونی'
+            />
           </div>
 
           <div>
             <Button
-              color='grey'
-              handleClick={() => { this.show('pass'); }}>
+              color='blue'
+              handleClick={() => { this.update('pass'); }}>
               به روز رسانی
             </Button>
-            <Rodal
-              visible={this.state.passVisible}
-              animation='flip'
-              onClose={() => { this.hide('pass'); }}>
-
-              <input
-                type='text'
-                ref='oldpass'
-                className={styles.fieldInput}
-                placeholder='رمز کنونی'
-              />
-
-              <input
-                type='text'
-                ref='freshpass'
-                className={styles.fieldInput}
-                placeholder='رمز کنونی'
-              />
-
-              <Button
-                color='blue'
-                handleClick={() => {
-                  this.hide('pass');
-                  this.update('pass');
-                }}>
-                به روز رسانی
-              </Button>
-            </Rodal>
           </div>
         </Field>
 
         <Field>
           <div>
             <div>ایمیل</div>
-            <p>{this.props.user.email}</p>
+            <input
+              type='email'
+              ref='email'
+              className={styles.fieldInput}
+              placeholder='ایمیل'
+              defaultValue={this.props.user.email}
+            />
+            <input
+              type='password'
+              ref='password'
+              className={styles.fieldInput}
+              placeholder='رمز'
+              defaultValue={this.props.user.email}
+            />
           </div>
 
           <div>
             <Button
-              color='grey'
-              handleClick={() => { this.show('email'); }}>
+              color='blue'
+              handleClick={() => { this.update('email'); }}>
               به روز رسانی
             </Button>
-            <Rodal
-              visible={this.state.emailVisible}
-              animation='flip'
-              onClose={() => { this.hide('email'); }}>
-
-              <input
-                type='email'
-                ref='email'
-                className={styles.fieldInput}
-                placeholder='ایمیل'
-                defaultValue={this.props.user.email}
-              />
-
-              <input
-                type='password'
-                ref='password'
-                className={styles.fieldInput}
-                placeholder='رمز'
-                defaultValue={this.props.user.email}
-              />
-
-              <Button
-                color='blue'
-                handleClick={() => {
-                  this.hide('email');
-                  this.update('email');
-                }}>
-                به روز رسانی
-              </Button>
-            </Rodal>
           </div>
         </Field>
       </Box>
