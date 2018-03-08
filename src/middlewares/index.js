@@ -1,4 +1,5 @@
 export default {
   client: require('./client'),
-  init: require('./init')
+  init: require('./init'),
+  customer: require('./customer')
 };
