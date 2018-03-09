@@ -33,8 +33,14 @@ const schema = new Schema({
     required: true
   },
   chats: [chats],
-  done: Boolean,
-  taken: Boolean
+  done: {
+    type: Boolean,
+    default: false
+  },
+  taken: {
+    type: Boolean,
+    default: false
+  }
 });
 
 export default mongoose.model('Chat', schema);
