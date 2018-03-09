@@ -13,4 +13,4 @@ const schema = new Schema({
   }
 });
 
-export default mongoose.model('Site', schema);
+export default mongoose.model('OnlineUser', schema);
