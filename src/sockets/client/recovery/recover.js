@@ -12,20 +12,19 @@ socket
 .handler(socket => async (password, code) => {
   let rl = await RL.findOne({ code });
 
-  if (rl) {
-    let user = await User.findOne({ _id: rl.user });
-
-    user.password = hmac(password, dbkey);
-
-    await user.save();
-    await rl.remove();
-
-    socket.emit('recover', 200);
-  }
-
-  else {
+  if (!rl) {
     socket.emit('recover', 400);
+    return;
   }
+  
+  let user = await User.findOne({ _id: rl.user });
+
+  user.password = hmac(password, dbkey);
+
+  await user.save();
+  await rl.remove();
+
+  socket.emit('recover', 200);
 });
 
 export default socket;

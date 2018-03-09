@@ -17,32 +17,30 @@ socket
   let user = await User.findOne({ email, status: 1 });
   let operators = socket.data.site.operators.map(i => i.toString());
 
-  if (user && !operators.includes(user._id.toString())) {
-    let invitation = await Invitation.findOne({
-      user: user._id,
-      from: socket.data.site._id
-    });
-
-    if (!invitation) {
-      invitation = new Invitation({
-        user: user._id,
-        from: socket.data.site._id,
-        code: uid()
-      });
-
-      await invitation.save();
-
-      socket.emit('sites/invite', 200);
-    }
-
-    else {
-      socket.emit('sites/invite', 400);
-    }
+  if (!user || operators.includes(user._id.toString())) {
+    socket.emit('sites/invite', 400, 0);
+    return;
   }
 
-  else {
-    socket.emit('sites/invite', 400);
+  let invitation = await Invitation.findOne({
+    user: user._id,
+    from: socket.data.site._id
+  });
+
+  if (invitation) {
+    socket.emit('sites/invite', 400, 1);
+    return;
   }
+
+  invitation = new Invitation({
+    user: user._id,
+    from: socket.data.site._id,
+    code: uid()
+  });
+
+  await invitation.save();
+
+  socket.emit('sites/invite', 200);
 });
 
 export default socket;

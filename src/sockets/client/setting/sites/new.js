@@ -14,24 +14,25 @@ socket
 )
 .handler(socket => async name => {
   if (socket.data.user.site) {
-    socket.emit('sites/new', 400);
-  } else {
-    let site = new Site({
-      name,
-      owner: socket.data.user._id,
-      token: uid(),
-      operators: [socket.data.user._id]
-    });
+    socket.emit('sites/new', 400, 0);
+    return;
+  }
 
-    try {
-      await site.save();
-      socket.data.user.site = site._id;
-      await socket.data.user.save();
+  let site = new Site({
+    name,
+    owner: socket.data.user._id,
+    token: uid(),
+    operators: [socket.data.user._id]
+  });
 
-      socket.emit('sites/new', 200);
-    } catch (e) {
-      socket.emit('sites/new', 400);
-    }
+  try {
+    await site.save();
+    socket.data.user.site = site._id;
+    await socket.data.user.save();
+
+    socket.emit('sites/new', 200);
+  } catch (e) {
+    socket.emit('sites/new', 400, 1);
   }
 });
 

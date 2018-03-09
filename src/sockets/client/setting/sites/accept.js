@@ -18,19 +18,18 @@ socket
   .exec();
 
   if (
-    invitation &&
-    socket.data.user._id.toString() === invitation.user.toString()
+    !invitation ||
+    socket.data.user._id.toString() !== invitation.user.toString()
   ) {
-    invitation.from.operators.push(invitation.user);
-    await invitation.from.save();
-    await invitation.remove();
-
-    socket.emit('sites/accept', 200);
-  }
-
-  else {
     socket.emit('sites/accept', 404);
+    return;
   }
+
+  invitation.from.operators.push(invitation.user);
+  await invitation.from.save();
+  await invitation.remove();
+
+  socket.emit('sites/accept', 200);
 });
 
 export default socket;

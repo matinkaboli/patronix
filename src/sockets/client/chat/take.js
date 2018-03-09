@@ -18,30 +18,31 @@ socket
     .populate('site')
     .exec();
 
-    if (chat) {
-      let operators = chat.site.operators.map(i => i.toString());
-      if (operators.includes(socket.data.user._id.toString())) {
-        if (chat.taken) {
-          socket.emit('chat/take', 400);
-        }
-
-        else {
-          chat.taken = true;
-          await chat.save();
-
-          socket.data.chat = chat;
-          socket.join(chat._id.toString());
-
-          socket.emit('chat/take', 200);
-        }
-      }
-
-      else {
-        socket.emit('chat/take', 403);
-      }
+    if (!chat) {
+      socket.emit('chat/take', 400, 0);
+      return;
     }
+
+    let operators = chat.site.operators.map(i => i.toString());
+    if (!operators.includes(socket.data.user._id.toString())) {
+      socket.emit('chat/take', 403);
+      return;
+    }
+
+    if (chat.taken) {
+      socket.emit('chat/take', 400, 1);
+      return;
+    }
+
+    chat.taken = true;
+    await chat.save();
+
+    socket.data.chat = chat;
+    socket.join(chat._id.toString());
+
+    socket.emit('chat/take', 200);
   } catch (e) {
-    socket.emit('chat/take', 400);
+    socket.emit('chat/take', 400, 3);
   }
 });
 

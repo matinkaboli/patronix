@@ -25,48 +25,47 @@ socket
     status: 1
   });
 
-  if (user) {
-    let token = await ClientToken.findOne({ user: user._id });
-    if (token) {
-      nsp.to(token.token).emit('kick');
-      await OnlineUser.update(
-        { user: user._id },
-        { $set: { count: 1 } }
-      );
-      await token.remove();
-    }
-
-    token = new ClientToken({ user: user._id });
-    token.token = hmac(token._id.toString(), otkey);
-    await token.save();
-
-    socket.data.user = user;
-    socket.join(token.token);
-    socket.handshake.query.token = token.token;
-
-    let invitations = await Invitation
-    .find({ user: user._id })
-    .populate({ path: 'from', select: 'name' })
-    .exec();
-
-    socket.emit('login', 200, {
-      user: {
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar.url
-      },
-      token: token.token,
-      invitations: invitations.map(i => ({
-        from: i.from.name,
-        code: i.code
-      }))
-    });
-  }
-
-  else {
+  if (!user) {
     socket.attempt = socket.attempt + 1;
     socket.emit('login', 401);
+    return;
   }
+
+  let token = await ClientToken.findOne({ user: user._id });
+  if (token) {
+    nsp.to(token.token).emit('kick');
+    await OnlineUser.update(
+      { user: user._id },
+      { $set: { count: 1 } }
+    );
+    await token.remove();
+  }
+
+  token = new ClientToken({ user: user._id });
+  token.token = hmac(token._id.toString(), otkey);
+  await token.save();
+
+  socket.data.user = user;
+  socket.join(token.token);
+  socket.handshake.query.token = token.token;
+
+  let invitations = await Invitation
+  .find({ user: user._id })
+  .populate({ path: 'from', select: 'name' })
+  .exec();
+
+  socket.emit('login', 200, {
+    user: {
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar.url
+    },
+    token: token.token,
+    invitations: invitations.map(i => ({
+      from: i.from.name,
+      code: i.code
+    }))
+  });
 });
 
 export default socket;

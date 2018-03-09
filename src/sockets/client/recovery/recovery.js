@@ -11,30 +11,28 @@ socket
 .handler(socket => async email => {
   let user = await User.findOne({ email });
 
-  if (user) {
-    let rl = await RL.findOne({ user: user._id });
-
-    if (rl) {
-      // resend email
-
-      socket.emit('recovery', 200);
-    }
-
-    else {
-      rl = new RL({
-        code: uid(),
-        user: user._id
-      });
-
-      await rl.save();
-
-      socket.emit('recovery', 200);
-    }
-  }
-
-  else {
+  if (!user) {
     socket.emit('recovery', 400);
+    return;
   }
+
+  let rl = await RL.findOne({ user: user._id });
+
+  if (rl) {
+    // resend email
+
+    socket.emit('recovery', 200);
+    return;
+  }
+
+  rl = new RL({
+    code: uid(),
+    user: user._id
+  });
+
+  await rl.save();
+
+  socket.emit('recovery', 200);
 });
 
 export default socket;

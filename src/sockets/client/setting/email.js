@@ -15,29 +15,29 @@ socket
   middlewares.client.checkToken
 )
 .handler(socket => async (email, password) => {
-  if (hmac(password, dbkey) === socket.data.user.password) {
-    try {
-      socket.data.user.email = email;
-      socket.data.user.status = 0;
+  if (hmac(password, dbkey) !== socket.data.user.password) {
+    socket.emit('setting/email', 400, 0);
+    return;
+  }
 
-      await socket.data.user.save();
+  try {
+    socket.data.user.email = email;
+    socket.data.user.status = 0;
 
-      let al = new AL({
-        code: uid(),
-        user: socket.data.user._id
-      });
+    await socket.data.user.save();
 
-      await al.save();
+    let al = new AL({
+      code: uid(),
+      user: socket.data.user._id
+    });
 
-      await ClientToken.remove({ user: socket.data.user._id });
+    await al.save();
 
-      socket.emit('setting/email', 200);
-    } catch (e) {
-      socket.emit('setting/email', 400);
-    }
+    await ClientToken.remove({ user: socket.data.user._id });
 
-  } else {
-    socket.emit('setting/email', 400);
+    socket.emit('setting/email', 200);
+  } catch (e) {
+    socket.emit('setting/email', 400, 1);
   }
 });
 
