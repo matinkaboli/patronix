@@ -9,3 +9,7 @@ socket.on('kick', () => {
 socket.on('newchat', message => {
   console.log('we have new chat: ', message);
 });
+
+socket.on('chat/message', message => {
+  console.log(message);
+});

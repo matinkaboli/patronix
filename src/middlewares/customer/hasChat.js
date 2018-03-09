@@ -15,8 +15,13 @@ export default (next, socket, nsp, io) => async message => {
     }, { token: 1 });
 
     for (let { token } of operators) {
-      io.of('/client').to(token).emit('newchat', message);
+      io
+      .of('/client')
+      .to(token)
+      .emit('newchat', message);
     }
+
+    socket.join(chat._id.toString());
 
     next();
   }

@@ -11,13 +11,21 @@ socket
   middlewares.customer.checkToken,
   middlewares.customer.hasChat
 )
-.handler(socket => async message => {
-  socket.data.chat.chats.push({
-    sender: 0,
-    message
-  });
+.handler((socket, nsp, io) => async message => {
+  try {
+    socket.data.chat.chats.push({
+      sender: 0,
+      message
+    });
+    await socket.data.chat.save();
 
-  await socket.data.chat.save();
+    io
+    .of('/client')
+    .to(socket.data.chat._id.toString())
+    .emit('chat/message', message);
+  } catch (e) {
+    socket.emit('message', 400);
+  }
 });
 
 export default socket;

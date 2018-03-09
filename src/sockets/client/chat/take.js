@@ -30,6 +30,7 @@ socket
           await chat.save();
 
           socket.data.chat = chat;
+          socket.join(chat._id.toString());
 
           socket.emit('chat/take', 200);
         }
