@@ -7,7 +7,7 @@ const schema = new Schema({
     required: true,
     unique: true
   },
-  countOnlines: {
+  count: {
     type: Number,
     default: 0
   }
