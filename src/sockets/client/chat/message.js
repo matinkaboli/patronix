@@ -9,7 +9,7 @@ socket
 .name('chat/message')
 .middleware(
   middlewares.client.checkToken,
-  middlewares.client.hasChat
+  middlewares.client.hasValidChat
 )
 .handler(socket => async message => {
   socket.data.chat.chats.push({
