@@ -30,7 +30,7 @@ socket
     if (token) {
       nsp.to(token.token).emit('kick');
       await OnlineUser.update(
-        { user: socket.data.user._id },
+        { user: user._id },
         { $set: { count: 1 } }
       );
       await token.remove();
