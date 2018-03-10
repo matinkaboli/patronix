@@ -14,7 +14,7 @@ class Sidebar extends Component {
   logout() {
     this.props.dispatch(logout);
   }
-  
+
   @bind
   renderImage() {
     if (this.props.user.avatar) {

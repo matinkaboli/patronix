@@ -94,8 +94,6 @@ class Setting extends Component {
 
   @bind
   updatePass() {
-    const { dispatch } = this.props;
-
     updatePass({
       old: this.refs.oldpass.value,
       fresh: this.refs.freshpass.value

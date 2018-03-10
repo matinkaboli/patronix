@@ -20,7 +20,7 @@ class SLink extends Component {
           </li>
         )}
       </Fragment>
-    )
+    );
   }
 }
 
