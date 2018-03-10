@@ -11,6 +11,11 @@ import styles from './index.less';
 
 class Sidebar extends Component {
   @bind
+  logout() {
+    this.props.dispatch(logout);
+  }
+  
+  @bind
   renderImage() {
     if (this.props.user.avatar) {
       return (
@@ -55,7 +60,7 @@ class Sidebar extends Component {
         href: '#',
         icon: 'sign-out',
         text: 'خروج',
-        handleClick: 'this.logout'
+        handleClick: this.logout
       }
     ];
 
