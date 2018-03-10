@@ -8,6 +8,7 @@ import logout from 'Root/actions/user/logout';
 import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
+import 'Root/styles/icon.less';
 
 class Sidebar extends Component {
   @bind
@@ -68,8 +69,14 @@ class Sidebar extends Component {
       <nav className={styles.nav}>
         <div className={styles.userInfo}>
           {this.renderImage()}
-          <p>{this.props.user.email}</p>
-          <p>{this.props.user.name}</p>
+          <div>
+            <span className='icon icon-envelope' />
+            {this.props.user.email}
+          </div>
+          <div>
+            <span className='icon icon-user' />
+            {this.props.user.name}
+          </div>
         </div>
         <ul>
           <SLink links={links} />
