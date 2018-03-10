@@ -1,8 +1,38 @@
+import izitoast from 'izitoast';
+
 export default class {
   handle(type, func) {
     this[type] = func;
 
     return this;
+  }
+
+  success() {
+    izitoast.success({
+      rtl: true,
+      title: 'موفق'
+    });
+  }
+
+  notfound() {
+    izitoast.error({
+      rtl: true,
+      title: 'پیدا نشد'
+    });
+  }
+
+  forbidden() {
+    izitoast.warning({
+      rtl: true,
+      title: 'شما اجازه این کار را ندارید'
+    });
+  }
+
+  unauth() {
+    izitoast.warning({
+      rtl: true,
+      title: 'اطلاعات مطابقت ندارد'
+    });
   }
 
   status(status) {
@@ -30,6 +60,6 @@ export default class {
       }
     }
 
-    return (this[method] || (() => {}))();
+    return this[method]();
   }
 }
