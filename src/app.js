@@ -11,6 +11,7 @@ import process from 'process';
 import sockets from './sockets';
 import { init } from './middlewares';
 import config from './config';
+import { SocketStore } from './models';
 
 let modified = applyMiddleware([init], sockets);
 
@@ -25,25 +26,29 @@ mongoose.connection.on('disconnected', () => {
   process.exit(0);
 });
 
-const app = express();
-const server = app.listen(config.port);
-const io = socketIO(server);
+(async () => {
+  await SocketStore.remove({});
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('short'));
-  let filtered = ['setting/avatar/update'];
-  modified = [
-    ...modified.filter(so => filtered.includes(so._name)),
-    ...applyMiddleware([logger],
-      modified.filter(so => !filtered.includes(so._name))
-    )
-  ];
-}
+  const app = express();
+  const server = app.listen(config.port);
+  const io = socketIO(server);
 
-app.use('/static', express.static(join(__dirname, './static')));
+  if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('short'));
+    let filtered = ['setting/avatar/update'];
+    modified = [
+      ...modified.filter(so => filtered.includes(so._name)),
+      ...applyMiddleware([logger],
+        modified.filter(so => !filtered.includes(so._name))
+      )
+    ];
+  }
 
-app.use((req, res) => {
-  res.sendFile(join(__dirname, '/index.html'));
-});
+  app.use('/static', express.static(join(__dirname, './static')));
 
-connect(io, modified);
+  app.use((req, res) => {
+    res.sendFile(join(__dirname, '/index.html'));
+  });
+
+  connect(io, modified);
+})();
