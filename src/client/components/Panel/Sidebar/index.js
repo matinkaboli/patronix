@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import styles from './index.less';
+import lazy from 'Root/js/lazy';
 import bind from 'Root/js/bind';
 import logout from 'Root/actions/user/logout';
+import types from 'Root/actions';
+import defaultImage from 'Root/images/user-default.png';
+import styles from './index.less';
 import 'Root/styles/icon.less';
 
 class Sidebar extends Component {
@@ -13,9 +16,34 @@ class Sidebar extends Component {
     this.props.dispatch(logout);
   }
 
+  @bind
+  renderImage() {
+    if (this.props.user.avatar) {
+      return (
+        <img
+          src={this.props.user.avatar}
+          alt='عکس کاربر'
+          className={styles.avatarImage} />
+      );
+    }
+
+    return (
+      <img
+        src={defaultImage}
+        alt='عکس کاربر'
+        className={styles.avatarImage} />
+    );
+  }
+
   render() {
     return (
       <nav className={styles.nav}>
+        <div className={styles.userInfo}>
+          {this.renderImage()}
+          <p>{this.props.user.email}</p>
+          <p>{this.props.user.name}</p>
+        </div>
+
         <ul>
           <li>
             <Link to='/panel'>
@@ -68,4 +96,9 @@ class Sidebar extends Component {
   }
 }
 
-export default connect()(Sidebar);
+export default lazy({
+  component: connect(
+    state => ({ user: state.user })
+  )(Sidebar),
+  type: types.user.LOAD
+});
