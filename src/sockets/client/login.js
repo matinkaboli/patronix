@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, ClientToken, Invitation, OnlineUser } from 'Root/models';
+import { User, ClientToken, Invitation } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
@@ -34,10 +34,6 @@ socket
   let token = await ClientToken.findOne({ user: user._id });
   if (token) {
     nsp.to(token.token).emit('kick');
-    await OnlineUser.update(
-      { user: user._id },
-      { $set: { count: 1 } }
-    );
     await token.remove();
   }
 
