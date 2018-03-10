@@ -104,6 +104,19 @@
   padding: 0 10px 0 25px;
 }
 
+:local(.avatarImage) {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+:local(.userInfo) {
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px 0 0 0;
+  color: white;
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.tooltip) {
     display: block;
@@ -115,5 +128,17 @@
 
   :local(.nav) {
     width: 50px;
+  }
+
+  :local(.userInfo) {
+
+    p {
+      display: none;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
