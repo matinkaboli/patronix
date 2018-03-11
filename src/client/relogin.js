@@ -15,6 +15,7 @@ export default new Promise(resolve => {
           ...res.user
         });
       })
+      .handle('forbidden', () => {})
       .status(status);
 
       resolve();
