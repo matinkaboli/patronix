@@ -10,8 +10,8 @@ export default (next, socket) => async () => {
     if (token) {
       socket.data.user = token.user;
 
-      if (!socket.token) {
-        socket.token = await ClientToken.findById(token._id);
+      if (!socket.data.token) {
+        socket.data.token = await ClientToken.findById(token._id);
       }
 
       next();
@@ -19,7 +19,7 @@ export default (next, socket) => async () => {
 
     else {
       socket.handshake.query.token = null;
-      socket.token = null;
+      socket.data.token = null;
       if (socket.eventName !== 'disconnect') {
         socket.emit(socket.eventName, 403);
       }

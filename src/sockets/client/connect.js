@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import { SocketStore } from 'Root/models';
+import { SocketStore, Site } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -12,8 +12,6 @@ socket
   middlewares.client.checkToken
 )
 .handler(socket => async () => {
-  socket.join(socket.token.token);
-
   let ss = await SocketStore.findOne({ user: socket.data.user._id });
 
   if (ss) {
@@ -28,6 +26,13 @@ socket
     });
     await ss.save();
   }
+
+  let sites = await Site.find({ operators: socket.data.user._id }, { _id: 1 });
+  for (let site of sites) {
+    socket.join(site._id.toString());
+  }
+
+  socket.join(socket.data.token.token);
 });
 
 export default socket;
