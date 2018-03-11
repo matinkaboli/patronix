@@ -85,6 +85,14 @@ class Setting extends Component {
 
   @bind
   updateName() {
+    if (!this.refs.name.value) {
+      izitoast.warning({
+        rtl: 'true',
+        title: 'مقادیر کافی نمیباشند'
+      });
+      return;
+    }
+
     const { dispatch } = this.props;
 
     dispatch(updateName({
@@ -94,6 +102,14 @@ class Setting extends Component {
 
   @bind
   updatePass() {
+    if (!this.refs.oldpass.value || !this.refs.freshpass.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نیست'
+      });
+      return;
+    }
+
     updatePass({
       old: this.refs.oldpass.value,
       fresh: this.refs.freshpass.value
@@ -102,19 +118,24 @@ class Setting extends Component {
 
   @bind
   updateEmail() {
-    const { dispatch } = this.props;
+    if (
+      !email(this.refs.email.value) ||
+      !this.refs.email.value ||
+      !this.refs.password.value) {
 
-    if (email(this.refs.email.value)) {
-      dispatch(updateEmail({
-        email: this.refs.email.value,
-        password: this.refs.password.value
-      }));
-    } else {
       izitoast.warning({
         rtl: true,
-        title: 'ایمیل صحیح نمیباشد'
+        title: 'مقادیر صحیح نمیباشند'
       });
+      return;
     }
+
+    const { dispatch } = this.props;
+
+    dispatch(updateEmail({
+      email: this.refs.email.value,
+      password: this.refs.password.value
+    }));
   }
 
   render() {
@@ -203,7 +224,7 @@ class Setting extends Component {
               <div>
                 <Button
                   color='blue'
-                  handleClick={this.udateEmail}>
+                  handleClick={this.updateEmail}>
                   به روز رسانی
                 </Button>
               </div>
