@@ -32,7 +32,7 @@ socket
     socket.join(site._id.toString());
   }
 
-  socket.join(socket.data.token.token);
+  socket.join(socket.data.user._id.toString());
 });
 
 export default socket;

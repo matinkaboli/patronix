@@ -1,6 +1,12 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, ClientToken, Invitation } from 'Root/models';
+import {
+  User,
+  ClientToken,
+  Invitation,
+  Site,
+  SocketStore
+} from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
@@ -33,8 +39,25 @@ socket
 
   let token = await ClientToken.findOne({ user: user._id });
   if (token) {
-    nsp.to(token.token).emit('kick');
     await token.remove();
+  }
+
+  let ss = await SocketStore.findOne({ user: user._id });
+  if (ss) {
+    for (let sid of ss.sockets) {
+      nsp.sockets[sid].disconnect();
+    }
+
+    ss.sockets = [socket.id];
+    await ss.save();
+  }
+
+  else {
+    ss = new SocketStore({
+      user: user._id,
+      sockets: [socket.id]
+    });
+    await ss.save();
   }
 
   token = new ClientToken({ user: user._id });
@@ -42,7 +65,13 @@ socket
   await token.save();
 
   socket.data.user = user;
-  socket.join(token.token);
+  socket.join(user._id.toString());
+
+  let sites = await Site.find({ operators: user._id }, { _id: 1 });
+  for (let site of sites) {
+    socket.join(site._id.toString());
+  }
+
   socket.handshake.query.token = token.token;
 
   let invitations = await Invitation
