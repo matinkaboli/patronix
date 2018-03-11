@@ -67,14 +67,9 @@ class Sidebar extends Component {
       <nav className={styles.nav}>
         <div className={styles.userInfo}>
           {this.renderImage()}
-          <div>
-            <span className='icon icon-envelope' />
-            {this.props.user.email}
-          </div>
-          <div>
-            <span className='icon icon-user' />
+          <p>
             {this.props.user.name}
-          </div>
+          </p>
         </div>
         <ul>
           <SLink links={links} />
