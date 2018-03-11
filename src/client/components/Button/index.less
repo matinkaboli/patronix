@@ -1,41 +1,79 @@
 @import '~Root/styles/index.less';
 
 :local(.btn) {
-  padding: 10px;
+  width: 150px;
+  height: 40px;
+  position: relative;
+  background-color: white;
+  text-align: center;
   border-radius: 4px;
   font-family: SB;
   cursor: pointer;
   margin: 10px;
   transition: background-color 300ms, color 300ms;
+  border: 3px solid black;
+
+  div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+    transition: right 300ms;
+  }
+
+  &:hover div {
+    right: 0;
+  }
+
+  p {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    position: absolute;
+    z-index: 20;
+    margin: 5px auto 0 auto;
+  }
 }
 
-:local(.grey) {
-  border: 1px solid #eee;
+:local(.black) {
+  border-color: black;
+  color: #222;
 
-  &:hover, &:active {
-    background-color: white;
+  div {
+    background-color: black;
+  }
+
+  &:hover {
+    color: white;
   }
 }
 
 :local(.red) {
-  border: 1px solid @red-1;
-  background-color: @red-base;
-  color: white;
+  border-color: @red-1;
+  color: @red-1;
 
-  &:hover, &:active {
-    background-color: white;
-    color: @red-base;
+  div {
+    background-color: @red-1;
+  }
+
+  &:hover {
+    color: white;
   }
 }
 
 :local(.blue) {
-  border: 1px solid @blue-1;
-  background-color: @blue-base;
-  color: white;
+  border-color: @blue-1;
+  color: @blue-1;
 
-  &:hover, &:active {
-    background-color: white;
-    color: @blue-base;
+  div {
+    background-color: @blue-1;
+  }
+
+  &:hover {
+    color: white;
   }
 }
 
