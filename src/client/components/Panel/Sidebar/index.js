@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SLink from './Link';
-import lazy from 'Root/js/lazy';
 import bind from 'Root/js/bind';
 import logout from 'Root/actions/user/logout';
-import types from 'Root/actions';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
 import 'Root/styles/icon.less';
@@ -86,9 +84,6 @@ class Sidebar extends Component {
   }
 }
 
-export default lazy({
-  component: connect(
-    state => ({ user: state.user })
-  )(Sidebar),
-  type: types.user.LOAD
-});
+export default connect(
+  state => ({ user: state.user })
+)(Sidebar);
