@@ -9,6 +9,6 @@ class Activate extends Component {
   }
 }
 
-export default lazy({
-  component: Activate
-});
+export default lazy(
+  Activate
+);

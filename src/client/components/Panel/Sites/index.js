@@ -45,9 +45,9 @@ class Sites extends Component {
   }
 }
 
-export default lazy({
-  component: connect(
+export default lazy(
+  connect(
     state => ({ sites: state.sites })
   )(Sites),
-  type: types.sites.LOAD
-});
+  types.sites.LOAD
+);

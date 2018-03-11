@@ -243,9 +243,9 @@ class Setting extends Component {
   }
 }
 
-export default lazy({
-  component: connect(
+export default lazy(
+  connect(
     state => ({ user: state.user })
   )(Setting),
-  type: types.user.LOAD
-});
+  types.user.LOAD
+);

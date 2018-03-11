@@ -41,5 +41,5 @@ const Lazy = withRouter(connect(
   state => ({ lazy: state.lazy })
 )(Prototype));
 
-export default props => () =>
-  <Lazy {...props} />;
+export default (component, type) => () =>
+  <Lazy component={component} type={type} />;

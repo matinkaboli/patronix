@@ -62,6 +62,6 @@ class Code extends Component {
   }
 }
 
-export default lazy({
-  component: withRouter(Code)
-});
+export default lazy(
+  withRouter(Code)
+);
