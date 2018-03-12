@@ -17,7 +17,7 @@ class Sites extends Component {
             <h3>
               لیست سایت های شما:
             </h3>
-            <Button>
+            <Button color='black'>
               افزودن سایت جدید
             </Button>
           </div>
@@ -25,7 +25,7 @@ class Sites extends Component {
             <div key={i}>
               <p>{v.name}</p>
               <Link to={`/panel/sites/${v.name}`}>
-                <Button>
+                <Button color='black'>
                   تنظیمات سایت
                 </Button>
               </Link>
