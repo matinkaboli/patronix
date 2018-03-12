@@ -246,7 +246,7 @@ class Setting extends Component {
                   type='password'
                   ref='freshpass'
                   className={styles.fieldInput}
-                  placeholder='رمز کنونی'
+                  placeholder='رمز جدید'
                 />
               </div>
 
