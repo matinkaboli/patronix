@@ -13,17 +13,22 @@
   transition: background-color 300ms, color 300ms;
   border: 3px solid black;
 
-  div {
+  &::after {
+    content: '';
     position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 100%;
     top: 0;
     bottom: 0;
     left: 0;
-    right: 100%;
-    transition: right 300ms;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
   }
-
-  &:hover div {
-    right: 0;
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 
   p {
@@ -42,7 +47,7 @@
   border-color: black;
   color: #222;
 
-  div {
+  &::after {
     background-color: black;
   }
 
@@ -55,7 +60,7 @@
   border-color: @red-1;
   color: @red-1;
 
-  div {
+  &::after {
     background-color: @red-1;
   }
 
@@ -68,7 +73,7 @@
   border-color: @blue-1;
   color: @blue-1;
 
-  div {
+  &::after {
     background-color: @blue-1;
   }
 

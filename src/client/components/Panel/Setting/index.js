@@ -237,13 +237,13 @@ class Setting extends Component {
               <div>
                 <p>رمز</p>
                 <input
-                  type='text'
+                  type='password'
                   ref='oldpass'
                   className={styles.fieldInput}
                   placeholder='رمز کنونی'
                 />
                 <input
-                  type='text'
+                  type='password'
                   ref='freshpass'
                   className={styles.fieldInput}
                   placeholder='رمز کنونی'

@@ -8,7 +8,6 @@ class Button extends Component {
       onClick={this.props.handleClick}
       className={`${styles.btn} ${styles[this.props.color]}`}>
       <p>{ this.props.children }</p>
-      <div />
     </div>;
   }
 }
