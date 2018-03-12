@@ -1,4 +1,5 @@
 export default [
   require('./connect'),
-  require('./message')
+  require('./message'),
+  require('./getOnlines')
 ];
