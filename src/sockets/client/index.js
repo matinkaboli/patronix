@@ -10,5 +10,6 @@ export default [
   require('./setting'),
   require('./connect'),
   require('./disconnect'),
-  require('./chat')
+  require('./chat'),
+  require('./sites')
 ];
