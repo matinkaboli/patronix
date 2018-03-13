@@ -8,6 +8,10 @@ socket.on('newchat', message => {
   console.log('we have new chat: ', message);
 });
 
-socket.on('chat/message', message => {
+socket.on('message', message => {
   console.log(message);
+});
+
+socket.on('increase', () => {
+  console.log('much more operator');
 });

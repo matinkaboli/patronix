@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async code => {
+.handler((socket, nsp, io) => async code => {
   let invitation = await Invitation
   .findOne({ code })
   .populate('from')
@@ -27,6 +27,12 @@ socket
 
   invitation.from.operators.push(invitation.user);
   await invitation.from.save();
+
+  io
+  .of('/customer')
+  .to(invitation.from._id.toString())
+  .emit('increase');
+
   await invitation.remove();
 
   socket.emit('sites/accept', 200);
