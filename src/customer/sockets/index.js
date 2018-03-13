@@ -8,10 +8,10 @@ socket.on('message', message => {
   console.log(message);
 });
 
-socket.on('oneUp', () => {
+socket.on('getOnline', () => {
   console.log('yedoone online shode');
 });
 
-socket.on('oneDown', () => {
+socket.on('goesOffline', () => {
   console.log('yedoone offline shod');
 });

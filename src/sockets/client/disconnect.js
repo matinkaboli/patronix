@@ -20,13 +20,13 @@ socket
 
     if (!ss.sockets.length) {
       await ss.remove();
-      
+
       let sites = await Site.find({ operators: socket.data.user._id });
       for (let site of sites) {
         io
         .of('/customer')
         .to(site._id.toString())
-        .emit('oneDown');
+        .emit('goesOffline');
       }
 
       return;
