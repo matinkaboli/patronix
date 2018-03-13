@@ -10,6 +10,8 @@ socket
 .middleware(
   middlewares.customer.checkToken
 )
-.handler(() => () => {});
+.handler(socket => () => {
+  socket.join(socket.data.site._id.toString());
+});
 
 export default socket;
