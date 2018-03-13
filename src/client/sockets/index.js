@@ -1,10 +1,8 @@
 import socket from 'Root/socket';
 
-socket.on('kick', () => {
-  socket.disconnect();
-  console.log('im gonna leave you alone');
+socket.on('invitation', from => {
+  console.log('you have a invitation from', from);
 });
-
 
 socket.on('newchat', message => {
   console.log('we have new chat: ', message);

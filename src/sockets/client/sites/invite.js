@@ -13,7 +13,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(socket => async email => {
+.handler((socket, nsp) => async email => {
   let user = await User.findOne({ email, status: 1 });
   let operators = socket.data.site.operators.map(i => i.toString());
 
@@ -39,6 +39,8 @@ socket
   });
 
   await invitation.save();
+
+  nsp.to(user._id.toString()).emit('invitation', socket.data.site.name);
 
   socket.emit('sites/invite', 200);
 });
