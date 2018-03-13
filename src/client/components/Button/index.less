@@ -1,19 +1,21 @@
 @import '~Root/styles/index.less';
 
 :local(.btn) {
-  width: 150px;
-  height: 40px;
+  width: auto;
+  min-width: 150px;
   position: relative;
   background-color: white;
   text-align: center;
   border-radius: 4px;
   font-family: SB;
   cursor: pointer;
+  display: table;
   margin: 10px;
   transition: background-color 300ms, color 300ms;
   border: 3px solid black;
 
   &::after {
+    border-radius: 4px;
     content: '';
     position: absolute;
     width: 100%;
@@ -31,15 +33,13 @@
     transform-origin: bottom left;
   }
 
-  p {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100px;
-    position: absolute;
-    z-index: 20;
-    margin: 5px auto 0 auto;
+  div {
+    position: relative;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    display: table-cell;
+    vertical-align: middle;
+    margin: auto;
   }
 }
 
@@ -79,11 +79,5 @@
 
   &:hover {
     color: white;
-  }
-}
-
-@media (min-width: 120px) and (max-width: 580px) {
-  :local(.btn) {
-    margin: 0;
   }
 }

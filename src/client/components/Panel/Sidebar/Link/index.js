@@ -13,7 +13,7 @@ class SLink extends Component {
             <Link to={v.href}>
               <div className={styles.sidebarLink}>
                 <div className={`icon icon-${v.icon}`} />
-                <span className={styles.tooltip}>{v.text}</span>
+                <span className='tooltip'>{v.text}</span>
                 <span className={styles.buttonText}>{v.text}</span>
               </div>
             </Link>
