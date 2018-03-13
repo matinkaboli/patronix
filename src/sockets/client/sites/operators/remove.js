@@ -12,7 +12,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(socket => async email => {
+.handler((socket, nsp, io) => async email => {
   let user = await User.findOne({ email });
 
   if (!user) {
@@ -30,6 +30,11 @@ socket
   socket.data.site.operators.splice(index, index + 1);
 
   await socket.data.site.save();
+
+  io
+  .of('/customer')
+  .to(socket.data.site._id.toString())
+  .emit('decrease');
 
   socket.emit('sites/operators/remove', 200);
 });
