@@ -6,28 +6,19 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/customer')
-.name('disconnect')
+.name('finish')
 .middleware(
   middlewares.customer.checkToken,
   middlewares.customer.hasChat
 )
 .handler((socket, nsp, io) => async () => {
-  if (!socket.data.chat) {
-    return;
-  }
-
-  if (!socket.data.chat.taken) {
-    await socket.data.chat.remove();
-    return;
-  }
-
   socket.data.chat.done = true;
   await socket.data.chat.save();
 
   io
   .of('/client')
   .to(socket.data.chat._id.toString())
-  .emit('customerLeft');
+  .emit('chat/finish');
 });
 
 export default socket;

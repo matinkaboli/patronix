@@ -5,29 +5,22 @@ import middlewares from 'Root/middlewares';
 let socket = new SocketEvent();
 
 socket
-.namespace('/customer')
-.name('disconnect')
+.namespace('/client')
+.name('chat/finish')
 .middleware(
-  middlewares.customer.checkToken,
-  middlewares.customer.hasChat
+  middlewares.client.checkToken,
+  middlewares.client.hasValidChat
 )
 .handler((socket, nsp, io) => async () => {
-  if (!socket.data.chat) {
-    return;
-  }
-
-  if (!socket.data.chat.taken) {
-    await socket.data.chat.remove();
-    return;
-  }
-
   socket.data.chat.done = true;
   await socket.data.chat.save();
 
   io
-  .of('/client')
+  .of('/customer')
   .to(socket.data.chat._id.toString())
-  .emit('customerLeft');
+  .emit('finish');
+
+  socket.emit('chat/finish', 200);
 });
 
 export default socket;

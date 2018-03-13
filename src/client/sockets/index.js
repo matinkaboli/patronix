@@ -15,3 +15,7 @@ socket.on('message', message => {
 socket.on('increase', () => {
   console.log('much more operator');
 });
+
+socket.on('decrease', () => {
+  console.log('much less operator');
+});

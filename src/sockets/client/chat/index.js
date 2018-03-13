@@ -1,4 +1,5 @@
 export default [
   require('./take'),
-  require('./message')
+  require('./message'),
+  require('./finish')
 ];
