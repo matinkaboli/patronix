@@ -28,6 +28,13 @@ socket
     socket.data.chat = chat;
   }
 
+  socket.data.chat = await Chat.findById(socket.data.chat._id);
+
+  if (socket.data.chat.done) {
+    socket.emit('message', 400, 0);
+    return;
+  }
+
   try {
     socket.data.chat.chats.push({
       sender: 0,
@@ -40,7 +47,7 @@ socket
     .to(socket.data.chat._id.toString())
     .emit('chat/message', message);
   } catch (e) {
-    socket.emit('message', 400);
+    socket.emit('message', 400, 1);
   }
 });
 

@@ -31,11 +31,16 @@ socket
         .to(site._id.toString())
         .emit('goesOffline');
       }
-
-      return;
     }
 
-    await ss.save();
+    else {
+      await ss.save();
+    }
+  }
+
+  if (socket.data.chat) {
+    socket.data.chat.done = true;
+    await socket.data.chat.save();
   }
 });
 
