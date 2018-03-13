@@ -41,6 +41,11 @@ socket
   if (socket.data.chat) {
     socket.data.chat.done = true;
     await socket.data.chat.save();
+
+    io
+    .of('/customer')
+    .to(socket.data.chat._id.toString())
+    .emit('operatorLeft');
   }
 });
 
