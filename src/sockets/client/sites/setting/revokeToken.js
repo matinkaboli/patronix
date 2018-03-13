@@ -9,7 +9,8 @@ socket
 .namespace('/client')
 .name('sites/setting/revokeToken')
 .middleware(
-  middlewares.client.checkToken
+  middlewares.client.checkToken,
+  middlewares.client.hasSite
 )
 .handler(socket => async () => {
   socket.data.site.token = uid();
