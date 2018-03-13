@@ -217,7 +217,6 @@ class Setting extends Component {
                   ref='password'
                   className={styles.fieldInput}
                   placeholder='رمز'
-                  defaultValue={this.props.user.email}
                 />
               </div>
 
