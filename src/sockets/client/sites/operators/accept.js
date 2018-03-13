@@ -7,7 +7,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/client')
-.name('sites/accept')
+.name('sites/operators/accept')
 .middleware(
   middlewares.client.checkToken
 )
@@ -21,7 +21,7 @@ socket
     !invitation ||
     socket.data.user._id.toString() !== invitation.user.toString()
   ) {
-    socket.emit('sites/accept', 404);
+    socket.emit('sites/operators/accept', 404);
     return;
   }
 
@@ -35,7 +35,7 @@ socket
 
   await invitation.remove();
 
-  socket.emit('sites/accept', 200);
+  socket.emit('sites/operators/accept', 200);
 });
 
 export default socket;

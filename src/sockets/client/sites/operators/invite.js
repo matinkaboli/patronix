@@ -8,7 +8,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/client')
-.name('sites/invite')
+.name('sites/operators/invite')
 .middleware(
   middlewares.client.checkToken,
   middlewares.client.hasSite
@@ -18,7 +18,7 @@ socket
   let operators = socket.data.site.operators.map(i => i.toString());
 
   if (!user || operators.includes(user._id.toString())) {
-    socket.emit('sites/invite', 400, 0);
+    socket.emit('sites/operators/invite', 400, 0);
     return;
   }
 
@@ -28,7 +28,7 @@ socket
   });
 
   if (invitation) {
-    socket.emit('sites/invite', 400, 1);
+    socket.emit('sites/operators/invite', 400, 1);
     return;
   }
 
@@ -42,7 +42,7 @@ socket
 
   nsp.to(user._id.toString()).emit('invitation', socket.data.site.name);
 
-  socket.emit('sites/invite', 200);
+  socket.emit('sites/operators/invite', 200);
 });
 
 export default socket;
