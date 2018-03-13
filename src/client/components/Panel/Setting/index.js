@@ -194,7 +194,7 @@ class Setting extends Component {
                 <Button
                   color='blue'
                   handleClick={this.updateName}>
-                  به روز رسانیaaaaaaaaaaaaaaaaaaaaaa
+                  به روز رسانی
                 </Button>
               </div>
             </Field>
