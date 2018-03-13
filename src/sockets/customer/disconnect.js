@@ -8,7 +8,8 @@ socket
 .namespace('/customer')
 .name('disconnect')
 .middleware(
-  middlewares.customer.checkToken
+  middlewares.customer.checkToken,
+  middlewares.customer.hasChat
 )
 .handler(socket => async () => {
   if (!socket.data.chat) {
