@@ -15,7 +15,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('login')
-.handler((socket, nsp) => async (credentials, captcha) => {
+.handler((socket, nsp, io) => async (credentials, captcha) => {
   if (!socket.attempt) {
     socket.attempt = 1;
   }
@@ -42,6 +42,11 @@ socket
     await token.remove();
   }
 
+  let sites = await Site.find({ operators: user._id }, { _id: 1 });
+  for (let site of sites) {
+    socket.join(site._id.toString());
+  }
+
   let ss = await SocketStore.findOne({ user: user._id });
   if (ss) {
     for (let sid of ss.sockets) {
@@ -58,6 +63,13 @@ socket
       sockets: [socket.id]
     });
     await ss.save();
+
+    for (let site of sites) {
+      io
+      .of('/customer')
+      .to(site._id.toString())
+      .emit('getOnline');
+    }
   }
 
   token = new ClientToken({ user: user._id });
@@ -66,11 +78,6 @@ socket
 
   socket.data.user = user;
   socket.join(user._id.toString());
-
-  let sites = await Site.find({ operators: user._id }, { _id: 1 });
-  for (let site of sites) {
-    socket.join(site._id.toString());
-  }
 
   socket.handshake.query.token = token.token;
 

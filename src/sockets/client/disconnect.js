@@ -21,7 +21,10 @@ socket
     if (!ss.sockets.length) {
       await ss.remove();
 
-      let sites = await Site.find({ operators: socket.data.user._id });
+      let sites = await Site.find(
+        { operators: socket.data.user._id },
+        { _id: 1 }
+      );
       for (let site of sites) {
         io
         .of('/customer')
