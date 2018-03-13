@@ -11,19 +11,20 @@ import Form from 'Root/components/Form';
 class Login extends Component {
   @bind
   login(refs) {
-    if (email(refs.email.value)) {
-      this.props.dispatch(loginAct({
-        email: refs.email.value,
-        password: refs.password.value,
-        push: this.props.history.push
-      }));
-    } else {
+    if (!email(refs.email.value)) {
       izitoast.warning({
         rtl: true,
         title: 'ایمیل اشتباه است'
       });
       refs.email.focus();
+      return;
     }
+
+    this.props.dispatch(loginAct({
+      email: refs.email.value,
+      password: refs.password.value,
+      push: this.props.history.push
+    }));
   }
 
   render() {
