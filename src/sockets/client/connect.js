@@ -11,7 +11,12 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async () => {
+.handler((socket, nsp, io) => async () => {
+  let sites = await Site.find({ operators: socket.data.user._id }, { _id: 1 });
+  for (let site of sites) {
+    socket.join(site._id.toString());
+  }
+
   let ss = await SocketStore.findOne({ user: socket.data.user._id });
 
   if (ss) {
@@ -25,11 +30,13 @@ socket
       sockets: [socket.id]
     });
     await ss.save();
-  }
 
-  let sites = await Site.find({ operators: socket.data.user._id }, { _id: 1 });
-  for (let site of sites) {
-    socket.join(site._id.toString());
+    for (let site of sites) {
+      io
+      .of('/customer')
+      .to(site._id.toString())
+      .emit('getOnline');
+    }
   }
 
   socket.join(socket.data.user._id.toString());
