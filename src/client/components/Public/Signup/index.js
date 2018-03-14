@@ -7,7 +7,6 @@ import bind from 'Root/js/bind';
 import signup from 'Root/actions/signup';
 import captcha from 'Root/actions/captcha';
 
-
 class Signup extends Component {
   @bind
   signup(refs) {

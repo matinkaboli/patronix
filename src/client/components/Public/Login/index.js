@@ -7,28 +7,12 @@ import { email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 import loginAct from 'Root/actions/user/login';
 import Form from 'Root/components/Form';
+import captcha from 'Root/actions/captcha';
 
 class Login extends Component {
-  @bind
-  login(refs) {
-    if (!email(refs.email.value)) {
-      izitoast.warning({
-        rtl: true,
-        title: 'ایمیل اشتباه است'
-      });
-      refs.email.focus();
-      return;
-    }
-
-    this.props.dispatch(loginAct({
-      email: refs.email.value,
-      password: refs.password.value,
-      push: this.props.history.push
-    }));
-  }
-
-  render() {
-    const inputs = [
+  state = {
+    attempt: 0,
+    inputs: [
       {
         tag: 'input',
         attrs: {
@@ -54,12 +38,71 @@ class Login extends Component {
           type: 'submit'
         }
       }
-    ];
+    ]
+  };
 
+  @bind
+  login(refs) {
+
+    console.log(this.state.attempt);
+
+    if ('ride ii' === this.state.attempt) {
+
+      this.setState(prev => {
+        const inputs = prev.inputs;
+
+        inputs.splice(2, 0, {
+          tag: 'div',
+          attrs: {
+            dangerouslySetInnerHTML: {
+              __html: this.props.captcha
+            }
+          }
+        }, {
+          tag: 'i',
+          attrs: {
+            className: 'icon icon-refresh',
+            onClick: captcha
+          }
+        }, {
+          tag: 'input',
+          attrs: {
+            type: 'password',
+            placeholder: 'کد امنیتی',
+            required: true,
+            name: 'captcha'
+          }
+        });
+
+        return { inputs };
+      });
+    }
+
+    if (!email(refs.email.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل اشتباه است'
+      });
+      refs.email.focus();
+      return;
+    }
+
+    this.props.dispatch(loginAct({
+      email: refs.email.value,
+      password: refs.password.value,
+      push: this.props.history.push
+    }));
+  }
+
+  componentDidMount() {
+    captcha();
+  }
+
+  render() {
     return (
       <div>
         <Form
-          inputs={inputs}
+          inputs={this.state.inputs}
           submitFunction={this.login}>
           <h1>ورود</h1>
         </Form>
@@ -75,4 +118,6 @@ class Login extends Component {
   }
 }
 
-export default withRouter(connect()(Login));
+export default withRouter(
+  connect(state => ({ captcha: state.captcha }))(Login)
+);
