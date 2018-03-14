@@ -20,7 +20,11 @@ socket
     socket.attempt = 1;
   }
 
-  if (socket.attempt > 1 && !socket.data.captcha === captcha.toLowerCase()) {
+  if (socket.attempt > 1 &&
+    captcha &&
+    typeof captcha === 'string' &&
+    !socket.data.captcha === captcha.toLowerCase()
+  ) {
     socket.emit('login', 400);
     return;
   }
