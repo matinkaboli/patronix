@@ -89,9 +89,8 @@ class Login extends Component {
 
     this.props.dispatch(loginAct({
       email: refs.email.value,
-      password: refs.password.value,
-      push: this.props.history.push
-    }));
+      password: refs.password.value
+    }, this.props.history.push));
   }
 
   componentDidMount() {
