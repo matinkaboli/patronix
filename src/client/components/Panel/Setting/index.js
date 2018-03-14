@@ -62,20 +62,16 @@ class Setting extends Component {
   @bind
   renderImage() {
     if (this.props.user.avatar) {
-      return (
-        <img
+      return <img
           src={this.props.user.avatar}
           alt='عکس کاربر'
-          className={styles.avatarImage} />
-      );
+          className={styles.avatarImage} />;
     }
 
-    return (
-      <img
+    return <img
         src={defaultImage}
         alt='عکس کاربر'
-        className={styles.avatarImage} />
-    );
+        className={styles.avatarImage} />;
   }
 
   @bind

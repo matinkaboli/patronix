@@ -27,6 +27,13 @@ export default ({ push, ...credentials }) => dispatch => {
       });
     })
 
+    .handle('error', () => {
+      izitoast.error({
+        rtl: true,
+        title: 'خطا! دوباره امتحان کنید'
+      });
+    })
+
     .status(status);
   });
 

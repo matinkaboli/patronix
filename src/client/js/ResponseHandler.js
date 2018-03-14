@@ -28,6 +28,13 @@ export default class {
     });
   }
 
+  error() {
+    izitoast.error({
+      rtl: true,
+      title: 'خطا! دوباره امتحان کنید'
+    });
+  }
+  
   unauth() {
     izitoast.warning({
       rtl: true,
