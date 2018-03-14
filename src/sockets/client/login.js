@@ -21,9 +21,9 @@ socket
   }
 
   if (socket.attempt > 1 &&
-    captcha &&
-    typeof captcha === 'string' &&
-    !socket.data.captcha === captcha.toLowerCase()
+    (!captcha ||
+    typeof captcha !== 'string' ||
+    socket.data.captcha !== captcha.toLowerCase())
   ) {
     socket.emit('login', 400);
     return;
