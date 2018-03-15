@@ -10,7 +10,7 @@ class SLink extends Component {
       <Fragment>
         {this.props.links.map((v, i) =>
           <li key={i} className={styles.li} onClick={v.handleClick}>
-            <NavLink exact to={v.href} activeClassName={styles.activeLink}>
+            <NavLink exact to={v.href} activeClassName='activedNavLink'>
               <div className={styles.sidebarLink}>
                 <div className={`icon icon-${v.icon}`} />
                 <span className='tooltip'>{v.text}</span>
