@@ -43,10 +43,9 @@ class Login extends Component {
 
   @bind
   login(refs) {
+    this.setState(prev => ({ attempt: prev.attempt + 1 }));
 
-    console.log(this.state.attempt);
-
-    if ('ride ii' === this.state.attempt) {
+    if (this.state.attempt === 1) {
 
       this.setState(prev => {
         const inputs = prev.inputs;
@@ -84,6 +83,14 @@ class Login extends Component {
         title: 'ایمیل اشتباه است'
       });
       refs.email.focus();
+      return;
+    }
+
+    if (this.state.attempt > 1) {
+      this.props.dispatch(loginAct({
+        email: refs.email.value,
+        password: refs.password.value
+      }, this.props.history.push, refs.captcha.value));
       return;
     }
 

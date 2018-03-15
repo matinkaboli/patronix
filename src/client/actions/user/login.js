@@ -4,7 +4,7 @@ import socket from 'Root/socket';
 import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
 
-export default (credentials, push) => dispatch => {
+export default (credentials, push, captcha) => dispatch => {
   socket.once('login', (status, res) => {
     let handler = new ResponseHandler();
 
@@ -37,5 +37,5 @@ export default (credentials, push) => dispatch => {
     .status(status);
   });
 
-  socket.emit('login', credentials);
+  socket.emit('login', credentials, captcha);
 };
