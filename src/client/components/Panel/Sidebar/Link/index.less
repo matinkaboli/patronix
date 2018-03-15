@@ -70,6 +70,10 @@
   }
 }
 
+:local(.activeLink) {
+  background-color: @blue-base;
+}
+
 :local(.li) a .tooltip {
   z-index: 858585;
   display: none;
@@ -90,7 +94,7 @@
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
-  :local(.li) a .tooltip {  
+  :local(.li) a .tooltip {
     display: block;
   }
 
