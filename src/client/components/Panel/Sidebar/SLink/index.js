@@ -13,7 +13,7 @@ class SLink extends Component {
         activeClassName={styles.activedNavLink}>
         <div className={styles.sidebarLink}>
           <div className={`icon icon-${this.props.icon}`} />
-          <span className='tooltip'>{this.props.text}</span>
+          <span>{this.props.text}</span>
           <span className={styles.buttonText}>{this.props.text}</span>
         </div>
       </NavLink>
