@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styles from './index.less';
-import 'Root/styles/icon.less';
 
 class SLink extends Component {
   render() {
