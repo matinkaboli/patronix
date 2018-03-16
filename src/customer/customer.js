@@ -10,6 +10,6 @@ window.onload = () => {
     <Provider store={store}>
       <App/>
     </Provider>,
-    document.getElementById('main')
+    document.getElementById('patronix-land')
   );
 };
