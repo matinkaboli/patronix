@@ -14,11 +14,16 @@ socket
   middlewares.client.hasSite
 )
 .handler((socket, nsp) => async email => {
+  if (socket.data.site.operators.length > 3) {
+    socket.emit('sites/operators/invite', 400, 0);
+    return;
+  }
+
   let user = await User.findOne({ email, status: 1 });
   let operators = socket.data.site.operators.map(i => i.toString());
 
   if (!user || operators.includes(user._id.toString())) {
-    socket.emit('sites/operators/invite', 400, 0);
+    socket.emit('sites/operators/invite', 400, 1);
     return;
   }
 
@@ -28,7 +33,7 @@ socket
   });
 
   if (invitation) {
-    socket.emit('sites/operators/invite', 400, 1);
+    socket.emit('sites/operators/invite', 400, 2);
     return;
   }
 
