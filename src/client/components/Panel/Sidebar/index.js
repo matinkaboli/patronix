@@ -11,7 +11,6 @@ import 'Root/styles/icon.less';
 
 class Sidebar extends Component {
   shouldComponentUpdate() {
-    this.forceUpdate();
     return true;
   }
 
