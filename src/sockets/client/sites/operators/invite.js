@@ -45,7 +45,9 @@ socket
 
   await invitation.save();
 
-  nsp.to(user._id.toString()).emit('invitation', socket.data.site.name);
+  nsp
+  .to(user._id.toString())
+  .emit('invitation', socket.data.site.name);
 
   socket.emit('sites/operators/invite', 200);
 });
