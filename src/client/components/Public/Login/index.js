@@ -45,7 +45,7 @@ class Login extends Component {
   login(refs) {
     this.setState(prev => ({ attempt: prev.attempt + 1 }));
 
-    if (this.state.attempt === 1) {
+    if (this.state.attempt === 0) {
 
       this.setState(prev => {
         const inputs = prev.inputs;
@@ -66,7 +66,7 @@ class Login extends Component {
         }, {
           tag: 'input',
           attrs: {
-            type: 'password',
+            type: 'text',
             placeholder: 'کد امنیتی',
             required: true,
             name: 'captcha'
@@ -86,7 +86,7 @@ class Login extends Component {
       return;
     }
 
-    if (this.state.attempt > 1) {
+    if (this.state.attempt >= 1) {
       this.props.dispatch(loginAct({
         email: refs.email.value,
         password: refs.password.value
