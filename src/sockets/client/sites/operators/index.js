@@ -1,5 +1,6 @@
 export default [
   require('./accept'),
   require('./invite'),
-  require('./remove')
+  require('./remove'),
+  require('./leave')
 ];
