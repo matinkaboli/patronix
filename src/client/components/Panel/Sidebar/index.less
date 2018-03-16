@@ -14,6 +14,78 @@
     margin-top: 10px;
     width: 100%;
     list-style: none;
+
+    li {
+      width: 100%;
+      display: block;
+      text-align: center;
+      box-sizing: border-box;
+
+      a {
+        color: white;
+        position: relative;
+        display: block;
+        text-decoration: none;
+        transition: background-color 300ms;
+
+        &:hover {
+          background-color: @blue-base;
+        }
+
+        .tooltip {
+          z-index: 858585;
+          display: none;
+          width: 90px;
+          top: 11px;
+          right: 50%;
+          padding: 2px 5px 5px 5px;
+          position: absolute;
+
+          background-color: @midnight-3;
+          color: white;
+
+          opacity: 0;
+          visibility: hidden;
+
+          font-size: 15px;
+          text-align: center;
+          border-radius: 6px;
+          transition: opacity 500ms, right 300ms;
+
+          &::after {
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+
+            position: absolute;
+            border-width: 5px;
+            content: "";
+            border-style: solid;
+            border-color: transparent transparent transparent @midnight-3;
+          }
+        }
+
+        &:hover .tooltip {
+          right: 115%;
+
+          visibility: visible;
+          opacity: 1;
+        }
+
+        div.icon {
+          display: inline;
+          height: 100%;
+          padding: 10px 0 10px 10px;
+
+          font-size: 28px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
   }
 }
 
@@ -34,6 +106,10 @@
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.nav) {
     width: 50px;
+
+    ul li a .tooltip {
+      display: block;
+    }
   }
 
   :local(.userInfo) {

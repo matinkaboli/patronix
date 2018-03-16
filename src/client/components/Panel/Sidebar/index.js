@@ -36,27 +36,27 @@ class Sidebar extends Component {
   render() {
     const links = [
       {
-        href: '/panel',
+        to: '/panel',
         icon: 'user',
         text: 'داشبورد'
       },
       {
-        href: '/panel/setting',
+        to: '/panel/setting',
         icon: 'cog',
         text: 'تنظیمات'
       },
       {
-        href: '/panel/sites',
+        to: '/panel/sites',
         icon: 'globe',
         text: 'سایت ها'
       },
       {
-        href: '/panel/chats',
+        to: '/panel/chats',
         icon: 'comment',
         text: 'چت ها'
       },
       {
-        href: '#',
+        to: '#',
         icon: 'sign-out',
         text: 'خروج',
         handleClick: this.logout
@@ -72,7 +72,11 @@ class Sidebar extends Component {
           </p>
         </div>
         <ul>
-          <SLink links={links} />
+          {links.map((v, i) =>
+            <li key={i}>
+              <SLink {...v} />
+            </li>
+          )}
         </ul>
       </nav>
     );
