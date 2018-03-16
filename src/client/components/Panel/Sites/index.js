@@ -5,10 +5,17 @@ import { connect } from 'react-redux';
 import Box from 'Root/components/Box';
 import lazy from 'Root/js/lazy';
 import types from 'Root/actions';
+import bind from 'Root/js/bind';
 import Button from 'Root/components/Button';
+import newSite from 'Root/actions/user/site/new';
 import styles from './index.less';
 
 class Sites extends Component {
+  @bind
+  newSite() {
+    this.props.dispatch(newSite('Hello World'));
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -17,7 +24,9 @@ class Sites extends Component {
             <h3>
               لیست سایت های شما:
             </h3>
-            <Button color='black'>
+            <Button
+              color='black'
+              handleClick={this.newSite}>
               افزودن سایت جدید
             </Button>
           </div>
