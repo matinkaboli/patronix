@@ -78,11 +78,7 @@ class Sidebar extends Component {
           </p>
         </div>
         <ul>
-          {links.map((v, i) =>
-            <li key={i}>
-              <SLink {...v} />
-            </li>
-          )}
+          {links.map((v, i) => <li key={i}><SLink {...v} /></li> )}
         </ul>
       </nav>
     );
