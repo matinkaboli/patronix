@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import SLink from './SLink';
 import bind from 'Root/js/bind';
@@ -9,6 +10,11 @@ import styles from './index.less';
 import 'Root/styles/icon.less';
 
 class Sidebar extends Component {
+  shouldComponentUpdate() {
+    this.forceUpdate();
+    return true;
+  }
+
   @bind
   logout() {
     this.props.dispatch(logout);
@@ -83,6 +89,6 @@ class Sidebar extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({ user: state.user })
-)(Sidebar);
+)(Sidebar));
