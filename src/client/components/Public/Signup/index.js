@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import izitoast from 'izitoast';
 
 import Form from 'Root/components/Form';
 import bind from 'Root/js/bind';
 import signup from 'Root/actions/signup';
 import captcha from 'Root/actions/captcha';
+import { email } from 'Root/js/validator';
 
 class Signup extends Component {
   @bind
   signup(refs) {
+    if (!email(refs.email.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل صحیح نمیباشد'
+      });
+      return;
+    }
+
     signup({
       name: refs.name.value,
       email: refs.email.value,
