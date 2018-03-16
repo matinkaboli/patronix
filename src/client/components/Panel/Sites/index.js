@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import izitoast from 'izitoast';
 
 import Box from 'Root/components/Box';
 import lazy from 'Root/js/lazy';
@@ -13,7 +14,16 @@ import styles from './index.less';
 class Sites extends Component {
   @bind
   newSite() {
-    this.props.dispatch(newSite('Hello World'));
+    if (!this.refs.new.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نیستند'
+      });
+
+      return;
+    }
+
+    this.props.dispatch(newSite(this.refs.new.value));
   }
 
   render() {
@@ -24,6 +34,12 @@ class Sites extends Component {
             <h3>
               لیست سایت های شما:
             </h3>
+            <input
+              type='text'
+              ref='new'
+              placeholder='افزودن سایت'
+              className={styles.newSite}
+            />
             <Button
               color='black'
               handleClick={this.newSite}>
