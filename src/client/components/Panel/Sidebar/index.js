@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import SLink from './Link';
+import SLink from './SLink';
 import bind from 'Root/js/bind';
 import logout from 'Root/actions/user/logout';
 import defaultImage from 'Root/images/user-default.png';
