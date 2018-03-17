@@ -10,9 +10,33 @@ import Form from 'Root/components/Form';
 import captcha from 'Root/actions/captcha';
 
 class Login extends Component {
-  state = {
-    attempt: 0,
-    inputs: [
+  @bind
+  login(refs) {
+    if (!email(refs.email.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل اشتباه است'
+      });
+      refs.email.focus();
+      return;
+    }
+
+    if (this.props.attempt >= 1) {
+      this.props.dispatch(loginAct({
+        email: refs.email.value,
+        password: refs.password.value
+      }, this.props.history.push, refs.captcha.value));
+      return;
+    }
+
+    this.props.dispatch(loginAct({
+      email: refs.email.value,
+      password: refs.password.value
+    }, this.props.history.push));
+  }
+
+  render() {
+    const inputs = [
       {
         tag: 'input',
         attrs: {
@@ -38,72 +62,37 @@ class Login extends Component {
           type: 'submit'
         }
       }
-    ]
-  };
+    ];
 
-  @bind
-  login(refs) {
-    this.setState(prev => ({ attempt: prev.attempt + 1 }));
-    if (this.props.captcha && this.state.attempt === 1) {
-
-      this.setState(prev => {
-        const inputs = prev.inputs;
-
-        inputs.splice(2, 0, {
-          tag: 'div',
-          attrs: {
-            dangerouslySetInnerHTML: {
-              __html: this.props.captcha
-            }
+    if (this.props.attempt >= 1) {
+      inputs.splice(2, 0, {
+        tag: 'div',
+        attrs: {
+          dangerouslySetInnerHTML: {
+            __html: this.props.captcha
           }
-        }, {
-          tag: 'i',
-          attrs: {
-            className: 'icon icon-refresh',
-            onClick: captcha
-          }
-        }, {
-          tag: 'input',
-          attrs: {
-            type: 'text',
-            placeholder: 'کد امنیتی',
-            required: true,
-            name: 'captcha'
-          }
-        });
-
-        return { inputs };
+        }
+      }, {
+        tag: 'i',
+        attrs: {
+          className: 'icon icon-refresh',
+          onClick: captcha
+        }
+      }, {
+        tag: 'input',
+        attrs: {
+          type: 'text',
+          placeholder: 'کد امنیتی',
+          required: true,
+          name: 'captcha'
+        }
       });
     }
 
-    if (!email(refs.email.value)) {
-      izitoast.warning({
-        rtl: true,
-        title: 'ایمیل اشتباه است'
-      });
-      refs.email.focus();
-      return;
-    }
-
-    if (this.props.captcha && this.state.attempt > 1) {
-      this.props.dispatch(loginAct({
-        email: refs.email.value,
-        password: refs.password.value
-      }, this.props.history.push, refs.captcha.value));
-      return;
-    }
-
-    this.props.dispatch(loginAct({
-      email: refs.email.value,
-      password: refs.password.value
-    }, this.props.history.push));
-  }
-
-  render() {
     return (
       <div>
         <Form
-          inputs={this.state.inputs}
+          inputs={inputs}
           submitFunction={this.login}>
           <h1>ورود</h1>
         </Form>
@@ -120,5 +109,8 @@ class Login extends Component {
 }
 
 export default withRouter(
-  connect(state => ({ captcha: state.captcha }))(Login)
+  connect(state => ({
+    captcha: state.captcha,
+    attempt: state.attempt
+  }))(Login)
 );

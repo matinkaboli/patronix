@@ -1,6 +1,7 @@
 export default {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
+  LOGIN_FAILED: 'LOGIN_FAILED',
   SET_CAPTCHA: 'SET_CAPTCHA',
   lazy: {
     START_LOADING: 'lazy/START_LOADING',
