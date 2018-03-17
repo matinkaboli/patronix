@@ -41,6 +41,8 @@ socket
     return;
   }
 
+  socket.attempt = 1;
+
   let token = await ClientToken.findOne({ user: user._id });
   if (token) {
     await token.remove();
