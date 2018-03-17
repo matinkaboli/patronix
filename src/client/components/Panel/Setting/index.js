@@ -135,6 +135,8 @@ class Setting extends Component {
   }
 
   render() {
+    console.log(this.props.attempt);
+
     let profileImage = null;
 
     if (this.props.user.avatar) {
@@ -261,7 +263,9 @@ class Setting extends Component {
 
 export default lazy(
   connect(
-    state => ({ user: state.user })
+    state => ({
+      user: state.user
+    })
   )(Setting),
   types.user.LOAD
 );

@@ -6,6 +6,10 @@ export default (state = 0, action) => {
       return ++state;
     }
 
+    case types.LOGIN_SUCCESS: {
+      return 0;
+    }
+
     default: {
       return state;
     }

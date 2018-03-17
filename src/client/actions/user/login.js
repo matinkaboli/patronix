@@ -2,7 +2,6 @@ import izitoast from 'izitoast';
 
 import socket from 'Root/socket';
 import types from 'Root/actions';
-import store from 'Root/store';
 import recaptcha from 'Root/actions/captcha';
 import ResponseHandler from 'Root/js/ResponseHandler';
 
@@ -14,9 +13,13 @@ export default (credentials, push, captcha) => dispatch => {
     .handle('success', () => {
       localStorage.token = res.token;
 
-      store.dispatch({
+      dispatch({
         type: types.user.LOGIN,
         ...res.user
+      });
+
+      dispatch({
+        type: types.LOGIN_SUCCESS
       });
 
       push('/panel');
@@ -25,7 +28,7 @@ export default (credentials, push, captcha) => dispatch => {
     .handle('unauth', () => {
       recaptcha();
 
-      store.dispatch({
+      dispatch({
         type: types.LOGIN_FAILED
       });
 
