@@ -2,6 +2,7 @@ import izitoast from 'izitoast';
 
 import socket from 'Root/socket';
 import types from 'Root/actions';
+import recaptcha from 'Root/actions/captcha';
 import ResponseHandler from 'Root/js/ResponseHandler';
 
 export default (credentials, push, captcha) => dispatch => {
@@ -21,6 +22,7 @@ export default (credentials, push, captcha) => dispatch => {
     })
 
     .handle('unauth', () => {
+      recaptcha();
       izitoast.error({
         rtl: true,
         title: 'ایمیل یا رمز اشتباه وارد شده است'
@@ -28,6 +30,7 @@ export default (credentials, push, captcha) => dispatch => {
     })
 
     .handle('error', () => {
+      recaptcha();
       izitoast.error({
         rtl: true,
         title: 'خطا! دوباره امتحان کنید'
