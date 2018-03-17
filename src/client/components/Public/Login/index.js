@@ -85,7 +85,7 @@ class Login extends Component {
       return;
     }
 
-    if (this.props.captcha) {
+    if (this.props.captcha && this.state.attempt > 1) {
       this.props.dispatch(loginAct({
         email: refs.email.value,
         password: refs.password.value
