@@ -103,6 +103,39 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.7);
 }
 
+:local(.loading) {
+  animation-name: loadingFlow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+:local(.notLoading) {
+  animation-fill-mode: forwards;
+  border-bottom-color: rgba(0, 0, 0, 0.7);
+}
+
+@keyframes loadingFlow {
+  0% {
+    border-bottom-color: @blue-base;
+  }
+
+  25% {
+    border-bottom-color: @blue-1;
+  }
+
+  50% {
+    border-bottom-color: @blue-2;
+  }
+
+  75% {
+    border-bottom-color: @blue-1;
+  }
+
+  100% {
+    border-bottom-color: @blue-base;
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.nav) {
     width: 50px;

@@ -135,8 +135,6 @@ class Setting extends Component {
   }
 
   render() {
-    console.log(this.props.attempt);
-
     let profileImage = null;
 
     if (this.props.user.avatar) {

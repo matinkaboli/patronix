@@ -39,6 +39,14 @@ class Sidebar extends Component {
   }
 
   render() {
+    const userInfoClasses = [styles.userInfo];
+
+    if (this.props.loading) {
+      userInfoClasses.push(styles.loading);
+    } else {
+      userInfoClasses.push(styles.notLoading);
+    }
+
     const links = [
       {
         to: '/panel',
@@ -70,7 +78,10 @@ class Sidebar extends Component {
 
     return (
       <nav className={styles.nav}>
-        <div className={styles.userInfo}>
+        <div
+          ref='userInfo'
+          className={userInfoClasses.join(' ')}
+        >
           {this.renderImage()}
           <p>
             {this.props.user.name}
@@ -85,5 +96,8 @@ class Sidebar extends Component {
 }
 
 export default withRouter(connect(
-  state => ({ user: state.user })
+  state => ({
+    user: state.user,
+    loading: state.lazy.loading
+  })
 )(Sidebar));
