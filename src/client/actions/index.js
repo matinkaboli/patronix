@@ -13,7 +13,8 @@ export default {
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',
     UPDATE_EMAIL: 'user/UPDATE_EMAIL',
     LOGIN: 'user/LOGIN',
-    LOGOUT: 'user/LOGOUT'
+    LOGOUT: 'user/LOGOUT',
+    LOGIN_FAILED: 'user/LOGIN_FAILED'
   },
   sites: {
     LOAD: 'sites/LOAD',

@@ -11,6 +11,7 @@ import captcha from 'Root/actions/captcha';
 
 class Login extends Component {
   state = {
+    attempt: 0,
     inputs: [
       {
         tag: 'input',
@@ -42,7 +43,8 @@ class Login extends Component {
 
   @bind
   login(refs) {
-    if (this.props.captcha) {
+    this.setState(prev => ({ attempt: prev.attempt + 1 }));
+    if (this.props.captcha && this.state.attempt === 1) {
 
       this.setState(prev => {
         const inputs = prev.inputs;
