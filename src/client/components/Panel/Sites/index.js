@@ -32,28 +32,30 @@ class Sites extends Component {
         <Box>
           <h3 className={styles.title}>لیست سایت های شما:</h3>
           <br />
-          <div className={styles.site}>
-           <p>نام سایت: {this.props.sites.site.name}</p>
-           <Link to='/panel/sites/setting'>
-             <Button color='black'>
-               تنظیمات سایت
-             </Button>
-           </Link>
-          </div>
-          <h3 className={styles.title} />
-          <div className={styles.site}>
-            <input
-              type='text'
-              ref='new'
-              placeholder='افزودن سایت جدید'
-              className={styles.newSite}
-            />
-            <Button
-              color='black'
-              handleClick={this.newSite}>
-              افزودن
-            </Button>
-          </div>
+          {this.props.sites.site ?
+            <div className={styles.site}>
+              <p>نام سایت: {this.props.sites.site.name}</p>
+              <Link to='/panel/sites/setting'>
+                <Button color='blue'>
+                  تنظیمات سایت
+                </Button>
+              </Link>
+            </div> :
+            <div className={styles.site}>
+              <input
+                type='text'
+                ref='new'
+                placeholder='افزودن سایت جدید'
+                className={styles.newSite}
+              />
+              <Button
+                color='blue'
+                handleClick={this.newSite}>
+                افزودن
+              </Button>
+              <h3 className={styles.title} />
+            </div>
+          }
         </Box>
 
         <Box>
