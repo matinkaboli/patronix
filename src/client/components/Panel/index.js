@@ -6,7 +6,7 @@ import Sites from './Sites';
 import Setting from './Setting';
 import HomePanel from './HomePanel';
 import Chats from './Chats';
-import Site from './Site';
+import SiteSetting from './Sites/Setting';
 import styles from './index.less';
 
 class Panel extends Component {
@@ -19,7 +19,7 @@ class Panel extends Component {
           <Switch>
             <Route exact path='/panel' component={HomePanel} />
             <Route exact path='/panel/sites' component={Sites} />
-            <Route path='/panel/sites/:sitename' component={Site} />
+            <Route path='/panel/sites/setting' component={SiteSetting} />
             <Route path='/panel/setting' component={Setting} />
             <Route path='/panel/chats' component={Chats} />
             <Route>

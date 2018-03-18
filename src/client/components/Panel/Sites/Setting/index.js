@@ -6,7 +6,6 @@ import types from 'Root/actions';
 
 class Site extends Component {
   render() {
-    console.log(this.props.sites);
     return <p>{this.props.sites.name}</p>;
   }
 }

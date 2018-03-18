@@ -34,7 +34,7 @@ class Sites extends Component {
           <br />
           <div className={styles.site}>
            <p>نام سایت: {this.props.sites.site.name}</p>
-           <Link to={`/panel/sites/${this.props.sites.site.name}`}>
+           <Link to='/panel/sites/setting'>
              <Button color='black'>
                تنظیمات سایت
              </Button>
