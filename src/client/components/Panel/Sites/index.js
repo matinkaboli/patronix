@@ -30,37 +30,37 @@ class Sites extends Component {
     return (
       <div className={styles.container}>
         <Box>
-          <div className={styles.header}>
-            <h3>
-              لیست سایت های شما:
-            </h3>
-            <input
-              type='text'
-              ref='new'
-              placeholder='افزودن سایت'
-              className={styles.newSite}
-            />
-            <Button
-              color='black'
-              handleClick={this.newSite}>
-              افزودن سایت جدید
-            </Button>
-          </div>
+          <h3 className={styles.title}>لیست سایت های شما:</h3>
+          <br />
           {this.props.sites.map((v, i) =>
-            <div key={i}>
-              <p>{v.name}</p>
-              <Link to={`/panel/sites/${v.name}`}>
+            <div key={i} className={styles.site}>
+              <span>نام سایت: { v.name }</span>
+              <Link to={`/panel/sites/${ v.name }`}>
                 <Button color='black'>
                   تنظیمات سایت
                 </Button>
               </Link>
             </div>
           )}
+          <h3 className={styles.title} />
+          <div className={styles.site}>
+            <input
+              type='text'
+              ref='new'
+              placeholder='افزودن سایت جدید'
+              className={styles.newSite}
+            />
+            <Button
+              color='black'
+              handleClick={this.newSite}>
+              افزودن
+            </Button>
+          </div>
         </Box>
 
         <Box>
-          <div className={styles.header}>
-            <h3>
+          <div>
+            <h3 className={styles.title}>
               لیست سایت هایی که شما در آن اوپراتور هستید:
             </h3>
           </div>
