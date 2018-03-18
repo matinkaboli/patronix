@@ -67,7 +67,3 @@ gulp.task('lint', () =>
 
 gulp.task('dev', ['clean', 'copy', 'dev:client', 'dev:customer', 'dev:server']);
 gulp.task('prod', ['clean', 'copy', 'prod:client', 'prod:customer', 'prod:server']);
-
-gulp.task('watch', () =>
-  gulp.watch('src/**/*', ['dev'])
-);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
-    "dev:build": "gulp dev watch",
+    "dev:build": "gulp dev",
     "prod:build": "gulp prod",
     "server": "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
     "compress": "tar -czvf app.tar.gz build package.json",
