@@ -10,7 +10,6 @@ export default (state = {
     }
 
     case types.sites.LOAD: {
-      console.log(rest);
       return rest.data;
     }
 
