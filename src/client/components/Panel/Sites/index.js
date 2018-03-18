@@ -27,7 +27,6 @@ class Sites extends Component {
   }
 
   render() {
-    console.log('Props: ', this.props.sites);
     return (
       <div className={styles.container}>
         <Box>

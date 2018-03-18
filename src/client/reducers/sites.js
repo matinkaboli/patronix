@@ -6,12 +6,10 @@ export default (state = {
 }, action) => {
   switch (action.type) {
     case types.sites.ADD: {
-      console.log('Action: ', action);
       return { ...state, site: { name: action.name } };
     }
 
     case types.sites.LOAD: {
-      console.log('LOAD: ', action);
       return action.data;
     }
 
