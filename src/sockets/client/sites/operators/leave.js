@@ -27,6 +27,11 @@ socket
       return;
     }
 
+    if (site.owner._id.toString() === userId) {
+      socket.emit('sites/operators/leave', 400, 3);
+      return;
+    }
+
     let index = operators.findIndex(i => i === userId);
     site.operators.splice(index, index + 1);
     await site.save();

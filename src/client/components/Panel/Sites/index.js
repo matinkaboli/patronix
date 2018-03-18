@@ -32,16 +32,14 @@ class Sites extends Component {
         <Box>
           <h3 className={styles.title}>لیست سایت های شما:</h3>
           <br />
-          {this.props.sites.map((v, i) =>
-            <div key={i} className={styles.site}>
-              <span>نام سایت: { v.name }</span>
-              <Link to={`/panel/sites/${ v.name }`}>
-                <Button color='black'>
-                  تنظیمات سایت
-                </Button>
-              </Link>
-            </div>
-          )}
+          <div className={styles.site}>
+           <p>نام سایت: {this.props.sites.site.name}</p>
+           <Link to={`/panel/sites/${this.props.sites.site.name}`}>
+             <Button color='black'>
+               تنظیمات سایت
+             </Button>
+           </Link>
+          </div>
           <h3 className={styles.title} />
           <div className={styles.site}>
             <input
