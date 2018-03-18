@@ -46,16 +46,14 @@ class Sites extends Component {
               افزودن سایت جدید
             </Button>
           </div>
-          {this.props.sites.map((v, i) =>
-            <div key={i}>
-              <p>{v.name}</p>
-              <Link to={`/panel/sites/${v.name}`}>
-                <Button color='black'>
-                  تنظیمات سایت
-                </Button>
-              </Link>
-            </div>
-          )}
+           <div>
+             <p>{this.props.sites.site.name}</p>
+             <Link to={`/panel/sites/${this.props.sites.site.name}`}>
+               <Button color='black'>
+                 تنظیمات سایت
+               </Button>
+             </Link>
+           </div>
         </Box>
 
         <Box>
