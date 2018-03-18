@@ -3,14 +3,14 @@ import types from 'Root/actions';
 export default (state = {
   site: {},
   sites: []
-}, { type, ...rest }) => {
-  switch (type) {
+}, action) => {
+  switch (action.type) {
     case types.sites.ADD: {
-      return [...state, rest];
+      return { ...state, site: action.site };
     }
 
     case types.sites.LOAD: {
-      return rest.data;
+      return action.data;
     }
 
     default: {

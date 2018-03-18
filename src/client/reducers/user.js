@@ -1,11 +1,11 @@
 import types from 'Root/actions';
 
-export default (state = {}, { type, ...rest }) => {
-  switch (type) {
+export default (state = {}, action) => {
+  switch (action.type) {
     case types.user.LOGIN: {
       return {
         logged: true,
-        ...rest
+        ...action.user
       };
     }
 
@@ -18,28 +18,28 @@ export default (state = {}, { type, ...rest }) => {
     case types.user.LOAD: {
       return {
         ...state,
-        ...rest.data
+        ...action.data
       };
     }
 
     case types.user.SET_AVATAR: {
       return {
         ...state,
-        avatar: rest.avatar
+        avatar: action.avatar
       };
     }
 
     case types.user.UPDATE_NAME: {
       return {
         ...state,
-        name: rest.name
+        name: action.name
       };
     }
 
     case types.user.UPDATE_EMAIL: {
       return {
         ...state,
-        email: rest.email
+        email: action.email
       };
     }
 

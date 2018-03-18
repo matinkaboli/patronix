@@ -12,7 +12,7 @@ export default new Promise(resolve => {
       .handle('success', () => {
         dispatch({
           type: types.user.LOGIN,
-          ...res.user
+          user: res.user
         });
       })
       .handle('forbidden', () => {})

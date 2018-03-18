@@ -15,7 +15,7 @@ export default (credentials, push, captcha) => dispatch => {
 
       dispatch({
         type: types.user.LOGIN,
-        ...res.user
+        user: res.user
       });
 
       dispatch({
