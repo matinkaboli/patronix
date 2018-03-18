@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class Index extends Component {
+import lazy from 'Root/js/lazy';
+import types from 'Root/actions';
+
+class Site extends Component {
   render() {
-    return <p>home</p>;
+    console.log(this.props.sites);
+    return <p>{this.props.sites.name}</p>;
   }
 }
 
-export default Index;
+export default lazy(
+  connect(
+    state => ({
+      sites: state.sites.site
+    })
+  )(Site),
+  types.sites.LOAD
+);
