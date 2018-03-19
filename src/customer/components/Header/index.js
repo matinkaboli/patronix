@@ -18,12 +18,12 @@ class Header extends Component {
   render() {
     return (
       <div
-        className={toggle(styles, this.props.status, 'container')}
+        className={toggle(styles, this.props.appStatus, 'container')}
         onClick={this.click}>
-        <p
-          className={toggle(styles, this.props.status, 'circle')}>
+        <h4
+          className={toggle(styles, this.props.appStatus, 'circle')}>
           پشتیبانی
-        </p>
+        </h4>
       </div>
     );
   }
@@ -31,6 +31,6 @@ class Header extends Component {
 
 export default connect(
   state => ({
-    status: state.appStatus
+    appStatus: state.appStatus
   })
 )(Header);

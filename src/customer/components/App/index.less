@@ -1,3 +1,5 @@
+@import '~Root/styles/colors.less';
+
 :local(.container) {
   position: fixed;
   bottom: 25px;
@@ -20,9 +22,16 @@
   h5,
   h6 {
     font-family: SB;
+    margin: 0;
   }
 
   p {
     margin: 0;
   }
+}
+
+:local(.container-active) {
+  background-color: @navy-base;
+  width: 350px;
+  border-radius: 3px;
 }
