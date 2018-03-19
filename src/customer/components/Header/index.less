@@ -1,3 +1,5 @@
+@import '~Root/styles/colors.less';
+
 :local(.container) {
   width: 75px;
   padding: 10px;
@@ -17,11 +19,18 @@
   border-radius: 50%;
   padding: 0px;
   cursor: pointer;
+  background-color: @navy-base;
+  color: white;
   transition: all 0.3s;
+
+  &:hover {
+    background-color: @navy-1;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2),
+    3px 7px 16px rgba(0, 0, 0, 0.1);
+  }
 }
 
 :local(.circle-active) {
-  background-color: red;
   border-radius: 0%;
   width: 300px;
   height: auto;
@@ -29,4 +38,10 @@
   padding: 10px;
   justify-content: flex-start;
   cursor: text;
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: unset;
+  }
 }
