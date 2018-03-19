@@ -1,6 +1,6 @@
 export default {
   appStatus: {
-    ACTIVE: 'activeStatus/ACTIVE',
-    DEACTIVE: 'activeStatus/DEACTIVE'
+    ACTIVE: 'appStatus/ACTIVE',
+    DEACTIVE: 'appStatus/DEACTIVE'
   }
 };
