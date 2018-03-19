@@ -1,18 +1,32 @@
-:local(.header) {
+:local(.container) {
   width: 75px;
+  padding: 10px;
+  border-radius: 3px;
 }
 
-:local(.active) {
+:local(.container-active) {
   width: 350px;
 }
 
 :local(.circle) {
-  display: table-cell;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 75px;
   height: 75px;
-  text-align: center;
-  vertical-align: middle;
-  box-sizing: border-box;
   border-radius: 50%;
-  border: 1px solid black;
+  padding: 0px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+:local(.circle-active) {
+  background-color: red;
+  border-radius: 0%;
+  width: 300px;
+  height: auto;
+  text-align: right;
+  padding: 10px;
+  justify-content: flex-start;
+  cursor: text;
 }

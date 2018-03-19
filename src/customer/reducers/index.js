@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({
+import appStatus from './appStatus';
 
+export default combineReducers({
+  appStatus
 });

@@ -2,11 +2,13 @@ import types from 'Root/actions';
 
 export default (state = false, action) => {
   switch (action.type) {
-    case types.activeStatus.on:
+    case types.appStatus.ACTIVE: {
       return true;
+    }
 
-    case types.activeStatus.off:
+    case types.appStatus.DEACTIVE: {
       return false;
+    }
 
     default:
       return state;

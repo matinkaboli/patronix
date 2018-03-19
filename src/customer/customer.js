@@ -5,6 +5,8 @@ import store from './store';
 import App from './components/App';
 import './sockets';
 
+import 'Root/styles/index.less';
+
 window.onload = () => {
   render(
     <Provider store={store}>

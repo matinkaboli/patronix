@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import bind from 'Root/bind';
+import bind from 'Root/js/bind';
+import types from 'Root/actions';
+import toggle from 'Root/js/toggle';
+
 import styles from './index.less';
 
 class Header extends Component {
-  state = {
-    active: false
-  }
-
   @bind
   click() {
-    this.setState({ active: true });
+    this.props.dispatch({
+      type: types.appStatus.ACTIVE
+    });
   }
 
   render() {
-    let style = styles.header;
-    if (this.state.active) {
-      style = style + ' ' + styles.active;
-    }
-
     return (
-      <div className={style} onClick={this.click}>
-        <p className={styles.circle}>
+      <div
+        className={toggle(styles, this.props.status, 'container')}
+        onClick={this.click}>
+        <p
+          className={toggle(styles, this.props.status, 'circle')}>
           پشتیبانی
         </p>
       </div>
@@ -29,4 +29,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default connect(
+  state => ({
+    status: state.appStatus
+  })
+)(Header);
