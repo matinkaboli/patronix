@@ -5,12 +5,15 @@
   width: 75px;
   direction: rtl;
   transition: all 0.5s;
+  box-sizing: border-box;
+  font-family: S;
+
+  * {
+    font-family: inherit;
+    box-sizing: inherit;
+  }
 
   p {
     margin: 0;
-  }
-
-  &.active {
-    width: 350px;
   }
 }
