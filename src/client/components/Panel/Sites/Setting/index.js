@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
+import { email } from 'Root/js/validator';
 import Box from 'Root/components/Box';
 import lazy from 'Root/js/lazy';
 import types from 'Root/actions';
@@ -10,6 +11,7 @@ import Button from 'Root/components/Button';
 import Field from 'Root/components/Panel/Field';
 import updateName from 'Root/actions/user/site/name';
 import revokeToken from 'Root/actions/user/site/revokeToken';
+import inviteOperator from 'Root/actions/user/site/operator/invite';
 import removeOperator from 'Root/actions/user/site/operator/remove';
 import styles from './index.less';
 
@@ -36,6 +38,27 @@ class Site extends Component {
   removeOperator() { return email => () => {
     this.props.dispatch(removeOperator(email));
    };
+  }
+
+  @bind
+  newOperator() {
+    if (!this.refs.newOperator.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نیستند'
+      });
+      return;
+    }
+
+    if (!email(this.refs.newOperator.value)) {
+      izitoast.error({
+        rtl: true,
+        title: 'ایمیل صحیح نمیباشد'
+      });
+      return;
+    }
+
+    inviteOperator(this.refs.newOperator.value);
   }
 
   render() {
@@ -104,6 +127,28 @@ class Site extends Component {
             </Field>
             ) : ''
           }
+        </Box>
+
+        <Box>
+          <h3 className={styles.title}>اضافه کردن پشتیبان</h3>
+          <Field>
+            <div>
+              <input
+                type='email'
+                ref='newOperator'
+                placeholder='ایمیل پشتیبان'
+                className={styles.fieldInput}
+              />
+            </div>
+
+            <div>
+              <Button
+                color='black'
+                handleClick={this.newOperator}>
+                اضافه کردن
+              </Button>
+            </div>
+          </Field>
         </Box>
       </div>
     );

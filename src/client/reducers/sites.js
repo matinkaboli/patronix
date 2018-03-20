@@ -28,11 +28,9 @@ export default (state = {
     }
 
     case types.sites.REMOVE_OPERATOR: {
-      console.log(state);
-      console.log(action);
       return { ...state };
     }
-
+    
     case types.sites.LEAVE: {
       const sites = Array.from(state.sites);
       sites.splice(action.id, 1);
