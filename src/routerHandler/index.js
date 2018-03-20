@@ -1,9 +1,13 @@
-export const routers = [
+const flat = arr => [].concat(...arr.map(v => Array.isArray(v) ? flat(v) : v));
+
+const pureRouters = [
   require('./activate'),
   require('./recovery'),
   require('./setting'),
   require('./sites')
 ];
+
+export const routers = flat(pureRouters);
 
 export function routerHandler(socket, { path, params }) {
   for (let router of routers.values()) {

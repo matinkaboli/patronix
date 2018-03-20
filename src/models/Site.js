@@ -17,7 +17,10 @@ const schema = new Schema({
     required: true,
     unique: true
   },
-  operators: [Schema.Types.ObjectId]
+  operators: [ {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 });
 
 export default mongoose.model('Site', schema);
