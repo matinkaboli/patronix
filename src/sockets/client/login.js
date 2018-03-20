@@ -56,7 +56,9 @@ socket
   let ss = await SocketStore.findOne({ user: user._id });
   if (ss) {
     for (let sid of ss.sockets) {
-      sid !== socket.id && nsp.sockets[sid].disconnect();
+      sid !== socket.id &&
+      nsp.sockets[sid] &&
+      nsp.sockets[sid].disconnect();
     }
 
     ss.sockets = [socket.id];
