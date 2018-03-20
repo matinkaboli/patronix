@@ -9,9 +9,15 @@ import types from 'Root/actions';
 import bind from 'Root/js/bind';
 import Button from 'Root/components/Button';
 import newSite from 'Root/actions/user/site/new';
+import leaveSite from 'Root/actions/user/site/operator/leave';
 import styles from './index.less';
 
 class Sites extends Component {
+  @bind
+  showName(e) {
+    console.log(e.target.dataset.id);
+  }
+
   @bind
   newSite() {
     if (!this.refs.new.value) {
@@ -28,10 +34,32 @@ class Sites extends Component {
 
   @bind
   leaveSite() {
-    console.log('You left the site');
+    izitoast.question({
+        timeout: 10000,
+        close: false,
+        overlay: true,
+        toastOnce: true,
+        id: 'question',
+        zindex: 999,
+        rtl: true,
+        title: 'مطمئنی؟',
+        position: 'center',
+        buttons: [
+          ['<button><b>اره</b></button>', (instance, toast) => {
+            instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
+
+            // this.props.dispatch(leaveSite())
+            console.log();
+          }, true],
+          ['<button>نه</button>', (instance, toast) => {
+            instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
+          }]
+        ]
+    });
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className={styles.container}>
         <Box>
