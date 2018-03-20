@@ -8,7 +8,6 @@ socket
 .namespace('/customer')
 .name('disconnect')
 .middleware(
-  middlewares.customer.inited,
   middlewares.customer.checkToken,
   middlewares.customer.hasChat
 )

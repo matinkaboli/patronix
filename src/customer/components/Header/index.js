@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import bind from 'Root/js/bind';
 import types from 'Root/actions';
 import toggle from 'Root/js/toggle';
+import init from 'Root/actions/init';
 import Loading from './Loading';
 
 import styles from './index.less';
@@ -15,6 +16,8 @@ class Header extends Component {
       this.props.dispatch({
         type: types.appStatus.ACTIVE
       });
+
+      this.props.dispatch(init);
     }
   }
 
