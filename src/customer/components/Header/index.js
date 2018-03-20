@@ -27,7 +27,9 @@ class Header extends Component {
 
   @bind
   information() {
-    return <Loading />;
+    if (this.props.loading) {
+      return <Loading />;
+    }
   }
 
   render() {
@@ -55,6 +57,7 @@ class Header extends Component {
 
 export default connect(
   state => ({
-    appStatus: state.appStatus
+    appStatus: state.appStatus,
+    loading: state.loading
   })
 )(Header);
