@@ -21,6 +21,7 @@ export default {
   sites: {
     LOAD: 'sites/LOAD',
     ADD: 'sites/ADD',
+    UPDATE_NAME: 'sites/UPDATE_NAME',
     operator: {
       leave: 'sites/operator/LEAVE'
     }

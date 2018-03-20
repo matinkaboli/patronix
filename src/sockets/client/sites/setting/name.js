@@ -16,7 +16,7 @@ socket
 
   try {
     await socket.data.site.save();
-    socket.emit('sites/setting/name');
+    socket.emit('sites/setting/name', 200);
   } catch (e) {
     socket.emit('sites/setting/name', 400);
   }

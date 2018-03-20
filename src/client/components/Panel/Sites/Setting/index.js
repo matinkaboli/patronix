@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import izitoast from 'izitoast';
 
 import Box from 'Root/components/Box';
 import lazy from 'Root/js/lazy';
@@ -7,12 +8,21 @@ import types from 'Root/actions';
 import bind from 'Root/js/bind';
 import Button from 'Root/components/Button';
 import Field from 'Root/components/Panel/Field';
+import updateName from 'Root/actions/user/site/name';
 import styles from './index.less';
 
 class Site extends Component {
   @bind
   updateName() {
-    console.log('Name updated');
+    if (!this.refs.name.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نیستند'
+      });
+      return;
+    }
+
+    this.props.dispatch(updateName(this.refs.name.value));
   }
 
   render() {
@@ -41,6 +51,7 @@ class Site extends Component {
               </Button>
             </div>
           </Field>
+          <p>{this.props.sites.name}</p>
         </Box>
       </div>
     );
