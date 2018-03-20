@@ -72,6 +72,7 @@ class Site extends Component {
   }
 
   render() {
+    console.log(this.props.site);
     return (
       <div className={styles.container}>
         <Box>
@@ -119,7 +120,7 @@ class Site extends Component {
 
         <Box>
           <h3 className={styles.title}>پشتیبان ها</h3>
-          {this.props.site.operators.length ?
+          {this.props.site.operators ?
             this.props.site.operators.map((v, i) =>
             <Field key={i}>
               <div>
@@ -127,13 +128,13 @@ class Site extends Component {
                 <p>ایمیل: {v.email}</p>
               </div>
 
-              <div>
+              {this.props.site.owner === v._id ? '' : <div>
                 <Button
                   color='red'
                   handleClick={this.removeOperator()(v.email)}>
                   حذف پشتیبان
                 </Button>
-              </div>
+              </div>}
             </Field>
             ) : ''
           }
