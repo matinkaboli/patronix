@@ -61,7 +61,7 @@ class Sites extends Component {
         <Box>
           <div>
             <h3 className={styles.title}>
-              لیست سایت هایی که شما پشتیبانی میکنید:
+              لیست سایت هایی که پشتیبانی میکنید:
             </h3>
             {this.props.sites.sites.map((v, i) =>
               <div key={i} className={styles.site}>
