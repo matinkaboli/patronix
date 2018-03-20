@@ -14,11 +14,6 @@ import styles from './index.less';
 
 class Sites extends Component {
   @bind
-  showName(e) {
-    console.log(e.target.dataset.id);
-  }
-
-  @bind
   newSite() {
     if (!this.refs.new.value) {
       izitoast.warning({
