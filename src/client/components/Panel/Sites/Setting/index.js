@@ -9,6 +9,7 @@ import bind from 'Root/js/bind';
 import Button from 'Root/components/Button';
 import Field from 'Root/components/Panel/Field';
 import updateName from 'Root/actions/user/site/name';
+import revokeToken from 'Root/actions/user/site/revokeToken';
 import styles from './index.less';
 
 class Site extends Component {
@@ -25,9 +26,14 @@ class Site extends Component {
     this.props.dispatch(updateName(this.refs.name.value));
   }
 
+  @bind
+  revokeToken() {
+    this.props.dispatch(revokeToken());
+  }
+
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <Box>
           <h3 className={styles.title}>نام سایت</h3>
 
@@ -51,7 +57,24 @@ class Site extends Component {
               </Button>
             </div>
           </Field>
-          <p>{this.props.sites.name}</p>
+        </Box>
+
+        <Box>
+          <h3 className={styles.title}>توکن سایت</h3>
+          <Field>
+            <div>
+              <p>توکن</p>
+              <p>{this.props.sites.token}</p>
+            </div>
+
+            <div>
+              <Button
+                color='blue'
+                handleClick={this.revokeToken}>
+                توکن جدید
+              </Button>
+            </div>
+          </Field>
         </Box>
       </div>
     );

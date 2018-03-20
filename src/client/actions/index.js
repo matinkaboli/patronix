@@ -22,6 +22,7 @@ export default {
     LOAD: 'sites/LOAD',
     ADD: 'sites/ADD',
     UPDATE_NAME: 'sites/UPDATE_NAME',
+    REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
     operator: {
       leave: 'sites/operator/LEAVE'
     }

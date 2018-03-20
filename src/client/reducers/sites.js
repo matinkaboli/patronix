@@ -16,7 +16,14 @@ export default (state = {
     case types.sites.UPDATE_NAME: {
       return {
         ...state,
-        site: { name: action.name }
+        site: { ...state.site, name: action.name }
+      };
+    }
+
+    case types.sites.REVOKE_TOKEN: {
+      return {
+        ...state,
+        site: { ...state.site, token: action.token }
       };
     }
 

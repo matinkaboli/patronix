@@ -17,7 +17,7 @@ socket
 
   try {
     await socket.data.site.save();
-    socket.emit('sites/setting/revokeToken');
+    socket.emit('sites/setting/revokeToken', 200, socket.data.site.token);
   } catch (e) {
     socket.emit('sites/setting/revokeToken', 400);
   }
