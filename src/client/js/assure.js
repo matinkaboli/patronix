@@ -1,8 +1,6 @@
 import izitoast from 'izitoast';
 
-function rej() {}
-
-export default (accept, reject = rej()) => {
+export default (accept = () => {}, reject = () => {}) => {
   izitoast.question({
       timeout: 10000,
       close: false,

@@ -67,12 +67,11 @@ class Site extends Component {
   @bind
   removeSite() {
     assure(() => {
-      removeSite(this.props.history.push);
+      this.props.dispatch(removeSite(this.props.history.push));
     });
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className={styles.container}>
         <Box>
