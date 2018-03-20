@@ -72,6 +72,7 @@ class Site extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className={styles.container}>
         <Box>
@@ -171,12 +172,13 @@ class Site extends Component {
   }
 }
 
-export default withRouter(
-  lazy(
-  connect(
-    state => ({
-      site: state.sites.site
-    })
-  )(Site),
+export default lazy(
+  withRouter(
+    connect(
+      state => ({
+        site: state.sites.site
+      })
+    )(Site)
+  ),
   types.sites.LOAD
-));
+);
