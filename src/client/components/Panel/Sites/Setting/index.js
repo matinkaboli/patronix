@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
-import { email } from 'Root/js/validator';
-import Box from 'Root/components/Box';
-import lazy from 'Root/js/lazy';
 import types from 'Root/actions';
-import bind from 'Root/js/bind';
-import Button from 'Root/components/Button';
-import Field from 'Root/components/Panel/Field';
-import updateName from 'Root/actions/user/site/name';
+import removeSite from 'Root/actions/user/site/remove';
 import revokeToken from 'Root/actions/user/site/revokeToken';
 import inviteOperator from 'Root/actions/user/site/operator/invite';
 import removeOperator from 'Root/actions/user/site/operator/remove';
+import updateName from 'Root/actions/user/site/name';
+import { email } from 'Root/js/validator';
+import lazy from 'Root/js/lazy';
+import assure from 'Root/js/assure';
+import bind from 'Root/js/bind';
+import Box from 'Root/components/Box';
+import Button from 'Root/components/Button';
+import Field from 'Root/components/Panel/Field';
 import styles from './index.less';
 
 class Site extends Component {
@@ -59,6 +62,13 @@ class Site extends Component {
     }
 
     inviteOperator(this.refs.newOperator.value);
+  }
+
+  @bind
+  removeSite() {
+    assure(() => {
+      removeSite(this.props.history.push);
+    });
   }
 
   render() {
@@ -150,16 +160,23 @@ class Site extends Component {
             </div>
           </Field>
         </Box>
+
+        <Button
+          color='red'
+          handleClick={this.removeSite}>
+          حذف سایت
+        </Button>
       </div>
     );
   }
 }
 
-export default lazy(
+export default withRouter(
+  lazy(
   connect(
     state => ({
       site: state.sites.site
     })
   )(Site),
   types.sites.LOAD
-);
+));

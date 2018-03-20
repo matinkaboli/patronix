@@ -29,27 +29,8 @@ class Sites extends Component {
 
   @bind
   leaveSite() { return id => () => {
-    izitoast.question({
-        timeout: 10000,
-        close: false,
-        overlay: true,
-        toastOnce: true,
-        id: 'question',
-        zindex: 999,
-        rtl: true,
-        title: 'مطمئنی؟',
-        position: 'center',
-        buttons: [
-          ['<button><b>اره</b></button>', (instance, toast) => {
-            instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
-
-            this.props.dispatch(leaveSite(id));
-
-          }, true],
-          ['<button>نه</button>', (instance, toast) => {
-            instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
-          }]
-        ]
+    assure(() => {
+      this.props.dispatch(leaveSite(id));
     });
   };
   }
