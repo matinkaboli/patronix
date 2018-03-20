@@ -15,44 +15,44 @@ gulp.task('clean', () =>
   ])
 );
 
-gulp.task('copy', ['clean'], () =>
+gulp.task('copy', () =>
   gulp.src([
     'src/index.html'
   ])
   .pipe(gulp.dest('build/'))
 );
 
-gulp.task('dev:client', ['clean'], () =>
+gulp.task('dev:client', () =>
   gulp.src('src/client/client.js')
   .pipe(webpack(require('./webpack/client/dev.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
-gulp.task('dev:customer', ['clean'], () =>
+gulp.task('dev:customer', () =>
   gulp.src('src/customer/customer.js')
   .pipe(webpack(require('./webpack/customer/dev.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
-gulp.task('dev:server', ['clean'], () =>
+gulp.task('dev:server', () =>
   gulp.src('src/app.js')
   .pipe(webpack(require('./webpack/server/dev.js')))
   .pipe(gulp.dest('build/'))
 );
 
-gulp.task('prod:client', ['clean'], () =>
+gulp.task('prod:client', () =>
   gulp.src('src/client/client.js')
   .pipe(webpack(require('./webpack/client/prod.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
-gulp.task('prod:customer', ['clean'], () =>
+gulp.task('prod:customer', () =>
   gulp.src('src/customer/customer.js')
   .pipe(webpack(require('./webpack/customer/prod.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
-gulp.task('prod:server', ['clean'], () =>
+gulp.task('prod:server', () =>
   gulp.src('src/app.js')
   .pipe(webpack(require('./webpack/server/prod.js')))
   .pipe(gulp.dest('build/'))
