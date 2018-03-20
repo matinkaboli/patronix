@@ -9,9 +9,18 @@ import styles from './index.less';
 
 class Header extends Component {
   @bind
-  click() {
+  maximize() {
+    if (!this.props.appStatus) {
+      this.props.dispatch({
+        type: types.appStatus.ACTIVE
+      });
+    }
+  }
+
+  @bind
+  minimize() {
     this.props.dispatch({
-      type: types.appStatus.ACTIVE
+      type: types.appStatus.DEACTIVE
     });
   }
 
@@ -19,11 +28,16 @@ class Header extends Component {
     return (
       <div
         className={toggle(styles, this.props.appStatus, 'container')}
-        onClick={this.click}>
-        <h4
-          className={toggle(styles, this.props.appStatus, 'circle')}>
-          پشتیبانی
-        </h4>
+        onClick={this.maximize}>
+        <div className={styles.head}>
+          <h4
+            className={toggle(styles, this.props.appStatus, 'circle')}>
+            پشتیبانی
+          </h4>
+          <span
+            className={styles.icon + ' pat-minus'}
+            onClick={this.minimize}/>
+        </div>
       </div>
     );
   }

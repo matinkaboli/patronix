@@ -2,13 +2,15 @@
 
 :local(.container) {
   width: 95px;
+  height: 95px;
+  overflow: hidden;
   padding: 10px;
   border-radius: 3px;
   border-radius: 50%;
   background-color: @navy-2;
   cursor: pointer;
-  transition: all 0.5s ease-out;
-  transition-delay: 0.3s;
+  transition: all 0.4s ease-out;
+  transition-delay: 0.4s;
   color: white;
 
   &:hover {
@@ -18,9 +20,11 @@
 
 :local(.container-active) {
   width: 350px;
+  height: 80px;
+  overflow: visible;
   border-radius: 0%;
   cursor: auto;
-  transition: all 0.3s;
+  transition: all 0.4s;
 
   &:hover {
     background-color: @navy-2;
@@ -39,10 +43,32 @@
 
 :local(.circle-active) {
   border-radius: 0%;
-  width: 300px;
+  width: auto;
   height: auto;
   text-align: right;
   padding: 10px;
   justify-content: flex-start;
   background-color: transparent;
+}
+
+:local(.head) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:local(.icon) {
+  cursor: pointer;
+
+  &::before {
+    transition: all 0.3s;
+    padding: 10px;
+    border-radius: 50%;
+  }
+
+  &:hover::before {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 }
