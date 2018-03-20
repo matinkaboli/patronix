@@ -39,7 +39,9 @@ class Site extends Component {
 
   @bind
   removeOperator() { return email => () => {
-    this.props.dispatch(removeOperator(email));
+    assure(() => {
+      this.props.dispatch(removeOperator(email));
+    });
    };
   }
 
@@ -72,7 +74,6 @@ class Site extends Component {
   }
 
   render() {
-    console.log(this.props.site);
     return (
       <div className={styles.container}>
         <Box>
