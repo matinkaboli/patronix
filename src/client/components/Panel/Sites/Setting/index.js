@@ -130,7 +130,7 @@ class Site extends Component {
         </Box>
 
         <Box>
-          <h3 className={styles.title}>اضافه کردن پشتیبان</h3>
+          <h3 className={styles.title}>دعوت پشتیبان</h3>
           <Field>
             <div>
               <input
