@@ -8,8 +8,8 @@ class Sites extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/panel/sites' component={HomeSite} />
         <Route exact path='/panel/sites/setting' component={Setting} />
+        <Route exact path='/panel/sites' component={HomeSite} />
         <Route>
           <Redirect to='/notfound' />
         </Route>

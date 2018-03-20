@@ -26,6 +26,11 @@ class Sites extends Component {
     this.props.dispatch(newSite(this.refs.new.value));
   }
 
+  @bind
+  leaveSite() {
+    console.log('You left the site');
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -57,11 +62,23 @@ class Sites extends Component {
           }
         </Box>
 
+
         <Box>
           <div>
             <h3 className={styles.title}>
-              لیست سایت هایی که شما در آن اوپراتور هستید:
+              لیست سایت هایی که پشتیبانی میکنید:
             </h3>
+            {this.props.sites.length ?
+              this.props.sites.sites.map((v, i) =>
+              <div key={i} className={styles.site}>
+                <p>{v.name}</p>
+                <Button
+                  color='red'
+                  handleClick={this.leaveSite}>
+                  ترک کردن
+                </Button>
+              </div>
+            ) : ''}
           </div>
         </Box>
       </div>

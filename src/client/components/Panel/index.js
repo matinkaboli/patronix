@@ -17,7 +17,7 @@ class Panel extends Component {
         <div className={styles.content}>
           <Switch>
             <Route exact path='/panel' component={HomePanel} />
-            <Route exact path='/panel/sites' component={Sites} />
+            <Route path='/panel/sites' component={Sites} />
             <Route path='/panel/setting' component={Setting} />
             <Route path='/panel/chats' component={Chats} />
             <Route>
