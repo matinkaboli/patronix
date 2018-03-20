@@ -13,6 +13,13 @@ export default (state = {
       return action.data;
     }
 
+    case types.sites.operator.LEAVE: {
+      const newSites = Array.from(state.sites);
+      state.sites.splice(action.id, 1);
+
+      return { ...state, sites: newSites };
+    }
+
     default: {
       return state;
     }

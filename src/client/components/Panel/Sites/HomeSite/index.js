@@ -28,7 +28,7 @@ class Sites extends Component {
   }
 
   @bind
-  leaveSite() {
+  leaveSite() { return id => () => {
     izitoast.question({
         timeout: 10000,
         close: false,
@@ -43,18 +43,18 @@ class Sites extends Component {
           ['<button><b>اره</b></button>', (instance, toast) => {
             instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
 
-            // this.props.dispatch(leaveSite())
-            console.log();
+            this.props.dispatch(leaveSite(id));
+
           }, true],
           ['<button>نه</button>', (instance, toast) => {
             instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
           }]
         ]
     });
+  };
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className={styles.container}>
         <Box>
@@ -97,7 +97,7 @@ class Sites extends Component {
                 <p>{v.name}</p>
                 <Button
                   color='red'
-                  handleClick={this.leaveSite}>
+                  handleClick={this.leaveSite()(v._id)}>
                   ترک کردن
                 </Button>
               </div>

@@ -20,6 +20,9 @@ export default {
   },
   sites: {
     LOAD: 'sites/LOAD',
-    ADD: 'sites/ADD'
+    ADD: 'sites/ADD',
+    operator: {
+      leave: 'sites/operator/LEAVE'
+    }
   }
 };
