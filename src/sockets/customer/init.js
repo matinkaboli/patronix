@@ -6,12 +6,18 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/customer')
-.name('connection')
+.name('init')
 .middleware(
   middlewares.customer.checkToken
 )
 .handler(socket => () => {
-  socket.join(socket.data.site._id.toString());
+  if (!socket.inited) {
+    socket.join(socket.data.site._id.toString());
+
+    socket.inited = true;
+  }
+  
+  socket.emit('init', 200);
 });
 
 export default socket;

@@ -8,6 +8,7 @@ socket
 .namespace('/customer')
 .name('finish')
 .middleware(
+  middlewares.customer.inited,
   middlewares.customer.checkToken,
   middlewares.customer.hasChat
 )

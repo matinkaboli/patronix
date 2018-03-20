@@ -9,6 +9,7 @@ socket
 .namespace('/customer')
 .name('message')
 .middleware(
+  middlewares.customer.inited,
   middlewares.customer.checkToken
 )
 .handler((socket, nsp, io) => async message => {

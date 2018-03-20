@@ -9,6 +9,7 @@ socket
 .namespace('/customer')
 .name('getOnlines')
 .middleware(
+  middlewares.customer.inited,
   middlewares.customer.checkToken
 )
 .handler(socket => async () => {
