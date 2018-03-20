@@ -10,6 +10,7 @@ import Button from 'Root/components/Button';
 import Field from 'Root/components/Panel/Field';
 import updateName from 'Root/actions/user/site/name';
 import revokeToken from 'Root/actions/user/site/revokeToken';
+import removeOperator from 'Root/actions/user/site/operator/remove';
 import styles from './index.less';
 
 class Site extends Component {
@@ -31,6 +32,12 @@ class Site extends Component {
     this.props.dispatch(revokeToken());
   }
 
+  @bind
+  removeOperator() { return email => () => {
+    this.props.dispatch(removeOperator(email));
+   };
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -45,7 +52,7 @@ class Site extends Component {
                 ref='name'
                 className={styles.fieldInput}
                 placeholder='نام سایت'
-                defaultValue={this.props.sites.name}
+                defaultValue={this.props.site.name}
               />
             </div>
 
@@ -64,7 +71,7 @@ class Site extends Component {
           <Field>
             <div>
               <p>توکن</p>
-              <p>{this.props.sites.token}</p>
+              <p>{this.props.site.token}</p>
             </div>
 
             <div>
@@ -76,6 +83,28 @@ class Site extends Component {
             </div>
           </Field>
         </Box>
+
+        <Box>
+          <h3 className={styles.title}>پشتیبان ها</h3>
+          {this.props.site.operators.length ?
+            this.props.site.operators.map((v, i) =>
+            <Field key={i}>
+              <div>
+                <p>نام: {v.name}</p>
+                <p>ایمیل: {v.email}</p>
+              </div>
+
+              <div>
+                <Button
+                  color='red'
+                  handleClick={this.removeOperator()(v.email)}>
+                  حذف پشتیبان
+                </Button>
+              </div>
+            </Field>
+            ) : ''
+          }
+        </Box>
       </div>
     );
   }
@@ -84,7 +113,7 @@ class Site extends Component {
 export default lazy(
   connect(
     state => ({
-      sites: state.sites.site
+      site: state.sites.site
     })
   )(Site),
   types.sites.LOAD

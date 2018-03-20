@@ -27,11 +27,17 @@ export default (state = {
       };
     }
 
-    case types.sites.operator.LEAVE: {
-      const newSites = Array.from(state.sites);
-      state.sites.splice(action.id, 1);
+    case types.sites.REMOVE_OPERATOR: {
+      console.log(state);
+      console.log(action);
+      return { ...state };
+    }
 
-      return { ...state, sites: newSites };
+    case types.sites.LEAVE: {
+      const sites = Array.from(state.sites);
+      sites.splice(action.id, 1);
+
+      return { ...state, sites };
     }
 
     default: {
