@@ -57,11 +57,20 @@ class Sites extends Component {
           }
         </Box>
 
+
         <Box>
           <div>
             <h3 className={styles.title}>
-              لیست سایت هایی که شما در آن اوپراتور هستید:
+              لیست سایت هایی که شما پشتیبانی میکنید:
             </h3>
+            {this.props.sites.sites.map((v, i) =>
+              <div key={i} className={styles.site}>
+                <p>{v.name}</p>
+                <Button color='blue'>
+                  تنظیمات سایت
+                </Button>
+              </div>
+            )}
           </div>
         </Box>
       </div>
