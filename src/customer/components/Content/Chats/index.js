@@ -7,8 +7,14 @@ class Chats extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <Chat />
-        <Chat />
+        <Chat
+          sender='customer'
+          type='message'
+        />
+        <Chat
+          sender='server'
+          type='message'
+        />
       </div>
     );
   }
