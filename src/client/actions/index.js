@@ -25,5 +25,8 @@ export default {
     REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
     LEAVE: 'sites/LEAVE',
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR'
+  },
+  invitations: {
+    LOAD: 'invitations/LOAD'
   }
 };

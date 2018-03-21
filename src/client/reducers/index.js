@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 
+import invitations from './invitations';
+import captcha from './captcha';
+import attempt from './attempt';
+import sites from './sites';
 import user from './user';
 import lazy from './lazy';
-import captcha from './captcha';
-import sites from './sites';
-import attempt from './attempt';
 
 export default combineReducers({
-  user,
-  lazy,
+  invitations,
   captcha,
+  attempt,
   sites,
-  attempt
+  user,
+  lazy
 });

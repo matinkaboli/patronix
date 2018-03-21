@@ -6,10 +6,15 @@ import Box from 'Root/components/Box';
 
 class Invitation extends Component {
   render() {
-    console.log(JSON.stringify(this.props, null, 2));
     return (
       <Box>
-        <h1>Hello Babe</h1>
+        {this.props.invitations.map((v, i) => {
+          <div key={i}>
+            <p>From: {v.from}</p>
+            <p>Code: {v.code}</p>
+            <hr />
+          </div>;
+        })}
       </Box>
     );
   }
@@ -17,6 +22,6 @@ class Invitation extends Component {
 
 export default connect(
   state => ({
-    state
+    invitations: state.invitations
   })
 )(Invitation);

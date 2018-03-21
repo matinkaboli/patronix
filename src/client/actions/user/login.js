@@ -22,6 +22,11 @@ export default (credentials, push, captcha) => dispatch => {
         type: types.LOGIN_SUCCESS
       });
 
+      dispatch({
+        type: types.invitations.LOAD,
+        invitations: res.invitations
+      });
+
       push('/panel');
     })
 
