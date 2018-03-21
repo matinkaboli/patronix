@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import bind from 'Root/js/bind';
 import recovery from 'Root/actions/recovery/recovery';
+
+import bind from 'Root/js/bind';
+
 import Form from 'Root/components/Form';
+
 
 class Index extends Component {
   @bind

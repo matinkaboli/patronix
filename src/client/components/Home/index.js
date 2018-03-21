@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import styles from './index.less';
 
+
 class Home extends Component {
   render() {
     let links;

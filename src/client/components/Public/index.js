@@ -13,7 +13,9 @@ import Activate from './Activate';
 import LoggedRoute from 'Root/components/LoggedRoute';
 import NotFound from 'Root/components/NotFound';
 import Denied from 'Root/components/Denied';
+
 import styles from './index.less';
+
 
 class Public extends Component {
   render() {

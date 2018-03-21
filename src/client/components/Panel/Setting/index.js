@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import izitoast from 'izitoast';
 import { connect } from 'react-redux';
 
-import bind from 'Root/js/bind';
+import updateAvatar from 'Root/actions/user/avatar/update';
+import removeAvatar from 'Root/actions/user/avatar/remove';
+import updateEmail from 'Root/actions/user/email';
+import updateName from 'Root/actions/user/name';
+import updatePass from 'Root/actions/user/pass';
+import types from 'Root/actions';
+
 import { email } from 'Root/js/validator';
+import bind from 'Root/js/bind';
 import lazy from 'Root/js/lazy';
+
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
-import updateAvatar from 'Root/actions/user/avatar/update';
-import removeAvatar from 'Root/actions/user/avatar/remove';
-import updateName from 'Root/actions/user/name';
-import updatePass from 'Root/actions/user/pass';
-import updateEmail from 'Root/actions/user/email';
-import types from 'Root/actions';
+
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
+
 
 class Setting extends Component {
   @bind

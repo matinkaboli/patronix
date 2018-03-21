@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Header from 'Root/components/Header';
-import Content from 'Root/components/Content';
 import toggle from 'Root/js/toggle';
 
+import Header from 'Root/components/Header';
+import Content from 'Root/components/Content';
+
 import styles from './index.less';
+
 
 class App extends Component {
   render() {

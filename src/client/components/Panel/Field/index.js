@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './index.less';
 
+
 class Field extends Component {
   render() {
     return (

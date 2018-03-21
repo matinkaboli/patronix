@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
-import Form from 'Root/components/Form';
-import bind from 'Root/js/bind';
-import signup from 'Root/actions/signup';
 import captcha from 'Root/actions/captcha';
+import signup from 'Root/actions/signup';
+
 import { email } from 'Root/js/validator';
+import bind from 'Root/js/bind';
+
+import Form from 'Root/components/Form';
+
 
 class Signup extends Component {
   @bind

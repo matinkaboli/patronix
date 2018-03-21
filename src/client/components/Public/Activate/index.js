@@ -4,6 +4,7 @@ import izitoast from 'izitoast';
 
 import lazy from 'Root/js/lazy';
 
+
 class Activate extends Component {
   render() {
     izitoast.success({

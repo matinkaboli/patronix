@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import SLink from './SLink';
-import bind from 'Root/js/bind';
 import logout from 'Root/actions/user/logout';
+
+import bind from 'Root/js/bind';
+
+import SLink from './SLink';
+
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
 import 'Root/styles/icon.less';
+
 
 class Sidebar extends Component {
   shouldComponentUpdate() {
@@ -67,6 +71,11 @@ class Sidebar extends Component {
         to: '/panel/chats',
         icon: 'comment',
         text: 'چت ها'
+      },
+      {
+        to: '/panel/invitation',
+        icon: 'comment',
+        text: 'دعوت ها'
       },
       {
         to: '#',

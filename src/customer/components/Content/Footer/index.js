@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './index.less';
 
+
 class Footer extends Component {
   render() {
     return (

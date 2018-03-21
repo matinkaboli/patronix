@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import izitoast from 'izitoast';
 import { withRouter, matchPath } from 'react-router-dom';
 
-import Form from 'Root/components/Form';
 import recover from 'Root/actions/recovery/recover';
+
 import bind from 'Root/js/bind';
 import lazy from 'Root/js/lazy';
+
+import Form from 'Root/components/Form';
+
 
 class Code extends Component {
   @bind

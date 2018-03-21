@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import toggle from 'Root/js/toggle';
+
 import Chats from './Chats';
 import Footer from './Footer';
 
 import styles from './index.less';
+
 
 class Content extends Component {
   render() {

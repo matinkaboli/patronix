@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import Box from 'Root/components/Box';
+
 import styles from './index.less';
+
 
 class About extends Component {
   render() {

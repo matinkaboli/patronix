@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './index.less';
 
+
 class Chat extends Component {
   static propTypes = {
     sender: PropTypes.oneOf(['server', 'customer']).isRequired,

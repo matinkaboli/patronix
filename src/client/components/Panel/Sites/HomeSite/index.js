@@ -3,15 +3,19 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
-import Box from 'Root/components/Box';
-import lazy from 'Root/js/lazy';
-import types from 'Root/actions';
-import bind from 'Root/js/bind';
-import Button from 'Root/components/Button';
-import newSite from 'Root/actions/user/site/new';
 import leaveSite from 'Root/actions/user/site/operator/leave';
+import newSite from 'Root/actions/user/site/new';
+import types from 'Root/actions';
+
 import assure from 'Root/js/assure';
+import lazy from 'Root/js/lazy';
+import bind from 'Root/js/bind';
+
+import Button from 'Root/components/Button';
+import Box from 'Root/components/Box';
+
 import styles from './index.less';
+
 
 class Sites extends Component {
   @bind

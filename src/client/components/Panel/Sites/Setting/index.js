@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
-import removeSite from 'Root/actions/user/site/remove';
-import revokeToken from 'Root/actions/user/site/revokeToken';
 import inviteOperator from 'Root/actions/user/site/operator/invite';
 import removeOperator from 'Root/actions/user/site/operator/remove';
+import revokeToken from 'Root/actions/user/site/revokeToken';
+import removeSite from 'Root/actions/user/site/remove';
 import updateName from 'Root/actions/user/site/name';
+import types from 'Root/actions';
+
 import { email } from 'Root/js/validator';
-import lazy from 'Root/js/lazy';
 import assure from 'Root/js/assure';
+import lazy from 'Root/js/lazy';
 import bind from 'Root/js/bind';
-import Box from 'Root/components/Box';
-import Button from 'Root/components/Button';
+
 import Field from 'Root/components/Panel/Field';
+import Button from 'Root/components/Button';
+import Box from 'Root/components/Box';
+
 import styles from './index.less';
+
 
 class Site extends Component {
   @bind
@@ -154,7 +158,7 @@ class Site extends Component {
 
             <div>
               <Button
-                color='black'
+                color='blue'
                 handleClick={this.newOperator}>
                 اضافه کردن
               </Button>

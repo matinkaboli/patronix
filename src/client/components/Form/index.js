@@ -2,7 +2,9 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 
 import bind from 'Root/js/bind';
+
 import styles from './index.less';
+
 
 class Form extends Component {
   static propTypes = {
