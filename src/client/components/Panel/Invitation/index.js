@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Field from 'Root/components/Panel/Field';
+import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
 
 import styles from './index.less';
@@ -8,7 +10,6 @@ import styles from './index.less';
 
 class Invitation extends Component {
   render() {
-    console.log(this.props.invitations);
     return (
       <Box>
         <h1 className={styles.title}>
@@ -17,11 +18,23 @@ class Invitation extends Component {
           'شما در هیچ سایتی دعوت نشده اید'}
         </h1>
         {this.props.invitations.map((v, i) =>
-          <div key={i}>
-            <p>From: {v.from}</p>
-            <p>Code: {v.code}</p>
-            <hr />
-          </div>
+          <Field key={i}>
+            <div>
+              <p>از طرف: </p>
+              <p>{v.from}</p>
+            </div>
+
+            <div>
+              <Button
+                color='blue'>
+                پذیرفتن
+              </Button>
+              <Button
+                color='red'>
+                رد کردن
+              </Button>
+            </div>
+          </Field>
         )}
       </Box>
     );
