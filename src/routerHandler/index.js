@@ -4,7 +4,8 @@ const pureRouters = [
   require('./activate'),
   require('./recovery'),
   require('./setting'),
-  require('./sites')
+  require('./sites'),
+  require('./invitation')
 ];
 
 export const routers = flat(pureRouters);
