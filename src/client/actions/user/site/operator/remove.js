@@ -12,7 +12,8 @@ export default email => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.REMOVE_OPERATOR
+        type: types.sites.REMOVE_OPERATOR,
+        email
       });
 
       izitoast.success({

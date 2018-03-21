@@ -1,31 +1,32 @@
 export default {
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
-  LOGIN_FAILED: 'LOGIN_FAILED',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGIN_FAILED: 'LOGIN_FAILED',
   SET_CAPTCHA: 'SET_CAPTCHA',
+  LOGOUT: 'LOGOUT',
+  LOGIN: 'LOGIN',
   lazy: {
     START_LOADING: 'lazy/START_LOADING',
     STOP_LOADING: 'lazy/STOP_LOADING'
   },
   user: {
-    LOAD: 'user/LOAD',
-    SET_AVATAR: 'user/SET_AVATAR',
-    UPDATE_NAME: 'user/UPDATE_NAME',
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',
     UPDATE_EMAIL: 'user/UPDATE_EMAIL',
-    LOGIN: 'user/LOGIN',
+    LOGIN_FAILED: 'user/LOGIN_FAILED',
+    UPDATE_NAME: 'user/UPDATE_NAME',
+    SET_AVATAR: 'user/SET_AVATAR',
     LOGOUT: 'user/LOGOUT',
-    LOGIN_FAILED: 'user/LOGIN_FAILED'
+    LOGIN: 'user/LOGIN',
+    LOAD: 'user/LOAD'
   },
   sites: {
-    LOAD: 'sites/LOAD',
-    ADD: 'sites/ADD',
-    REMOVE: 'sites/REMOVE',
-    UPDATE_NAME: 'sites/UPDATE_NAME',
-    REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
+    ACCEPT_OPERATOR: 'sites/ACCEPT_OPERATOR',
+    REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',
     LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
-    REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR'
+    REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
+    UPDATE_NAME: 'sites/UPDATE_NAME',
+    REMOVE: 'sites/REMOVE',
+    LOAD: 'sites/LOAD',
+    ADD: 'sites/ADD'
   },
   invitations: {
     LOAD: 'invitations/LOAD'

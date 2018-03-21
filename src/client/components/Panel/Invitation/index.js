@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import acceptOperator from 'Root/actions/user/site/operator/accept';
+
+import bind from 'Root/js/bind';
+
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
@@ -9,6 +13,12 @@ import styles from './index.less';
 
 
 class Invitation extends Component {
+  @bind
+  accept(code) { return () => {
+    this.props.dispatch(acceptOperator(code));
+  };
+  }
+
   render() {
     return (
       <Box>
@@ -26,7 +36,8 @@ class Invitation extends Component {
 
             <div>
               <Button
-                color='blue'>
+                color='blue'
+                handleClick={this.accept(v.code)}>
                 پذیرفتن
               </Button>
               <Button
