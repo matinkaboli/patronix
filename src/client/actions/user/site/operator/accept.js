@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default code => dispatch => {
@@ -20,6 +20,7 @@ export default code => dispatch => {
         title: 'با موفقیت عضو سایت شدید'
       });
     })
+
     .status(status);
   });
 

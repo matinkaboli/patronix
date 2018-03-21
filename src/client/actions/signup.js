@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import socket from 'Root/socket';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import socket from 'Root/socket';
 
 export default (credentials, captcha) => {
   socket.once('signup', status => {

@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default ({}) => dispatch => {
@@ -19,6 +19,7 @@ export default ({}) => dispatch => {
         title: 'با موفقیت حذف شد'
       });
     })
+
     .status(status);
   });
 

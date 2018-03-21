@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default email => dispatch => {
@@ -35,6 +35,7 @@ export default email => dispatch => {
         });
       }
     })
+
     .status(status);
   });
 

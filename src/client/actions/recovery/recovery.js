@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import socket from 'Root/socket';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import socket from 'Root/socket';
 
 export default email => {
   socket.once('recovery', status => {
@@ -21,6 +21,7 @@ export default email => {
         title: 'همچین کاربری پیدا نشد.'
       });
     })
+
     .status(status);
   });
 

@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import socket from 'Root/socket';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import socket from 'Root/socket';
 
 export default (password, code) => {
   socket.once('recover', status => {
@@ -14,12 +14,14 @@ export default (password, code) => {
         title: 'رمز شما با موفقیت تغییر پیدا کرد.'
       });
     })
+
     .handle('error', () => {
       izitoast.error({
         rtl: true,
         title: 'قبلا از این لینک استفاده شده است.'
       });
     })
+
     .status(status);
   });
 

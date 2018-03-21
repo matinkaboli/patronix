@@ -39,6 +39,7 @@ export default email => {
         });
       }
     })
+
     .status(status);
   });
 
