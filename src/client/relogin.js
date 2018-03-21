@@ -14,8 +14,12 @@ export default new Promise(resolve => {
           type: types.user.LOGIN,
           user: res.user
         });
+
+        dispatch({
+          type: types.invitations.LOAD,
+          invitations: res.invitations
+        });
       })
-      .handle('forbidden', () => {})
       .status(status);
 
       resolve();

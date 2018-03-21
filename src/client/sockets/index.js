@@ -11,3 +11,7 @@ socket.on('chat/new', message => {
 socket.on('chat/message', message => {
   console.log(message);
 });
+
+socket.on('invitation', (message, other) => {
+  console.log(message, other);
+});

@@ -70,8 +70,7 @@ class Sites extends Component {
           }
         </Box>
 
-
-        <Box>
+        {this.props.sites.sites.length ? <Box>
           <div>
             <h3 className={styles.title}>
               لیست سایت هایی که پشتیبانی میکنید:
@@ -87,7 +86,7 @@ class Sites extends Component {
               </div>
             )}
           </div>
-        </Box>
+        </Box> : ''}
       </div>
     );
   }
