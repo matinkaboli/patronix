@@ -38,11 +38,10 @@ class Site extends Component {
   }
 
   @bind
-  removeOperator() { return email => () => {
+  removeOperator(email) {
     assure(() => {
       this.props.dispatch(removeOperator(email));
     });
-   };
   }
 
   @bind
@@ -132,7 +131,7 @@ class Site extends Component {
               {this.props.site.owner === v._id ? '' : <div>
                 <Button
                   color='red'
-                  handleClick={this.removeOperator()(v.email)}>
+                  handleClick={this.removeOperator(v.email)}>
                   حذف پشتیبان
                 </Button>
               </div>}

@@ -10,6 +10,7 @@ import bind from 'Root/js/bind';
 import Button from 'Root/components/Button';
 import newSite from 'Root/actions/user/site/new';
 import leaveSite from 'Root/actions/user/site/operator/leave';
+import assure from 'Root/js/assure';
 import styles from './index.less';
 
 class Sites extends Component {
@@ -28,11 +29,10 @@ class Sites extends Component {
   }
 
   @bind
-  leaveSite() { return id => () => {
+  leaveSite(id) {
     assure(() => {
       this.props.dispatch(leaveSite(id));
     });
-  };
   }
 
   render() {
@@ -77,7 +77,7 @@ class Sites extends Component {
                 <p>{v.name}</p>
                 <Button
                   color='red'
-                  handleClick={this.leaveSite()(v._id)}>
+                  handleClick={this.leaveSite(v._id)}>
                   ترک کردن
                 </Button>
               </div>
