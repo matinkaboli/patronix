@@ -24,7 +24,7 @@ socket
     io
     .of('/client')
     .to(socket.data.site._id.toString())
-    .emit('newchat', message);
+    .emit('chat/new', message);
 
     socket.data.chat = chat;
   }

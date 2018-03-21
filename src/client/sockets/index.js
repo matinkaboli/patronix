@@ -4,18 +4,10 @@ socket.on('invitation', from => {
   console.log('you have a invitation from', from);
 });
 
-socket.on('newchat', message => {
+socket.on('chat/new', message => {
   console.log('we have new chat: ', message);
 });
 
-socket.on('message', message => {
+socket.on('chat/message', message => {
   console.log(message);
-});
-
-socket.on('increase', () => {
-  console.log('much more operator');
-});
-
-socket.on('decrease', () => {
-  console.log('much less operator');
 });
