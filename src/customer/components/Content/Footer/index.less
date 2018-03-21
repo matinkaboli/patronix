@@ -1,0 +1,31 @@
+@import '~Root/styles/colors.less';
+
+:local(.container) {
+  padding: 10px;
+}
+
+:local(.input) {
+  width: 250px;
+  padding: 5px 8px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  font-family: S;
+}
+
+:local(.button) {
+  border-radius: 30px;
+  outline: none;
+  border: 0;
+  padding: 8px;
+  margin-right: 5px;
+  width: 60px;
+  background-color: @green-2;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: @green-base;
+  }
+}
