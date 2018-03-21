@@ -12,7 +12,7 @@ export default id => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.operator.LEAVE,
+        type: types.sites.LEAVE_OPERATOR,
         id
       });
     })

@@ -13,6 +13,12 @@ export default (state = {
       return action.data;
     }
 
+    case types.sites.REMOVE: {
+      return {
+        sites: []
+      };
+    }
+
     case types.sites.UPDATE_NAME: {
       return {
         ...state,
@@ -30,8 +36,8 @@ export default (state = {
     case types.sites.REMOVE_OPERATOR: {
       return { ...state };
     }
-    
-    case types.sites.LEAVE: {
+
+    case types.sites.LEAVE_OPERATOR: {
       const sites = Array.from(state.sites);
       sites.splice(action.id, 1);
 

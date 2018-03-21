@@ -21,9 +21,10 @@ export default {
   sites: {
     LOAD: 'sites/LOAD',
     ADD: 'sites/ADD',
+    REMOVE: 'sites/REMOVE',
     UPDATE_NAME: 'sites/UPDATE_NAME',
     REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
-    LEAVE: 'sites/LEAVE',
+    LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR'
   },
   invitations: {

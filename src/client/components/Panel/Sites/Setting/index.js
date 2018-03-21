@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
 import inviteOperator from 'Root/actions/user/site/operator/invite';
 import removeOperator from 'Root/actions/user/site/operator/remove';
 import revokeToken from 'Root/actions/user/site/revokeToken';
-import removeSite from 'Root/actions/user/site/remove';
 import updateName from 'Root/actions/user/site/name';
 import types from 'Root/actions';
 
@@ -67,13 +65,6 @@ class Site extends Component {
     }
 
     inviteOperator(this.refs.newOperator.value);
-  }
-
-  @bind
-  removeSite() {
-    assure(() => {
-      this.props.dispatch(removeSite(this.props.history.push));
-    });
   }
 
   render() {
@@ -165,24 +156,16 @@ class Site extends Component {
             </div>
           </Field>
         </Box>
-
-        <Button
-          color='red'
-          handleClick={this.removeSite}>
-          حذف سایت
-        </Button>
       </div>
     );
   }
 }
 
 export default lazy(
-  withRouter(
-    connect(
-      state => ({
-        site: state.sites.site
-      })
-    )(Site)
-  ),
+  connect(
+    state => ({
+      site: state.sites.site
+    })
+  )(Site),
   types.sites.LOAD
 );

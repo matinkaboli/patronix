@@ -1,15 +1,18 @@
 import izitoast from 'izitoast';
 
+import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 
-export default push => () => {
+export default () => dispatch => {
   socket.once('sites/remove', status => {
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
-      push('/panel/sites');
+      dispatch({
+        type: types.sites.REMOVE
+      });
 
       izitoast.success({
         rtl: true,
