@@ -74,7 +74,7 @@ class Sidebar extends Component {
       },
       {
         to: '/panel/invitation',
-        icon: 'comment',
+        icon: 'user-plus',
         text: 'دعوت ها'
       },
       {

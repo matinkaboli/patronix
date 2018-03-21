@@ -11,11 +11,11 @@ socket
 .namespace('/client')
 .name('signup')
 .handler(socket => async (data, captcha) => {
-  if (captcha !== socket.data.captcha) {
+  if (captcha.toLowerCase() !== socket.data.captcha) {
     socket.emit('signup', 400, 0);
     return;
   }
-  
+
   let user = new User({
     name: data.name,
     email: data.email,
