@@ -72,8 +72,7 @@ class Sites extends Component {
             <h3 className={styles.title}>
               لیست سایت هایی که پشتیبانی میکنید:
             </h3>
-            {this.props.sites.length ?
-              this.props.sites.sites.map((v, i) =>
+            {this.props.sites.sites.map((v, i) =>
               <div key={i} className={styles.site}>
                 <p>{v.name}</p>
                 <Button
@@ -82,7 +81,7 @@ class Sites extends Component {
                   ترک کردن
                 </Button>
               </div>
-            ) : ''}
+            )}
           </div>
         </Box>
       </div>
