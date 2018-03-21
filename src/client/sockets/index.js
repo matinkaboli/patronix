@@ -1,7 +1,12 @@
+import izitoast from 'izitoast';
+
 import socket from 'Root/socket';
 
 socket.on('invitation', from => {
-  console.log('you have a invitation from', from);
+  izitoast.success({
+    rtl: true,
+    title: `شما یک دعوت از طرف ${from} دارید`
+  });
 });
 
 socket.on('chat/new', message => {
@@ -10,8 +15,4 @@ socket.on('chat/new', message => {
 
 socket.on('chat/message', message => {
   console.log(message);
-});
-
-socket.on('invitation', (message, other) => {
-  console.log(message, other);
 });

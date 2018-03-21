@@ -1,7 +1,7 @@
-import socket from 'Root/socket';
-import { dispatch } from 'Root/store';
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import { dispatch } from 'Root/store';
+import socket from 'Root/socket';
+import types from 'Root/actions';
 
 export default new Promise(resolve => {
   if (localStorage.token) {
@@ -20,6 +20,7 @@ export default new Promise(resolve => {
           invitations: res.invitations
         });
       })
+
       .status(status);
 
       resolve();
