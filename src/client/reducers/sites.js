@@ -35,8 +35,6 @@ export default (state = {
     }
 
     case types.sites.ACCEPT_OPERATOR: {
-      console.log(action);
-      console.log(state);
       return {
         ...state
       };

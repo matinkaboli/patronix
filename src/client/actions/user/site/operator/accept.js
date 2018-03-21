@@ -20,9 +20,6 @@ export default code => dispatch => {
         title: 'با موفقیت عضو سایت شدید'
       });
     })
-
-    .handle('error', () => {
-    })
     .status(status);
   });
 
