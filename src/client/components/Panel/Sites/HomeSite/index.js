@@ -70,10 +70,12 @@ class Sites extends Component {
           }
         </Box>
 
-        {this.props.sites.sites.length ? <Box>
+        <Box>
           <div>
             <h3 className={styles.title}>
-              لیست سایت هایی که پشتیبانی میکنید:
+              {this.props.sites.sites.length ?
+                'لیست سایت هایی که پشتیبانی میکنید:' :
+              'شما در سایت های دیگران پشتیبانی نمیکنید'}
             </h3>
             {this.props.sites.sites.map((v, i) =>
               <div key={i} className={styles.site}>
@@ -86,7 +88,7 @@ class Sites extends Component {
               </div>
             )}
           </div>
-        </Box> : ''}
+        </Box>
       </div>
     );
   }
