@@ -12,24 +12,31 @@ class Prototype extends Component {
     component: PropTypes.func.isRequired
   }
 
+  state = {
+    loading: true
+  }
+
   componentDidMount() {
     this.props.dispatch(load({
       path: this.props.match.path,
-      params: this.props.match.params,
-      type: this.props.type
-    }));
+      params: this.props.match.params
+    }, this.props.type, this.setState.bind(this)));
   }
 
   render() {
-    if (!this.props.lazy.loading && this.props.lazy.status === 200) {
+    if (this.state.loading) {
+      return null;
+    }
+
+    if (this.props.lazy.status === 200) {
       return <this.props.component />;
     }
 
-    if (!this.props.lazy.loading && this.props.lazy.status === 404) {
+    if (this.props.lazy.status === 404) {
       return <Redirect to='/notfound' />;
     }
 
-    if (!this.props.lazy.loading && this.props.lazy.status === 403) {
+    if (this.props.lazy.status === 403) {
       return <Redirect to='/denied' />;
     }
 
