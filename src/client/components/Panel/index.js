@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Sidebar from './Sidebar';
-import Sites from './Sites';
-import Setting from './Setting';
-import HomePanel from './HomePanel';
-import Chats from './Chats';
 import Invitation from './Invitation';
+import HomePanel from './HomePanel';
+import Sidebar from './Sidebar';
+import Setting from './Setting';
+import Sites from './Sites';
+import Chats from './Chats';
 
 import styles from './index.less';
 

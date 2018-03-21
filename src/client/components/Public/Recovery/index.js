@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Code from './Code';
 import Index from './Index';
+import Code from './Code';
 
 
 class Recovery extends Component {

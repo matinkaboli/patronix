@@ -6,13 +6,13 @@ import {
   Link
 } from 'react-router-dom';
 
-import Login from './Login';
-import Signup from './Signup';
-import Recovery from './Recovery';
-import Activate from './Activate';
 import LoggedRoute from 'Root/components/LoggedRoute';
 import NotFound from 'Root/components/NotFound';
 import Denied from 'Root/components/Denied';
+import Recovery from './Recovery';
+import Activate from './Activate';
+import Signup from './Signup';
+import Login from './Login';
 
 import styles from './index.less';
 

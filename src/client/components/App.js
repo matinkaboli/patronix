@@ -6,10 +6,10 @@ import {
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
-import Panel from './Panel';
 import Public from './Public';
-import Home from './Home';
 import About from './About';
+import Panel from './Panel';
+import Home from './Home';
 
 class App extends Component {
   render() {

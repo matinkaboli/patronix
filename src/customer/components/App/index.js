@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import toggle from 'Root/js/toggle';
 
-import Header from 'Root/components/Header';
 import Content from 'Root/components/Content';
+import Header from 'Root/components/Header';
 
 import styles from './index.less';
 

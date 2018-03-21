@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+
 class ProtectedRoute extends Component {
   render() {
     if (this.props.logged) {
