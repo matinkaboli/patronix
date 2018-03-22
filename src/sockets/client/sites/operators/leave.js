@@ -27,7 +27,7 @@ socket
       return;
     }
 
-    if (site.owner._id.toString() === userId) {
+    if (site.owner.toString() === userId) {
       socket.emit('sites/operators/leave', 400, 3);
       return;
     }
