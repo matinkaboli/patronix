@@ -34,12 +34,6 @@ export default (state = {
       };
     }
 
-    case types.sites.ACCEPT_OPERATOR: {
-      return {
-        ...state
-      };
-    }
-
     case types.sites.REMOVE_OPERATOR: {
       let operators = Array.from(state.site.operators);
       operators = operators.filter(obj => obj.email !== action.email);

@@ -23,11 +23,11 @@ class Invitation extends Component {
     return (
       <Box>
         <h1 className={styles.title}>
-          {this.props.invitations.length ?
+          {this.props.invitations && this.props.invitations.length ?
           'دعوت ها' :
           'شما در هیچ سایتی دعوت نشده اید'}
         </h1>
-        {this.props.invitations.map((v, i) =>
+        {this.props.invitations && this.props.invitations.map((v, i) =>
           <Field key={i}>
             <div>
               <p>از طرف: </p>
