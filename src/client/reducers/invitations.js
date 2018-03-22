@@ -7,8 +7,6 @@ export default (state = [], action) => {
     }
 
     case types.invitations.ADD: {
-      console.log(state);
-      console.log(action.invitation);
       return [
         ...state,
         action.invitation
