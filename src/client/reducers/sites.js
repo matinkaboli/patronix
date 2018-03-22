@@ -16,7 +16,7 @@ export default (state = {
     case types.sites.REMOVE: {
       return {
         ...state,
-        sites: []
+        site: null
       };
     }
 
