@@ -1,11 +1,18 @@
 import izitoast from 'izitoast';
 
+import types from 'Root/actions';
 import socket from 'Root/socket';
+import store from 'Root/store';
 
-socket.on('invitation', from => {
+socket.on('invitation', invitation => {
   izitoast.success({
     rtl: true,
-    title: `شما یک دعوت از طرف ${from} دارید`
+    title: `شما یک دعوت از طرف ${invitation.from} دارید`
+  });
+
+  store.dispatch({
+    type: types.invitations.ADD,
+    invitation
   });
 });
 

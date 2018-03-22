@@ -6,6 +6,15 @@ export default (state = [], action) => {
       return [...state, ...action.invitations];
     }
 
+    case types.invitations.ADD: {
+      console.log(state);
+      console.log(action.invitation);
+      return [
+        ...state,
+        action.invitation
+      ];
+    }
+
     default: {
       return state;
     }

@@ -29,6 +29,7 @@ export default {
     ADD: 'sites/ADD'
   },
   invitations: {
-    LOAD: 'invitations/LOAD'
+    LOAD: 'invitations/LOAD',
+    ADD: 'invitations/ADD'
   }
 };
