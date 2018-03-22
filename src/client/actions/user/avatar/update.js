@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default ({ type, size, file }) => dispatch => {
@@ -20,6 +20,7 @@ export default ({ type, size, file }) => dispatch => {
         title: 'با موفقیت به روز رسانی شد'
       });
     })
+
     .status(status);
   });
 

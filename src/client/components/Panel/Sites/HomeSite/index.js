@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import leaveSite from 'Root/actions/user/site/operator/leave';
+import removeSite from 'Root/actions/user/site/remove';
 import newSite from 'Root/actions/user/site/new';
 import types from 'Root/actions';
 
@@ -33,9 +34,17 @@ class Sites extends Component {
   }
 
   @bind
-  leaveSite(id) {
+  leaveSite(id) { return () => {
     assure(() => {
       this.props.dispatch(leaveSite(id));
+    });
+  };
+  }
+
+  @bind
+  removeSite() {
+    assure(() => {
+      this.props.dispatch(removeSite());
     });
   }
 
@@ -53,6 +62,11 @@ class Sites extends Component {
                   تنظیمات سایت
                 </Button>
               </Link>
+              <Button
+                color='red'
+                handleClick={this.removeSite}>
+                حذف سایت
+              </Button>
             </div> :
             <div className={styles.site}>
               <input
@@ -70,13 +84,14 @@ class Sites extends Component {
           }
         </Box>
 
-
         <Box>
           <div>
             <h3 className={styles.title}>
-              لیست سایت هایی که پشتیبانی میکنید:
+              {this.props.sites.sites && this.props.sites.sites.length ?
+                'لیست سایت هایی که پشتیبانی میکنید:' :
+              'شما در سایت های دیگران پشتیبانی نمیکنید'}
             </h3>
-            {this.props.sites.sites.map((v, i) =>
+            {this.props.sites.sites && this.props.sites.sites.map((v, i) =>
               <div key={i} className={styles.site}>
                 <p>{v.name}</p>
                 <Button
@@ -94,8 +109,10 @@ class Sites extends Component {
 }
 
 export default lazy(
-  connect(
-    state => ({ sites: state.sites })
-  )(Sites),
+  withRouter(
+    connect(
+      state => ({ sites: state.sites })
+    )(Sites),
+  ),
   types.sites.LOAD
 );

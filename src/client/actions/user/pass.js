@@ -10,21 +10,19 @@ export default ({ old, fresh }) => {
 
     handler
     .handle('success', () => {
-
       izitoast.success({
         rtl: true,
         title: 'با موفقیت به روز رسانی شد'
       });
-
     })
-    .handle('error', () => {
 
+    .handle('error', () => {
       izitoast.error({
         rtl: true,
         title: 'رمز قبلی اشتباه است'
       });
-
     })
+
     .status(status);
   });
 

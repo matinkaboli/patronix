@@ -1,6 +1,6 @@
 import socket from 'Root/socket';
-import store from 'Root/store';
 import types from 'Root/actions';
+import store from 'Root/store';
 
 export default () => {
   socket.once('captcha', (status, captcha) => {

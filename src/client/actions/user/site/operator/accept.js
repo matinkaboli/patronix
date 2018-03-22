@@ -4,26 +4,25 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default name => dispatch => {
-  socket.once('sites/setting/name', status => {
+export default code => dispatch => {
+  socket.once('sites/operators/accept', status => {
 
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.UPDATE_NAME,
-        name
+        type: types.site.ACCEPT_OPERATOR
       });
 
       izitoast.success({
         rtl: true,
-        title: 'با موفقیت به روز رسانی شد'
+        title: 'با موفقیت عضو سایت شدید'
       });
     })
 
     .status(status);
   });
 
-  socket.emit('sites/setting/name', name);
+  socket.emit('sites/operators/accept', code);
 };

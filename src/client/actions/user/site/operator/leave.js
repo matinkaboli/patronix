@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default id => dispatch => {
@@ -12,7 +12,7 @@ export default id => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.operator.LEAVE,
+        type: types.sites.LEAVE_OPERATOR,
         id
       });
     })

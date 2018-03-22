@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import types from 'Root/actions';
 import ResponseHandler from 'Root/js/ResponseHandler';
+import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default ({ email, password }) => dispatch => {
@@ -11,7 +11,6 @@ export default ({ email, password }) => dispatch => {
 
     handler
     .handle('success', () => {
-
       dispatch({
         type: types.user.UPDATE_EMAIL,
         email
@@ -21,16 +20,15 @@ export default ({ email, password }) => dispatch => {
         rtl: true,
         title: 'با موفقیت به روز رسانی شد'
       });
-
     })
-    .handle('error', () => {
 
+    .handle('error', () => {
       izitoast.error({
         rtl: true,
         title: 'رمز اشتباه است یا ایمیل توسط شخص دیگری استفاده شده است'
       });
-
     })
+
     .status(status);
   });
 

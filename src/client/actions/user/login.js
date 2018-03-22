@@ -1,9 +1,9 @@
 import izitoast from 'izitoast';
 
+import ResponseHandler from 'Root/js/ResponseHandler';
+import recaptcha from 'Root/actions/captcha';
 import socket from 'Root/socket';
 import types from 'Root/actions';
-import recaptcha from 'Root/actions/captcha';
-import ResponseHandler from 'Root/js/ResponseHandler';
 
 export default (credentials, push, captcha) => dispatch => {
   socket.once('login', (status, res) => {
