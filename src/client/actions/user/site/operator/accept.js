@@ -12,7 +12,8 @@ export default code => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.site.ACCEPT_OPERATOR
+        type: types.invitations.ACCEPT,
+        code
       });
 
       izitoast.success({

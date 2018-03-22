@@ -12,7 +12,11 @@ class SLink extends Component {
         onClick={this.props.handleClick}
         activeClassName={styles.activedNavLink}>
         <div className={styles.sidebarLink}>
-          <div className={`icon icon-${this.props.icon}`} />
+          <div
+            className={`
+              icon
+              icon-${this.props.icon}
+              ${styles[this.props.active ? 'notify' : '']}`} />
           <span>{this.props.text}</span>
           <span className={styles.buttonText}>{this.props.text}</span>
         </div>

@@ -85,6 +85,10 @@ class Sidebar extends Component {
       }
     ];
 
+    if (this.props.invitations && this.props.invitations.length) {
+      links[4].active = true;
+    }
+
     return (
       <nav className={styles.nav}>
         <div
@@ -107,6 +111,7 @@ class Sidebar extends Component {
 export default withRouter(connect(
   state => ({
     user: state.user,
-    loading: state.lazy.loading
+    loading: state.lazy.loading,
+    invitations: state.invitations
   })
 )(Sidebar));

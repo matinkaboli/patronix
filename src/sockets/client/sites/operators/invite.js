@@ -47,7 +47,10 @@ socket
 
   nsp
   .to(user._id.toString())
-  .emit('invitation', { from: socket.data.site.name, code: invitation.code });
+  .emit('invitation', {
+    from: socket.data.site.name,
+    code: invitation.code
+  });
 
   socket.emit('sites/operators/invite', 200);
 });

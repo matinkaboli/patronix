@@ -19,7 +19,6 @@ export default {
     LOAD: 'user/LOAD'
   },
   sites: {
-    ACCEPT_OPERATOR: 'sites/ACCEPT_OPERATOR',
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',
     LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
     REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
@@ -29,6 +28,8 @@ export default {
     ADD: 'sites/ADD'
   },
   invitations: {
-    LOAD: 'invitations/LOAD'
+    ACCEPT: 'invitations/ACCEPT',
+    LOAD: 'invitations/LOAD',
+    ADD: 'invitations/ADD'
   }
 };
