@@ -49,7 +49,7 @@ export default (state = {
 
     case types.sites.LEAVE_OPERATOR: {
       let sites = Array.from(state.sites);
-      sites = sites.filter(obj => obj.email !== action.id);
+      sites = sites.filter(obj => obj._id !== action.id);
 
       return { ...state, sites };
     }

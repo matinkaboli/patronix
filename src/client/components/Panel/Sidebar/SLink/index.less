@@ -18,20 +18,18 @@
   padding: 0 10px 0 25px;
 }
 
-:local(.notify) {
-  animation-name: notification;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes notification {
-  from {
-    color: white;
-  }
-
-  to {
-    color: @blue-1;
-  }
+:local(.notification) {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: @red-1;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  align-self: center;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {

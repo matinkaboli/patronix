@@ -86,7 +86,7 @@ class Sidebar extends Component {
     ];
 
     if (this.props.invitations && this.props.invitations.length) {
-      links[4].active = true;
+      links[4].notification = this.props.invitations.length;
     }
 
     return (

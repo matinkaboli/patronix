@@ -11,6 +11,11 @@ export default id => dispatch => {
 
     handler
     .handle('success', () => {
+      izitoast.success({
+        rtl: true,
+        title: 'با موفقیت حذف شد'
+      });
+
       dispatch({
         type: types.sites.LEAVE_OPERATOR,
         id
