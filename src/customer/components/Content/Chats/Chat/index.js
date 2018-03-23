@@ -7,7 +7,8 @@ import styles from './index.less';
 class Chat extends Component {
   static propTypes = {
     sender: PropTypes.oneOf(['server', 'customer']).isRequired,
-    type: PropTypes.oneOf(['error', 'message']).isRequired
+    type: PropTypes.oneOf(['error', 'message']).isRequired,
+    time: PropTypes.string
   }
 
   render() {
@@ -15,9 +16,15 @@ class Chat extends Component {
 
     return (
       <div className={styles[this.props.sender]}>
-        <span className={`${styles.chat} ${chatStyle}`}>
-          Hello there
-        </span>
+        <div className={`${styles.chat} ${chatStyle}`}>
+          <p>
+            Hello there
+          </p>
+          {
+            this.props.time &&
+            <p className={styles.time}>{this.props.time}</p>
+          }
+        </div>
       </div>
     );
   }
