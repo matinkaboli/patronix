@@ -40,11 +40,12 @@ class Site extends Component {
   }
 
   @bind
-  removeOperator(email) { return () => {
-    assure(() => {
-      this.props.dispatch(removeOperator(email));
-    });
-  };
+  removeOperator(email) {
+    return () => {
+      assure(() => {
+        this.props.dispatch(removeOperator(email));
+      });
+    };
   }
 
   @bind

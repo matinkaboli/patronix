@@ -34,11 +34,12 @@ class Sites extends Component {
   }
 
   @bind
-  leaveSite(id) { return () => {
-    assure(() => {
-      this.props.dispatch(leaveSite(id));
-    });
-  };
+  leaveSite(id) {
+    return () => {
+      assure(() => {
+        this.props.dispatch(leaveSite(id));
+      });
+    };
   }
 
   @bind
