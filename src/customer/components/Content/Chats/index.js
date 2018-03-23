@@ -12,16 +12,19 @@ class Chats extends Component {
         <Chat
           sender='server'
           type='message'
+          text='Error'
         />
         <Chat
           sender='customer'
           type='message'
           time='10:24'
+          text='we have nothing say'
         />
         <Chat
           sender='server'
           type='message'
           time='10:45'
+          text='but we have'
         />
       </div>
     );

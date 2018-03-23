@@ -8,7 +8,8 @@ class Chat extends Component {
   static propTypes = {
     sender: PropTypes.oneOf(['server', 'customer']).isRequired,
     type: PropTypes.oneOf(['error', 'message']).isRequired,
-    time: PropTypes.string
+    time: PropTypes.string,
+    text: PropTypes.string.isRequired
   }
 
   render() {
@@ -18,7 +19,7 @@ class Chat extends Component {
       <div className={styles[this.props.sender]}>
         <div className={`${styles.chat} ${chatStyle}`}>
           <p>
-            Hello there
+            {this.props.text}
           </p>
           {
             this.props.time &&
