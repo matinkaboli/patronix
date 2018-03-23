@@ -7,12 +7,13 @@ import styles from './index.less';
 class Chat extends Component {
   static propTypes = {
     sender: PropTypes.oneOf(['server', 'customer']).isRequired,
-    type: PropTypes.oneOf(['error', 'message']).isRequired,
+    type: PropTypes.oneOf(['error', 'message', 'warning']).isRequired,
     time: PropTypes.string,
     text: PropTypes.string.isRequired
   }
 
   render() {
+    console.log(`${this.props.sender}-${this.props.type}`);
     let chatStyle = styles[`${this.props.sender}-${this.props.type}`];
 
     return (

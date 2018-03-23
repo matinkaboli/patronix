@@ -42,8 +42,23 @@
   }
 }
 
+@keyframes customerWarning {
+  .warningMix(@i, @count) when (@i < 1) {
+    @per: percentage(@i);
+    @moded: mod(@count, 2);
+
+    @{per} {
+      opacity: if((mod(@count, 2) = 1), 0.5, 1);
+    }
+
+    .warningMix(@i + 0.2, @count + 1);
+  }
+
+  .warningMix(0, 0);
+}
+
 :local(.chat) {
-  padding: 5px 10px;
+  padding: 5px 20px;
   border-radius: 15px;
   max-width: 80%;
   word-wrap: break-word;
@@ -78,6 +93,13 @@
   color: white;
   animation-name: customerMessage;
   animation-duration: 0.6s;
+}
+
+:local(.customer-warning) {
+  background-color: @warning;
+  color: white;
+  animation-name: customerWarning;
+  animation-duration: 0.8s;
 }
 
 :local(.time) {
