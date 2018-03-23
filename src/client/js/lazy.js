@@ -17,10 +17,13 @@ class Prototype extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(load({
-      path: this.props.match.path,
-      params: this.props.match.params
-    }, this.props.type, this.setState.bind(this)));
+    this.props.dispatch(
+      load(
+        this.props.match,
+        this.props.type,
+        this.setState.bind(this)
+      )
+    );
   }
 
   render() {
