@@ -20,6 +20,7 @@ export default {
   },
   sites: {
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',
+    OPERATOR_JOINED: 'sites/OPERATOR_JOINED',
     LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
     LEFT_OPERATOR: 'sites/LEFT_OPERATOR',
     KICK_OPERATOR: 'sites/KICK_OPERATOR',

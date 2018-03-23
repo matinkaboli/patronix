@@ -90,6 +90,16 @@ export default (state = {
       };
     }
 
+    case types.sites.OPERATOR_JOINED: {
+      const sites = Array.from(state.sites);
+      sites.push(action.site);
+
+      return {
+        ...state,
+        sites
+      };
+    }
+
     default: {
       return state;
     }

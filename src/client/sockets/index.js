@@ -2,7 +2,7 @@ import izitoast from 'izitoast';
 
 import types from 'Root/actions';
 import socket from 'Root/socket';
-import store from 'Root/store';
+import { dispatch } from 'Root/store';
 
 socket.on('invitation', invitation => {
   izitoast.success({
@@ -10,11 +10,12 @@ socket.on('invitation', invitation => {
     title: `شما یک دعوت از طرف ${invitation.from} دارید`
   });
 
-  store.dispatch({
+  dispatch({
     type: types.invitations.ADD,
     invitation
   });
 });
+
 
 socket.on('operators/leave', operator => {
   izitoast.warning({
@@ -22,11 +23,12 @@ socket.on('operators/leave', operator => {
     title: `پشتیبان ${operator.name} از سایت خارج شد`
   });
 
-  store.dispatch({
+  dispatch({
     type: types.sites.LEFT_OPERATOR,
     operator
   });
 });
+
 
 socket.on('operators/join', operator => {
   izitoast.success({
@@ -34,11 +36,12 @@ socket.on('operators/join', operator => {
     title: `کاربر ${operator.name} دعوت را پذیرفت و عضو پشتیبان های سایت شد`
   });
 
-  store.dispatch({
+  dispatch({
     type: types.sites.ADD_OPERATOR,
     operator
   });
 });
+
 
 socket.on('sites/kick', site => {
   izitoast.warning({
@@ -46,19 +49,25 @@ socket.on('sites/kick', site => {
     title: `شما از سایت ${site.name} حذف شدید`
   });
 
-  store.dispatch({
+  dispatch({
     type: types.sites.KICK_OPERATOR,
     site
   });
 });
 
+
 socket.on('sites/join', site => {
-  console.log('you joined to', site);
+  dispatch({
+    type: types.sites.OPERATOR_JOINED,
+    site
+  });
 });
+
 
 socket.on('chat/new', message => {
   console.log('we have new chat: ', message);
 });
+
 
 socket.on('chat/message', message => {
   console.log(message);

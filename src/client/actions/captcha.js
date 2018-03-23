@@ -1,10 +1,10 @@
 import socket from 'Root/socket';
 import types from 'Root/actions';
-import store from 'Root/store';
+import { dispatch } from 'Root/store';
 
 export default () => {
   socket.once('captcha', (status, captcha) => {
-    store.dispatch({
+    dispatch({
       type: types.SET_CAPTCHA,
       captcha
     });
