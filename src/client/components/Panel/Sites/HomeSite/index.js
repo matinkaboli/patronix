@@ -57,16 +57,18 @@ class Sites extends Component {
           {this.props.sites.site ?
             <div className={styles.site}>
               <p>نام سایت: {this.props.sites.site.name}</p>
-              <Link to='/panel/sites/setting'>
-                <Button color='blue'>
-                  تنظیمات سایت
+              <div>
+                <Link to='/panel/sites/setting'>
+                  <Button color='blue'>
+                    تنظیمات سایت
+                  </Button>
+                </Link>
+                <Button
+                  color='red'
+                  handleClick={this.removeSite}>
+                  حذف سایت
                 </Button>
-              </Link>
-              <Button
-                color='red'
-                handleClick={this.removeSite}>
-                حذف سایت
-              </Button>
+              </div>
             </div> :
             <div className={styles.site}>
               <input
