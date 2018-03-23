@@ -14,9 +14,10 @@ import styles from './index.less';
 
 class Invitation extends Component {
   @bind
-  accept(code) { return () => {
-    this.props.dispatch(acceptOperator(code));
-  };
+  accept(code) {
+    return () => {
+      this.props.dispatch(acceptOperator(code));
+    };
   }
 
   render() {
