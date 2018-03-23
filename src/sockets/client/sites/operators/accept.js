@@ -42,6 +42,13 @@ socket
     email: socket.data.user.email
   });
 
+  nsp
+  .to(invitation.user.toString())
+  .emit('sites/join', {
+    name: invitation.from.name,
+    _id: invitation.from._id
+  });
+
   socket.emit('sites/operators/accept', 200);
 });
 

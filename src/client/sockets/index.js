@@ -31,3 +31,11 @@ socket.on('operators/leave', operator => {
 socket.on('operators/join', operator => {
   console.log('who joined?', operator);
 });
+
+socket.on('sites/join', site => {
+  console.log('you joined to', site);
+});
+
+socket.on('sites/kick', site => {
+  console.log('you kicked from', site);
+});

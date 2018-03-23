@@ -36,6 +36,13 @@ socket
   .to(socket.data.site._id.toString())
   .emit('decrease');
 
+  nsp
+  .to(user._id.toString())
+  .emit('sites/kick', {
+    name: socket.data.site.name,
+    _id: socket.data.site._id
+  });
+
   socket.emit('sites/operators/remove', 200);
 });
 
