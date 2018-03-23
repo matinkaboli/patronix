@@ -6,5 +6,8 @@ export default {
   loading: {
     START: 'loading/START',
     STOP: 'loading/STOP'
+  },
+  chats: {
+    ADD: 'chats/ADD'
   }
 };
