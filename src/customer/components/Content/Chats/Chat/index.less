@@ -1,5 +1,7 @@
 @import '~Root/styles/colors.less';
 
+@reza: 0%;
+
 @keyframes serverMessage {
   0% {
     transform: translateX(50px);
@@ -10,6 +12,22 @@
     transform: translateX(0px);
     opacity: 1;
   }
+}
+
+
+@keyframes serverError {
+  .error(@i, @count) when (@i < 1) {
+    @per: percentage(@i);
+    @moded: mod(@count, 2);
+
+    @{per} {
+      transform: scale(if((mod(@count, 2) = 1), 1, 1.4));
+    }
+
+    .error(@i + 0.2, @count + 1);
+  }
+
+  .error(0, 0);
 }
 
 @keyframes customerMessage {
@@ -46,6 +64,13 @@
   color: black;
   animation-name: serverMessage;
   animation-duration: 0.6s;
+}
+
+:local(.server-error) {
+  background-color: @red-base;
+  color: white;
+  animation-name: serverError;
+  animation-duration: 0.8s;
 }
 
 :local(.customer-message) {
