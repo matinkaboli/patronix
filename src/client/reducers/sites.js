@@ -54,6 +54,32 @@ export default (state = {
       return { ...state, sites };
     }
 
+    case types.sites.ADD_OPERATOR: {
+      let operators = Array.from(state.site.operators);
+      operators.push(action.operator);
+
+      return {
+        ...state,
+        site: {
+          ...state.site,
+          operators
+        }
+      };
+    }
+
+    case types.sites.LEFT_OPERATOR: {
+      let operators = Array.from(state.site.operators);
+      operators = operators.filter(op => op.email !== action.operator.email);
+
+      return {
+        ...state,
+        site: {
+          ...state.site,
+          operators
+        }
+      };
+    }
+
     default: {
       return state;
     }

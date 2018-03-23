@@ -25,11 +25,27 @@ socket.on('chat/message', message => {
 });
 
 socket.on('operators/leave', operator => {
-  console.log('who left?', operator);
+  izitoast.warning({
+    rtl: true,
+    title: `پشتیبان ${operator.name} از سایت خارج شد`
+  });
+
+  store.dispatch({
+    type: types.sites.LEFT_OPERATOR,
+    operator
+  });
 });
 
 socket.on('operators/join', operator => {
-  console.log('who joined?', operator);
+  izitoast.success({
+    rtl: true,
+    title: `کاربر ${operator.name} دعوت را پذیرفت و عضو پشتیبان های سایت شد`
+  });
+
+  store.dispatch({
+    type: types.sites.ADD_OPERATOR,
+    operator
+  });
 });
 
 socket.on('sites/join', site => {

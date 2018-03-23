@@ -21,7 +21,9 @@ export default {
   sites: {
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',
     LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
+    LEFT_OPERATOR: 'sites/LEFT_OPERATOR',
     REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
+    ADD_OPERATOR: 'sites/ADD_OPERATOR',
     UPDATE_NAME: 'sites/UPDATE_NAME',
     REMOVE: 'sites/REMOVE',
     LOAD: 'sites/LOAD',
