@@ -23,3 +23,7 @@ socket.on('chat/new', message => {
 socket.on('chat/message', message => {
   console.log(message);
 });
+
+socket.on('operators/leave', operator => {
+  console.log('who left?', operator);
+});

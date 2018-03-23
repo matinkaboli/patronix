@@ -41,6 +41,13 @@ socket
     .to(site._id.toString())
     .emit('decrease');
 
+    nsp
+    .to(site.owner.toString())
+    .emit('operators/leave', {
+      name: socket.data.user.name,
+      email: socket.data.user.email
+    });
+
     socket.emit('sites/operators/leave', 200);
   } catch (e) {
     socket.emit('sites/operators/leave', 400, 2);
