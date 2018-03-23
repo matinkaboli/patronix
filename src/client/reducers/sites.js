@@ -80,6 +80,16 @@ export default (state = {
       };
     }
 
+    case types.sites.KICK_OPERATOR: {
+      let sites = Array.from(state.sites);
+      sites = sites.filter(site => site._id !== action.site._id);
+
+      return {
+        ...state,
+        sites
+      };
+    }
+
     default: {
       return state;
     }

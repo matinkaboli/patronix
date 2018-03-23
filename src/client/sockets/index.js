@@ -16,14 +16,6 @@ socket.on('invitation', invitation => {
   });
 });
 
-socket.on('chat/new', message => {
-  console.log('we have new chat: ', message);
-});
-
-socket.on('chat/message', message => {
-  console.log(message);
-});
-
 socket.on('operators/leave', operator => {
   izitoast.warning({
     rtl: true,
@@ -48,10 +40,26 @@ socket.on('operators/join', operator => {
   });
 });
 
+socket.on('sites/kick', site => {
+  izitoast.warning({
+    rtl: true,
+    title: `شما از سایت ${site.name} حذف شدید`
+  });
+
+  store.dispatch({
+    type: types.sites.KICK_OPERATOR,
+    site
+  });
+});
+
 socket.on('sites/join', site => {
   console.log('you joined to', site);
 });
 
-socket.on('sites/kick', site => {
-  console.log('you kicked from', site);
+socket.on('chat/new', message => {
+  console.log('we have new chat: ', message);
+});
+
+socket.on('chat/message', message => {
+  console.log(message);
 });
