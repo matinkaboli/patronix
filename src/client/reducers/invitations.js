@@ -21,6 +21,15 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.invitations.REJECT: {
+      let invitations = Array.from(state);
+      invitations = invitations.filter(obj => obj.code !== action.code);
+
+      return [
+        ...invitations
+      ];
+    }
+
     default: {
       return state;
     }

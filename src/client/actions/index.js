@@ -34,6 +34,7 @@ export default {
   invitations: {
     ACCEPT: 'invitations/ACCEPT',
     LOAD: 'invitations/LOAD',
-    ADD: 'invitations/ADD'
+    REJECT: 'invitations/REJECT',
+    ADD: 'invitations/ADD',
   }
 };

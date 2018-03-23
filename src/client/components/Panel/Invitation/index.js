@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import acceptOperator from 'Root/actions/user/site/operator/accept';
+import rejectOperator from 'Root/actions/user/site/operator/reject';
 
 import bind from 'Root/js/bind';
 
@@ -20,7 +21,15 @@ class Invitation extends Component {
     };
   }
 
+  @bind
+  reject(code) {
+    return () => {
+      this.props.dispatch(rejectOperator(code));
+    };
+  }
+
   render() {
+    console.log(this.props);
     return (
       <Box>
         <h1 className={styles.title}>
@@ -42,7 +51,8 @@ class Invitation extends Component {
                 پذیرفتن
               </Button>
               <Button
-                color='red'>
+                color='red'
+                handleClick={this.reject(v.code)}>
                 رد کردن
               </Button>
             </div>
