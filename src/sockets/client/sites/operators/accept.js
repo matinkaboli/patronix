@@ -35,6 +35,13 @@ socket
 
   await invitation.remove();
 
+  nsp
+  .to(invitation.from.owner.toString())
+  .emit('operators/join', {
+    name: socket.data.user.name,
+    email: socket.data.user.email
+  });
+
   socket.emit('sites/operators/accept', 200);
 });
 

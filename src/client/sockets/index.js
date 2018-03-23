@@ -27,3 +27,7 @@ socket.on('chat/message', message => {
 socket.on('operators/leave', operator => {
   console.log('who left?', operator);
 });
+
+socket.on('operators/join', operator => {
+  console.log('who joined?', operator);
+});
