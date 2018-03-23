@@ -67,6 +67,8 @@ class Site extends Component {
     }
 
     inviteOperator(this.refs.newOperator.value);
+
+    this.refs.newOperator.value = '';
   }
 
   render() {

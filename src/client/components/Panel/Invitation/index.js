@@ -29,7 +29,6 @@ class Invitation extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Box>
         <h1 className={styles.title}>
