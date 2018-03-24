@@ -33,6 +33,17 @@ class Header extends Component {
     if (this.props.loading) {
       return <Loading />;
     }
+
+    return (
+      <span>
+        <span>
+          {this.props.userState.online} آنلاین
+        </span> - 
+        <span className={styles.offline}>
+          {this.props.userState.offline} آفلاین
+        </span>
+      </span>
+    );
   }
 
   render() {
@@ -61,6 +72,7 @@ class Header extends Component {
 export default connect(
   state => ({
     appStatus: state.appStatus,
-    loading: state.loading
+    loading: state.loading,
+    userState: state.userState
   })
 )(Header);
