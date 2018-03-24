@@ -13,7 +13,10 @@ export default {
   userState: {
     LOAD: 'userState/LOAD',
     GOES_OFFLINE: 'userState/GOES_OFFLINE',
-    GET_ONLINE: 'userState/GET_ONLINE'
+    GET_ONLINE: 'userState/GET_ONLINE',
+    INCREASE: 'userState/INCREASE',
+    DECREASE_OFFLINE: 'userState/DECREASE_OFFLINE',
+    DECREASE_ONLINE: 'userState/DECREASE_ONLINE'
   },
   operator: {
     LOAD: 'operator/LOAD'

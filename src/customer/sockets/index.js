@@ -17,10 +17,21 @@ socket.on('goesOffline', () => {
   });
 });
 
-socket.on('decrease', () => {
-  console.log('one less operator');
+socket.on('decrease', state => {
+  if (state === 'offline') {
+    dispatch({
+      type: types.userState.DECREASE_OFFLINE
+    });
+    return;
+  }
+
+  dispatch({
+    type: types.userState.DECREASE_ONLINE
+  });
 });
 
 socket.on('increase', () => {
-  console.log('one more operator');
+  dispatch({
+    type: types.userState.INCREASE
+  });
 });

@@ -23,6 +23,27 @@ export default (state = {
       };
     }
 
+    case types.userState.INCREASE: {
+      return {
+        ...state,
+        online: state.online + 1
+      };
+    }
+
+    case types.userState.DECREASE_ONLINE: {
+      return {
+        ...state,
+        online: state.online - 1
+      };
+    }
+
+    case types.userState.DECREASE_OFFLINE: {
+      return {
+        ...state,
+        offline: state.offline - 1
+      };
+    }
+
     default: {
       return state;
     }
