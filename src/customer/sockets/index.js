@@ -1,8 +1,24 @@
+import moment from 'moment';
+
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 import types from 'Root/actions';
 
-socket.on('message', message => {
+socket.on('recieveMessage', message => {
+  dispatch({
+    type: types.chats.CLEAR_ERROR
+  });
+
+  let time = moment(message.time);
+  dispatch({
+    type: types.chats.ADD,
+    chat: {
+      type: 'message',
+      sender: 'server',
+      text: message.text,
+      time: `${time.hour()}:${time.minute()}`
+    }
+  });
 });
 
 socket.on('getOnline', () => {

@@ -22,7 +22,10 @@ socket
     io
     .of('/customer')
     .to(socket.data.chat._id.toString())
-    .emit('recieveMessage', message);
+    .emit('recieveMessage', {
+      text: message,
+      time: Date.now()
+    });
 
     socket.emit('chat/send', 200, Date.now());
   } catch (e) {
