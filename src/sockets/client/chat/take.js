@@ -43,7 +43,7 @@ socket
     io
     .of('/customer')
     .to(chat._id.toString())
-    .emit('chat/took', socket.name, socket.avatar.url);
+    .emit('took', socket.name, socket.avatar.url);
 
     socket.emit('chat/take', 200);
   } catch (e) {
