@@ -44,6 +44,10 @@ socket
 
     io
     .of('/customer')
+    .sockets[socket.data.chat.customer].data.chat = null;
+    
+    io
+    .of('/customer')
     .to(socket.data.chat._id.toString())
     .emit('operatorLeft');
   }

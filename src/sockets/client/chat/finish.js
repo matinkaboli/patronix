@@ -20,6 +20,10 @@ socket
   .to(socket.data.chat._id.toString())
   .emit('finish');
 
+  io
+  .of('/customer')
+  .sockets[socket.data.chat.customer].data.chat = null;
+
   socket.emit('chat/finish', 200);
 });
 
