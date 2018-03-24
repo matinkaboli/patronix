@@ -47,6 +47,8 @@ socket
     .of('/client')
     .to(socket.data.chat._id.toString())
     .emit('chat/recieve', message);
+
+    socket.emit('sendMessage', 200, Date.now());
   } catch (e) {
     socket.emit('sendMessage', 400, 1);
   }

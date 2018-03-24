@@ -23,6 +23,8 @@ socket
     .of('/customer')
     .to(socket.data.chat._id.toString())
     .emit('recieveMessage', message);
+
+    socket.emit('chat/send', 200, Date.now());
   } catch (e) {
     socket.emit('chat/send', 400);
   }
