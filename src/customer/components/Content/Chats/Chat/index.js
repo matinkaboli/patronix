@@ -13,7 +13,6 @@ class Chat extends Component {
   }
 
   render() {
-    console.log(`${this.props.sender}-${this.props.type}`);
     let chatStyle = styles[`${this.props.sender}-${this.props.type}`];
 
     return (
