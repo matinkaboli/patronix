@@ -40,6 +40,10 @@ const schema = new Schema({
   taken: {
     type: Boolean,
     default: false
+  },
+  customer: {
+    type: String,
+    required: true
   }
 });
 

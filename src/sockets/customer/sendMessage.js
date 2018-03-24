@@ -20,7 +20,8 @@ socket
 
   if (!socket.data.chat) {
     let chat = new Chat({
-      site: socket.data.site._id
+      site: socket.data.site._id,
+      customer: socket.id
     });
     await chat.save();
 
