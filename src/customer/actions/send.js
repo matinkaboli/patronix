@@ -6,6 +6,13 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 
 export default message => {
+  socket.once('took', operator => {
+    dispatch({
+      type: types.operator.LOAD,
+      operator
+    });
+  });
+
   socket.once('sendMessage', (status, unixTime) => {
     let res = new ResponseHandler();
 
