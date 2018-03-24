@@ -11,7 +11,9 @@ export default {
     ADD: 'chats/ADD'
   },
   userState: {
-    LOAD: 'userState/LOAD'
+    LOAD: 'userState/LOAD',
+    GOES_OFFLINE: 'userState/GOES_OFFLINE',
+    GET_ONLINE: 'userState/GET_ONLINE'
   },
   operator: {
     LOAD: 'operator/LOAD'

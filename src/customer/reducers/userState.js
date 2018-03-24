@@ -9,6 +9,20 @@ export default (state = {
       return action.userState;
     }
 
+    case types.userState.GET_ONLINE: {
+      return {
+        online: state.online + 1,
+        offline: state.offline - 1
+      };
+    }
+
+    case types.userState.GOES_OFFLINE: {
+      return {
+        online: state.online - 1,
+        offline: state.offline + 1
+      };
+    }
+
     default: {
       return state;
     }

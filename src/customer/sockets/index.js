@@ -1,15 +1,20 @@
 import socket from 'Root/socket';
+import { dispatch } from 'Root/store';
+import types from 'Root/actions';
 
 socket.on('message', message => {
-  console.log(message);
 });
 
 socket.on('getOnline', () => {
-  console.log('yedoone online shode');
+  dispatch({
+    type: types.userState.GET_ONLINE
+  });
 });
 
 socket.on('goesOffline', () => {
-  console.log('yedoone offline shod');
+  dispatch({
+    type: types.userState.GOES_OFFLINE
+  });
 });
 
 socket.on('decrease', () => {
