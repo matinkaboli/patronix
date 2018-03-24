@@ -12,5 +12,8 @@ export default {
   },
   userState: {
     LOAD: 'userState/LOAD'
+  },
+  operator: {
+    LOAD: 'operator/LOAD'
   }
 };
