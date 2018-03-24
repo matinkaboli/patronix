@@ -39,7 +39,7 @@ socket
     io
     .of('/customer')
     .to(site._id.toString())
-    .emit('decrease');
+    .emit('decrease', 'online');
 
     nsp
     .to(site.owner.toString())

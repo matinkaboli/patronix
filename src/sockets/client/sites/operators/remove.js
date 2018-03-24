@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User } from 'Root/models';
+import { User, SocketStore } from 'Root/models';
 import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
@@ -31,10 +31,16 @@ socket
 
   await socket.data.site.save();
 
+  let ss = await SocketStore.findOne({ user: user._id }, { _id: 1 });
+  let state = 'offline';
+  if (ss) {
+    state = 'online';
+  }
+
   io
   .of('/customer')
   .to(socket.data.site._id.toString())
-  .emit('decrease');
+  .emit('decrease', state);
 
   nsp
   .to(user._id.toString())
