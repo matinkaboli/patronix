@@ -27,7 +27,7 @@ socket
   io
   .of('/client')
   .to(socket.data.chat._id.toString())
-  .emit('customerLeft');
+  .emit('chat/customerLeft');
 });
 
 export default socket;

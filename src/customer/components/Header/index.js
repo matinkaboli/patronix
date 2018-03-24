@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
 import types from 'Root/actions';
+import finish from 'Root/actions/finish';
 import toggle from 'Root/js/toggle';
 import init from 'Root/actions/init';
 import Loading from './Loading';
@@ -41,7 +42,7 @@ class Header extends Component {
             <img src={this.props.operator.avatar} className={styles.avatar} />
             <span>{this.props.operator.name}</span>
           </div>
-          <button className={styles.button}>
+          <button className={styles.button} onClick={this.finish}>
             پایان چت
           </button>
         </Fragment>
@@ -58,6 +59,10 @@ class Header extends Component {
         </span>
       </span>
     );
+  }
+
+  finish() {
+    finish();
   }
 
   render() {
