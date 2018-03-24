@@ -1,6 +1,6 @@
 export default [
   require('./init'),
-  require('./message'),
+  require('./sendMessage'),
   require('./disconnect'),
   require('./finish')
 ];

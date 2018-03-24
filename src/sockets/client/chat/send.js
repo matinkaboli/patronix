@@ -6,7 +6,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/client')
-.name('chat/message')
+.name('chat/send')
 .middleware(
   middlewares.client.checkToken,
   middlewares.client.hasValidChat
@@ -22,9 +22,9 @@ socket
     io
     .of('/customer')
     .to(socket.data.chat._id.toString())
-    .emit('message', message);
+    .emit('recieveMessage', message);
   } catch (e) {
-    socket.emit('chat/message', 400);
+    socket.emit('chat/send', 400);
   }
 });
 

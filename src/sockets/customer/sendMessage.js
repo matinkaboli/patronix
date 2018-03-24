@@ -7,7 +7,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/customer')
-.name('message')
+.name('sendMessage')
 .middleware(
   middlewares.customer.inited,
   middlewares.customer.checkToken
@@ -32,7 +32,7 @@ socket
   socket.data.chat = await Chat.findById(socket.data.chat._id);
 
   if (socket.data.chat.done) {
-    socket.emit('message', 400, 0);
+    socket.emit('sendMessage', 400, 0);
     return;
   }
 
@@ -46,9 +46,9 @@ socket
     io
     .of('/client')
     .to(socket.data.chat._id.toString())
-    .emit('chat/message', message);
+    .emit('chat/recieve', message);
   } catch (e) {
-    socket.emit('message', 400, 1);
+    socket.emit('sendMessage', 400, 1);
   }
 });
 
