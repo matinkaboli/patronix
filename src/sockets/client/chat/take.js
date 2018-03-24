@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async id => {
+.handler((socket, nsp, io) => async id => {
   try {
     let chat = await Chat
     .findById(id)
@@ -39,6 +39,11 @@ socket
 
     socket.data.chat = chat;
     socket.join(chat._id.toString());
+
+    io
+    .of('/customer')
+    .to(chat._id.toString())
+    .emit('chat/took', socket.name, socket.avatar.url);
 
     socket.emit('chat/take', 200);
   } catch (e) {
