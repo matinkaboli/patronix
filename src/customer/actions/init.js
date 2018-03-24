@@ -7,10 +7,16 @@ export default dispatch => {
     type: types.loading.START
   });
 
-  socket.once('init', status => {
+  socket.once('init', (status, userState) => {
     let res = new ResponseHandler();
 
     res
+    .handle('success', () => {
+      dispatch({
+        type: types.userState.LOAD,
+        userState
+      });
+    })
     .status(status);
 
     dispatch({
