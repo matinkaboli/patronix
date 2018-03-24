@@ -1,12 +1,18 @@
 import types from 'Root/actions';
 
-export default (state = { name: '', avatar: '', took: false }, action) => {
+let defaultState = { name: '', avatar: '', took: false };
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case types.operator.LOAD: {
       return {
         ...action.operator,
         took: true
       };
+    }
+
+    case types.CLEAR: {
+      return defaultState;
     }
 
     default: {

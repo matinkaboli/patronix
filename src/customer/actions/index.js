@@ -21,5 +21,6 @@ export default {
   },
   operator: {
     LOAD: 'operator/LOAD'
-  }
+  },
+  CLEAR: 'CLEAR'
 };

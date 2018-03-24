@@ -13,6 +13,10 @@ export default (state = [], action) => {
       return state.slice().filter(chat => chat.type === 'message');
     }
 
+    case types.CLEAR: {
+      return [];
+    }
+
     default: {
       return state;
     }

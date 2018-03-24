@@ -51,3 +51,33 @@ socket.on('increase', () => {
     type: types.userState.INCREASE
   });
 });
+
+socket.on('operatorLeft', () => {
+  dispatch({
+    type: types.CLEAR
+  });
+
+  dispatch({
+    type: types.chats.ADD,
+    chat: {
+      type: 'error',
+      sender: 'server',
+      text: 'اوپراتور از چت روم خارج شد.'
+    }
+  });
+});
+
+socket.on('finish', () => {
+  dispatch({
+    type: types.CLEAR
+  });
+
+  dispatch({
+    type: types.chats.ADD,
+    chat: {
+      type: 'error',
+      sender: 'server',
+      text: 'اوپراتور به چت پایان داد.'
+    }
+  });
+});
