@@ -13,6 +13,11 @@ socket
   middlewares.customer.checkToken
 )
 .handler((socket, nsp, io) => async message => {
+  if (socket.data.chat && socket.data.chat.done) {
+    socket.emit('sendMessage', 400, 0);
+    return;
+  }
+
   if (!socket.data.chat) {
     let chat = new Chat({
       site: socket.data.site._id
@@ -30,11 +35,6 @@ socket
   }
 
   socket.data.chat = await Chat.findById(socket.data.chat._id);
-
-  if (socket.data.chat.done) {
-    socket.emit('sendMessage', 400, 0);
-    return;
-  }
 
   try {
     socket.data.chat.chats.push({

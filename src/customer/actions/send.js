@@ -11,6 +11,10 @@ export default message => {
 
     res
     .handle('success', () => {
+      dispatch({
+        type: types.chats.CLEAR_ERROR
+      });
+
       let time = moment(unixTime);
       dispatch({
         type: types.chats.ADD,

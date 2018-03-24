@@ -8,7 +8,8 @@ export default {
     STOP: 'loading/STOP'
   },
   chats: {
-    ADD: 'chats/ADD'
+    ADD: 'chats/ADD',
+    CLEAR_ERROR: 'chats/CLEAR_ERROR'
   },
   userState: {
     LOAD: 'userState/LOAD',
