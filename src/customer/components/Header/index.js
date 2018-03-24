@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
@@ -34,11 +34,25 @@ class Header extends Component {
       return <Loading />;
     }
 
+    if (this.props.operator.took) {
+      return (
+        <Fragment>
+          <div className={styles.userInfo}>
+            <img src={this.props.operator.avatar} className={styles.avatar} />
+            <span>{this.props.operator.name}</span>
+          </div>
+          <button className={styles.button}>
+            پایان چت
+          </button>
+        </Fragment>
+      );
+    }
+
     return (
       <span>
         <span>
           {this.props.userState.online} آنلاین
-        </span> - 
+        </span> -
         <span className={styles.offline}>
           {this.props.userState.offline} آفلاین
         </span>
@@ -73,6 +87,7 @@ export default connect(
   state => ({
     appStatus: state.appStatus,
     loading: state.loading,
-    userState: state.userState
+    userState: state.userState,
+    operator: state.operator
   })
 )(Header);

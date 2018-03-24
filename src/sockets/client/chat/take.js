@@ -2,6 +2,7 @@ import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
 import { Chat } from 'Root/models';
+import { url } from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -45,7 +46,7 @@ socket
     .to(chat._id.toString())
     .emit('took', {
       name: socket.data.user.name,
-      avatar: socket.data.user.avatar.url
+      avatar: url + socket.data.user.avatar.url
     });
 
     socket.emit('chat/take', 200);
