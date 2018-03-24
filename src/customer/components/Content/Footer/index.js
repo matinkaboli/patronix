@@ -10,10 +10,21 @@ class Footer extends Component {
     send(this.refs.message.value);
   }
 
+  @bind
+  keypress(e) {
+    if (e.key === 'Enter') {
+      this.send();
+    }
+  }
+
   render() {
     return (
       <div className={styles.container}>
-        <input className={styles.input} ref='message' />
+        <input
+          className={styles.input}
+          ref='message'
+          onKeyPress={this.keypress}
+        />
         <button className={styles.button} onClick={this.send}>
           ارسال
         </button>
