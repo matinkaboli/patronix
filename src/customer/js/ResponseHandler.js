@@ -1,9 +1,47 @@
+import { dispatch } from 'Root/store';
+import types from 'Root/actions';
 
 export default class {
   handle(type, func) {
     this[type] = func;
 
     return this;
+  }
+
+  success() {
+  }
+
+  notfound() {
+    dispatch({
+      type: types.chats.ADD,
+      chat: {
+        type: 'error',
+        sender: 'server',
+        text: 'همچین چیزی پیدا نشد.'
+      }
+    });
+  }
+
+  forbidden() {
+    dispatch({
+      type: types.chats.ADD,
+      chat: {
+        type: 'error',
+        sender: 'server',
+        text: 'شما اجازه ای انجام این کار رو ندارید.'
+      }
+    });
+  }
+
+  error() {
+    dispatch({
+      type: types.chats.ADD,
+      chat: {
+        type: 'error',
+        sender: 'server',
+        text: 'خطایی رخ داده است.'
+      }
+    });
   }
 
   status(status) {
@@ -22,11 +60,6 @@ export default class {
 
       case 403: {
         method = 'forbidden';
-        break;
-      }
-
-      case 401: {
-        method = 'unauth';
         break;
       }
     }

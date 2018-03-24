@@ -11,17 +11,6 @@ export default dispatch => {
     let res = new ResponseHandler();
 
     res
-    .handle('success', () => {})
-    .handle('forbidden', () => {
-      dispatch({
-        type: types.chats.ADD,
-        chat: {
-          text: 'سایتی با این مشخصات وجود ندارد',
-          sender: 'server',
-          type: 'error'
-        }
-      });
-    })
     .status(status);
 
     dispatch({

@@ -15,7 +15,7 @@ export default (next, socket) => async () => {
     else {
       socket.handshake.query.token = null;
       if (socket.eventName !== 'disconnect') {
-        socket.emit(socket.eventName, 403);
+        socket.emit(socket.eventName, 400);
       } else {
         socket.disconnect();
       }
@@ -24,7 +24,7 @@ export default (next, socket) => async () => {
 
   else {
     if (socket.eventName !== 'disconnect') {
-      socket.emit(socket.eventName, 403);
+      socket.emit(socket.eventName, 400);
     } else {
       socket.disconnect();
     }
