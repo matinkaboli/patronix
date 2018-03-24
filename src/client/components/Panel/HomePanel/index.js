@@ -12,21 +12,15 @@ import styles from './index.less';
 class Index extends Component {
   @bind
   renderImage() {
-    if (this.props.user.avatar) {
-      return (
-        <img
-        src={this.props.user.avatar}
-        alt='عکس کاربر'
-        className={styles.avatarImage} />
-      );
-    }
-
-    return (
-      <img
-        src={defaultImage}
-        alt='عکس کاربر'
-        className={styles.avatarImage} />
-    );
+    return this.props.user.avatar ?
+    <img
+      src={this.props.user.avatar}
+      alt='عکس کاربر'
+      className={styles.avatarImage} /> :
+    <img
+      src={defaultImage}
+      alt='عکس کاربر'
+      className={styles.avatarImage} />;
   }
 
   render() {
