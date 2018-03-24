@@ -1,3 +1,6 @@
+@import '~Root/styles/colors.less';
+@import '~Root/styles/mixins.less';
+
 :local(.container) {
   display: flex;
   justify-content: center;
@@ -10,7 +13,7 @@
     border-radius: 3px;
 
     > * {
-      margin: 10px 0;
+      margin: 7px 0;
     }
   }
 }
@@ -22,13 +25,23 @@
   align-self: center;
 }
 
-:local(.name) {
-  font-size: 20px;
-  color: #222;
+:local(.title) {
+  .headerTitle();
+}
+
+:local(.script) {
+  direction: ltr;
+  font-size: 12px;
+  color: #444;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.container) {
     flex-direction: column;
+  }
+
+  :local(.avatarImage) {
+    width: 80%;
+    height: 80%;
   }
 }

@@ -34,14 +34,28 @@ class Index extends Component {
       <div>
         <div className={styles.container}>
           <Box>
+            <h1 className={styles.title}>اطلاعات شما</h1>
+            <p>{this.props.user.name}</p>
+            <p>{this.props.user.email}</p>
             {this.renderImage()}
-            <h2 className={styles.name}>{this.props.user.name}</h2>
           </Box>
+
           <Box>
-            <p>سایت هات</p>
+            <h1 className={styles.title}>سایت ها</h1>
+            <hr />
           </Box>
+
           <Box>
-            <p>چت هات</p>
+            <h1 className={styles.title}>نحوه استفاده</h1>
+            <p>کد زیر را داخل HTML سایت خود قرار دهید</p>
+            <code className={styles.script}>
+              {`<div id='patronix-land'></div>
+              <script
+                id='patronix-data'
+                token=${this.props.user.name}
+                src="${this.props.user.name}/static/js/customer.js">
+              </script>`}
+            </code>
           </Box>
         </div>
       </div>
