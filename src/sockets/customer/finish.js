@@ -9,7 +9,6 @@ socket
 .name('finish')
 .middleware(
   middlewares.customer.inited,
-  middlewares.customer.checkToken,
   middlewares.customer.hasChat
 )
 .handler((socket, nsp, io) => async () => {
@@ -20,6 +19,13 @@ socket
   .of('/client')
   .to(socket.data.chat._id.toString())
   .emit('chat/finish');
+
+  let operator = io
+  .of('/client')
+  .sockets[socket.data.chat.operator.socket];
+
+  operator.data.chat = null;
+  operator.leave(socket.data.chat._id.toString());
 
   socket.data.chat = null;
 

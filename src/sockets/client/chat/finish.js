@@ -20,9 +20,12 @@ socket
   .to(socket.data.chat._id.toString())
   .emit('finish');
 
-  io
+  let customer = io
   .of('/customer')
-  .sockets[socket.data.chat.customer].data.chat = null;
+  .sockets[socket.data.chat.customer];
+
+  customer.data.chat = null;
+  customer.leave(socket.data.chat._id.toString());
 
   socket.emit('chat/finish', 200);
 });
