@@ -36,6 +36,10 @@ socket
     }
 
     chat.taken = true;
+    chat.operator = {
+      id: socket.data.user._id,
+      socket: socket.id
+    };
     await chat.save();
 
     socket.data.chat = chat;

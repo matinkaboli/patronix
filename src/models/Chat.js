@@ -24,8 +24,11 @@ const chats = new Schema({
 
 const schema = new Schema({
   operator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    socket: String,
+    id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
   },
   site: {
     type: Schema.Types.ObjectId,
