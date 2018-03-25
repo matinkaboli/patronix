@@ -49,7 +49,11 @@ socket
     await token.remove();
   }
 
-  let sites = await Site.find({ operators: user._id }, { _id: 1, owner: 1 });
+  let sites = await Site.find({ operators: user._id }, {
+    _id: 1,
+    owner: 1,
+    name: 1
+  });
   let ownedSite;
   let operatorSites = [];
   for (let site of sites) {
