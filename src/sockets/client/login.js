@@ -5,7 +5,8 @@ import {
   ClientToken,
   Invitation,
   Site,
-  SocketStore
+  SocketStore,
+  Chat
 } from 'Root/models';
 import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
@@ -102,6 +103,10 @@ socket
   .populate({ path: 'from', select: 'name' })
   .exec();
 
+  let sites = await Site
+  .find({ operators: socket.data.user._id }, { _id: 1 });
+  sites = sites.map(i => i._id);
+
   socket.emit('login', 200, {
     user: {
       name: user.name,
@@ -116,7 +121,12 @@ socket
     sites: {
       site: ownedSite,
       sites: operatorSites
-    }
+    },
+    chats: await Chat.find({
+      site: { $in: sites },
+      taken: false,
+      done: false
+    }, { chats: 1 })
   });
 });
 
