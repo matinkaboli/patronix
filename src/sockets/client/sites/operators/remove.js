@@ -35,6 +35,10 @@ socket
   let state = 'offline';
   if (ss) {
     state = 'online';
+
+    for (let soket of ss) {
+      nsp.sockets[soket].leave(socket.data.site._id.toString());
+    }
   }
 
   io
