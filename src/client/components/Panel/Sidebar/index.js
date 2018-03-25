@@ -73,6 +73,11 @@ class Sidebar extends Component {
         text: 'چت ها'
       },
       {
+        to: '/panel/chats/history',
+        icon: 'comment',
+        text: 'چت های پیشین'
+      },
+      {
         to: '/panel/invitation',
         icon: 'user-plus',
         text: 'دعوت ها'
