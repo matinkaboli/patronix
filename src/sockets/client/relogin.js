@@ -2,6 +2,7 @@ import { SocketEvent } from 'socket.io-manager';
 
 import { Invitation, Site, Chat } from 'Root/models';
 import middlewares from 'Root/middlewares';
+import { url } from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -45,7 +46,8 @@ socket
       site: { $in: sites },
       taken: false,
       done: false
-    }, { chats: 1 })
+    }, { chats: 1 }),
+    url
   });
 });
 

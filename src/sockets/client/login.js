@@ -8,7 +8,7 @@ import {
   SocketStore,
   Chat
 } from 'Root/models';
-import { otkey, dbkey } from 'Root/config';
+import { otkey, dbkey, url } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
 let socket = new SocketEvent();
@@ -103,10 +103,6 @@ socket
   .populate({ path: 'from', select: 'name' })
   .exec();
 
-  let sites = await Site
-  .find({ operators: socket.data.user._id }, { _id: 1 });
-  sites = sites.map(i => i._id);
-
   socket.emit('login', 200, {
     user: {
       name: user.name,
@@ -123,10 +119,11 @@ socket
       sites: operatorSites
     },
     chats: await Chat.find({
-      site: { $in: sites },
+      site: { $in: sites.map(i => i._id) },
       taken: false,
       done: false
-    }, { chats: 1 })
+    }, { chats: 1 }),
+    url
   });
 });
 
