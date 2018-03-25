@@ -13,7 +13,7 @@ class HomeChat extends Component {
       <Box className={styles.container}>
         {this.props.chats.map((v, i) =>
           <div className={styles.chat} key={i}>
-            <Link to='/panel/chats/'>{v.message}</Link>
+            <Link to='/panel/chats/'>{v.messages[0]}</Link>
             <span>از سایت: {v.site}</span>
             <span>{new Date().getHours()}:{new Date().getMinutes()}</span>
           </div>

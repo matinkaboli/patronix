@@ -72,7 +72,7 @@ socket.on('chat/new', message => {
 
   const chatObject = {
     site: 'gohe khar',
-    message
+    messages: [message]
   };
 
   dispatch({
