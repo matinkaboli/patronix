@@ -67,7 +67,7 @@ socket.on('operatorLeft', () => {
   });
 });
 
-socket.on('finish', () => {
+socket.on('operatorFinished', () => {
   dispatch({
     type: types.CLEAR
   });

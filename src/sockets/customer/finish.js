@@ -18,7 +18,7 @@ socket
   io
   .of('/client')
   .to(socket.data.chat._id.toString())
-  .emit('chat/finish');
+  .emit('chat/customerFinished');
 
   let operator = io
   .of('/client')

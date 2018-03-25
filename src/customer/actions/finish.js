@@ -12,6 +12,15 @@ export default () => {
       dispatch({
         type: types.CLEAR
       });
+
+      dispatch({
+        type: types.chats.ADD,
+        chat: {
+          type: 'error',
+          sender: 'server',
+          text: 'چت با موفقیت به پایان رسید.'
+        }
+      });
     })
     .status(status);
   });
