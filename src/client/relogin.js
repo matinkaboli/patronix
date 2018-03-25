@@ -19,6 +19,13 @@ export default new Promise(resolve => {
           type: types.invitations.LOAD,
           invitations: res.invitations
         });
+
+        dispatch({
+          type: types.sites.LOAD,
+          data: res.sites
+        });
+
+        localStorage.setItem('patronixUrl', res.url);
       })
 
       .status(status);

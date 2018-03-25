@@ -27,6 +27,13 @@ export default (credentials, push, captcha) => dispatch => {
         invitations: res.invitations
       });
 
+      dispatch({
+        type: types.sites.LOAD,
+        data: res.sites
+      });
+
+      localStorage.setItem('patronixUrl', res.url);
+
       push('/panel');
     })
 

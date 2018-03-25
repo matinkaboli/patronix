@@ -24,6 +24,8 @@ class Index extends Component {
   }
 
   render() {
+    const hasSite = this.props.sites.site || this.props.sites.sites.length;
+
     return (
       <div>
         <div className={styles.container}>
@@ -34,23 +36,37 @@ class Index extends Component {
             {this.renderImage()}
           </Box>
 
-          <Box>
-            <h1 className={styles.title}>سایت ها</h1>
-            <hr />
-          </Box>
+          {hasSite ? <Box>
+            {this.props.sites.site ?
+            <h1 className={styles.title}>سایت های شما</h1> : ''}
 
-          <Box>
+            {this.props.sites.site ? <div>
+              <p>نام سایت: {this.props.sites.site.name}</p>
+            </div> : ''}
+
+
+
+            {this.props.sites.sites.length ?
+              <h1 className={styles.title}>سایت هایی که پشتیبانی میکنید</h1> :
+            ''}
+
+            {this.props.sites.sites && this.props.sites.sites.map((v, i) =>
+              <p key={i}>نام سایت: {v.name}</p>
+            )}
+          </Box> : ''}
+
+          {this.props.sites.site ? <Box>
             <h1 className={styles.title}>نحوه استفاده</h1>
             <p>کد زیر را داخل HTML سایت خود قرار دهید</p>
             <code className={styles.script}>
               {`<div id='patronix-land'></div>
               <script
-                id='patronix-data'
-                token=${this.props.user.name}
-                src="${this.props.user.name}/static/js/customer.js">
-              </script>`}
+              id='patronix-data'
+              token=${this.props.sites.site.token}
+              src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
+              ></script>`}
             </code>
-          </Box>
+          </Box> : ''}
         </div>
       </div>
     );
@@ -59,6 +75,7 @@ class Index extends Component {
 
 export default connect(
   state => ({
-    user: state.user
+    user: state.user,
+    sites: state.sites
   })
 )(Index);
