@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Box from 'Root/components/Box';
 
@@ -10,12 +11,20 @@ class HomeChat extends Component {
   render() {
     return (
       <Box className={styles.container}>
-        <div className={styles.chat}>
-          <Link to='/panel/chats/'>سایتییت</Link>
-        </div>
+        {this.props.chats.map((v, i) =>
+          <div className={styles.chat} key={i}>
+            <Link to='/panel/chats/'>{v.message}</Link>
+            <span>از سایت: {v.site}</span>
+            <span>{new Date().getHours()}:{new Date().getMinutes()}</span>
+          </div>
+        )}
       </Box>
     );
   }
 }
 
-export default HomeChat;
+export default connect(
+  state => ({
+    chats: state.chats
+  })
+)(HomeChat);

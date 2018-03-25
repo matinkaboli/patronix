@@ -65,7 +65,20 @@ socket.on('sites/join', site => {
 
 
 socket.on('chat/new', message => {
-  console.log('we have new chat: ', message);
+  izitoast.success({
+    rtl: true,
+    title: 'شما یک پیام جدید دارید'
+  });
+
+  const chatObject = {
+    site: 'gohe khar',
+    message
+  };
+
+  dispatch({
+    type: types.chats.ADD,
+    chat: chatObject
+  });
 });
 
 

@@ -36,5 +36,8 @@ export default {
     LOAD: 'invitations/LOAD',
     REJECT: 'invitations/REJECT',
     ADD: 'invitations/ADD',
+  },
+  chats: {
+    ADD: 'chats/ADD'
   }
 };
