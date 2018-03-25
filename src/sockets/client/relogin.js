@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { Invitation } from 'Root/models';
+import { Invitation, Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
@@ -27,7 +27,16 @@ socket
     invitations: invitations.map(i => ({
       from: i.from.name,
       code: i.code
-    }))
+    })),
+    sites: {
+      site: await Site.findOne({ owner: socket.data.user._id }),
+      sites: await Site.find({
+        owner: { $ne: socket.data.user._id },
+        operators: socket.data.user._id
+      }, {
+        name: 1
+      })
+    }
   });
 });
 

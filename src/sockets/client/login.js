@@ -49,7 +49,15 @@ socket
   }
 
   let sites = await Site.find({ operators: user._id }, { _id: 1 });
+  let ownedSite;
+  let operatorSites = [];
   for (let site of sites) {
+    if (site.owner.toString() === user._id.toString()) {
+      ownedSite = site;
+    } else {
+      operatorSites.push(site);
+    }
+
     socket.join(site._id.toString());
   }
 
@@ -104,7 +112,11 @@ socket
     invitations: invitations.map(i => ({
       from: i.from.name,
       code: i.code
-    }))
+    })),
+    sites: {
+      site: ownedSite,
+      sites: operatorSites
+    }
   });
 });
 
