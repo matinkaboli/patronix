@@ -30,7 +30,11 @@ socket
     io
     .of('/client')
     .to(socket.data.site._id.toString())
-    .emit('chat/new', message);
+    .emit('chat/new', {
+      _id: chat._id,
+      from: socket.data.site.name,
+      message
+    });
 
     socket.data.chat = chat;
   }
