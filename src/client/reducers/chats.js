@@ -9,6 +9,13 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.chats.LOAD: {
+      return [
+        ...state,
+        ...action.data
+      ];
+    }
+
     default: {
       return state;
     }
