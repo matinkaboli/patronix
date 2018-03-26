@@ -1,3 +1,5 @@
 export default [
-  require('./chat')
+  require('./chat'),
+  require('./chats'),
+  require('./history')
 ];
