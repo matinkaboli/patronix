@@ -8,6 +8,10 @@ import './sockets';
 import 'Root/styles/index.less';
 
 window.onload = () => {
+  let land = document.createElement('div');
+  land.id = 'patronix-land';
+  document.body.append(land);
+  
   render(
     <Provider store={store}>
       <App/>
