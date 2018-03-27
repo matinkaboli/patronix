@@ -36,7 +36,13 @@ export default (state = {
 
     case types.sites.REMOVE_OPERATOR: {
       let operators = Array.from(state.site.operators);
-      operators = operators.filter(obj => obj.email !== action.email);
+
+      for (const i of operators.keys()) {
+        if (operators[i].email === action.email) {
+          operators.splice(i, 1);
+          break;
+        }
+      }
 
       return {
         ...state,
