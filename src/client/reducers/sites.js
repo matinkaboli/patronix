@@ -100,6 +100,13 @@ export default (state = {
       };
     }
 
+    case types.sites.LOAD_OWNED: {
+      return {
+        ...state,
+        site: action.data
+      };
+    }
+
     default: {
       return state;
     }

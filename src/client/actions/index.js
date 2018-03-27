@@ -29,7 +29,8 @@ export default {
     UPDATE_NAME: 'sites/UPDATE_NAME',
     REMOVE: 'sites/REMOVE',
     LOAD: 'sites/LOAD',
-    ADD: 'sites/ADD'
+    ADD: 'sites/ADD',
+    LOAD_OWNED: 'sites/LOAD_OWNED'
   },
   invitations: {
     ACCEPT: 'invitations/ACCEPT',

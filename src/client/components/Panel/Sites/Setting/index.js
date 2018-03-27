@@ -171,5 +171,5 @@ export default lazy(
       site: state.sites.site
     })
   )(Site),
-  types.sites.LOAD
+  types.sites.LOAD_OWNED
 );
