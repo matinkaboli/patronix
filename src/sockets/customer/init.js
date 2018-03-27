@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import { SocketStore } from 'Root/models';
+import { User } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -21,8 +21,8 @@ socket
     };
 
     for (let operator of socket.data.site.operators) {
-      let ss = await SocketStore.findOne({ user: operator });
-      let key = ss ? 'online' : 'offline';
+      let user = await User.findById(operator, { socket: 1 });
+      let key = user.socket ? 'online' : 'offline';
       userState[key] = userState[key] + 1;
     }
 

@@ -11,7 +11,7 @@ import process from 'process';
 import sockets from './sockets';
 import { init } from './middlewares';
 import config from './config';
-import { SocketStore } from './models';
+import { User } from './models';
 
 let modified = applyMiddleware([init], sockets);
 
@@ -27,7 +27,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 (async () => {
-  await SocketStore.remove({});
+  await User.update({}, { $set: { socket: null } });
 
   const app = express();
   const server = app.listen(config.port);

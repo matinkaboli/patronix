@@ -5,6 +5,5 @@ export default {
   User: require('./User'),
   Site: require('./Site'),
   Invitation: require('./Invitation'),
-  Chat: require('./Chat'),
-  SocketStore: require('./SocketStore')
+  Chat: require('./Chat')
 };
