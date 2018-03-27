@@ -31,12 +31,12 @@ socket
 
   await socket.data.site.save();
 
-  let ss = await SocketStore.findOne({ user: user._id }, { _id: 1 });
+  let ss = await SocketStore.findOne({ user: user._id });
   let state = 'offline';
   if (ss) {
     state = 'online';
 
-    for (let soket of ss) {
+    for (let soket of ss.sockets) {
       nsp.sockets[soket].leave(socket.data.site._id.toString());
     }
   }
