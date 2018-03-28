@@ -6,11 +6,9 @@ import inviteOperator from 'Root/actions/user/site/operator/invite';
 import removeOperator from 'Root/actions/user/site/operator/remove';
 import revokeToken from 'Root/actions/user/site/revokeToken';
 import updateName from 'Root/actions/user/site/name';
-import types from 'Root/actions';
 
 import { email } from 'Root/js/validator';
 import assure from 'Root/js/assure';
-import lazy from 'Root/js/lazy';
 import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
@@ -165,11 +163,8 @@ class Site extends Component {
   }
 }
 
-export default lazy(
-  connect(
-    state => ({
-      site: state.sites.site
-    })
-  )(Site),
-  types.sites.LOAD_OWNED
-);
+export default connect(
+  state => ({
+    site: state.sites.site
+  })
+)(Site);

@@ -7,11 +7,9 @@ import removeAvatar from 'Root/actions/user/avatar/remove';
 import updateEmail from 'Root/actions/user/email';
 import updateName from 'Root/actions/user/name';
 import updatePass from 'Root/actions/user/pass';
-import types from 'Root/actions';
 
 import { email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
-import lazy from 'Root/js/lazy';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
@@ -263,11 +261,8 @@ class Setting extends Component {
   }
 }
 
-export default lazy(
-  connect(
-    state => ({
-      user: state.user
-    })
-  )(Setting),
-  types.user.LOAD
-);
+export default connect(
+  state => ({
+    user: state.user
+  })
+)(Setting);

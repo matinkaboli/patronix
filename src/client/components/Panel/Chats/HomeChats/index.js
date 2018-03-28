@@ -6,7 +6,6 @@ import Box from 'Root/components/Box';
 
 import styles from './index.less';
 
-
 class HomeChat extends Component {
   render() {
     return (
