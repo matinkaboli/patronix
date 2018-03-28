@@ -75,8 +75,3 @@ socket.on('chat/new', message => {
     message
   });
 });
-
-
-socket.on('chat/message', message => {
-  console.log(message);
-});
