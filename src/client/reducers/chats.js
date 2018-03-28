@@ -5,7 +5,7 @@ export default (state = [], action) => {
     case types.chats.ADD: {
       return [
         ...state,
-        action.chat
+        action.message
       ];
     }
 
