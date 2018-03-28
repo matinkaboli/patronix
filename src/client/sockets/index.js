@@ -65,14 +65,13 @@ socket.on('sites/join', site => {
 
 
 socket.on('chat/new', message => {
-  console.log(message);
   izitoast.success({
     rtl: true,
     title: 'شما یک پیام جدید دارید'
   });
 
   dispatch({
-    type: types.chats.ADD,
+    type: types.chats.NEW,
     message
   });
 });

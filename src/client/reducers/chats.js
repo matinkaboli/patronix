@@ -2,10 +2,14 @@ import types from 'Root/actions';
 
 export default (state = [], action) => {
   switch (action.type) {
-    case types.chats.ADD: {
+    case types.chats.NEW: {
       return [
         ...state,
-        action.message
+        {
+          from: action.message.from,
+          _id: action.message._id,
+          messages: [action.message.message]
+        }
       ];
     }
 
