@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Box from 'Root/components/Box';
+
+import styles from './index.less';
+
 
 class Chat extends Component {
   render() {
@@ -13,9 +17,19 @@ class Chat extends Component {
       }
     }
 
-    console.log(chat);
+    if (!chat) {
+      return (
+        <Box>
+          <h1 className={styles.title}>یافت نشد</h1>
+        </Box>
+      );
+    }
 
-    return <h1>Hey man</h1>;
+    return (
+      <Box>
+        <h1>Hello Chat</h1>
+      </Box>
+    );
   }
 }
 
