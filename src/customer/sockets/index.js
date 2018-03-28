@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 import types from 'Root/actions';
@@ -9,14 +7,14 @@ socket.on('recieveMessage', message => {
     type: types.chats.CLEAR_ERROR
   });
 
-  let time = moment(message.time);
+  let time = new Date(message.time);
   dispatch({
     type: types.chats.ADD,
     chat: {
       type: 'message',
       sender: 'server',
       text: message.text,
-      time: `${time.hour()}:${time.minute()}`
+      time: `${time.getHours()}:${time.getMinutes()}`
     }
   });
 });
