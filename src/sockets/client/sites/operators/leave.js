@@ -37,7 +37,7 @@ socket
     await site.save();
 
     let ss = await SocketStore.findOne({ user: socket.data.user._id });
-    for (let soket of ss) {
+    for (let soket of ss.sockets) {
       nsp.sockets[soket].leave(site._id.toString());
     }
 
