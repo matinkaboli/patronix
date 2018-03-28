@@ -39,7 +39,7 @@ export default {
     ADD: 'invitations/ADD',
   },
   chats: {
-    ADD: 'chats/ADD',
+    NEW: 'chats/NEW',
     LOAD: 'chats/LOAD'
   }
 };

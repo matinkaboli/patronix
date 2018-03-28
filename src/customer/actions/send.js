@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import { dispatch } from 'Root/store';
 import socket from 'Root/socket';
 import ResponseHandler from 'Root/js/ResponseHandler';
@@ -22,13 +20,13 @@ export default message => {
         type: types.chats.CLEAR_ERROR
       });
 
-      let time = moment(unixTime);
+      let time = new Date(unixTime);
       dispatch({
         type: types.chats.ADD,
         chat: {
           type: 'message',
           sender: 'customer',
-          time: `${time.hour()}:${time.minute()}`,
+          time: `${time.getHours()}:${time.getMinutes()}`,
           text: message
         }
       });

@@ -36,7 +36,13 @@ export default (state = {
 
     case types.sites.REMOVE_OPERATOR: {
       let operators = Array.from(state.site.operators);
-      operators = operators.filter(obj => obj.email !== action.email);
+
+      for (const i of operators.keys()) {
+        if (operators[i].email === action.email) {
+          operators.splice(i, 1);
+          break;
+        }
+      }
 
       return {
         ...state,
@@ -49,7 +55,13 @@ export default (state = {
 
     case types.sites.LEAVE_OPERATOR: {
       let sites = Array.from(state.sites);
-      sites = sites.filter(obj => obj._id !== action.id);
+
+      for (const i of sites.keys()) {
+        if (sites[i]._id === action.id) {
+          sites.splice(i, 1);
+          break;
+        }
+      }
 
       return { ...state, sites };
     }
@@ -69,7 +81,13 @@ export default (state = {
 
     case types.sites.LEFT_OPERATOR: {
       let operators = Array.from(state.site.operators);
-      operators = operators.filter(op => op.email !== action.operator.email);
+
+      for (const i of operators.keys()) {
+        if (operators[i].email === action.operator.email) {
+          operators.splice(i, 1);
+          break;
+        }
+      }
 
       return {
         ...state,
@@ -82,8 +100,14 @@ export default (state = {
 
     case types.sites.KICK_OPERATOR: {
       let sites = Array.from(state.sites);
-      sites = sites.filter(site => site._id !== action.site._id);
 
+      for (const i of sites.keys()) {
+        if (sites[i]._id === action.site._id) {
+          sites.splice(i, 1);
+          break;
+        }
+      }
+  
       return {
         ...state,
         sites

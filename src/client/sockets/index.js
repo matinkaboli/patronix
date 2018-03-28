@@ -70,18 +70,8 @@ socket.on('chat/new', message => {
     title: 'شما یک پیام جدید دارید'
   });
 
-  const chatObject = {
-    site: 'gohe khar',
-    messages: [message]
-  };
-
   dispatch({
-    type: types.chats.ADD,
-    chat: chatObject
+    type: types.chats.NEW,
+    message
   });
-});
-
-
-socket.on('chat/message', message => {
-  console.log(message);
 });
