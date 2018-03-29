@@ -66,5 +66,6 @@ class Code extends Component {
 }
 
 export default lazy(
-  withRouter(Code)
+  withRouter(Code),
+  'temp'
 );
