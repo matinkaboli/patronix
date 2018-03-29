@@ -64,19 +64,47 @@ socket.on('sites/join', site => {
 });
 
 
-socket.on('chat/new', (message, res) => {
+socket.on('chat/new', chat => {
   izitoast.success({
     rtl: true,
     title: 'شما یک پیام جدید دارید'
   });
 
   dispatch({
-    type: types.chats.NEW,
-    message,
-    res
+    type: types.newChats.NEW,
+    chat
   });
 });
 
-socket.on('chat/recieve', (a, b, c) => {
-  console.log('Recieve, ', a, b, c);
+socket.on('chat/recieve', (message, time) => {
+  console.log('Recieved, ', message, time);
+
+  dispatch({
+    type: types.chats.NEW_MESSAGE,
+    customer: true,
+    message,
+    time
+  });
+});
+
+socket.on('chat/customerLeft', () => {
+  izitoast.warning({
+    rtl: true,
+    title: 'کاربر خارج شد'
+  });
+
+  dispatch({
+    type: types.historyChats.ADD
+  });
+
+  dispatch({
+    type: types.chat.REMOVE
+  });
+});
+
+socket.on('chat/customerFinished', () => {
+  izitoast.warning({
+    rtl: true,
+    title: 'کاربر خارج شد'
+  });  
 });

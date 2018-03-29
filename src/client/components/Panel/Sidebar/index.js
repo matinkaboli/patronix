@@ -94,10 +94,8 @@ class Sidebar extends Component {
       links[5].notification = this.props.invitations.length;
     }
 
-    if (this.props.chats && this.props.chats.length) {
-      links[3].notification = this.props.chats.filter(
-        obj => obj.taken === false
-      ).length;
+    if (this.props.newChats && this.props.newChats.length) {
+      links[3].notification = this.props.newChats.length;
     }
 
     return (
@@ -121,9 +119,9 @@ class Sidebar extends Component {
 
 export default withRouter(connect(
   state => ({
-    user: state.user,
-    loading: state.lazy.loading,
     invitations: state.invitations,
-    chats: state.chats
+    loading: state.lazy.loading,
+    newChats: state.newChats,
+    user: state.user
   })
 )(Sidebar));

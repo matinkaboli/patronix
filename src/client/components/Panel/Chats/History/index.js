@@ -13,13 +13,13 @@ import styles from './index.less';
 
 class History extends Component {
   render() {
-    const chats = this.props.chats.filter(obj => obj.finished === true);
-
+    const chats = this.props.historyChats;
+console.log(chats);
     return (
       <Box className={styles.container}>
 
         {chats.map((v, i) => <div className={styles.chat} key={i}>
-          <Link to={`/panel/chats/${v._id}`}>{v.messages[0]}</Link>
+          <Link to={`/panel/chats/${v._id}`}>{v.message}</Link>
         </div>)}
       </Box>
     );
@@ -29,8 +29,8 @@ class History extends Component {
 export default lazy(
   connect(
     state => ({
-      chats: state.chats
+      historyChats: state.historyChats
     })
   )(History),
-  types.chats.LOAD
+  types.historyChats.LOAD
 );

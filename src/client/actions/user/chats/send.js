@@ -12,7 +12,7 @@ export default (message, id) => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.chats.NEW_MESSAGE,
+        type: types.chat.NEW_MESSAGE,
         message,
         res,
         id

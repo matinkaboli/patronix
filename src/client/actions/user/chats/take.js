@@ -4,7 +4,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default id => dispatch => {
+export default chat => dispatch => {
   socket.once('chat/take', status => {
 
     let handler = new ResponseHandler();
@@ -17,8 +17,13 @@ export default id => dispatch => {
       });
 
       dispatch({
-        type: types.chats.TAKE,
-        id
+        type: types.chat.TAKE,
+        chat
+      });
+
+      dispatch({
+        type: types.newChats.REMOVE,
+        id: chat._id
       });
     })
 
@@ -39,5 +44,5 @@ export default id => dispatch => {
     .status(status);
   });
 
-  socket.emit('chat/take', id);
+  socket.emit('chat/take', chat._id);
 };

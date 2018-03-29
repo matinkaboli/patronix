@@ -16,16 +16,16 @@ import styles from './index.less';
 
 class Chat extends Component {
   @bind
-  takeChat(id) {
+  takeChat(chat) {
     return () => {
-      this.props.dispatch(take(id));
+      this.props.dispatch(take(chat));
     };
   }
 
   @bind
-  finishChat(id) {
+  finishChat(chat) {
     return () => {
-      this.props.dispatch(finish(id, this.props.history.push));
+      this.props.dispatch(finish(chat, this.props.history.push));
     };
   }
 
@@ -39,11 +39,15 @@ class Chat extends Component {
   render() {
     let chat;
 
-    for (const i of this.props.chats.keys()) {
-      if (this.props.chats[i]._id === this.props.match.params.id) {
-        chat = this.props.chats[i];
+    for (const i of this.props.newChats.keys()) {
+      if (this.props.newChats[i]._id === this.props.match.params.id) {
+        chat = this.props.newChats[i];
         break;
       }
+    }
+
+    if (this.props.chat._id) {
+      chat = this.props.chat;
     }
 
     if (!chat) {
@@ -54,19 +58,19 @@ class Chat extends Component {
       );
     }
 
-    console.log(chat);
-
     return (
       <Box>
-        {!chat.taken ? <Button
-          color='blue'
-          handleClick={this.takeChat(chat._id)}>
-          اختصاص دادن
-        </Button> : ''}
+        {!chat.taken ? <div>
+          <Button
+            color='blue'
+            handleClick={this.takeChat(chat)}>
+            اختصاص دادن
+          </Button>
+          <p>{chat.message}</p>
+        </div> : ''}
 
-        <p>{chat.messages[0].message}</p>
 
-        { chat.taken && !chat.finished ? <div>
+        {chat.taken ? <div>
           <div className={styles.send}>
             <input
               type='text'
@@ -76,13 +80,13 @@ class Chat extends Component {
 
             <Button
               color='black'
-              handleClick={this.sendMessage(chat._id)}>
+              handleClick={this.sendMessage}>
               فرستادن
             </Button>
           </div>
           <Button
             color='red'
-            handleClick={this.finishChat(chat._id)}>
+            handleClick={this.finishChat(chat)}>
             پایان چت
           </Button>
         </div> : ''}
@@ -93,6 +97,7 @@ class Chat extends Component {
 
 export default withRouter(connect(
   state => ({
-    chats: state.chats
+    newChats: state.newChats,
+    chat: state.chat
   })
 )(Chat));

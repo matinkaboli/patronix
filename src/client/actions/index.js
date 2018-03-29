@@ -38,11 +38,21 @@ export default {
     REJECT: 'invitations/REJECT',
     ADD: 'invitations/ADD',
   },
-  chats: {
+  chat: {
     NEW_MESSAGE: 'chats/NEW_MESSAGE',
     FINISH: 'chats/FINISH',
     TAKE: 'chats/TAKE',
     LOAD: 'chats/LOAD',
+    NEW: 'chats/NEW'
+  },
+  newChats: {
+    REMOVE: 'newChats/REMOVE',
+    NEW: 'newChats/NEW'
+  },
+  historyChats: {
+    NEW: 'historyChats/NEW'
+  },
+  chats: {
     NEW: 'chats/NEW'
   }
 };

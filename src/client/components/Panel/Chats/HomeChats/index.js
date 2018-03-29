@@ -11,10 +11,10 @@ class HomeChat extends Component {
   render() {
     return (
       <Box className={styles.container}>
-        {this.props.chats.map((v, i) =>
+        {this.props.newChats.map((v, i) =>
           <div className={styles.chat} key={i}>
 
-            <Link to={`/panel/chats/${v._id}`}>{v.messages[0].message}</Link>
+            <Link to={`/panel/chats/${v._id}`}>{v.message}</Link>
 
             <span>از سایت: {v.from}</span>
 
@@ -29,6 +29,6 @@ class HomeChat extends Component {
 
 export default connect(
   state => ({
-    chats: state.chats
+    newChats: state.newChats
   })
 )(HomeChat);
