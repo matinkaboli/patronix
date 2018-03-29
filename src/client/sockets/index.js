@@ -75,3 +75,7 @@ socket.on('chat/new', message => {
     message
   });
 });
+
+socket.on('chat/recieve', (a, b, c) => {
+  console.log('Recieve, ', a, b, c);
+});
