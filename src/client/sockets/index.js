@@ -76,14 +76,11 @@ socket.on('chat/new', chat => {
   });
 });
 
-socket.on('chat/recieve', (message, time) => {
-  console.log('Recieved, ', message, time);
-
+socket.on('chat/recieve', message => {
   dispatch({
-    type: types.chats.NEW_MESSAGE,
+    type: types.chat.NEW_MESSAGE,
     customer: true,
-    message,
-    time
+    message
   });
 });
 
@@ -91,10 +88,6 @@ socket.on('chat/customerLeft', () => {
   izitoast.warning({
     rtl: true,
     title: 'کاربر خارج شد'
-  });
-
-  dispatch({
-    type: types.historyChats.ADD
   });
 
   dispatch({
@@ -106,5 +99,9 @@ socket.on('chat/customerFinished', () => {
   izitoast.warning({
     rtl: true,
     title: 'کاربر خارج شد'
-  });  
+  });
+
+  dispatch({
+    type: types.chat.REMOVE
+  });
 });

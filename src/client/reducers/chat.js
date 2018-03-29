@@ -16,27 +16,26 @@ export default (state = {}, action) => {
       };
     }
 
-    case types.chats.LOAD: {
-      return [
-        ...state,
-        ...action.data
-      ];
-    }
-
     case types.chat.FINISH: {
-      return {};
+      return {
+        ...state,
+        finished: true
+      };
     }
 
-    case types.chats.NEW_MESSAGE: {
-      const chats = Array.from(state);
+    case types.chat.NEW_MESSAGE: {
+      const chat = Object.assign({}, state);
 
-      chats.messages.push({
+      chat.messages.push({
         message: action.message,
-        time: action.res,
         sender: action.customer ? 'CUSTOMER' : 'CLIENT'
       });
 
-      return chats;
+      return chat;
+    }
+
+    case types.chat.REMOVE: {
+      return { finished: true };
     }
 
     default: {

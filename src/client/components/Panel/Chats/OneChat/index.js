@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import types from 'Root/actions';
 import finish from 'Root/actions/user/chats/finish';
 import take from 'Root/actions/user/chats/take';
 import send from 'Root/actions/user/chats/send';
@@ -30,10 +31,8 @@ class Chat extends Component {
   }
 
   @bind
-  sendMessage(id) {
-    return () => {
-      this.props.dispatch(send(this.refs.send.value, id));
-    };
+  sendMessage() {
+    this.props.dispatch(send(this.refs.send.value));
   }
 
   render() {
@@ -58,6 +57,17 @@ class Chat extends Component {
       );
     }
 
+
+    if (chat.finished) {
+      this.props.dispatch({
+        type: types.historyChats.NEW,
+        chat
+      });
+
+      return <Redirect to='/panel' />;
+    }
+
+
     return (
       <Box>
         {!chat.taken ? <div>
@@ -67,10 +77,18 @@ class Chat extends Component {
             اختصاص دادن
           </Button>
           <p>{chat.message}</p>
+          <span>12:12</span>
         </div> : ''}
 
 
         {chat.taken ? <div>
+
+          {chat.messages.map((v, i) => <div
+            className={`${styles.message} ${styles[v.sender]}`}
+            key={i}>
+              {v.message}
+            </div>)}
+
           <div className={styles.send}>
             <input
               type='text'

@@ -39,11 +39,12 @@ export default {
     ADD: 'invitations/ADD',
   },
   chat: {
-    NEW_MESSAGE: 'chats/NEW_MESSAGE',
-    FINISH: 'chats/FINISH',
-    TAKE: 'chats/TAKE',
-    LOAD: 'chats/LOAD',
-    NEW: 'chats/NEW'
+    NEW_MESSAGE: 'chat/NEW_MESSAGE',
+    FINISH: 'chat/FINISH',
+    REMOVE: 'chat/REMOVE',
+    TAKE: 'chat/TAKE',
+    LOAD: 'chat/LOAD',
+    NEW: 'chat/NEW'
   },
   newChats: {
     REMOVE: 'newChats/REMOVE',
@@ -51,8 +52,5 @@ export default {
   },
   historyChats: {
     NEW: 'historyChats/NEW'
-  },
-  chats: {
-    NEW: 'chats/NEW'
   }
 };
