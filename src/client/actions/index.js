@@ -39,9 +39,9 @@ export default {
     ADD: 'invitations/ADD',
   },
   chats: {
+    NEW_MESSAGE: 'chats/NEW_MESSAGE',
     FINISH: 'chats/FINISH',
     TAKE: 'chats/TAKE',
-    SENT: 'chats/SENT',
     LOAD: 'chats/LOAD',
     NEW: 'chats/NEW'
   }

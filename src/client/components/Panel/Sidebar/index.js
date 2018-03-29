@@ -94,6 +94,12 @@ class Sidebar extends Component {
       links[5].notification = this.props.invitations.length;
     }
 
+    if (this.props.chats && this.props.chats.length) {
+      links[3].notification = this.props.chats.filter(
+        obj => obj.taken === false
+      ).length;
+    }
+
     return (
       <nav className={styles.nav}>
         <div
@@ -117,6 +123,7 @@ export default withRouter(connect(
   state => ({
     user: state.user,
     loading: state.lazy.loading,
-    invitations: state.invitations
+    invitations: state.invitations,
+    chats: state.chats
   })
 )(Sidebar));

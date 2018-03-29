@@ -4,7 +4,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default message => dispatch => {
+export default (message, id) => dispatch => {
   socket.once('chat/send', (status, res) => {
 
     let handler = new ResponseHandler();
@@ -12,9 +12,10 @@ export default message => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.chats.SENT,
+        type: types.chats.NEW_MESSAGE,
         message,
-        res
+        res,
+        id
       });
     })
 

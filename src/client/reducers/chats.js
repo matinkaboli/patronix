@@ -10,7 +10,11 @@ export default (state = [], action) => {
           _id: action.message._id,
           taken: false,
           finished: false,
-          messages: [action.message.message]
+          messages: [{
+            message: action.message.message,
+            time: 122222222,
+            sender: 'CUSTOMER'
+          }]
         }
       ];
     }
@@ -28,20 +32,28 @@ export default (state = [], action) => {
       for (const i of chats.keys()) {
         if (chats[i]._id === action.id) {
           chats[i].finished = true;
+          break;
         }
       }
 
-      return [
-        ...chats
-      ];
+      return chats;
     }
 
-    case types.chats.SENT: {
-      console.log(state);
-      console.log(action);
-      return [
-        ...state
-      ];
+    case types.chats.NEW_MESSAGE: {
+      const chats = Array.from(state);
+
+      for (const i of chats.keys()) {
+        if (chats[i]._id === action.id) {
+          chats[i].messages.push({
+            message: action.message,
+            time: action.res,
+            sender: 'CLIENT'
+          });
+          break;
+        }
+      }
+
+      return chats;
     }
 
     case types.chats.TAKE: {

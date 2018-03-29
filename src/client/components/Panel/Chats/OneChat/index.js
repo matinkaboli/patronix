@@ -30,8 +30,10 @@ class Chat extends Component {
   }
 
   @bind
-  sendMessage() {
-    this.props.dispatch(send(this.refs.send.value));
+  sendMessage(id) {
+    return () => {
+      this.props.dispatch(send(this.refs.send.value, id));
+    };
   }
 
   render() {
@@ -62,7 +64,7 @@ class Chat extends Component {
           اختصاص دادن
         </Button> : ''}
 
-        <p>{chat.messages[0]}</p>
+        <p>{chat.messages[0].message}</p>
 
         { chat.taken && !chat.finished ? <div>
           <div className={styles.send}>
@@ -74,7 +76,7 @@ class Chat extends Component {
 
             <Button
               color='black'
-              handleClick={this.sendMessage}>
+              handleClick={this.sendMessage(chat._id)}>
               فرستادن
             </Button>
           </div>

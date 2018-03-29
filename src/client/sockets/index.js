@@ -64,7 +64,7 @@ socket.on('sites/join', site => {
 });
 
 
-socket.on('chat/new', message => {
+socket.on('chat/new', (message, res) => {
   izitoast.success({
     rtl: true,
     title: 'شما یک پیام جدید دارید'
@@ -72,7 +72,8 @@ socket.on('chat/new', message => {
 
   dispatch({
     type: types.chats.NEW,
-    message
+    message,
+    res
   });
 });
 
