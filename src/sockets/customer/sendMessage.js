@@ -33,7 +33,8 @@ socket
     .emit('chat/new', {
       _id: chat._id,
       from: socket.data.site.name,
-      message
+      message,
+      time: Date.now()
     });
 
     socket.data.chat = chat;
@@ -51,7 +52,7 @@ socket
     io
     .of('/client')
     .to(socket.data.chat._id.toString())
-    .emit('chat/recieve', message);
+    .emit('chat/recieve', { text: message, time: Date.now() });
 
     socket.emit('sendMessage', 200, Date.now());
   } catch (e) {
