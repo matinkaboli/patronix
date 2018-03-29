@@ -56,7 +56,7 @@ class Chat extends Component {
 
     return (
       <Box>
-        {!chat.take ? <Button
+        {!chat.taken ? <Button
           color='blue'
           handleClick={this.takeChat(chat._id)}>
           اختصاص دادن
@@ -64,25 +64,26 @@ class Chat extends Component {
 
         <p>{chat.messages[0]}</p>
 
-        {chat.take ? <div className={styles.send}>
-          <input
-            type='text'
-            ref='send'
-            placeholder='فرستادن پیام'
-          />
+        { chat.taken && !chat.finished ? <div>
+          <div className={styles.send}>
+            <input
+              type='text'
+              ref='send'
+              placeholder='فرستادن پیام'
+            />
 
+            <Button
+              color='black'
+              handleClick={this.sendMessage}>
+              فرستادن
+            </Button>
+          </div>
           <Button
-            color='black'
-            handleClick={this.sendMessage}>
-            فرستادن
+            color='red'
+            handleClick={this.finishChat(chat._id)}>
+            پایان چت
           </Button>
         </div> : ''}
-
-        {chat.take ? <Button
-          color='red'
-          handleClick={this.finishChat(chat._id)}>
-          پایان چت
-        </Button> : ''}
       </Box>
     );
   }

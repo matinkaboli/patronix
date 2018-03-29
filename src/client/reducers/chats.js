@@ -9,6 +9,7 @@ export default (state = [], action) => {
           from: action.message.from,
           _id: action.message._id,
           taken: false,
+          finished: false,
           messages: [action.message.message]
         }
       ];
@@ -22,10 +23,16 @@ export default (state = [], action) => {
     }
 
     case types.chats.FINISH: {
-      console.log(state);
-      console.log(action);
+      const chats = Array.from(state);
+
+      for (const i of chats.keys()) {
+        if (chats[i]._id === action.id) {
+          chats[i].finished = true;
+        }
+      }
+
       return [
-        ...state
+        ...chats
       ];
     }
 
@@ -42,7 +49,7 @@ export default (state = [], action) => {
 
       for (const i of chats.keys()) {
         if (chats[i]._id === action.id) {
-          chats[i].take = true;
+          chats[i].taken = true;
           break;
         }
       }
