@@ -33,8 +33,10 @@ socket
     .emit('chat/new', {
       _id: chat._id,
       from: socket.data.site.name,
-      message,
-      time: Date.now()
+      message: {
+        text: message,
+        time: Date.now()
+      }
     });
 
     socket.data.chat = chat;
