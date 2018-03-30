@@ -14,12 +14,12 @@ import styles from './index.less';
 class History extends Component {
   render() {
     const chats = this.props.historyChats;
-
+    
     return (
       <Box className={styles.container}>
 
         {chats.map((v, i) => <div className={styles.chat} key={i}>
-          <Link to={`/panel/chats/history/${v._id}`}>{v.message}</Link>
+          <Link to={`/panel/chats/history/${v._id}`}>{v.message.text}</Link>
         </div>)}
       </Box>
     );

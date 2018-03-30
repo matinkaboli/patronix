@@ -1,17 +1,17 @@
 import 'babel-polyfill';
 import express from 'express';
 import socketIO from 'socket.io';
-import { join } from 'path';
-import mongoose from 'mongoose';
-import morgan from 'morgan';
 import { connect, applyMiddleware } from 'socket.io-manager';
 import logger from 'socket.io-manager-logger';
+import mongoose from 'mongoose';
 import process from 'process';
+import { join } from 'path';
+import morgan from 'morgan';
 
-import sockets from './sockets';
-import { init } from './middlewares';
-import config from './config';
 import { SocketStore } from './models';
+import { init } from './middlewares';
+import sockets from './sockets';
+import config from './config';
 
 let modified = applyMiddleware([init], sockets);
 

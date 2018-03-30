@@ -14,7 +14,7 @@ class HomeChat extends Component {
         {this.props.newChats.map((v, i) =>
           <div className={styles.chat} key={i}>
 
-            <Link to={`/panel/chats/${v._id}`}>{v.message}</Link>
+            <Link to={`/panel/chats/${v._id}`}>{v.message.text}</Link>
 
             <span>از سایت: {v.from}</span>
 

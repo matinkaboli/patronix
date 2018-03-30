@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import types from 'Root/actions';
 import finish from 'Root/actions/user/chats/finish';
 import take from 'Root/actions/user/chats/take';
 import send from 'Root/actions/user/chats/send';
+import types from 'Root/actions';
 
 import bind from 'Root/js/bind';
 
@@ -67,7 +67,6 @@ class Chat extends Component {
       return <Redirect to='/panel' />;
     }
 
-
     return (
       <Box>
         {!chat.taken ? <div>
@@ -76,7 +75,7 @@ class Chat extends Component {
             handleClick={this.takeChat(chat)}>
             اختصاص دادن
           </Button>
-          <p>{chat.message}</p>
+          <p>{chat.message.text}</p>
           <span>12:12</span>
         </div> : ''}
 
@@ -86,7 +85,7 @@ class Chat extends Component {
           {chat.messages.map((v, i) => <div
             className={`${styles.message} ${styles[v.sender]}`}
             key={i}>
-              {v.message}
+              {v.message.text}
             </div>)}
 
           <div className={styles.send}>
