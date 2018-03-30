@@ -36,54 +36,46 @@ class Home extends Component {
           <p className={styles.responsiveLinks}>لینک ها</p>
         </div>
         <aside className={styles.aside}>
-          <div className={`${styles.bg} ${styles.bg1}`}>
+          <div className={`${styles.bg} ${styles.bg1} ${styles.headTitle}`}>
             <h1>ارائه دهنده پشتیبانی آنلاین</h1>
+            <p>
+              با این سرویس شما بدون نیاز به تغییری در سایت و افزودن
+              بار اضافی به سایتتان، به آسانی می توانید پیشتیبانی آنلاین را به
+            	سایتتان بیفزایید و آن را به راحتی مدیریت کنید.
+            </p>
           </div>
           <div className={styles.about1}>
             <div className={styles.column}>
-              <div className="icon-bolt icon">
-                &nbsp;
-              </div>
-              <h1>Speeds up development</h1>
-              <p className={styles.detailColumn}>We did most of the heavy
-                lifting for you to provide a default
-                 stylings that incorporate our custom
-                 components. Additionally, we refined animations and
-                 transitions to provide a smoother experience for developers.
+              <h1>سرعت خوب</h1>
+              <p className={styles.detailColumn}>
+                ما با استفاده از تکنولوژی های روز
+                سعی داریم که بیشترین سرعت رو
+                به شما ارایه بدیم.
                </p>
             </div>
             <div className={styles.column}>
-              <div className="icon-users icon">
-                &nbsp;
-              </div>
-              <h1>Speeds up development</h1>
+              <h1>
+                رایگان
+              </h1>
               <p className={styles.detailColumn}>
-                We have provided detailed documentation
-                as well as specific code examples to help new use
-                rs get started. We are also always open to
-                 feedback and can answer any
-                questions a user may have about Materialize.
+                امکانات زیادی سعی شده است که در اختیار شما قرار بگیرد
+                و بیشتر آن ها رایگان است و نیازی نیست هزینه ای پرداخت کنید.
                </p>
             </div>
             <div className={styles.column}>
-              <div className="icon-cog icon">
-                &nbsp;
-              </div>
-              <h1>Speeds up development</h1>
+              <h1>
+                راحت
+              </h1>
               <p className={styles.detailColumn}>
-                By utilizing elements and principles
-                of Material Design, we were able to create
-                 a framework that incorporates components
-                  and animations that provide more feedback
-                   to users. Additionally, a single underlying
-                    responsive system across all platforms
-                    allow for a more unified user experience.
+                با محیط کاربری که در اختیار شما گذاشته ایم
+                شما به راحتی و آسانی می توانید با سایت
+                ارتباط برقرار کنید و از آن استفاده کنید.
                </p>
             </div>
           </div>
           <div className={`${styles.bg} ${styles.bg2}`}>
             <h1>
-              A modern responsive front-end framework based on Material Design
+              سعی می کنیم بهترین امکانات را در اختیار شما قرار بدهیم.
             </h1>
           </div>
           <div className={styles.about2}>
