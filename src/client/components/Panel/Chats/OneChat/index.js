@@ -102,18 +102,18 @@ class Chat extends Component {
         </div> : ''}
 
 
-        {chat.taken ? <div>
-
+        {chat.taken ? <div className={styles.messages}>
           {chat.messages.map((v, i) => <div
             className={`${styles.message} ${styles[v.sender]}`}
             key={i}>
-              <p>{v.message.text}</p>
 
-              <p className={styles.time}>
-                {new Date(v.message.time).getHours()}:
-                {new Date(v.message.time).getMinutes()}
-              </p>
-            </div>)}
+            <p>{v.message.text}</p>
+
+            <p className={styles.time}>
+              {new Date(v.message.time).getHours()}:
+              {new Date(v.message.time).getMinutes()}
+            </p>
+          </div>)}
 
           {!chat.finished ? <div className={styles.send}>
             <input
@@ -124,7 +124,7 @@ class Chat extends Component {
             />
 
             <Button
-              color='black'
+              color='blue'
               handleClick={this.sendMessage}>
               فرستادن
             </Button>

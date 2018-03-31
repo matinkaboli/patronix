@@ -9,7 +9,6 @@
   display: flex;
   align-items: center;
   align-self: center;
-  justify-content: center;
 
   input {
     width: 200px;
@@ -19,6 +18,12 @@
     padding: 5px;
     border: 1px solid #eee;
   }
+}
+
+:local(.messages) {
+  max-height: 400px;
+  overflow-x: auto;
+  overflow-y: scroll;
 }
 
 :local(.message) {
