@@ -19,7 +19,7 @@ export default (state = {}, action) => {
 
     case types.chat.FINISH: {
       history.push('/panel');
-      
+
       return {};
     }
 
@@ -32,12 +32,6 @@ export default (state = {}, action) => {
       });
 
       return chat;
-    }
-
-    case types.chat.REMOVE: {
-      history.push('/panel');
-
-      return {};
     }
 
     case types.chat.LOAD: {

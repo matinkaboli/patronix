@@ -95,7 +95,7 @@ socket.on('chat/customerLeft', () => {
   });
 
   dispatch({
-    type: types.chat.REMOVE
+    type: types.chat.FINISH
   });
 });
 
@@ -110,6 +110,6 @@ socket.on('chat/customerFinished', () => {
   });
 
   dispatch({
-    type: types.chat.REMOVE
+    type: types.chat.FINISH
   });
 });
