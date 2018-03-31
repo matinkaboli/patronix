@@ -59,8 +59,7 @@ class Index extends Component {
             <h1 className={styles.title}>نحوه استفاده</h1>
             <p>کد زیر را داخل HTML سایت خود قرار دهید</p>
             <code className={styles.script}>
-              {`<div id='patronix-land'></div>
-              <script
+              {`<script
               id='patronix-data'
               token=${this.props.sites.site.token}
               src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"

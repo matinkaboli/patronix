@@ -4,7 +4,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 import types from 'Root/actions';
 
-export default (chat, push) => dispatch => {
+export default () => dispatch => {
   socket.once('chat/finish', status => {
     let handler = new ResponseHandler();
 
@@ -18,12 +18,10 @@ export default (chat, push) => dispatch => {
       dispatch({
         type: types.historyChats.NEW
       });
-      
+
       dispatch({
         type: types.chat.FINISH
       });
-
-      push('/panel');
     })
 
     .status(status);

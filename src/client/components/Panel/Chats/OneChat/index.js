@@ -23,10 +23,8 @@ class Chat extends Component {
   }
 
   @bind
-  finishChat(chat) {
-    return () => {
-      this.props.dispatch(finish(chat, this.props.history.push));
-    };
+  finishChat() {
+    this.props.dispatch(finish());
   }
 
   @bind
@@ -105,7 +103,7 @@ class Chat extends Component {
 
           {!chat.finished ? <Button
             color='red'
-            handleClick={this.finishChat(chat)}>
+            handleClick={this.finishChat}>
             پایان چت
           </Button> : ''}
 

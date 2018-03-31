@@ -1,4 +1,5 @@
 import types from 'Root/actions';
+import history from 'Root/history';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -17,10 +18,9 @@ export default (state = {}, action) => {
     }
 
     case types.chat.FINISH: {
-      return {
-        ...state,
-        finished: true
-      };
+      history.push('/panel');
+      
+      return {};
     }
 
     case types.chat.NEW_MESSAGE: {
@@ -35,7 +35,9 @@ export default (state = {}, action) => {
     }
 
     case types.chat.REMOVE: {
-      return { finished: true };
+      history.push('/panel');
+
+      return {};
     }
 
     case types.chat.LOAD: {

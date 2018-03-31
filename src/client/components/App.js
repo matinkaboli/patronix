@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Switch
 } from 'react-router-dom';
+
+import history from 'Root/history';
 
 import ProtectedRoute from './ProtectedRoute';
 import Public from './Public';
@@ -14,7 +16,7 @@ import Home from './Home';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <Switch>
           <ProtectedRoute path='/panel' component={Panel} />
           <Route exact path='/about' component={About} />
