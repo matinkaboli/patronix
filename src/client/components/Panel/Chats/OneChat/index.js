@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import izitoast from 'izitoast';
 
 import finish from 'Root/actions/user/chats/finish';
 import take from 'Root/actions/user/chats/take';
@@ -29,7 +30,34 @@ class Chat extends Component {
 
   @bind
   sendMessage() {
+    if (this.refs.send.value.length > 250) {
+      izitoast.warning({
+        rtl: true,
+        title: 'بیشتر از ۲۵۰ کاراکتر نمیتوانید ارسال کنید'
+      });
+
+      return;
+    }
+
+    if (!this.refs.send.value.length) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشند'
+      });
+
+      return;
+    }
+
     this.props.dispatch(send(this.refs.send.value));
+
+    this.refs.send.value = '';
+  }
+
+  @bind
+  keypress(e) {
+    if (e.key === 'Enter') {
+      this.sendMessage();
+    }
   }
 
   render() {
@@ -91,6 +119,7 @@ class Chat extends Component {
             <input
               type='text'
               ref='send'
+              onKeyPress={this.keypress}
               placeholder='فرستادن پیام'
             />
 
