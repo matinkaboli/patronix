@@ -18,8 +18,10 @@ class HomeChat extends Component {
 
             <span>از سایت: {v.from}</span>
 
-            <span>{new Date().getHours()}:{new Date().getMinutes()}</span>
-
+            <span>
+              {new Date(v.message.time).getHours()}:
+              {new Date(v.message.time).getMinutes()}
+            </span>
           </div>
         )}
       </Box>

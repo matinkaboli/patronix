@@ -16,12 +16,11 @@ export default (chat, push) => dispatch => {
       });
 
       dispatch({
-        type: types.chat.FINISH
+        type: types.historyChats.NEW
       });
-
+      
       dispatch({
-        type: types.historyChats.NEW,
-        chat
+        type: types.chat.FINISH
       });
 
       push('/panel');

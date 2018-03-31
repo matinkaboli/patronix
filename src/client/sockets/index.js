@@ -91,6 +91,10 @@ socket.on('chat/customerLeft', () => {
   });
 
   dispatch({
+    type: types.historyChats.NEW
+  });
+
+  dispatch({
     type: types.chat.REMOVE
   });
 });
@@ -99,6 +103,10 @@ socket.on('chat/customerFinished', () => {
   izitoast.warning({
     rtl: true,
     title: 'کاربر خارج شد'
+  });
+
+  dispatch({
+    type: types.historyChats.NEW
   });
 
   dispatch({

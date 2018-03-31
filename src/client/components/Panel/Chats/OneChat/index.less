@@ -22,11 +22,22 @@
 }
 
 :local(.message) {
-  min-width: 200px;
-  max-width: 600px;
-  border-radius: 4px;
+  max-width: 200px;
+  margin: 15px;
+  padding: 15px;
+  position: relative;
+  border-radius: 8px;
+  word-break: break-all;
   color: white;
   text-align: center;
+}
+
+:local(.time) {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-size: 13px;
+  color: #eee;
 }
 
 :local(.CLIENT) {

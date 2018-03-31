@@ -38,6 +38,10 @@ export default (state = {}, action) => {
       return { finished: true };
     }
 
+    case types.chat.LOAD: {
+      return state;
+    }
+
     default: {
       return state;
     }

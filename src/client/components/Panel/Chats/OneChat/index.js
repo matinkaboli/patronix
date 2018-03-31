@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import finish from 'Root/actions/user/chats/finish';
 import take from 'Root/actions/user/chats/take';
 import send from 'Root/actions/user/chats/send';
-import types from 'Root/actions';
 
 import bind from 'Root/js/bind';
 
@@ -49,22 +48,19 @@ class Chat extends Component {
       chat = this.props.chat;
     }
 
+    for (const i of this.props.historyChats.keys()) {
+      if (this.props.historyChats[i]._id === this.props.match.params.id) {
+        chat = this.props.historyChats[i];
+        break;
+      }
+    }
+
     if (!chat) {
       return (
         <Box>
           <h1 className={styles.title}>یافت نشد</h1>
         </Box>
       );
-    }
-
-
-    if (chat.finished) {
-      this.props.dispatch({
-        type: types.historyChats.NEW,
-        chat
-      });
-
-      return <Redirect to='/panel' />;
     }
 
     return (
@@ -85,10 +81,15 @@ class Chat extends Component {
           {chat.messages.map((v, i) => <div
             className={`${styles.message} ${styles[v.sender]}`}
             key={i}>
-              {v.message.text}
+              <p>{v.message.text}</p>
+
+              <p className={styles.time}>
+                {new Date(v.message.time).getHours()}:
+                {new Date(v.message.time).getMinutes()}
+              </p>
             </div>)}
 
-          <div className={styles.send}>
+          {!chat.finished ? <div className={styles.send}>
             <input
               type='text'
               ref='send'
@@ -100,12 +101,14 @@ class Chat extends Component {
               handleClick={this.sendMessage}>
               فرستادن
             </Button>
-          </div>
-          <Button
+          </div> : ''}
+
+          {!chat.finished ? <Button
             color='red'
             handleClick={this.finishChat(chat)}>
             پایان چت
-          </Button>
+          </Button> : ''}
+
         </div> : ''}
       </Box>
     );
@@ -114,6 +117,7 @@ class Chat extends Component {
 
 export default withRouter(connect(
   state => ({
+    historyChats: state.historyChats,
     newChats: state.newChats,
     chat: state.chat
   })
