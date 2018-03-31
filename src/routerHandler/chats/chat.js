@@ -40,7 +40,8 @@ export async function handler(socket, params) {
           operator: {
             name: chat.operator.id.name,
             email: chat.operator.id.email
-          }
+          },
+          done: true
         }
       };
     }
