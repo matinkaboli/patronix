@@ -40,7 +40,7 @@ export default {
   },
   chat: {
     NEW_MESSAGE: 'chat/NEW_MESSAGE',
-    REMOVE: 'chat/REMOVE',
+    FINISH: 'chat/FINISH',
     TAKE: 'chat/TAKE',
     LOAD: 'chat/LOAD',
     NEW: 'chat/NEW'
