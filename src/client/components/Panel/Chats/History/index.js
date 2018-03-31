@@ -17,6 +17,9 @@ class History extends Component {
 
     return (
       <Box className={styles.container}>
+        {chats.length === 0 && <h1 className={styles.title}>
+          چت های پیشینی وجود ندارد
+        </h1>}
 
         {chats.map((v, i) => <div className={styles.chat} key={i}>
           <Link to={`/panel/chats/${v._id}`}>{v.message.text}</Link>
