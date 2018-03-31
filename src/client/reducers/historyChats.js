@@ -9,7 +9,10 @@ export default (state = [], action) => {
 
       return [
         ...state,
-        chat
+        {
+          ...chat,
+          finished: true
+        }
       ];
     }
 

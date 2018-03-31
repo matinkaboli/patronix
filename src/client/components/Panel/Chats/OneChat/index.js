@@ -33,9 +33,7 @@ class Chat extends Component {
   }
 
   render() {
-    console.log('New chats', this.props.newChats);
-    console.log('Chat', this.props.chat);
-    console.log('History chats', this.props.historyChats);
+    console.log(this.props.historyChats);
     let chat;
 
     for (const i of this.props.newChats.keys()) {
