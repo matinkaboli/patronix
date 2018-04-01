@@ -23,7 +23,8 @@ export async function handler(socket, params) {
       };
     }
 
-    if (!chat.done && chat.taken) {
+    if (!chat.done && chat.taken &&
+      chat.operator.id._id.toString() !== socket.data.user._id.toString()) {
       return {
         status: 403
       };
@@ -45,12 +46,10 @@ export async function handler(socket, params) {
       };
     }
 
-    if (!chat.done && !chat.taken) {
-      return {
-        status: 200,
-        data: chat.chats
-      };
-    }
+    return {
+      status: 200,
+      data: chat.chats
+    };
   }
 
   catch (e) {
