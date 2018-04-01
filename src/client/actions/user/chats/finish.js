@@ -9,9 +9,7 @@ export default () => dispatch => {
     let handler = new ResponseHandler();
 
     handler
-    .handle('success', () => {
-      console.log('finished');
-      
+    .handle('success', () => {      
       izitoast.success({
         rtl: true,
         title: 'با موفقیت به پایان رسید'

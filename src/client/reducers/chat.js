@@ -1,29 +1,17 @@
 import types from 'Root/actions';
-import history from 'Root/history';
 
 export default (state = {}, action) => {
   switch (action.type) {
 
     case types.chat.TAKE: {
       return {
-        _id: action.chat._id,
+        ...action.chat,
         taken: true,
-        chats: [
-          {
-            message: action.chat.chats[0].message,
-            time: action.chat.chats[0].time,
-            sender: 0
-          }
-        ],
-        site: {
-          name: action.chat.site.name
-        }
+        done: false
       };
     }
 
     case types.chat.FINISH: {
-      history.push('/panel');
-
       return {};
     }
 

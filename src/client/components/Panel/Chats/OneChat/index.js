@@ -28,6 +28,7 @@ class Chat extends Component {
   @bind
   finishChat() {
     this.props.dispatch(finish());
+    this.props.history.push('/panel');
   }
 
   @bind
@@ -78,7 +79,12 @@ class Chat extends Component {
 
     for (const i of this.props.historyChats.keys()) {
       if (this.props.historyChats[i]._id === this.props.match.params.id) {
-        chat = this.props.historyChats[i];
+        chat = {
+          ...this.props.historyChats[i],
+          done: true,
+          taken: true
+        };
+
         break;
       }
     }
@@ -90,8 +96,6 @@ class Chat extends Component {
         </Box>
       );
     }
-
-    console.log(chat);
 
     return (
       <Box>
@@ -150,13 +154,21 @@ class Chat extends Component {
   }
 }
 
-export default lazy(
-  withRouter(connect(
-    state => ({
-      historyChats: state.historyChats,
-      newChats: state.newChats,
-      chat: state.chat
-    })
-  )(Chat)),
-  types.chat.LOAD
-);
+// export default lazy(
+//   withRouter(connect(
+//     state => ({
+//       historyChats: state.historyChats,
+//       newChats: state.newChats,
+//       chat: state.chat
+//     })
+//   )(Chat)),
+//   types.chat.LOAD
+// );
+
+export default withRouter(connect(
+  state => ({
+    historyChats: state.historyChats,
+    newChats: state.newChats,
+    chat: state.chat
+  })
+)(Chat));

@@ -1,7 +1,7 @@
 import izitoast from 'izitoast';
 
-import finish from 'Root/actions/user/chats/finish';
 import { dispatch } from 'Root/store';
+import history from 'Root/history';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
@@ -106,7 +106,11 @@ socket.on('chat/customerLeft', () => {
     title: 'کاربر خارج شد'
   });
 
-  dispatch(finish());
+  history.push('/panel');
+
+  dispatch({
+    type: types.chat.FINISH
+  });
 });
 
 socket.on('chat/customerFinished', () => {
@@ -115,5 +119,9 @@ socket.on('chat/customerFinished', () => {
     title: 'کاربر خارج شد'
   });
 
-  dispatch(finish());
+  history.push('/panel');
+
+  dispatch({
+    type: types.chat.FINISH
+  });
 });
