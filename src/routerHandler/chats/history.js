@@ -7,6 +7,7 @@ export async function handler(socket) {
   let chats = await Chat
   .find({ site: site._id, done: true }, { _id: 1, chats: 1, operator: 1 })
   .populate({ path: 'operator.id', select: ['email', 'name'] })
+  .populate({ path: 'site', select: ['name'] })
   .lean()
   .exec();
 
