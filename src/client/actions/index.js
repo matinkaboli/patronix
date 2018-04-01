@@ -50,6 +50,7 @@ export default {
     NEW: 'newChats/NEW'
   },
   historyChats: {
-    NEW: 'historyChats/NEW'
+    NEW: 'historyChats/NEW',
+    LOAD: 'historyChats/LOAD'
   }
 };

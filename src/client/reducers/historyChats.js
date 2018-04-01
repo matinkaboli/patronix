@@ -16,6 +16,10 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.historyChats.LOAD: {
+      return action.data;
+    }
+
     default: {
       return state;
     }
