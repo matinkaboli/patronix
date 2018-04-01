@@ -83,8 +83,6 @@ class Chat extends Component {
       }
     }
 
-    console.log(chat);
-
     if (!chat) {
       return (
         <Box>
@@ -112,7 +110,7 @@ class Chat extends Component {
         {chat.taken ? <div className={styles.messages}>
           {chat.chats.map((v, i) => <div
             className={`${styles.message}
-            ${styles[v.sender ? 'CLIENT' : 'CUSTOMER ']}`}
+            ${styles[v.sender === 1 ? 'CLIENT' : 'CUSTOMER']}`}
             key={i}>
 
             <p>{v.message}</p>

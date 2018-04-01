@@ -32,7 +32,7 @@ export default (state = {}, action) => {
         ...state
       };
 
-      chat.messages.push(action.message);
+      chat.chats.push(action.message);
 
       return chat;
     }
