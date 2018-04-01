@@ -91,6 +91,8 @@ class Chat extends Component {
       );
     }
 
+    console.log(chat);
+
     return (
       <Box>
         {!chat.taken ? <div>

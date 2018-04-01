@@ -1,8 +1,9 @@
 import izitoast from 'izitoast';
 
+import finish from 'Root/actions/user/chats/finish';
+import { dispatch } from 'Root/store';
 import types from 'Root/actions';
 import socket from 'Root/socket';
-import { dispatch } from 'Root/store';
 
 socket.on('invitation', invitation => {
   izitoast.success({
@@ -105,9 +106,7 @@ socket.on('chat/customerLeft', () => {
     title: 'کاربر خارج شد'
   });
 
-  dispatch({
-    type: types.chat.FINISH
-  });
+  dispatch(finish());
 });
 
 socket.on('chat/customerFinished', () => {
@@ -116,7 +115,5 @@ socket.on('chat/customerFinished', () => {
     title: 'کاربر خارج شد'
   });
 
-  dispatch({
-    type: types.chat.FINISH
-  });
+  dispatch(finish());
 });

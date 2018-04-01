@@ -14,7 +14,7 @@ export default message => dispatch => {
       const m = {
         message,
         time,
-        sender: 0
+        sender: 1
       };
 
       dispatch({
