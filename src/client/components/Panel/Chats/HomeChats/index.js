@@ -2,46 +2,46 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Box from 'Root/components/Box';
-
 import styles from './index.less';
 
 
 class HomeChat extends Component {
   render() {
     return (
-      <Box className={styles.container}>
+      <div className={styles.container}>
         {this.props.newChats.length === 0 && <h1 className={styles.title}>
           چت جدیدی وجود ندارد
         </h1>}
 
         {this.props.newChats.map((v, i) =>
-          <div className={styles.chat} key={i}>
+          <Link to={`/panel/chats/${v._id}`} key={i}>
+            <div className={styles.chat}>
+              <h1>سایت: {v.site.name}</h1>
 
-            <Link to={`/panel/chats/${v._id}`}>{v.message.text}</Link>
+              <span>
+                {new Date(v.chats[0].time).getHours()}:
+                {new Date(v.chats[0].time).getMinutes()}
+              </span>
 
-            <span>از سایت: {v.from}</span>
+              <p>پیام: {v.chats[0].message}</p>
 
-            <span>
-              {new Date(v.message.time).getHours()}:
-              {new Date(v.message.time).getMinutes()}
-            </span>
-          </div>
+            </div>
+          </Link>
         )}
 
         {this.props.chat._id && <div className={styles.chat}>
           <Link to={`/panel/chats/${this.props.chat._id}`}>
-            چت کنونی: {this.props.chat.message.text}
+            چت کنونی: {this.props.chats[0].message}
           </Link>
 
-          <span>از سایت: {this.props.chat.from}</span>
+          <span>از سایت: {this.props.chat.site.name}</span>
 
           <span>
-            {new Date(this.props.chat.message.time).getHours()}:
-            {new Date(this.props.chat.message.time).getMinutes()}
+            {new Date(this.props.chat.chats[0].time).getHours()}:
+            {new Date(this.props.chat.chats[0].time).getMinutes()}
           </span>
         </div>}
-      </Box>
+      </div>
     );
   }
 }

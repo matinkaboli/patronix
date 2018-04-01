@@ -11,9 +11,15 @@ export default message => dispatch => {
 
     handler
     .handle('success', () => {
+      const m = {
+        message,
+        time,
+        sender: 0
+      };
+
       dispatch({
         type: types.chat.NEW_MESSAGE,
-        message: { text: message, time }
+        message: m
       });
     })
 

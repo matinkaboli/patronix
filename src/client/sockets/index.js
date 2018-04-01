@@ -72,14 +72,29 @@ socket.on('chat/new', chat => {
 
   dispatch({
     type: types.newChats.NEW,
-    chat
+    chat: {
+      _id: chat._id,
+      taken: false,
+      site: {
+        name: chat.from
+      },
+      chats: [{
+        message: chat.message.text,
+        sender: 0,
+        time: chat.message.time
+      }]
+    }
   });
 });
 
-socket.on('chat/recieve', message => {
+socket.on('chat/recieve', m => {
+  const message = {
+    ...m,
+    sender: 0
+  };
+
   dispatch({
     type: types.chat.NEW_MESSAGE,
-    customer: true,
     message
   });
 });
@@ -91,10 +106,6 @@ socket.on('chat/customerLeft', () => {
   });
 
   dispatch({
-    type: types.historyChats.NEW
-  });
-
-  dispatch({
     type: types.chat.FINISH
   });
 });
@@ -103,10 +114,6 @@ socket.on('chat/customerFinished', () => {
   izitoast.warning({
     rtl: true,
     title: 'کاربر خارج شد'
-  });
-
-  dispatch({
-    type: types.historyChats.NEW
   });
 
   dispatch({

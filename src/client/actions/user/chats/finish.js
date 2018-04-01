@@ -16,10 +16,6 @@ export default () => dispatch => {
       });
 
       dispatch({
-        type: types.historyChats.NEW
-      });
-
-      dispatch({
         type: types.chat.FINISH
       });
     })

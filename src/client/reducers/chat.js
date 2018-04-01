@@ -6,14 +6,18 @@ export default (state = {}, action) => {
 
     case types.chat.TAKE: {
       return {
-        ...action.chat,
+        _id: action.chat._id,
         taken: true,
-        messages: [
+        chats: [
           {
-            message: action.chat.message,
-            sender: 'CUSTOMER'
+            message: action.chat.chats[0].message,
+            time: action.chat.chats[0].time,
+            sender: 0
           }
-        ]
+        ],
+        site: {
+          name: action.chat.site.name
+        }
       };
     }
 
@@ -24,18 +28,20 @@ export default (state = {}, action) => {
     }
 
     case types.chat.NEW_MESSAGE: {
-      const chat = Object.assign({}, state);
+      const chat = {
+        ...state
+      };
 
-      chat.messages.push({
-        message: action.message,
-        sender: action.customer ? 'CUSTOMER' : 'CLIENT'
-      });
+      chat.messages.push(action.message);
 
       return chat;
     }
 
     case types.chat.LOAD: {
-      return state;
+      return {
+        ...state,
+        ...action.data
+      };
     }
 
     default: {

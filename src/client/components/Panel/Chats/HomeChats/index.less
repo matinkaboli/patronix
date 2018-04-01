@@ -2,9 +2,22 @@
 @import '~Root/styles/mixins.less';
 
 :local(.chat) {
+  width: 180px;
+  height: auto;
+  margin: 15px;
+  background-color: white;
   font-size: 18px;
   padding: 10px;
   border-bottom: 1px solid #eee;
+  .boxShadow();
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 150px;
+
+  h1 {
+    font-size: 19px;
+  }
 
   a {
     display: block;
@@ -14,10 +27,13 @@
     }
   }
 
-  span {
+  p, span {
     color: #333;
     font-size: 14px;
-    display: block;
+  }
+
+  > span:nth-of-type(1) {
+    margin: 5px 10px;
   }
 }
 

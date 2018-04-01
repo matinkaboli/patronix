@@ -6,8 +6,10 @@ import izitoast from 'izitoast';
 import finish from 'Root/actions/user/chats/finish';
 import take from 'Root/actions/user/chats/take';
 import send from 'Root/actions/user/chats/send';
+import types from 'Root/actions';
 
 import bind from 'Root/js/bind';
+import lazy from 'Root/js/lazy';
 
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
@@ -81,6 +83,8 @@ class Chat extends Component {
       }
     }
 
+    console.log(chat);
+
     if (!chat) {
       return (
         <Box>
@@ -97,25 +101,29 @@ class Chat extends Component {
             handleClick={this.takeChat(chat)}>
             اختصاص دادن
           </Button>
-          <p>{chat.message.text}</p>
-          <span>12:12</span>
+          <p>{chat.chats[0].message}</p>
+          <span>
+            {new Date(chat.chats[0].time).getHours()}:
+            {new Date(chat.chats[0].time).getMinutes()}
+          </span>
         </div> : ''}
 
 
         {chat.taken ? <div className={styles.messages}>
-          {chat.messages.map((v, i) => <div
-            className={`${styles.message} ${styles[v.sender]}`}
+          {chat.chats.map((v, i) => <div
+            className={`${styles.message}
+            ${styles[v.sender ? 'CLIENT' : 'CUSTOMER ']}`}
             key={i}>
 
-            <p>{v.message.text}</p>
+            <p>{v.message}</p>
 
             <p className={styles.time}>
-              {new Date(v.message.time).getHours()}:
-              {new Date(v.message.time).getMinutes()}
+              {new Date(v.time).getHours()}:
+              {new Date(v.time).getMinutes()}
             </p>
           </div>)}
 
-          {!chat.finished ? <div className={styles.send}>
+          {!chat.done ? <div className={styles.send}>
             <input
               type='text'
               ref='send'
@@ -130,7 +138,7 @@ class Chat extends Component {
             </Button>
           </div> : ''}
 
-          {!chat.finished ? <Button
+          {!chat.done ? <Button
             color='red'
             handleClick={this.finishChat}>
             پایان چت
@@ -142,10 +150,13 @@ class Chat extends Component {
   }
 }
 
-export default withRouter(connect(
-  state => ({
-    historyChats: state.historyChats,
-    newChats: state.newChats,
-    chat: state.chat
-  })
-)(Chat));
+export default lazy(
+  withRouter(connect(
+    state => ({
+      historyChats: state.historyChats,
+      newChats: state.newChats,
+      chat: state.chat
+    })
+  )(Chat)),
+  types.chat.LOAD
+);
