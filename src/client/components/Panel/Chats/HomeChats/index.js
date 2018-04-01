@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Box from 'Root/components/Box';
+
 import styles from './index.less';
 
 
@@ -9,9 +11,13 @@ class HomeChat extends Component {
   render() {
     return (
       <div className={styles.container}>
-        {this.props.newChats.length === 0 && <h1 className={styles.title}>
-          چت جدیدی وجود ندارد
-        </h1>}
+        {this.props.newChats.length === 0 &&
+          <Box>
+            <h1 className={styles.title}>
+              چت جدیدی وجود ندارد
+            </h1>
+          </Box>
+        }
 
         {this.props.newChats.map((v, i) =>
           <Link to={`/panel/chats/${v._id}`} key={i}>
