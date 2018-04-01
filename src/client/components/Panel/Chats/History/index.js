@@ -18,8 +18,8 @@ class History extends Component {
         </h1>}
 
         {this.props.historyChats.map((v, i) =>
-          <Link to={`/panel/chats/${v._id}`}>
-            <div className={styles.chat} key={i}>
+          <Link to={`/panel/chats/${v._id}`} key={i}>
+            <div className={styles.chat}>
             <h1>سایت: {v.site.name}</h1>
 
             <span>
