@@ -11,13 +11,18 @@ import styles from './index.less';
 
 class History extends Component {
   render() {
+    const chat = this.props.historyChats.sort((a, b) =>
+      +new Date(b.chats[b.chats.length - 1].time) -
+      +new Date(a.chats[a.chats.length - 1].time)
+    );
+
     return (
       <div className={styles.container}>
-        {this.props.historyChats.length === 0 && <h1 className={styles.title}>
+        {chat.length === 0 && <h1 className={styles.title}>
           چت های پیشینی وجود ندارد
         </h1>}
 
-        {this.props.historyChats.map((v, i) =>
+        {chat.map((v, i) =>
           <Link to={`/panel/chats/${v._id}`} key={i}>
             <div className={styles.chat}>
             <h1>سایت: {v.site.name}</h1>
