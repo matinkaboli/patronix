@@ -9,8 +9,25 @@ import styles from './index.less';
 
 class HomeChat extends Component {
   render() {
+    console.log(this.props.chat);
     return (
       <div className={styles.container}>
+        {this.props.chat._id && !this.props.chat.done &&
+          <div className={styles.chat}>
+            <Link to={`/panel/chats/${this.props.chat._id}`}>
+            چت کنونی: {this.props.chat.chats[0].message}
+          </Link>
+
+          <span>از سایت: {this.props.chat.site}</span>
+
+          <span>
+            {new Date(this.props.chat.chats[0].time).getHours()}:
+            {new Date(this.props.chat.chats[0].time).getMinutes()}
+          </span>
+        </div>}
+
+        <br />
+
         {this.props.newChats.length === 0 &&
           <Box>
             <h1 className={styles.title}>
@@ -18,6 +35,7 @@ class HomeChat extends Component {
             </h1>
           </Box>
         }
+
 
         {this.props.newChats.map((v, i) =>
           <Link to={`/panel/chats/${v._id}`} key={i}>
@@ -34,20 +52,6 @@ class HomeChat extends Component {
             </div>
           </Link>
         )}
-
-        {this.props.chat._id && !this.props.chat.done &&
-          <div className={styles.chat}>
-          <Link to={`/panel/chats/${this.props.chat._id}`}>
-            چت کنونی: {this.props.chat.chats[0].message}
-          </Link>
-
-          <span>از سایت: {this.props.chat.site.name}</span>
-
-          <span>
-            {new Date(this.props.chat.chats[0].time).getHours()}:
-            {new Date(this.props.chat.chats[0].time).getMinutes()}
-          </span>
-        </div>}
       </div>
     );
   }

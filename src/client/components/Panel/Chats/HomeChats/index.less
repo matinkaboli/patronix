@@ -7,13 +7,16 @@
   margin: 15px;
   background-color: white;
   font-size: 18px;
-  padding: 10px;
+  padding: 25px;
   border-bottom: 1px solid #eee;
   .boxShadow();
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  min-height: 150px;
+
+  & * {
+    display: block;
+  }
 
   h1 {
     font-size: 19px;
@@ -44,5 +47,5 @@
 :local(.container) {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
 }
