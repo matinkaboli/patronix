@@ -37,6 +37,7 @@ export async function handler(socket, params) {
       return {
         status: 200,
         data: {
+          _id: chat._id,
           chats: chat.chats,
           done: chat.done,
           taken: chat.taken,
@@ -51,6 +52,7 @@ export async function handler(socket, params) {
     return {
       status: 200,
       data: {
+        _id: chat._id,
         chats: chat.chats,
         done: chat.done,
         taken: chat.taken
