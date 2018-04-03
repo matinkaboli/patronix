@@ -41,6 +41,7 @@ export async function handler(socket, params) {
           chats: chat.chats,
           done: chat.done,
           taken: chat.taken,
+          site: chat.site.name,
           operator: {
             name: chat.operator.id.name,
             email: chat.operator.id.email
@@ -55,6 +56,7 @@ export async function handler(socket, params) {
         _id: chat._id,
         chats: chat.chats,
         done: chat.done,
+        site: chat.site.name,
         taken: chat.taken
       }
     };
