@@ -47,7 +47,8 @@ export default {
   },
   newChats: {
     REMOVE: 'newChats/REMOVE',
-    NEW: 'newChats/NEW'
+    NEW: 'newChats/NEW',
+    LOAD: 'newChats/LOAD'
   },
   historyChats: {
     LOAD: 'historyChats/LOAD'

@@ -22,6 +22,14 @@ socket
   .find({ operators: socket.data.user._id }, { _id: 1 });
   sites = sites.map(i => i._id);
 
+  let chats = await Chat.find({
+    site: { $in: sites },
+    taken: false,
+    done: false
+  }, { chats: 1, site: 1 })
+  .populate({ path: 'site', select: 'name' })
+  .exec();
+
   socket.emit('relogin', 200,
   {
     user: {
@@ -42,11 +50,7 @@ socket
         name: 1
       })
     },
-    chats: await Chat.find({
-      site: { $in: sites },
-      taken: false,
-      done: false
-    }, { chats: 1 }),
+    chats,
     url
   });
 });

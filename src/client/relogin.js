@@ -25,6 +25,11 @@ export default new Promise(resolve => {
           data: res.sites
         });
 
+        dispatch({
+          type: types.newChats.LOAD,
+          data: res.chats
+        });
+        
         localStorage.setItem('patronixUrl', res.url);
       })
 

@@ -25,6 +25,10 @@ export default (state = [], action) => {
       return chats;
     }
 
+    case types.newChats.LOAD: {
+      return action.data;
+    }
+
     default: {
       return state;
     }
