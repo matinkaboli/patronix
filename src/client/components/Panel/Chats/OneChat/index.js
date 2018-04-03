@@ -67,58 +67,60 @@ class Chat extends Component {
     let chat = this.props.chat;
 
     return (
-      <Box>
-        {!chat.taken ? <div>
-          <Button
-            color='blue'
-            handleClick={this.takeChat(chat)}>
-            اختصاص دادن
-          </Button>
-          <p>{chat.chats[0].message}</p>
-          <span>
-            {new Date(chat.chats[0].time).getHours()}:
-            {new Date(chat.chats[0].time).getMinutes()}
-          </span>
-        </div> : ''}
-
-
-        {chat.taken ? <div className={styles.messages}>
-          {chat.chats.map((v, i) => <div
-            className={`${styles.message}
-            ${styles[v.sender === 1 ? 'CLIENT' : 'CUSTOMER']}`}
-            key={i}>
-
-            <p>{v.message}</p>
-
-            <p className={styles.time}>
-              {new Date(v.time).getHours()}:
-              {new Date(v.time).getMinutes()}
-            </p>
-          </div>)}
-
-          {!chat.done ? <div className={styles.send}>
-            <input
-              type='text'
-              ref='send'
-              onKeyPress={this.keypress}
-              placeholder='فرستادن پیام'
-            />
-
+      <div className={styles.container}>
+        <Box>
+          {!chat.taken ? <div>
             <Button
               color='blue'
-              handleClick={this.sendMessage}>
-              فرستادن
+              handleClick={this.takeChat(chat)}>
+              اختصاص دادن
             </Button>
+            <p>{chat.chats[0].message}</p>
+            <span>
+              {new Date(chat.chats[0].time).getHours()}:
+              {new Date(chat.chats[0].time).getMinutes()}
+            </span>
           </div> : ''}
 
-          {!chat.done ? <Button
-            color='red'
-            handleClick={this.finishChat}>
-            پایان چت
-          </Button> : ''}
 
-        </div> : ''}
-      </Box>
+          {chat.taken ? <div className={styles.messages}>
+            {chat.chats.map((v, i) => <div
+              className={`${styles.message}
+              ${styles[v.sender === 1 ? 'CLIENT' : 'CUSTOMER']}`}
+              key={i}>
+
+              <p>{v.message}</p>
+
+              <p className={styles.time}>
+                {new Date(v.time).getHours()}:
+                {new Date(v.time).getMinutes()}
+              </p>
+            </div>)}
+
+            {!chat.done ? <div className={styles.send}>
+              <input
+                type='text'
+                ref='send'
+                onKeyPress={this.keypress}
+                placeholder='فرستادن پیام'
+              />
+
+              <Button
+                color='blue'
+                handleClick={this.sendMessage}>
+                فرستادن
+              </Button>
+            </div> : ''}
+
+            {!chat.done ? <Button
+              color='red'
+              handleClick={this.finishChat}>
+              پایان چت
+            </Button> : ''}
+
+          </div> : ''}
+        </Box>
+      </div>
     );
   }
 }
