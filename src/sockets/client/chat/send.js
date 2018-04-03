@@ -23,7 +23,7 @@ socket
     .of('/customer')
     .to(socket.data.chat._id.toString())
     .emit('recieveMessage', {
-      text: message,
+       message,
       time: Date.now()
     });
 

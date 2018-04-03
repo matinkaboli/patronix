@@ -35,7 +35,8 @@ class HomeChat extends Component {
           </Link>
         )}
 
-        {this.props.chat._id && <div className={styles.chat}>
+        {this.props.chat._id && !this.props.chat.done &&
+          <div className={styles.chat}>
           <Link to={`/panel/chats/${this.props.chat._id}`}>
             چت کنونی: {this.props.chat.chats[0].message}
           </Link>

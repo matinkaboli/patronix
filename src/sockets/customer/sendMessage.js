@@ -34,7 +34,7 @@ socket
       _id: chat._id,
       from: socket.data.site.name,
       message: {
-        text: message,
+        message,
         time: Date.now()
       }
     });
