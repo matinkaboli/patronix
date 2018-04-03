@@ -9,7 +9,6 @@ import styles from './index.less';
 
 class HomeChat extends Component {
   render() {
-    console.log(this.props.chat);
     return (
       <div className={styles.container}>
         {this.props.chat._id && !this.props.chat.done &&

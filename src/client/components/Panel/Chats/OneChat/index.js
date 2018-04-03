@@ -68,8 +68,8 @@ class Chat extends Component {
 
     return (
       <div className={styles.container}>
-        <Box>
-          {!chat.taken ? <div>
+        <Box classes={styles.chatList}>
+          {!chat.taken ? <div className={styles.messages}>
             <Button
               color='blue'
               handleClick={this.takeChat(chat)}>
@@ -89,7 +89,7 @@ class Chat extends Component {
               ${styles[v.sender === 1 ? 'CLIENT' : 'CUSTOMER']}`}
               key={i}>
 
-              <p>{v.message}</p>
+              <p>{v.text}</p>
 
               <p className={styles.time}>
                 {new Date(v.time).getHours()}:

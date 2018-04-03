@@ -26,7 +26,6 @@ export default (state = {}, action) => {
     }
 
     case types.chat.LOAD: {
-      console.log(action.data);
       return {
         ...state,
         ...action.data
