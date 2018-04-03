@@ -78,33 +78,6 @@ class Home extends Component {
               سعی می کنیم بهترین امکانات را در اختیار شما قرار بدهیم.
             </h1>
           </div>
-          <div className={styles.about2}>
-            <h1>Contact Us</h1>
-            <p>Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
-            nullam scelerisque id nunc nec volutpat.
-            Etiam pellentesque tristique arcu,
-            non consequat magna fermentum ac.
-            Cras ut ultricies eros.
-            Maecenas eros justo, ullamcorper a sapien id,
-            viverra ultrices eros. Morbi sem neque,
-            posuere et pretium eget, bibendum sollicitudin lacus.
-            Aliquam eleifend sollicitudin diam,
-            eu mattis nisl maximus sed.
-            Nulla imperdiet semper molestie.
-            Morbi massa odio, condimentum sed ipsum ac,
-            gravida ultrices erat. Nullam eget dignissim mauris,
-            non tristique erat.
-            Vestibulum ante ipsum primis in faucibus
-            orci luctus et ultrices posuere cubilia Curae;
-            </p>
-          </div>
-          <div className={`${styles.bg} ${styles.bg3}`}>
-            <h1>
-              A modern responsive front-end
-              framework based on Material Design
-            </h1>
-          </div>
         </aside>
       </div>
     );
