@@ -64,38 +64,7 @@ class Chat extends Component {
   }
 
   render() {
-    let chat;
-
-    for (const i of this.props.newChats.keys()) {
-      if (this.props.newChats[i]._id === this.props.match.params.id) {
-        chat = this.props.newChats[i];
-        break;
-      }
-    }
-
-    if (this.props.chat._id) {
-      chat = this.props.chat;
-    }
-
-    for (const i of this.props.historyChats.keys()) {
-      if (this.props.historyChats[i]._id === this.props.match.params.id) {
-        chat = {
-          ...this.props.historyChats[i],
-          done: true,
-          taken: true
-        };
-
-        break;
-      }
-    }
-
-    if (!chat) {
-      return (
-        <Box>
-          <h1 className={styles.title}>یافت نشد</h1>
-        </Box>
-      );
-    }
+    let chat = this.props.chat;
 
     return (
       <Box>
@@ -154,21 +123,11 @@ class Chat extends Component {
   }
 }
 
-// export default lazy(
-//   withRouter(connect(
-//     state => ({
-//       historyChats: state.historyChats,
-//       newChats: state.newChats,
-//       chat: state.chat
-//     })
-//   )(Chat)),
-//   types.chat.LOAD
-// );
-
-export default withRouter(connect(
-  state => ({
-    historyChats: state.historyChats,
-    newChats: state.newChats,
-    chat: state.chat
-  })
-)(Chat));
+export default lazy(
+  withRouter(connect(
+    state => ({
+      chat: state.chat
+    })
+  )(Chat)),
+  types.chat.LOAD
+);

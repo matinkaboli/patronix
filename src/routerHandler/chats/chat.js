@@ -32,12 +32,14 @@ export async function handler(socket, params) {
 
     if (
       chat.done &&
-      chat.site.owner._id.toString() === socket.data.user._id.toString()
+      chat.site.owner.toString() === socket.data.user._id.toString()
     ) {
       return {
         status: 200,
         data: {
           chats: chat.chats,
+          done: chat.done,
+          taken: chat.taken,
           operator: {
             name: chat.operator.id.name,
             email: chat.operator.id.email
@@ -48,7 +50,11 @@ export async function handler(socket, params) {
 
     return {
       status: 200,
-      data: chat.chats
+      data: {
+        chat: chat.chats,
+        done: chat.done,
+        taken: chat.taken
+      }
     };
   }
 
