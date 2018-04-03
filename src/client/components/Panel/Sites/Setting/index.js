@@ -105,6 +105,13 @@ class Site extends Component {
             <div>
               <p>توکن</p>
               <p>{this.props.site.token}</p>
+              <code className={styles.script}>
+              {`<script
+              id='patronix-data'
+              token=${this.props.site.token}
+              src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
+              ></script>`}
+              </code>
             </div>
 
             <div>
