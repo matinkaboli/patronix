@@ -51,7 +51,7 @@ export async function handler(socket, params) {
     return {
       status: 200,
       data: {
-        chat: chat.chats,
+        chats: chat.chats,
         done: chat.done,
         taken: chat.taken
       }
