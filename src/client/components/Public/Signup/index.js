@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
@@ -27,7 +27,7 @@ class Signup extends Component {
       name: refs.name.value,
       email: refs.email.value,
       password: refs.password.value
-    }, refs.captcha.value);
+    }, refs.captcha.value, this.props.history.push);
   }
 
   componentDidMount() {
@@ -111,4 +111,8 @@ class Signup extends Component {
   }
 }
 
-export default connect(state => ({ captcha: state.captcha }))(Signup);
+export default withRouter(
+  connect(
+    state => ({ captcha: state.captcha })
+  )(Signup)
+);
