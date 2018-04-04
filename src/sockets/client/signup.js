@@ -42,7 +42,7 @@ socket
 
     await al.save();
 
-    await sendMail({
+    sendMail({
       to: user.email,
       subject: 'لینک فعال سازی',
       html: `
