@@ -89,7 +89,7 @@ class Chat extends Component {
               ${styles[v.sender === 1 ? 'CLIENT' : 'CUSTOMER']}`}
               key={i}>
 
-              <p>{v.text}</p>
+              <p>{v.message}</p>
 
               <p className={styles.time}>
                 {new Date(v.time).getHours()}:
