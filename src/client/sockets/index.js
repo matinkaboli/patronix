@@ -80,7 +80,7 @@ socket.on('chat/new', chat => {
         name: chat.from
       },
       chats: [{
-        text: chat.message.message,
+        message: chat.message.message,
         sender: 0,
         time: chat.message.time
       }]
@@ -94,7 +94,7 @@ socket.on('chat/recieve', m => {
     sender: 0,
     message: {
       ...m.message,
-      text: m.message.text
+      message: m.message.text
     }
   };
 
