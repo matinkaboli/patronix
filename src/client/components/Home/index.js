@@ -2,10 +2,28 @@ import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import bind from 'Root/js/bind';
+
+import SlideOut from 'Root/components/SlideOut';
+
 import styles from './index.less';
 
 
 class Home extends Component {
+  state = {
+    isOpen: false
+  };
+
+  @bind
+  showSlideOut() {
+    this.setState({ isOpen: true });
+  }
+
+  @bind
+  hideSlideOut() {
+    this.setState({ isOpen: false });
+  }
+
   render() {
     let links;
 
@@ -13,14 +31,12 @@ class Home extends Component {
       links =
       <Fragment>
         <li><Link to='/panel'>داشبورد</Link></li>
-        <li><Link to='/about'>درباره ما</Link></li>
       </Fragment>;
     } else {
       links =
       <Fragment>
           <li><Link to='/login'>ورود</Link></li>
           <li><Link to='/signup'>ثبت نام</Link></li>
-          <li><Link to='/about'>درباره ما</Link></li>
       </Fragment>;
     }
 
@@ -33,7 +49,23 @@ class Home extends Component {
               { links }
             </ul>
           </div>
-          <p className={styles.responsiveLinks}>لینک ها</p>
+          <div
+            className={`icon icon-bars ${styles.linksButton}`}
+            onClick={this.showSlideOut}
+          />
+
+          <SlideOut isOpen={this.state.isOpen}>
+            <div className={styles.SlideOutContainer}>
+              <div
+                className={`icon icon-times ${styles.linksButton}`}
+                onClick={this.hideSlideOut}
+              />
+
+              <ul>
+                { links }
+              </ul>
+            </div>
+          </SlideOut>
         </div>
         <aside className={styles.aside}>
           <div className={`${styles.bg} ${styles.bg1} ${styles.headTitle}`}>
