@@ -92,10 +92,6 @@ socket.on('chat/recieve', m => {
   const message = {
     ...m,
     sender: 0,
-    message: {
-      ...m.message,
-      message: m.message.text
-    }
   };
 
   dispatch({

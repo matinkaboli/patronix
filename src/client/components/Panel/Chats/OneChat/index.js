@@ -66,6 +66,8 @@ class Chat extends Component {
   render() {
     let chat = this.props.chat;
 
+    console.log(chat);
+
     return (
       <div className={styles.container}>
         <Box classes={styles.chatList}>
@@ -75,7 +77,7 @@ class Chat extends Component {
               handleClick={this.takeChat(chat)}>
               اختصاص دادن
             </Button>
-            <p>{chat.chats[0].text}</p>
+            <p>{chat.chats[0].message}</p>
             <span>
               {new Date(chat.chats[0].time).getHours()}:
               {new Date(chat.chats[0].time).getMinutes()}

@@ -13,7 +13,7 @@ export default message => dispatch => {
     .handle('success', () => {
       const m = {
         time,
-        text: message,
+        message,
         sender: 1
       };
 
