@@ -100,24 +100,6 @@
   }
 }
 
-@media (min-width: 120px) and (max-width: 580px) {
-  :local(.header) {
-    padding: 10px;
-  }
-
-  :local(.normalLinks) {
-    display: none;
-  }
-
-  :local(.linksButton) {
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    align-self: center;
-  }
-}
-
 :local(.aside) {
   background-color: white;
 
@@ -181,17 +163,6 @@
     }
   }
 
-  :local(.bg3) {
-    background-image: url('~Root/images/bg3.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-  }
-
-  :local(.icon) {
-    font-size: 50px;
-  }
-
   :local(.aside) {
     :local(.about1), :local(.about2) {
       width: 100%;
@@ -219,5 +190,41 @@
   p {
     width: 50%;
     font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.header) {
+    padding: 10px;
+  }
+
+  :local(.normalLinks) {
+    display: none;
+  }
+
+  :local(.linksButton) {
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    align-self: center;
+  }
+
+  :local(.about1) {
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px;
+
+    > div {
+      max-width: 100%;
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+
+  :local(.aside) {
+    :local(.bg) {
+      font-size: 12px;
+    }
   }
 }
