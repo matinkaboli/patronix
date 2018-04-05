@@ -75,7 +75,7 @@ class Chat extends Component {
               handleClick={this.takeChat(chat)}>
               اختصاص دادن
             </Button>
-            <p>{chat.chats[0].message}</p>
+            <p>{chat.chats[0].text}</p>
             <span>
               {new Date(chat.chats[0].time).getHours()}:
               {new Date(chat.chats[0].time).getMinutes()}

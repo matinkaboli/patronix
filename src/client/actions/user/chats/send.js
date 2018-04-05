@@ -12,8 +12,8 @@ export default message => dispatch => {
     handler
     .handle('success', () => {
       const m = {
-        message,
         time,
+        text: message,
         sender: 1
       };
 
