@@ -66,8 +66,6 @@ class Chat extends Component {
   render() {
     let chat = this.props.chat;
 
-    console.log(chat);
-
     return (
       <div className={styles.container}>
         <Box classes={styles.chatList}>

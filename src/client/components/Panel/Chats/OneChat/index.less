@@ -30,16 +30,8 @@
   font-size: 0.7rem;
 }
 
-:local(.CUSTOMER) {
-  direction: ltr;
-}
-
-:local(.CLIENT) {
-  background-color: @blue-base;
-  direction: rtl;
-}
-
 :local(.message) {
+  max-width: 300px;
   padding: 5px 20px;
   border-radius: 15px;
   word-wrap: break-word;
@@ -47,6 +39,15 @@
   display: block;
 }
 
+:local(.CUSTOMER) {
+  background-color: @background;
+  direction: ltr;
+}
+
+:local(.CLIENT) {
+  background-color: @blue-base;
+  direction: rtl;
+}
 
 :local(.send) input {
   width: 250px;
