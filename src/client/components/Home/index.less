@@ -76,28 +76,7 @@
 }
 
 :local(.SlideOutContainer) {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-
-  ul {
-    list-style: none;
-
-    li {
-      margin: 10px 0;
-      display: block;
-
-      a {
-        color: black;
-
-        &:hover, &:active {
-          color: #444;
-        }
-      }
-    }
-  }
+  display: none;
 }
 
 :local(.aside) {
@@ -225,6 +204,32 @@
   :local(.aside) {
     :local(.bg) {
       font-size: 12px;
+    }
+  }
+
+
+  :local(.SlideOutContainer) {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    ul {
+      list-style: none;
+
+      li {
+        margin: 10px 0;
+        display: block;
+
+        a {
+          color: black;
+
+          &:hover, &:active {
+            color: #444;
+          }
+        }
+      }
     }
   }
 }
