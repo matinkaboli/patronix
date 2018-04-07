@@ -25,17 +25,23 @@ class History extends Component {
         {chat.map((v, i) =>
           <Link to={`/panel/chats/${v._id}`} key={i}>
             <div className={styles.chat}>
-            <h1>سایت: {v.site.name}</h1>
+              <div className={styles.header}>
+                <h1>سایت: {v.site.name}</h1>
+                <span>
+                  {new Date(v.chats[0].time).getHours()}:
+                  {new Date(v.chats[0].time).getMinutes()}
+                </span>
+              </div>
 
-            <span>
-              {new Date(v.chats[0].time).getHours()}:
-              {new Date(v.chats[0].time).getMinutes()}
-            </span>
+              <div className={styles.operatorInfo}>
+                <span>
+                  توسط پشتیبان:
+                </span>
+                <img src={v.operator.avatar} className={styles.avatar} />
+                <span>{v.operator.name}</span>
+              </div>
 
-            <p>پیام: {v.chats[0].message}</p>
-
-            <p>توسط پشتیبان: {v.operator.name}</p>
-
+              <p>پیام: {v.chats[0].message}</p>
             </div>
           </Link>
         )}

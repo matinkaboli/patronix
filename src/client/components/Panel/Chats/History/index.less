@@ -2,7 +2,7 @@
 @import '~Root/styles/mixins.less';
 
 :local(.chat) {
-  width: 180px;
+  width: 300px;
   height: auto;
   margin: 15px;
   background-color: white;
@@ -10,9 +10,6 @@
   padding: 10px;
   border-bottom: 1px solid #eee;
   .boxShadow();
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   min-height: 150px;
 
   h1 {
@@ -45,4 +42,29 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+
+:local(.avatar) {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+:local(.operatorInfo) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > * {
+    margin: 0 5px;
+  }
+}
+
+:local(.header) {
+  display: flex;
+  flex-direction: row;
+  > * {
+    margin: 0 10px;
+    align-items: center;
+  }
 }
