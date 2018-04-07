@@ -13,7 +13,7 @@ socket.on('recieveMessage', message => {
     chat: {
       type: 'message',
       sender: 'server',
-      text: message.text,
+      text: message.message,
       time: `${time.getHours()}:${time.getMinutes()}`
     }
   });
