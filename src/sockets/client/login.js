@@ -49,11 +49,7 @@ socket
     await token.remove();
   }
 
-  let sites = await Site.find({ operators: user._id }, {
-    _id: 1,
-    owner: 1,
-    name: 1
-  });
+  let sites = await Site.find({ operators: user._id });
   let ownedSite;
   let operatorSites = [];
   for (let site of sites) {
@@ -107,6 +103,14 @@ socket
   .populate({ path: 'from', select: 'name' })
   .exec();
 
+  let chats = await Chat.find({
+    site: { $in: sites },
+    taken: false,
+    done: false
+  }, { chats: 1, site: 1 })
+  .populate({ path: 'site', select: 'name' })
+  .exec();
+
   socket.emit('login', 200, {
     user: {
       name: user.name,
@@ -122,11 +126,7 @@ socket
       site: ownedSite,
       sites: operatorSites
     },
-    chats: await Chat.find({
-      site: { $in: sites.map(i => i._id) },
-      taken: false,
-      done: false
-    }, { chats: 1 }),
+    chats,
     url
   });
 });
