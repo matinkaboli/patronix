@@ -39,7 +39,7 @@ socket
     subject: 'بازیابی پسورد',
     html: `
       برای بازیابی پسورد بر روی لینک زیر کلیک کنید
-      <a href='${url}/recovery/${rl.code}'
+      <a href='${url}/recovery/${rl.code}'>Link</a>
     `
   });
 

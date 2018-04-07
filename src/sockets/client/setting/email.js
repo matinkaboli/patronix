@@ -41,7 +41,7 @@ socket
       subject: 'فعال سازی اکانت',
       html: `
         برای فعال سازی اکانت بر روی لینک زیر کیلک کنید
-        <a href='${url}/activate/${al.code}'
+        <a href='${url}/activate/${al.code}'></a>
       `
     });
 
