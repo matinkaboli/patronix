@@ -16,6 +16,7 @@ class Code extends Component {
     if (refs.pass1.value === refs.pass2.value) {
       recover(
         refs.pass1.value,
+        this.props.history.push,
         matchPath(this.props.location.pathname, {
           path: '/recovery/:code'
         }).params.code
@@ -49,6 +50,13 @@ class Code extends Component {
           required: true,
           name: 'pass2'
         }
+      },
+      {
+        tag: 'button',
+        html: 'تغییر رمز عبور',
+        attrs: {
+          type: 'submit'
+        }
       }
     ];
 
@@ -58,8 +66,9 @@ class Code extends Component {
         <Form
           inputs={inputs}
           submitValue='تغییر رمز'
-          submitFunction={this.recover} />
-
+          submitFunction={this.recover}>
+          <h1>تغییر رمز عبور</h1>
+        </Form>
       </div>
     );
   }

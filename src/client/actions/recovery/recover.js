@@ -3,7 +3,7 @@ import izitoast from 'izitoast';
 import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 
-export default (password, code) => {
+export default (password, push, code) => {
   socket.once('recover', status => {
     let handler = new ResponseHandler();
 
@@ -13,6 +13,8 @@ export default (password, code) => {
         rtl: true,
         title: 'رمز شما با موفقیت تغییر پیدا کرد.'
       });
+
+      push('/login');
     })
 
     .handle('error', () => {
