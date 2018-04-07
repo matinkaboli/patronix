@@ -1,10 +1,11 @@
 import { SocketEvent } from 'socket.io-manager';
 import uid from 'uuid/v4';
 
-import { dbkey } from 'Root/config';
+import { dbkey, url } from 'Root/config';
 import { hmac } from 'Root/crypt';
 import middlewares from 'Root/middlewares';
 import { AL, ClientToken } from 'Root/models';
+import sendMail from 'Root/sendMail';
 
 let socket = new SocketEvent();
 
@@ -34,6 +35,15 @@ socket
     await al.save();
 
     await ClientToken.remove({ user: socket.data.user._id });
+
+    sendMail({
+      to: socket.data.user.email,
+      subject: 'فعال سازی اکانت',
+      html: `
+        برای فعال سازی اکانت بر روی لینک زیر کیلک کنید
+        <a href='${url}/activate/${al.code}'
+      `
+    });
 
     socket.emit('setting/email', 200);
   } catch (e) {

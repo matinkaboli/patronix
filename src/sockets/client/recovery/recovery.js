@@ -2,6 +2,8 @@ import { SocketEvent } from 'socket.io-manager';
 import uid from 'uuid/v4';
 
 import { RL, User } from 'Root/models';
+import sendMail from 'Root/sendMail';
+import { url } from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -31,6 +33,15 @@ socket
   });
 
   await rl.save();
+
+  sendMail({
+    to: user.email,
+    subject: 'بازیابی پسورد',
+    html: `
+      برای بازیابی پسورد بر روی لینک زیر کلیک کنید
+      <a href='${url}/recovery/${rl.code}'
+    `
+  });
 
   socket.emit('recovery', 200);
 });
