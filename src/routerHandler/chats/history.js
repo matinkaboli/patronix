@@ -6,7 +6,7 @@ export async function handler(socket) {
   let site = await Site.findOne({ owner: socket.data.user._id }, { _id: 1 });
   let chats = await Chat
   .find({ site: site._id, done: true }, { _id: 1, chats: 1, operator: 1 })
-  .populate({ path: 'operator.id', select: ['email', 'name'] })
+  .populate({ path: 'operator.id', select: ['email', 'name', 'avatar'] })
   .populate({ path: 'site', select: ['name'] })
   .lean()
   .exec();
@@ -16,7 +16,8 @@ export async function handler(socket) {
       ...i,
       operator: {
         name: i.operator.id.name,
-        email: i.operator.id.email
+        email: i.operator.id.email,
+        avatar: i.operator.id.avatar.url
       }
     }
   ));

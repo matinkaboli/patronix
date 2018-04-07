@@ -44,7 +44,8 @@ export async function handler(socket, params) {
           site: chat.site.name,
           operator: {
             name: chat.operator.id.name,
-            email: chat.operator.id.email
+            email: chat.operator.id.email,
+            avatar: chat.operator.id.avatar.url
           }
         }
       };

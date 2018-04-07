@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
@@ -19,10 +19,8 @@ import styles from './index.less';
 
 class Chat extends Component {
   @bind
-  takeChat(chat) {
-    return () => {
-      this.props.dispatch(take(chat));
-    };
+  takeChat() {
+    this.props.dispatch(take(this.props.chat));
   }
 
   @bind
@@ -33,7 +31,7 @@ class Chat extends Component {
 
   @bind
   sendMessage() {
-    if (this.refs.send.value.length > 250) {
+    if (this.refs.textInput.value.length > 250) {
       izitoast.warning({
         rtl: true,
         title: 'بیشتر از ۲۵۰ کاراکتر نمیتوانید ارسال کنید'
@@ -42,7 +40,7 @@ class Chat extends Component {
       return;
     }
 
-    if (!this.refs.send.value.length) {
+    if (!this.refs.textInput.value.length) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نمیباشند'
@@ -51,9 +49,9 @@ class Chat extends Component {
       return;
     }
 
-    this.props.dispatch(send(this.refs.send.value));
+    this.props.dispatch(send(this.refs.textInput.value));
 
-    this.refs.send.value = '';
+    this.refs.textInput.value = '';
   }
 
   @bind
@@ -63,64 +61,101 @@ class Chat extends Component {
     }
   }
 
+  @bind
+  operatorInformation() {
+    let chat = this.props.chat;
+
+    if (chat.done) {
+      return (
+        <div className={styles.opName}>
+          <img src={chat.operator.avatar} />
+          {chat.operator.name} - {chat.operator.email}
+        </div>
+      );
+    }
+
+    return null;
+  }
+
+  @bind
+  footer() {
+    let chat = this.props.chat;
+
+    if (chat.done) {
+      return null;
+    }
+
+    if (chat.taken) {
+      return (
+        <Box classes={styles.footer}>
+          <input
+            type='text'
+            placeholder='پیام خود را اینجا بنویسید...'
+            ref='textInput'
+            onKeyPress={this.keypress}
+          />
+          <Button
+            color='blue'
+            handleClick={this.sendMessage}>
+            ارسال
+          </Button>
+          <Button
+            color='red'
+            handleClick={this.finishChat}>
+            پایان چت
+          </Button>
+        </Box>
+      );
+    }
+
+    return (
+      <Box classes={styles.footer}>
+        <Button
+          color='blue'
+          handleClick={this.takeChat}>
+          اختصاص دادن چت و شروع چت
+        </Button>
+      </Box>
+    );
+  }
+
+  @bind
+  status() {
+    if (this.props.chat.done) {
+      return styles.full;
+    }
+
+    return '';
+  }
+
   render() {
     let chat = this.props.chat;
 
     return (
-      <div className={styles.container}>
-        <Box classes={styles.chatList}>
-          {!chat.taken ? <div className={styles.messages}>
-            <Button
-              color='blue'
-              handleClick={this.takeChat(chat)}>
-              اختصاص دادن
-            </Button>
-            <p>{chat.chats[0].message}</p>
-            <span>
-              {new Date(chat.chats[0].time).getHours()}:
-              {new Date(chat.chats[0].time).getMinutes()}
-            </span>
-          </div> : ''}
+      <Fragment>
+        <Box classes={styles.content + ' ' + this.status()}>
+          {this.operatorInformation()}
+          <div>
+            {chat.chats.map((v, i) => {
+              let prefix = v.sender ? 'operator' : 'customer';
 
-
-          {chat.taken ? <div className={styles.messages}>
-            {chat.chats.map((v, i) => <div
-              className={`${styles.message}
-              ${styles[v.sender === 1 ? 'CLIENT' : 'CUSTOMER']}`}
-              key={i}>
-
-              <p>{v.message}</p>
-
-              <p className={styles.time}>
-                {new Date(v.time).getHours()}:
-                {new Date(v.time).getMinutes()}
-              </p>
-            </div>)}
-
-            {!chat.done ? <div className={styles.send}>
-              <input
-                type='text'
-                ref='send'
-                onKeyPress={this.keypress}
-                placeholder='فرستادن پیام'
-              />
-
-              <Button
-                color='blue'
-                handleClick={this.sendMessage}>
-                فرستادن
-              </Button>
-            </div> : ''}
-
-            {!chat.done ? <Button
-              color='red'
-              handleClick={this.finishChat}>
-              پایان چت
-            </Button> : ''}
-
-          </div> : ''}
+              return (
+                <div key={i} className={`${styles.chat} ${styles[prefix]}`}>
+                  <div>
+                    <p>{v.message}</p>
+                    <p className={styles.time}>
+                      {new Date(chat.chats[0].time).getHours()}:
+                      {new Date(chat.chats[0].time).getMinutes()}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </Box>
-      </div>
+
+        {this.footer()}
+      </Fragment>
     );
   }
 }

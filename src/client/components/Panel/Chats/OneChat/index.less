@@ -1,76 +1,74 @@
 @import '~Root/styles/colors.less';
 @import '~Root/styles/mixins.less';
 
-:local(.title) {
-  .headerTitle();
+:local(.content) {
+  height: ~'calc(100vh - 175px)';
+  margin-bottom: 10px;
 }
 
-:local(.container) {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
+:local(.full) {
+  height: ~'calc(100vh - 70px)';
+}
+
+:local(.operator) {
+  direction: rtl;
 
   > div {
-    width: 85%;
+    background-color: @blue-1;
+    color: white;
   }
 }
 
-:local(.messages) {
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+:local(.customer) {
+  direction: ltr;
+
+  > div {
+    background-color: @background;
+  }
+}
+
+:local(.chat) {
+  margin: 10px 0;
+
+  > div {
+    padding: 10px;
+    width: 60%;
+    border-radius: 10px;
+  }
+}
+
+:local(.chats) {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+:local(.opName) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid @background;
+  padding: 10px;
+
+  > img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left: 25px;
+  }
 }
 
 :local(.time) {
-  opacity: 0.7;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
-:local(.message) {
-  max-width: 300px;
-  padding: 5px 20px;
-  border-radius: 15px;
-  word-wrap: break-word;
-  margin: 5px 0px !important;
-  display: block;
-}
+:local(.footer) {
+  display: flex;
+  align-items: center;
 
-:local(.CUSTOMER) {
-  background-color: @background;
-  direction: ltr;
-}
-
-:local(.CLIENT) {
-  background-color: @blue-base;
-  direction: rtl;
-}
-
-:local(.send) input {
-  width: 250px;
-  padding: 5px 8px;
-  border-radius: 30px;
-  outline: none;
-  border: none;
-  font-family: S;
-}
-
-:local(.button) {
-  border-radius: 30px;
-  outline: none;
-  border: 0;
-  padding: 8px;
-  margin-right: 5px;
-  width: 70px;
-  background-color: @green-2;
-  color: white;
-  cursor: pointer;
-  transition: all 0.4s;
-
-  &:hover {
-    background-color: @green-base;
+  input {
+    .input();
+    padding: 10px 20px;
+    width: ~'calc(100% - 250px)';
   }
 }
