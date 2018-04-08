@@ -3,28 +3,24 @@ import mongoose, { Schema } from 'mongoose';
 const schema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    maxlength: 40
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  operators: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  ],
-  status: {
-    type: Number,
-    enum: [1, 2, 3],
+    ref: 'User',
     required: true
   },
   token: {
     type: String,
-    unique: true,
-    required: true
-  }
+    required: true,
+    unique: true
+  },
+  operators: [ {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 });
 
 export default mongoose.model('Site', schema);

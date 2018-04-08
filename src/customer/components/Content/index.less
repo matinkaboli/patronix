@@ -1,0 +1,16 @@
+@import '~Root/styles/colors.less';
+
+:local(.container) {
+  height: 0px;
+  overflow: hidden;
+  color: white;
+  background-color: @background;
+  border: 0;
+  transition: all 0.4s;
+}
+
+:local(.container-active) {
+  height: 500px;
+  transition: all 0.4s;
+  transition-delay: 0.4s;
+}

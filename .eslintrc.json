@@ -10,10 +10,27 @@
     "es6": true,
     "mocha": true
   },
+  "plugins": [
+    "react"
+  ],
   "globals": {
-    "rootRequire": true
+    "rootRequire": true,
+    "rootDir": true
   },
   "rules": {
+    "react/display-name": 0,
+    "react/jsx-boolean-value": 1,
+    "react/jsx-no-undef": 1,
+    "react/jsx-sort-props": 0,
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "react/no-did-mount-set-state": 1,
+    "react/no-did-update-set-state": 1,
+    "react/no-multi-comp": 0,
+    "react/no-unknown-property": 1,
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 1,
+    "react/self-closing-comp": 1,
     "no-compare-neg-zero": 2,
     "no-cond-assign": [2, "always"],
     "no-constant-condition": [2, { "checkLoops": false }],
@@ -48,7 +65,7 @@
     "no-self-compare": 2,
     "no-throw-literal": 2,
     "no-unused-labels": 2,
-    "no-useless-call": 2,
+    "no-useless-call": 0,
     "no-useless-escape": 2,
     "no-void": 2,
     "no-with": 2,
@@ -78,7 +95,11 @@
     "semi-spacing": ["error", {"before": false, "after": true}],
     "semi-style": [2, "last"],
     "space-before-blocks": 2,
-    "space-before-function-paren": [2, "never"],
+    "space-before-function-paren": [2, {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
     "space-infix-ops": 2,
     "space-unary-ops": [2, { "words": true, "nonwords": false }],
     "switch-colon-spacing": 2,

@@ -2,14 +2,16 @@ import mongoose, { Schema } from 'mongoose';
 
 const chats = new Schema({
   sender: {
-    enum: [0, 1], // 0: client, 1: operator
+    enum: [0, 1], // 0: customer, 1: operator
     type: Number,
     required: [true, 'Sender required']
   },
   message: {
     type: String,
     trim: true,
-    required: [true, 'Message required']
+    required: [true, 'Message required'],
+    minlength: 1,
+    maxlength: 250
   },
   time: {
     type: Date,
@@ -20,32 +22,32 @@ const chats = new Schema({
   _id: false
 });
 
-const chatSchema = new Schema({
-  chats: [chats],
+const schema = new Schema({
+  operator: {
+    socket: String,
+    id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  },
   site: {
     type: Schema.Types.ObjectId,
     ref: 'Site',
     required: true
   },
-  operator: {
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    socket: String
-  },
-  client: {
-    type: String,
-    required: true
-  },
+  chats: [chats],
   done: {
     type: Boolean,
-    required: true
+    default: false
   },
-  take: {
+  taken: {
     type: Boolean,
+    default: false
+  },
+  customer: {
+    type: String,
     required: true
   }
 });
 
-export default mongoose.model('Chat', chatSchema);
+export default mongoose.model('Chat', schema);

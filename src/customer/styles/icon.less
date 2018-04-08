@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "patronix-customer";
+  src:url("~Root/fonts/Fontastic/patronix-customer.eot");
+  src:url("~Root/fonts/Fontastic/patronix-customer.eot?#iefix") format("embedded-opentype"),
+    url("~Root/fonts/Fontastic/patronix-customer.woff") format("woff"),
+    url("~Root/fonts/Fontastic/patronix-customer.ttf") format("truetype"),
+    url("~Root/fonts/Fontastic/patronix-customer.svg#patronix-customer") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "patronix-customer" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="pat-"]:before,
+[class*=" pat-"]:before {
+  font-family: "patronix-customer" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pat-times:before {
+  content: "\61";
+}
+.pat-minus:before {
+  content: "\62";
+}

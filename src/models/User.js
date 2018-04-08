@@ -4,18 +4,10 @@ const emailValidate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".
 
 const schema = new Schema({
   name: {
-    first: {
-      type: String,
-      trim: true,
-      required: [true, 'First name required'],
-      maxlength: 20
-    },
-    last: {
-      type: String,
-      trim: true,
-      required: [true, 'Last name required'],
-      maxlength: 20
-    }
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 40
   },
   email: {
     type: String,
@@ -37,30 +29,24 @@ const schema = new Schema({
     required: [true, 'Password required'],
     maxlength: 200
   },
-  type: {
-    type: Number,
-    enum: [1, 2, 3],
-    required: true,
-    trim: true
-  },
-  expireTime: {
-    type: Date,
-    trim: true
-  },
   status: {
     type: Number,
-    enum: [0, 1, 2, 3],
+    enum: [0, 1],
     required: true,
     trim: true
   },
-  image: {
-    type: String,
-    trim: true
+  avatar: {
+    path: String,
+    url: String
   },
-  sites: [{
+  site: {
     type: Schema.Types.ObjectId,
     ref: 'Site'
-  }]
+  },
+  verifyTime: {
+    type: Date,
+    expires: 60 * 60 * 24
+  }
 });
 
 export default mongoose.model('User', schema);

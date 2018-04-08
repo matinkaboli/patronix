@@ -1,0 +1,70 @@
+@import '~Root/styles/colors.less';
+@import '~Root/styles/mixins.less';
+
+:local(.chat) {
+  width: 300px;
+  height: auto;
+  margin: 15px;
+  background-color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  .boxShadow();
+  min-height: 150px;
+
+  h1 {
+    font-size: 19px;
+  }
+
+  a {
+    display: block;
+
+    &:hover, &:active {
+      text-decoration: underline;
+    }
+  }
+
+  p, span {
+    color: #333;
+    font-size: 14px;
+  }
+
+  > span:nth-of-type(1) {
+    margin: 5px 10px;
+  }
+}
+
+:local(.title) {
+  .headerTitle();
+}
+
+:local(.container) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+:local(.avatar) {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+:local(.operatorInfo) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > * {
+    margin: 0 5px;
+  }
+}
+
+:local(.header) {
+  display: flex;
+  flex-direction: row;
+  > * {
+    margin: 0 10px;
+    align-items: center;
+  }
+}

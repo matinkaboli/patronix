@@ -1,0 +1,30 @@
+@import '~Root/styles/colors.less';
+@import '~Root/styles/mixins.less';
+
+:local(.root) {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: @background;
+}
+
+:local(.container) {
+  margin-top: 20%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  .boxShadow();
+}
+
+:local(.verticalRoot) {
+  padding: 20px 0 0 0;
+}
+
+:local(.homeLink) {
+  font-size: 17px;
+}

@@ -1,0 +1,112 @@
+@import '~Root/styles/colors.less';
+
+:local(.container) {
+  width: 95px;
+  height: 95px;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 3px;
+  border-radius: 50%;
+  background-color: @navy-2;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  transition-delay: 0.4s;
+  color: white;
+
+  &:hover {
+    background-color: @navy-0;
+  }
+}
+
+:local(.container-active) {
+  width: 350px;
+  height: 110px;
+  overflow: visible;
+  border-radius: 0%;
+  cursor: auto;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: @navy-2;
+  }
+}
+
+:local(.circle) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  padding: 0px;
+}
+
+:local(.circle-active) {
+  border-radius: 0%;
+  width: auto;
+  height: auto;
+  text-align: right;
+  padding: 10px;
+  justify-content: flex-start;
+  background-color: transparent;
+}
+
+.flexRow() {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:local(.flexRow) {
+  .flexRow();
+}
+
+:local(.icon) {
+  cursor: pointer;
+
+  &::before {
+    transition: all 0.3s;
+    padding: 10px;
+    border-radius: 50%;
+  }
+
+  &:hover::before {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+:local(.offline) {
+  opacity: 0.6;
+}
+
+:local(.avatar) {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+:local(.userInfo) {
+  .flexRow();
+
+  > span {
+    margin-right: 10px;
+  }
+}
+
+:local(.button) {
+  border-radius: 30px;
+  outline: none;
+  border: 0;
+  padding: 8px;
+  margin-right: 5px;
+  background-color: @red-2;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: @red-base;
+  }
+}

@@ -1,0 +1,41 @@
+@import '~Root/styles/mixins.less';
+@import '~Root/styles/colors.less';
+
+:local(.container) {
+  .flexRow();
+
+  > div {
+    margin: 0 10px;
+    width: 100%;
+  }
+}
+
+:local(.title) {
+  .headerTitle();
+}
+
+:local(.site) {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    .input();
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.container) {
+    flex-direction: column;
+
+    > div {
+      margin: 10px 0;
+    }
+  }
+
+  :local(.site) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

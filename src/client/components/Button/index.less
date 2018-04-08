@@ -1,0 +1,82 @@
+@import '~Root/styles/index.less';
+
+:local(.btn) {
+  width: auto;
+  position: relative;
+  background-color: white;
+  text-align: center;
+  border-radius: 4px;
+  font-family: SB;
+  cursor: pointer;
+  display: inline-table;
+  margin: 10px;
+  transition: background-color 300ms, color 300ms;
+  border: 3px solid black;
+
+  &::after {
+    border-radius: 4px;
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  div {
+    position: relative;
+    z-index: 25;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+:local(.black) {
+  border-color: black;
+  color: #222;
+
+  &::after {
+    background-color: black;
+  }
+
+  &:hover {
+    color: white;
+  }
+}
+
+:local(.red) {
+  border-color: @red-1;
+  color: @red-1;
+
+  &::after {
+    background-color: @red-1;
+  }
+
+  &:hover {
+    color: white;
+  }
+}
+
+:local(.blue) {
+  border-color: @blue-1;
+  color: @blue-1;
+
+  &::after {
+    background-color: @blue-1;
+  }
+
+  &:hover {
+    color: white;
+  }
+}

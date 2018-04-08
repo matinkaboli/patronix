@@ -1,0 +1,15 @@
+@import '~Root/styles/colors.less';
+@import '~Root/styles/mixins.less';
+
+:local(.container) {
+  .flexRow();
+
+  > div:nth-child(2) {
+    margin: 25px;
+    width: calc(~'100% - 250px');
+  }
+}
+
+:local(.content) {
+  padding: 5px;
+}
