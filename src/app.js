@@ -29,23 +29,24 @@ mongoose.connection.on('disconnected', () => {
   process.exit(0);
 });
 
-http.createServer(function(req, res) {
-    res.writeHead(301, { Location: 'https://' + req.headers.host + req.url });
-    res.end();
-}).listen(80);
+if (process.env.NODE_ENV !== 'development') {
+  http.createServer(function(req, res) {
+      res.writeHead(301, { Location: 'https://' + req.headers.host + req.url });
+      res.end();
+  }).listen(80);
+}
 
 (async () => {
   await SocketStore.remove({});
 
   const app = express();
-  const server = https.createServer({
-    cert: readFileSync('./sslcert/fullchain.pem'),
-    key: readFileSync('./sslcert/private.pem')
-  }, app).listen(config.port);
-  const io = socketIO(server);
+  let server;
 
   if (process.env.NODE_ENV === 'development') {
+    server = app.listen(config.port);
+
     app.use(morgan('short'));
+
     let filtered = ['setting/avatar/update'];
     modified = [
       ...modified.filter(so => filtered.includes(so._name)),
@@ -54,6 +55,16 @@ http.createServer(function(req, res) {
       )
     ];
   }
+
+  else {
+    server = https.createServer({
+      cert: readFileSync('./sslcert/fullchain.pem'),
+      key: readFileSync('./sslcert/private.pem')
+    }, app).listen(config.port);
+  }
+
+
+  const io = socketIO(server);
 
   app.use('/static', express.static(join(__dirname, './static')));
 
