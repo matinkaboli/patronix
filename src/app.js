@@ -8,10 +8,10 @@ import process from 'process';
 import { join } from 'path';
 import morgan from 'morgan';
 
-import { SocketStore } from './models';
 import { init } from './middlewares';
 import sockets from './sockets';
 import config from './config';
+import { User } from './models';
 
 let modified = applyMiddleware([init], sockets);
 
@@ -27,7 +27,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 (async () => {
-  await SocketStore.remove({});
+  await User.update({}, { $set: { socket: null } });
 
   const app = express();
   const server = app.listen(config.port);

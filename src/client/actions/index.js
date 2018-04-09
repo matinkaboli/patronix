@@ -5,8 +5,9 @@ export default {
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
   lazy: {
-    START_LOADING: 'lazy/START_LOADING',
-    STOP_LOADING: 'lazy/STOP_LOADING'
+    START_LOADING: 'lazy/START_LOAD',
+    TEMP_STOP: 'lazy/TEMP_STOP',
+    CACHE_STOP: 'lazy/CACHE_STOP'
   },
   user: {
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',

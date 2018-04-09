@@ -17,5 +17,6 @@ class Activate extends Component {
 }
 
 export default lazy(
-  Activate
+  Activate,
+  'temp'
 );

@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { Site, SocketStore } from 'Root/models';
+import { Site } from 'Root/models';
 import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
@@ -36,10 +36,7 @@ socket
     site.operators.splice(index, index + 1);
     await site.save();
 
-    let ss = await SocketStore.findOne({ user: socket.data.user._id });
-    for (let soket of ss.sockets) {
-      nsp.sockets[soket].leave(site._id.toString());
-    }
+    socket.leave(site._id.toString());
 
     io
     .of('/customer')

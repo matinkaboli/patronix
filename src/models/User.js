@@ -46,7 +46,8 @@ const schema = new Schema({
   verifyTime: {
     type: Date,
     expires: 60 * 60 * 24
-  }
+  },
+  socket: String
 });
 
 export default mongoose.model('User', schema);

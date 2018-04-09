@@ -3,9 +3,6 @@ const flat = arr => [].concat(...arr.map(v => Array.isArray(v) ? flat(v) : v));
 const pureRouters = [
   require('./activate'),
   require('./recovery'),
-  require('./setting'),
-  require('./sites'),
-  require('./invitation'),
   require('./chats')
 ];
 

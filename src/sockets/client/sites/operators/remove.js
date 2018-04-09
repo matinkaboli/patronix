@@ -1,6 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
-import { User, SocketStore } from 'Root/models';
+import { User } from 'Root/models';
 import middlewares from 'Root/middlewares';
 
 let socket = new SocketEvent();
@@ -31,14 +31,10 @@ socket
 
   await socket.data.site.save();
 
-  let ss = await SocketStore.findOne({ user: user._id });
   let state = 'offline';
-  if (ss) {
+  if (user.socket) {
     state = 'online';
-
-    for (let soket of ss.sockets) {
-      nsp.sockets[soket].leave(socket.data.site._id.toString());
-    }
+    nsp.sockets[user.socket].leave(socket.data.site._id.toString());
   }
 
   io

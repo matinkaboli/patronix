@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import types from 'Root/actions';
-
 import lazy from 'Root/js/lazy';
 
 import styles from './index.less';
@@ -56,5 +54,5 @@ export default lazy(
       historyChats: state.historyChats
     })
   )(History),
-  types.historyChats.LOAD
+  'temp'
 );

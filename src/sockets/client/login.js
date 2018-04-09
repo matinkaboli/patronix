@@ -5,7 +5,6 @@ import {
   ClientToken,
   Invitation,
   Site,
-  SocketStore,
   Chat
 } from 'Root/models';
 import { otkey, dbkey, url } from 'Root/config';
@@ -62,31 +61,19 @@ socket
     socket.join(site._id.toString());
   }
 
-  let ss = await SocketStore.findOne({ user: user._id });
-  if (ss) {
-    for (let sid of ss.sockets) {
-      sid !== socket.id &&
-      nsp.sockets[sid] &&
-      nsp.sockets[sid].disconnect();
-    }
-
-    ss.sockets = [socket.id];
-    await ss.save();
+  if (user.socket) {
+    nsp.sockets[user.socket] &&
+    nsp.sockets[user.socket].disconnect();
   }
 
-  else {
-    ss = new SocketStore({
-      user: user._id,
-      sockets: [socket.id]
-    });
-    await ss.save();
+  user.socket = socket.id;
+  await user.save();
 
-    for (let site of sites) {
-      io
-      .of('/customer')
-      .to(site._id.toString())
-      .emit('getOnline');
-    }
+  for (let site of sites) {
+    io
+    .of('/customer')
+    .to(site._id.toString())
+    .emit('getOnline');
   }
 
   token = new ClientToken({ user: user._id });

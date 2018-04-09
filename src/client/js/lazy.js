@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 
-import load from 'Root/actions/lazy/load';
+import cacheLoad from 'Root/actions/lazy/cacheLoad';
+import tempLoad from 'Root/actions/lazy/tempLoad';
 
 class Prototype extends Component {
   static propTypes = {
-    type: PropTypes.string,
+    type: PropTypes.oneOf(['cache', 'temp']).isRequired,
     // you should pass a component
-    component: PropTypes.func.isRequired
+    component: PropTypes.func.isRequired,
+    actionType: PropTypes.string
   }
 
   state = {
@@ -17,10 +19,19 @@ class Prototype extends Component {
   }
 
   componentDidMount() {
+    if (this.props.type === 'cache') {
+      return this.props.dispatch(
+        cacheLoad(
+          this.props.match,
+          this.props.type,
+          this.setState.bind(this)
+        )
+      );
+    }
+
     this.props.dispatch(
-      load(
+      tempLoad(
         this.props.match,
-        this.props.type,
         this.setState.bind(this)
       )
     );
@@ -51,5 +62,5 @@ const Lazy = withRouter(connect(
   state => ({ lazy: state.lazy })
 )(Prototype));
 
-export default (component, type) => () =>
-  <Lazy component={component} type={type} />;
+export default (component, type, actionType) => () =>
+  <Lazy component={component} type={type} actionType={actionType} />;

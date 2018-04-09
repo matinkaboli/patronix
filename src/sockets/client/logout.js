@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import { ClientToken, SocketStore, Site } from 'Root/models';
+import { ClientToken, Site } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -16,8 +16,8 @@ socket
 
   socket.handshake.query.token = '';
 
-  let ss = await SocketStore.findOne({ user: socket.data.user._id });
-  await ss.remove();
+  socket.data.user.socket = null;
+  await socket.data.user.save();
 
   let sites = await Site.find(
     { operators: socket.data.user._id },

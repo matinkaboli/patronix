@@ -6,10 +6,8 @@ import izitoast from 'izitoast';
 import leaveSite from 'Root/actions/user/site/operator/leave';
 import removeSite from 'Root/actions/user/site/remove';
 import newSite from 'Root/actions/user/site/new';
-import types from 'Root/actions';
 
 import assure from 'Root/js/assure';
-import lazy from 'Root/js/lazy';
 import bind from 'Root/js/bind';
 
 import Button from 'Root/components/Button';
@@ -111,11 +109,8 @@ class Sites extends Component {
   }
 }
 
-export default lazy(
-  withRouter(
-    connect(
-      state => ({ sites: state.sites })
-    )(Sites),
-  ),
-  types.sites.LOAD
+export default withRouter(
+  connect(
+    state => ({ sites: state.sites })
+  )(Sites),
 );
