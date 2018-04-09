@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import https from 'https';
+import http from 'http';
 import express from 'express';
 import socketIO from 'socket.io';
 import { connect, applyMiddleware } from 'socket.io-manager';
@@ -27,6 +28,11 @@ mongoose.connection.on('error', () => {
 mongoose.connection.on('disconnected', () => {
   process.exit(0);
 });
+
+http.createServer(function(req, res) {
+    res.writeHead(301, { Location: 'https://' + req.headers.host + req.url });
+    res.end();
+}).listen(80);
 
 (async () => {
   await SocketStore.remove({});
