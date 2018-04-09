@@ -59,8 +59,8 @@ if (process.env.NODE_ENV !== 'development') {
 
   else {
     server = spdy.createServer({
-      cert: readFileSync('./sslcert/fullchain.pem'),
-      key: readFileSync('./sslcert/private.pem')
+      cert: readFileSync(join(__dirname, 'sslcert/fullchain.pem')),
+      key: readFileSync(join(__dirname, 'sslcert/private.pem'))
     }, app).listen(config.port);
   }
 

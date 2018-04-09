@@ -25,7 +25,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Root: resolve(__dirname, '../../', 'src'),
+      Root: resolve(__dirname, '../../', 'src/server'),
     }
   },
   target: 'node',
