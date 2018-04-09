@@ -35,7 +35,7 @@ mongoose.connection.on('disconnected', () => {
   const server = https.createServer({
     cert: readFileSync('./sslcert/fullchain.pem'),
     key: readFileSync('./sslcert/private.pem')
-  }).listen(config.port);
+  }, app).listen(config.port);
   const io = socketIO(server);
 
   if (process.env.NODE_ENV === 'development') {
