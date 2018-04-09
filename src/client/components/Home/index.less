@@ -64,19 +64,11 @@
   text-shadow: 2px 2px #333;
 }
 
-:local(.linksButton) {
-  display: none;
-}
-
 :local(.normalLinks) {
   display: flex;
   align-content: center;
   align-items: center;
   align-self: center;
-}
-
-:local(.SlideOutContainer) {
-  display: none;
 }
 
 :local(.aside) {
@@ -178,15 +170,7 @@
   }
 
   :local(.normalLinks) {
-    display: none;
-  }
-
-  :local(.linksButton) {
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    align-self: center;
+    font-size: 10px;
   }
 
   :local(.about1) {
@@ -204,32 +188,6 @@
   :local(.aside) {
     :local(.bg) {
       font-size: 12px;
-    }
-  }
-
-
-  :local(.SlideOutContainer) {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-
-    ul {
-      list-style: none;
-
-      li {
-        margin: 10px 0;
-        display: block;
-
-        a {
-          color: black;
-
-          &:hover, &:active {
-            color: #444;
-          }
-        }
-      }
     }
   }
 }

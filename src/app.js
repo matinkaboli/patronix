@@ -1,4 +1,6 @@
 import 'babel-polyfill';
+import https from 'https';
+import http from 'http';
 import express from 'express';
 import socketIO from 'socket.io';
 import { connect, applyMiddleware } from 'socket.io-manager';
@@ -7,6 +9,7 @@ import mongoose from 'mongoose';
 import process from 'process';
 import { join } from 'path';
 import morgan from 'morgan';
+import { readFileSync } from 'fs';
 
 import { init } from './middlewares';
 import sockets from './sockets';
@@ -26,15 +29,24 @@ mongoose.connection.on('disconnected', () => {
   process.exit(0);
 });
 
+if (process.env.NODE_ENV !== 'development') {
+  http.createServer(function(req, res) {
+      res.writeHead(301, { Location: 'https://' + req.headers.host + req.url });
+      res.end();
+  }).listen(80);
+}
+
 (async () => {
   await User.update({}, { $set: { socket: null } });
 
   const app = express();
-  const server = app.listen(config.port);
-  const io = socketIO(server);
+  let server;
 
   if (process.env.NODE_ENV === 'development') {
+    server = app.listen(config.port);
+
     app.use(morgan('short'));
+
     let filtered = ['setting/avatar/update'];
     modified = [
       ...modified.filter(so => filtered.includes(so._name)),
@@ -43,6 +55,16 @@ mongoose.connection.on('disconnected', () => {
       )
     ];
   }
+
+  else {
+    server = https.createServer({
+      cert: readFileSync('./sslcert/fullchain.pem'),
+      key: readFileSync('./sslcert/private.pem')
+    }, app).listen(config.port);
+  }
+
+
+  const io = socketIO(server);
 
   app.use('/static', express.static(join(__dirname, './static')));
 

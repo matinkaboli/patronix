@@ -1,7 +1,8 @@
 import io from 'socket.io-client';
+import url from 'Root/url';
 
 let socket = io(
-  'http://localhost:8010/customer',
+  `${url}/customer`,
   { query: `token=${
     document.getElementById('patronix-data').getAttribute('token')
   }` }
