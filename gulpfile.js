@@ -16,10 +16,16 @@ gulp.task('clean', () =>
 );
 
 gulp.task('copy', () =>
-  gulp.src([
-    'src/index.html'
-  ])
-  .pipe(gulp.dest('build/'))
+  [
+    gulp.src([
+      'src/server/index.html'
+    ])
+    .pipe(gulp.dest('build')),
+    gulp.src([
+      'src/server/sslcert/*'
+    ])
+    .pipe(gulp.dest('build/sslcert'))
+  ]
 );
 
 gulp.task('dev:client', () =>
@@ -35,7 +41,7 @@ gulp.task('dev:customer', () =>
 );
 
 gulp.task('dev:server', () =>
-  gulp.src('src/app.js')
+  gulp.src('src/server/app.js')
   .pipe(webpack(require('./webpack/server/dev.js')))
   .pipe(gulp.dest('build/'))
 );
@@ -53,7 +59,7 @@ gulp.task('prod:customer', () =>
 );
 
 gulp.task('prod:server', () =>
-  gulp.src('src/app.js')
+  gulp.src('src/server/app.js')
   .pipe(webpack(require('./webpack/server/prod.js')))
   .pipe(gulp.dest('build/'))
 );
