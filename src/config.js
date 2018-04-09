@@ -7,5 +7,5 @@ export default {
   db: 'mongodb://localhost/patronix',
   url: 'http://patronix.ir',
   title: 'Patronix',
-  port: '80'
+  port: '443'
 };

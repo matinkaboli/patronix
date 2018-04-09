@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import https from 'https';
 import express from 'express';
 import socketIO from 'socket.io';
 import { connect, applyMiddleware } from 'socket.io-manager';
@@ -7,6 +8,7 @@ import mongoose from 'mongoose';
 import process from 'process';
 import { join } from 'path';
 import morgan from 'morgan';
+import { readFileSync } from 'fs';
 
 import { SocketStore } from './models';
 import { init } from './middlewares';
@@ -30,7 +32,10 @@ mongoose.connection.on('disconnected', () => {
   await SocketStore.remove({});
 
   const app = express();
-  const server = app.listen(config.port);
+  const server = https.createServer({
+    cert: readFileSync('./sslcert/fullchain.pem'),
+    key: readFileSync('./sslcert/private.pem')
+  }).listen(config.port);
   const io = socketIO(server);
 
   if (process.env.NODE_ENV === 'development') {
