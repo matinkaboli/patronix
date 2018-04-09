@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import https from 'https';
+import spdy from 'spdy';
 import http from 'http';
 import express from 'express';
 import socketIO from 'socket.io';
@@ -10,6 +10,7 @@ import process from 'process';
 import { join } from 'path';
 import morgan from 'morgan';
 import { readFileSync } from 'fs';
+import helmet from 'helmet';
 
 import { init } from './middlewares';
 import sockets from './sockets';
@@ -57,7 +58,7 @@ if (process.env.NODE_ENV !== 'development') {
   }
 
   else {
-    server = https.createServer({
+    server = spdy.createServer({
       cert: readFileSync('./sslcert/fullchain.pem'),
       key: readFileSync('./sslcert/private.pem')
     }, app).listen(config.port);
@@ -67,6 +68,8 @@ if (process.env.NODE_ENV !== 'development') {
   const io = socketIO(server);
 
   app.use('/static', express.static(join(__dirname, './static')));
+
+  app.use(helmet());
 
   app.use((req, res) => {
     res.sendFile(join(__dirname, '/index.html'));
