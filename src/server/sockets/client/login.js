@@ -3,11 +3,9 @@ import { SocketEvent } from 'socket.io-manager';
 import {
   User,
   ClientToken,
-  Invitation,
   Site,
-  Chat
 } from 'Root/models';
-import { otkey, dbkey, url } from 'Root/config';
+import { otkey, dbkey } from 'Root/config';
 import { hmac } from 'Root/crypt';
 
 let socket = new SocketEvent();
@@ -49,15 +47,7 @@ socket
   }
 
   let sites = await Site.find({ operators: user._id });
-  let ownedSite;
-  let operatorSites = [];
   for (let site of sites) {
-    if (site.owner.toString() === user._id.toString()) {
-      ownedSite = site;
-    } else {
-      operatorSites.push(site);
-    }
-
     socket.join(site._id.toString());
   }
 
@@ -85,37 +75,7 @@ socket
 
   socket.handshake.query.token = token.token;
 
-  let invitations = await Invitation
-  .find({ user: user._id })
-  .populate({ path: 'from', select: 'name' })
-  .exec();
-
-  let chats = await Chat.find({
-    site: { $in: sites },
-    taken: false,
-    done: false
-  }, { chats: 1, site: 1 })
-  .populate({ path: 'site', select: 'name' })
-  .exec();
-
-  socket.emit('login', 200, {
-    user: {
-      name: user.name,
-      email: user.email,
-      avatar: user.avatar.url
-    },
-    token: token.token,
-    invitations: invitations.map(i => ({
-      from: i.from.name,
-      code: i.code
-    })),
-    sites: {
-      site: ownedSite,
-      sites: operatorSites
-    },
-    chats,
-    url
-  });
+  socket.emit('login', 200, token.token);
 });
 
 export default socket;

@@ -12,7 +12,7 @@ socket
   middlewares.client.checkToken
 )
 .handler((socket, nsp, io) => async () => {
-  if (socket.data.user.socket && socket.data.user.socket !== socket.id) {
+  if (socket.data.user.socket) {
     socket.emit('kickedByServer');
     socket.disconnect();
     return;

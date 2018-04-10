@@ -36,8 +36,8 @@ const schema = new Schema({
     trim: true
   },
   avatar: {
-    path: String,
-    url: String
+    type: Schema.Types.ObjectId,
+    ref: 'File'
   },
   site: {
     type: Schema.Types.ObjectId,

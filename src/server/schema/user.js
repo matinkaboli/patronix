@@ -3,7 +3,7 @@ import {
   GraphQLString,
 } from 'graphql';
 
-const type = new GraphQLObjectType({
+export const type = new GraphQLObjectType({
   name: 'user',
   fields: {
     name: {
