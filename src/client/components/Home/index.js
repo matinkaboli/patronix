@@ -72,7 +72,7 @@ class Home extends Component {
           </div>
           <div className={`${styles.bg} ${styles.bg2}`}>
             <h1>
-              سعی می کنیم بهترین امکانات را در اختیار شما قرار بدهیم.
+              سعی می کنیم بهترین امکانات را در اختیار شما قرار بدهیم
             </h1>
           </div>
         </aside>
