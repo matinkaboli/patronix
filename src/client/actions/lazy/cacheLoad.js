@@ -9,7 +9,7 @@ export default (match, query, type, setState) => (dispatch, getState) => {
     return;
   }
 
-  socket.once('get', (status, data) => {
+  socket.once('graphql', (status, data) => {
     dispatch({ type, data });
 
     dispatch({

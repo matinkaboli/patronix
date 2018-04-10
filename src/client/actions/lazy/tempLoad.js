@@ -2,7 +2,7 @@ import socket from 'Root/socket';
 import types from 'Root/actions';
 
 export default (query, setState) => dispatch => {
-  socket.once('get', (status, data) => {
+  socket.once('graphql', (status, data) => {
     dispatch({
       type: types.lazy.TEMP_LOAD,
       status,
