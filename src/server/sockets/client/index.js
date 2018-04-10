@@ -11,5 +11,6 @@ export default [
   require('./connect'),
   require('./disconnect'),
   require('./chat'),
-  require('./sites')
+  require('./sites'),
+  require('./graphql')
 ];
