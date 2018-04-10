@@ -11,7 +11,7 @@ export default (credentials, push, captcha) => dispatch => {
 
     handler
     .handle('success', () => {
-      localStorage.token = res.token;
+      localStorage.token = res;
 
       dispatch({
         type: types.user.LOGIN,
