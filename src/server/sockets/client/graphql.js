@@ -14,7 +14,7 @@ socket
 )
 .handler(socket => query => {
   graphql(schema, query, {}, socket).then(res => {
-    socket.emti('graphql', res);
+    socket.emit('graphql', res);
   }).catch(() => {
     socket.emit('graphql', 'error');
   });
