@@ -15,7 +15,7 @@ gulp.task('clean', () =>
   ])
 );
 
-gulp.task('copy', () =>
+gulp.task('copy', ['clean'], () =>
   [
     gulp.src([
       'src/server/index.html'
