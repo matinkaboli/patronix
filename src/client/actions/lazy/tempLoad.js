@@ -1,7 +1,7 @@
 import socket from 'Root/socket';
 import types from 'Root/actions';
 
-export default (match, setState) => dispatch => {
+export default (query, setState) => dispatch => {
   socket.once('get', (status, data) => {
     dispatch({
       type: types.lazy.TEMP_LOAD,
@@ -16,5 +16,5 @@ export default (match, setState) => dispatch => {
     type: types.lazy.START_LOAD
   });
 
-  socket.emit('get', { path: match.path, params: match.params });
+  socket.emit('graphql', query);
 };

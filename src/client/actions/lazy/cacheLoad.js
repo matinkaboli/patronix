@@ -1,7 +1,7 @@
 import socket from 'Root/socket';
 import types from 'Root/actions';
 
-export default (match, type, setState) => (dispatch, getState) => {
+export default (match, query, type, setState) => (dispatch, getState) => {
   let state = getState().lazy.paths;
 
   if (state.includes(match.path)) {
@@ -25,5 +25,5 @@ export default (match, type, setState) => (dispatch, getState) => {
     type: types.lazy.START_LOAD
   });
 
-  socket.emit('get', { path: match.path, params: match.params });
+  socket.emit('graphql', query);
 };

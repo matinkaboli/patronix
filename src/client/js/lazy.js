@@ -23,6 +23,7 @@ class Prototype extends Component {
       return this.props.dispatch(
         cacheLoad(
           this.props.match,
+          this.props.query,
           this.props.type,
           this.setState.bind(this)
         )
@@ -31,7 +32,7 @@ class Prototype extends Component {
 
     this.props.dispatch(
       tempLoad(
-        this.props.match,
+        this.props.query,
         this.setState.bind(this)
       )
     );
@@ -62,5 +63,9 @@ const Lazy = withRouter(connect(
   state => ({ lazy: state.lazy })
 )(Prototype));
 
-export default (component, type, actionType) => () =>
-  <Lazy component={component} type={type} actionType={actionType} />;
+export default (component, query, type, actionType) => () =>
+  <Lazy
+    component={component}
+    type={type}
+    actionType={actionType}
+    query={query} />;
