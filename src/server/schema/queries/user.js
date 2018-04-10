@@ -3,6 +3,9 @@ import userType from 'Root/schema/types/user';
 export default {
   type: userType,
   resolve(parent, args, socket) {
-    return socket.data.user.toObject();
+    let res = socket.data.user.toObject();
+    res.avatar = '/static/uploads/' + res.avatar;
+
+    return res;
   }
 };

@@ -11,6 +11,9 @@ export default new GraphQLObjectType({
     },
     email: {
       type: GraphQLString
+    },
+    avatar: {
+      type: GraphQLString
     }
   }
 });
