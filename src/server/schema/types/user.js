@@ -3,7 +3,7 @@ import {
   GraphQLString,
 } from 'graphql';
 
-export const type = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'user',
   fields: {
     name: {
@@ -14,10 +14,3 @@ export const type = new GraphQLObjectType({
     }
   }
 });
-
-export default {
-  type,
-  resolve(parent, args, socket) {
-    return socket.data.user.toObject();
-  }
-};
