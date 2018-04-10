@@ -29,7 +29,11 @@ socket
     email: data.email,
     password: hmac(data.password, dbkey),
     status: 0,
-    verifyTime: Date.now()
+    verifyTime: Date.now(),
+    avatar: {
+      url: null,
+      path: null
+    }
   });
 
   try {
