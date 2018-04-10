@@ -11,26 +11,9 @@ export default new Promise(resolve => {
       handler
       .handle('success', () => {
         dispatch({
-          type: types.user.LOGIN,
-          user: res.user
+          type: types.user.LOGIN
         });
-
-        dispatch({
-          type: types.invitations.LOAD,
-          invitations: res.invitations
-        });
-
-        dispatch({
-          type: types.sites.LOAD,
-          data: res.sites
-        });
-
-        dispatch({
-          type: types.newChats.LOAD,
-          data: res.chats
-        });
-        
-        localStorage.setItem('patronixUrl', res.url);
+        res;
       })
 
       .status(status);
