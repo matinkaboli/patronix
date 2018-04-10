@@ -125,3 +125,7 @@ socket.on('chat/customerFinished', () => {
     type: types.chat.FINISH
   });
 });
+
+socket.on('graphql', res => {
+  console.log(res);
+});
