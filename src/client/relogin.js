@@ -5,7 +5,7 @@ import types from 'Root/actions';
 
 export default new Promise(resolve => {
   if (localStorage.token) {
-    socket.once('relogin', (status, res) => {
+    socket.once('relogin', status => {
       let handler = new ResponseHandler();
 
       handler
@@ -13,7 +13,6 @@ export default new Promise(resolve => {
         dispatch({
           type: types.user.LOGIN
         });
-        res;
       })
 
       .status(status);

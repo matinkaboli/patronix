@@ -5,7 +5,7 @@ export default {
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
   lazy: {
-    START_LOADING: 'lazy/START_LOAD',
+    START_LOAD: 'lazy/START_LOAD',
     TEMP_STOP: 'lazy/TEMP_STOP',
     CACHE_STOP: 'lazy/CACHE_STOP'
   },

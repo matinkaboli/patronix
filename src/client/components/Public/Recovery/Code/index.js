@@ -76,5 +76,11 @@ class Code extends Component {
 
 export default lazy(
   withRouter(Code),
+  ({ params }) =>
+  `query {
+    rl(code: "${params.code}") {
+      code
+    }
+  }`,
   'temp'
 );

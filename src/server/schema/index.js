@@ -3,13 +3,11 @@ import {
   GraphQLObjectType
 } from 'graphql';
 
-import user from './user';
+import queries from './queries';
 
 export default new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
-    fields: {
-      user
-    }
+    fields: queries
   })
 });

@@ -36,8 +36,8 @@ const schema = new Schema({
     trim: true
   },
   avatar: {
-    type: Schema.Types.ObjectId,
-    ref: 'File'
+    type: String,
+    default: null
   },
   site: {
     type: Schema.Types.ObjectId,

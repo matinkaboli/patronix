@@ -1,15 +1,18 @@
 import socket from 'Root/socket';
 import types from 'Root/actions';
+import parse from 'Root/js/parseGraphRes';
 
 export default (query, setState) => dispatch => {
-  socket.once('graphql', (status, data) => {
-    dispatch({
-      type: types.lazy.TEMP_LOAD,
-      status,
-      data
-    });
+  socket.once('graphql', data => {
+    parse(data).then(status => {
+      dispatch({
+        type: types.lazy.TEMP_STOP,
+        status,
+        data
+      });
 
-    setState({ loading: false });
+      setState({ loading: false });
+    });
   });
 
   dispatch({

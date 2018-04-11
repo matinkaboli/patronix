@@ -31,15 +31,17 @@ socket
       }
 
       else {
-        socket.data.user.avatar = {
-          path,
-          url: `/static/uploads/${socket.data.user._id.toString()}.${data.type}`
-        };
+        socket.data.user.avatar =
+        `${socket.data.user._id.toString()}.${data.type}`;
 
         await socket.data.user.save();
 
-        socket.emit('setting/avatar/update', 200,
-        `${socket.data.user.avatar.url}?${randomBytes(5).toString('hex')}`);
+        socket.emit(
+          'setting/avatar/update',
+          200,
+          '/static/uploads/' +
+          `${socket.data.user.avatar}?${randomBytes(5).toString('hex')}`
+        );
       }
     });
   }
