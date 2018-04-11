@@ -5,7 +5,6 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default chat => dispatch => {
-  console.log('here');
   socket.once('chat/take', status => {
     let handler = new ResponseHandler();
 

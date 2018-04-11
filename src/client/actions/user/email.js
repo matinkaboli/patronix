@@ -32,5 +32,5 @@ export default ({ email, password }) => dispatch => {
     .status(status);
   });
 
-  socket.emit('setting/email', email, password);
+  socket.emit('setting/email', email.toLowerCase(), password);
 };

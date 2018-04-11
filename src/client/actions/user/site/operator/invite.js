@@ -43,5 +43,5 @@ export default email => {
     .status(status);
   });
 
-  socket.emit('sites/operators/invite', email);
+  socket.emit('sites/operators/invite', email.toLowerCase());
 };

@@ -39,5 +39,5 @@ export default email => dispatch => {
     .status(status);
   });
 
-  socket.emit('sites/operators/remove', email);
+  socket.emit('sites/operators/remove', email.toLowerCase());
 };
