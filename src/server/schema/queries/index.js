@@ -1,7 +1,7 @@
 import user from './user';
-import al from './al';
+import rl from './rl';
 
 export default {
   user,
-  al
+  rl
 };

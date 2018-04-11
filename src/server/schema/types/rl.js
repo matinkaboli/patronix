@@ -4,9 +4,9 @@ import {
 } from 'graphql';
 
 export default new GraphQLObjectType({
-  name: 'al',
+  name: 'rl',
   fields: {
-    token: {
+    code: {
       type: GraphQLString
     }
   }

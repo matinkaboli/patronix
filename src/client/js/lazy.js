@@ -19,11 +19,16 @@ class Prototype extends Component {
   }
 
   componentDidMount() {
+    let query;
+    if (typeof this.props.query === 'function') {
+      query = this.props.query(this.props.match);
+    }
+
     if (this.props.type === 'cache') {
       return this.props.dispatch(
         cacheLoad(
           this.props.match,
-          this.props.query,
+          query,
           this.props.type,
           this.setState.bind(this)
         )
@@ -32,7 +37,7 @@ class Prototype extends Component {
 
     this.props.dispatch(
       tempLoad(
-        this.props.query,
+        query,
         this.setState.bind(this)
       )
     );
