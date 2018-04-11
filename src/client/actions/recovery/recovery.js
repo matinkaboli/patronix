@@ -25,5 +25,5 @@ export default email => {
     .status(status);
   });
 
-  socket.emit('recovery', email);
+  socket.emit('recovery', email.toLowerCase());
 };
