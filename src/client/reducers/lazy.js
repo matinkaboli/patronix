@@ -34,6 +34,13 @@ export default (state = {
       };
     }
 
+    case types.lazy.CACHE: {
+      return {
+        ...state,
+        paths: [...state.paths, action.path]
+      };
+    }
+
     default: {
       return state;
     }
