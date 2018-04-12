@@ -18,5 +18,13 @@ class Activate extends Component {
 
 export default lazy(
   Activate,
+  ({ params }) =>
+  `
+    query {
+      al(code: "${params.code}") {
+        code
+      }
+    }
+  `,
   'temp'
 );
