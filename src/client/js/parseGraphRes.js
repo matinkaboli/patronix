@@ -1,6 +1,6 @@
 export default res => new Promise(resolve => {
   if (res === 'error' || res.errors) {
-    resolve(404);
+    resolve(400);
     return;
   }
 
