@@ -2,7 +2,14 @@ import socket from 'Root/socket';
 import types from 'Root/actions';
 import parse from 'Root/js/parseGraphRes';
 
-export default (query, setState) => dispatch => {
+export default (match, query, setState) => (dispatch, getState) => {
+  let state = getState().lazy.paths;
+
+  if (state.includes(match.path)) {
+    setState({ loading: false });
+    return;
+  }
+
   socket.once('graphql', data => {
     parse(data).then(status => {
       dispatch({

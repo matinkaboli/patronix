@@ -28,6 +28,8 @@ class Prototype extends Component {
     if (this.props.type === 'condition') {
       return this.props.dispatch(
         conditional(
+          this.props.match,
+          query,
           this.setState.bind(this)
         )
       );
