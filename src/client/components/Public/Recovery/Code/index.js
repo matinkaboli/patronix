@@ -79,7 +79,7 @@ export default lazy(
   ({ params }) =>
   `query {
     rl(code: "${params.code}") {
-      code
+      status
     }
   }`,
   'temp'

@@ -13,9 +13,14 @@ export default {
     }
   },
   async resolve(parent, args) {
-    return await RL
+    let al = await RL
     .findOne({ ...args })
-    .select(['code'])
     .lean();
+
+    if (al) {
+      return { status: true };
+    }
+
+    throw new Error('notfound');
   }
 };
