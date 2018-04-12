@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 
-import cacheLoad from 'Root/actions/lazy/cacheLoad';
-import tempLoad from 'Root/actions/lazy/tempLoad';
+import cache from 'Root/actions/lazy/cache';
+import temp from 'Root/actions/lazy/temp';
+import conditional from 'Root/actions/lazy/conditional';
 
 class Prototype extends Component {
   static propTypes = {
-    type: PropTypes.oneOf(['cache', 'temp']).isRequired,
+    type: PropTypes.oneOf(['cache', 'temp', 'conditional']).isRequired,
     // you should pass a component
     component: PropTypes.func.isRequired,
     actionType: PropTypes.string
@@ -24,9 +25,17 @@ class Prototype extends Component {
       query = this.props.query(this.props.match);
     }
 
+    if (this.props.type === 'condition') {
+      return this.props.dispatch(
+        conditional(
+          this.setState.bind(this)
+        )
+      );
+    }
+
     if (this.props.type === 'cache') {
       return this.props.dispatch(
-        cacheLoad(
+        cache(
           this.props.match,
           query,
           this.props.type,
@@ -36,7 +45,7 @@ class Prototype extends Component {
     }
 
     this.props.dispatch(
-      tempLoad(
+      temp(
         query,
         this.setState.bind(this)
       )

@@ -41,6 +41,13 @@ export default (state = {
       };
     }
 
+    case types.lazy.STATUS: {
+      return {
+        ...state,
+        status: action.status
+      };
+    }
+
     default: {
       return state;
     }

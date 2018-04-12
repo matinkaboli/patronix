@@ -8,7 +8,8 @@ export default {
     START_LOAD: 'lazy/START_LOAD',
     TEMP_STOP: 'lazy/TEMP_STOP',
     CACHE_STOP: 'lazy/CACHE_STOP',
-    CACHE: 'lazy/CACHE'
+    CACHE: 'lazy/CACHE',
+    STATUS: 'lazy/STATUS'
   },
   user: {
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',
