@@ -20,9 +20,9 @@ export default lazy(
   Activate,
   ({ params }) =>
   `
-    query {
-      al(code: "${params.code}") {
-        code
+    mutation {
+      activate(code: "${params.code}") {
+        status
       }
     }
   `,
