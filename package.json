@@ -48,7 +48,6 @@
     "eslint-plugin-react": "^7.6.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2",
-    "history": "^4.7.2",
     "izitoast": "^1.2.0",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
