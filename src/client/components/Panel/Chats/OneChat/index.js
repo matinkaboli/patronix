@@ -128,6 +128,10 @@ class Chat extends Component {
     return '';
   }
 
+  componentDidUpdate() {
+    // this.refs.shit.scroll(0, this.refs.shit.scrollHeight);
+  }
+
   render() {
     let chat = this.props.chat;
 
@@ -135,7 +139,7 @@ class Chat extends Component {
       <Fragment>
         <Box classes={styles.content + ' ' + this.status()}>
           {this.operatorInformation()}
-          <div>
+          <div ref='content' className={styles.chats}>
             {chat.chats.map((v, i) => {
               let prefix = v.sender ? 'operator' : 'customer';
 
