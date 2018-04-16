@@ -2,6 +2,9 @@ import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+
+import am from 'Root/images/am.jpeg';
+import mk from 'Root/images/mk.jpg';
 import styles from './index.less';
 
 
@@ -70,10 +73,25 @@ class Home extends Component {
                </p>
             </div>
           </div>
+
           <div className={`${styles.bg} ${styles.bg2}`}>
             <h1>
               سعی می کنیم بهترین امکانات را در اختیار شما قرار بدهیم
             </h1>
+          </div>
+
+          <h1 className={styles.centered}>توسعه دهندگان</h1>
+
+          <div className={styles.authors}>
+            <div className={styles.author}>
+              <img src={am} className={styles.authorImage} />
+              <Link to='https://github.com/amovah'>علی موحدی</Link>
+            </div>
+
+            <div className={styles.author}>
+              <img src={mk} className={styles.authorImage} />
+              <Link to='https://github.com/matinkaboli'>متین کابلی</Link>
+            </div>
           </div>
         </aside>
       </div>

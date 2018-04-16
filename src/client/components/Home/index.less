@@ -164,6 +164,46 @@
   }
 }
 
+:local(.authors) {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: auto;
+  padding: 40px;
+  align-self: center;
+
+  > div {
+    text-align: center;
+
+    > * {
+      display: block;
+    }
+
+    a {
+      margin-top: 7px;
+      font-size: 22px;
+      color: @midnight-base;
+
+      &:hover, &:active {
+        color: @blue-base;
+      }
+    }
+  }
+}
+
+:local(.centered) {
+  text-align: center;
+  font-size: 29px;
+  margin: 20px 0;
+}
+
+:local(.authorImage) {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid @navy-base;
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.header) {
     padding: 10px;
@@ -188,6 +228,16 @@
   :local(.aside) {
     :local(.bg) {
       font-size: 12px;
+    }
+  }
+
+  :local(.authors) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      margin: 50px 0;
     }
   }
 }
