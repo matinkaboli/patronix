@@ -2,9 +2,6 @@ import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-
-import am from 'Root/images/am.jpeg';
-import mk from 'Root/images/mk.jpg';
 import styles from './index.less';
 
 
@@ -98,12 +95,18 @@ class Home extends Component {
 
           <div className={styles.authors}>
             <div className={styles.author}>
-              <img src={am} className={styles.authorImage} />
+              <img
+                src='https://avatars0.githubusercontent.com/u/6108180'
+                className={styles.authorImage}
+              />
               <Link to='https://github.com/amovah'>علی موحدی</Link>
             </div>
 
             <div className={styles.author}>
-              <img src={mk} className={styles.authorImage} />
+              <img
+                src='https://avatars3.githubusercontent.com/u/16045374'
+                className={styles.authorImage}
+              />
               <Link to='https://github.com/matinkaboli'>متین کابلی</Link>
             </div>
           </div>

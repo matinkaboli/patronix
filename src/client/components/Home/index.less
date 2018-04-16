@@ -169,8 +169,8 @@
   display: flex;
   justify-content: space-around;
   height: auto;
-  padding: 40px;
   align-self: center;
+  padding: 40px 25%;
 
   > div {
     text-align: center;
@@ -183,10 +183,6 @@
       margin-top: 7px;
       font-size: 22px;
       color: @midnight-base;
-
-      &:hover, &:active {
-        color: @blue-base;
-      }
     }
   }
 }
@@ -202,6 +198,10 @@
   height: 200px;
   border-radius: 50%;
   border: 3px solid @navy-base;
+
+  &:hover, &:active {
+    box-shadow: 0px 0px 10px grey;
+  }
 }
 
 :local(.advantages) {
