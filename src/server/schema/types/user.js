@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLList
 } from 'graphql';
 
 import { Site } from 'Root/models';
@@ -18,10 +19,10 @@ export default new GraphQLObjectType({
     avatar: {
       type: GraphQLString
     },
-    site: {
-      type: siteType,
+    sites: {
+      type: new GraphQLList(siteType),
       async resolve(parent, args, socket) {
-        return await Site.findOne({
+        return await Site.find({
           owner: socket.data.user._id
         }, [
           'name',

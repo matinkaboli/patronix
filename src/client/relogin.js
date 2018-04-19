@@ -17,6 +17,10 @@ export default () => new Promise(resolve => {
             data: res.data.user
           });
         }
+
+        if (status === 'forbidden') {
+          localStorage.token = null;
+        }
       });
 
       resolve();
@@ -28,7 +32,7 @@ export default () => new Promise(resolve => {
           name
           avatar
           email
-          site {
+          sites {
             name
           }
         }
