@@ -23,6 +23,7 @@ socket
     typeof captcha !== 'string' ||
     socket.data.captcha !== captcha.toLowerCase())
   ) {
+    socket.data.chaptcha = null;
     socket.emit('login', 400);
     return;
   }
@@ -35,6 +36,7 @@ socket
 
   if (!user) {
     socket.attempt = socket.attempt + 1;
+    socket.data.chaptcha = null;
     socket.emit('login', 401);
     return;
   }

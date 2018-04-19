@@ -15,12 +15,14 @@ socket
   data.email = data.email.toLowerCase();
 
   if (captcha.toLowerCase() !== socket.data.captcha) {
+    socket.data.chaptcha = null;
     socket.emit('signup', 400, 0);
     return;
   }
 
   let user = await User.findOne({ email: data.email });
   if (user) {
+    socket.data.chaptcha = null;
     socket.emit('signup', 400, 2);
   }
 
@@ -53,6 +55,7 @@ socket
 
     socket.emit('signup', 200);
   } catch (e) {
+    socket.data.chaptcha = null;
     socket.emit('signup', 400, 1);
   }
 });
