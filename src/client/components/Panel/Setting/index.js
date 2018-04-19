@@ -3,7 +3,6 @@ import izitoast from 'izitoast';
 import { connect } from 'react-redux';
 
 import updateEmail from 'Root/actions/user/email';
-import updateName from 'Root/actions/user/name';
 import updatePass from 'Root/actions/user/pass';
 
 import { email } from 'Root/js/validator';
@@ -11,25 +10,9 @@ import bind from 'Root/js/bind';
 
 import PatNav, { Section } from 'Root/components/PatNav';
 import Avatar from './Avatar';
+import Name from './Name';
 
 class Setting extends Component {
-  @bind
-  updateName() {
-    if (!this.refs.name.value) {
-      izitoast.warning({
-        rtl: 'true',
-        title: 'مقادیر کافی نمیباشند'
-      });
-      return;
-    }
-
-    const { dispatch } = this.props;
-
-    dispatch(updateName({
-      name: this.refs.name.value
-    }));
-  }
-
   @bind
   updatePass() {
     if (!this.refs.oldpass.value || !this.refs.freshpass.value) {
@@ -72,17 +55,17 @@ class Setting extends Component {
     return (
       <PatNav>
         <Section
-          name='first'
+          name='avatar'
           render={() => <Avatar />}
         >
           عکس پروفایل
         </Section>
-        {/* <Section
-          name='second'
-          render={this.shit}
+        <Section
+          name='name'
+          render={() => <Name />}
         >
           نام
-        </Section> */}
+        </Section>
       </PatNav>
     );
   }

@@ -1,0 +1,21 @@
+@import '~Root/styles/colors.less';
+
+:local(.input) {
+  margin: 15px 20px;
+  padding: 10px;
+
+  background-color: @white-base;
+  color: darken(@white-2, 50%);
+
+  border: none;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  -webkit-appearance:none;
+  transition: background-color 400ms;
+
+  &:hover, &:focus {
+    background-color: darken(@white-base, 5%);
+  }
+}
