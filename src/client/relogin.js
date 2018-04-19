@@ -14,7 +14,9 @@ export default new Promise(resolve => {
           type: types.user.LOGIN
         });
       })
-
+      .handle('forbidden', () => {
+        localStorage.token = '';
+      })
       .status(status);
 
       resolve();
