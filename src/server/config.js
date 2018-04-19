@@ -6,7 +6,6 @@ let config = {
   dbkey: 'Me1vfSudFwiPqhl78yRbTA1kW9VoIZ',
   db: 'mongodb://localhost/patronix',
   url: 'https://patronix.ir',
-  devUrl: 'http://localhost:8010',
   title: 'Patronix',
   port: '443'
 };
@@ -14,6 +13,7 @@ let config = {
 if (process.env.NODE_ENV === 'development') {
   config.port = '8010';
   config.db = 'mongodb://localhost/patronix-dev';
+  config.url = 'http://localhost:8010';
 }
 
 export default config;
