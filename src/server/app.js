@@ -32,7 +32,7 @@ mongoose.connection.on('disconnected', () => {
 
 if (process.env.NODE_ENV !== 'development') {
   http.createServer(function(req, res) {
-      res.writeHead(301, { Location: 'https://' + req.headers.host + req.url });
+      res.writeHead(301, { Location: 'https://patronix.ir' + req.url });
       res.end();
   }).listen(80);
 }

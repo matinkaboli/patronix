@@ -70,10 +70,45 @@ class Home extends Component {
                </p>
             </div>
           </div>
+
           <div className={`${styles.bg} ${styles.bg2}`}>
             <h1>
               سعی می کنیم بهترین امکانات را در اختیار شما قرار بدهیم
             </h1>
+          </div>
+
+          <h1 className={styles.centered}>
+            چرا باید از پیشتیبانی آنلاین استفاده کنیم؟
+          </h1>
+
+          <p className={styles.advantages}>
+            پشتیبانی و ارتباط با مشتری همیشه باعث
+            افزایش بازده سایت و افزایش راضیت مشتری شده است.
+            با استفاده از این سرویس به راحتی و بدون هزینه کردن
+            و با صرف کردن مقداری کمی زمان این امکان را بر روی
+             سایت خود قرار دهید. همچنین شما در تعداد مکالمات خود
+             هیچ محدودیتی ندارید و می توانید از تمام ویژگی ها
+             به صورت رایگان و امن بهره مند شوید.
+          </p>
+
+          <h1 className={styles.centered}>توسعه دهندگان</h1>
+
+          <div className={styles.authors}>
+            <div className={styles.author}>
+              <img
+                src='https://avatars0.githubusercontent.com/u/6108180'
+                className={styles.authorImage}
+              />
+              <Link to='https://github.com/amovah'>علی موحدی</Link>
+            </div>
+
+            <div className={styles.author}>
+              <img
+                src='https://avatars3.githubusercontent.com/u/16045374'
+                className={styles.authorImage}
+              />
+              <Link to='https://github.com/matinkaboli'>متین کابلی</Link>
+            </div>
           </div>
         </aside>
       </div>

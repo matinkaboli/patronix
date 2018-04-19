@@ -164,6 +164,54 @@
   }
 }
 
+:local(.authors) {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: auto;
+  align-self: center;
+  padding: 40px 25%;
+
+  > div {
+    text-align: center;
+
+    > * {
+      display: block;
+    }
+
+    a {
+      margin-top: 7px;
+      font-size: 22px;
+      color: @midnight-base;
+    }
+  }
+}
+
+:local(.centered) {
+  text-align: center;
+  font-size: 29px;
+  margin: 20px 0;
+}
+
+:local(.authorImage) {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid @navy-base;
+
+  &:hover, &:active {
+    box-shadow: 0px 0px 10px grey;
+  }
+}
+
+:local(.advantages) {
+  margin: 0 40px;
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.header) {
     padding: 10px;
@@ -188,6 +236,16 @@
   :local(.aside) {
     :local(.bg) {
       font-size: 12px;
+    }
+  }
+
+  :local(.authors) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      margin: 50px 0;
     }
   }
 }
