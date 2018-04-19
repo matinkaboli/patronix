@@ -1,64 +1,13 @@
 :local(.section) {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  align-content: center;
-  margin: 30px 0;
+  width: 100%;
 
-  p {
-    display: inline;
-  }
-
-  > div:nth-of-type(1) {
-    position: relative;
-    width: 800px;
+  > div {
     display: flex;
+    flex-direction: row;
     align-items: center;
-
-    > p:nth-of-type(1) {
-      margin: 20px;
-      min-width: 100px;
-    }
-    div {
-      min-width: 100px;
-    }
-  }
-
-  > div:nth-child(2) {
-    display: flex;
-  }
-}
-
-@media (min-width: 120px) and (max-width: 580px) {
-  :local(.section) {
-    display: block;
-    padding: 0 0 20px 0;
-    margin: 0 0 0 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    button {
-      margin-top: 10px;
-    }
-
-    > div:nth-of-type(1) {
-      margin: 10px 0 0 0;
-      width: 100%;
-      text-align: center;
-      flex-direction: column;
-
-      > p:nth-of-type(1) {
-        display: none;
-      }
-
-      input {
-        width: 100%;
-      }
-    }
-
-    > div:nth-child(2) {
-      flex-direction: column;
-    }
   }
 }
