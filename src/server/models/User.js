@@ -39,10 +39,10 @@ const schema = new Schema({
     type: String,
     default: null
   },
-  site: {
+  sites: [{
     type: Schema.Types.ObjectId,
     ref: 'Site'
-  },
+  }],
   verifyTime: {
     type: Date,
     expires: 60 * 60 * 24
