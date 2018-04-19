@@ -18,8 +18,8 @@ export default () => new Promise(resolve => {
           });
         }
 
-        if (status === 'forbidden') {
-          localStorage.token = null;
+        if (status === 'error') {
+          localStorage.token = '';
         }
       });
 

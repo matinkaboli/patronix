@@ -23,6 +23,7 @@ export default {
 
     al.user.status = 1;
     await al.user.save();
+    await al.remove();
 
     return { status: true };
   }

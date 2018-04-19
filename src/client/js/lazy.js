@@ -59,15 +59,15 @@ class Prototype extends Component {
       return null;
     }
 
-    if (this.props.lazy.status === 200) {
+    if (this.props.lazy.status === 'success') {
       return <this.props.component />;
     }
 
-    if (this.props.lazy.status === 404) {
+    if (this.props.lazy.status === 'notfound') {
       return <Redirect to='/notfound' />;
     }
 
-    if (this.props.lazy.status === 403) {
+    if (this.props.lazy.status === 'unauth') {
       return <Redirect to='/denied' />;
     }
 
