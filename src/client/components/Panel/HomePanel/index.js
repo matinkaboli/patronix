@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
-
 import Box from 'Root/components/Box';
-
+import url from 'Root/url';
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
 
@@ -59,7 +58,7 @@ class Index extends Component {
             {`<script
             id='patronix-data'
             token=${this.props.sites.site.token}
-            src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
+            src="${url}/static/js/customer.js"
             ></script>`}
           </code>
         </Box> : ''}
