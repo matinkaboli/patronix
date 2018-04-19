@@ -7,7 +7,9 @@ export default {
     authorize(socket);
 
     let res = socket.data.user.toObject();
-    res.avatar = '/static/uploads/' + res.avatar;
+    if (res.avatar) {
+      res.avatar = '/static/uploads/' + res.avatar;
+    }
 
     return res;
   }

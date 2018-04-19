@@ -12,7 +12,7 @@ import 'Root/styles/font-fa.less';
 import 'izitoast/dist/css/iziToast.min.css';
 
 window.onload = () => {
-  relogin.then(() => {
+  relogin().then(() => {
     render(
       <Provider store={store}>
         <App/>

@@ -1,15 +1,15 @@
 export default res => new Promise(resolve => {
   if (res === 'error' || res.errors) {
-    resolve(400);
+    resolve('error');
     return;
   }
 
   for (let value of Object.values(res.data)) {
     if (!value) {
-      resolve(404);
+      resolve('notfound');
       return;
     }
   }
 
-  resolve(200);
+  resolve('success');
 });
