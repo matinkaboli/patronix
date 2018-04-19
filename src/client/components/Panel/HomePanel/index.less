@@ -2,12 +2,12 @@
 @import '~Root/styles/mixins.less';
 
 :local(.container) {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 
   > div {
-    width: 100%;
-    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     border-radius: 3px;
@@ -39,7 +39,7 @@
 
 @media (max-width: 850px) {
   :local(.container) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   :local(.avatarImage) {

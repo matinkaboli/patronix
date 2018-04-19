@@ -27,46 +27,42 @@ class Index extends Component {
     const hasSite = this.props.sites.site || this.props.sites.sites.length;
 
     return (
-      <div>
-        <div className={styles.container}>
-          <Box>
-            <h1 className={styles.title}>اطلاعات شما</h1>
-            <p>{this.props.user.name}</p>
-            <p>{this.props.user.email}</p>
-            {this.renderImage()}
-          </Box>
+      <div className={styles.container}>
+        <Box>
+          <h1 className={styles.title}>اطلاعات شما</h1>
+          <p>{this.props.user.name}</p>
+          <p>{this.props.user.email}</p>
+          {this.renderImage()}
+        </Box>
 
-          {hasSite ? <Box>
-            {this.props.sites.site ?
-            <h1 className={styles.title}>سایت های شما</h1> : ''}
+        {hasSite ? <Box>
+          {this.props.sites.site ?
+          <h1 className={styles.title}>سایت های شما</h1> : ''}
 
-            {this.props.sites.site ? <div>
-              <p>نام سایت: {this.props.sites.site.name}</p>
-            </div> : ''}
+          {this.props.sites.site ? <div>
+            <p>نام سایت: {this.props.sites.site.name}</p>
+          </div> : ''}
 
+          {this.props.sites.sites.length ?
+            <h1 className={styles.title}>سایت هایی که پشتیبانی میکنید</h1> :
+          ''}
 
+          {this.props.sites.sites && this.props.sites.sites.map((v, i) =>
+            <p key={i}>نام سایت: {v.name}</p>
+          )}
+        </Box> : ''}
 
-            {this.props.sites.sites.length ?
-              <h1 className={styles.title}>سایت هایی که پشتیبانی میکنید</h1> :
-            ''}
-
-            {this.props.sites.sites && this.props.sites.sites.map((v, i) =>
-              <p key={i}>نام سایت: {v.name}</p>
-            )}
-          </Box> : ''}
-
-          {this.props.sites.site ? <Box>
-            <h1 className={styles.title}>نحوه استفاده</h1>
-            <p>کد زیر را داخل HTML سایت خود قرار دهید</p>
-            <code className={styles.script}>
-              {`<script
-              id='patronix-data'
-              token=${this.props.sites.site.token}
-              src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
-              ></script>`}
-            </code>
-          </Box> : ''}
-        </div>
+        {this.props.sites.site ? <Box>
+          <h1 className={styles.title}>نحوه استفاده</h1>
+          <p>کد زیر را داخل HTML سایت خود قرار دهید</p>
+          <code className={styles.script}>
+            {`<script
+            id='patronix-data'
+            token=${this.props.sites.site.token}
+            src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
+            ></script>`}
+          </code>
+        </Box> : ''}
       </div>
     );
   }
