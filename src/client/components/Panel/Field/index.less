@@ -11,3 +11,17 @@
     align-items: center;
   }
 }
+
+@media (max-width: 850px) {
+  :local(.section) {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  :local(.section) {
+    > div {
+      flex-direction: column;
+    }
+  }
+}
