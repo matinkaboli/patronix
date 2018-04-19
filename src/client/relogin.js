@@ -11,7 +11,7 @@ export default () => new Promise(resolve => {
           dispatch({
             type: types.user.LOGIN
           });
-          
+
           dispatch({
             type: types.user.LOAD,
             data: res.data.user

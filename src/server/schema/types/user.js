@@ -1,6 +1,6 @@
 import {
   GraphQLObjectType,
-  GraphQLString,
+  GraphQLString
 } from 'graphql';
 
 import { Site } from 'Root/models';
@@ -25,7 +25,8 @@ export default new GraphQLObjectType({
           owner: socket.data.user._id
         }, [
           'name',
-          'token'
+          'token',
+          'operators'
         ])
         .lean();
       }
