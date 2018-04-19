@@ -2,14 +2,17 @@
 @import '~Root/styles/mixins.less';
 
 :local(.container) {
-  .flexRow();
-
-  > div:nth-child(2) {
-    margin: 25px;
-    width: calc(~'100% - 250px');
-  }
+  display: flex;
+  flex-direction: row;
 }
 
 :local(.content) {
-  padding: 5px;
+  width: ~'calc(100vw - 200px)';
+  padding: 10px;
+}
+
+@media (max-width: 850px) {
+  :local(.content) {
+    width: ~'calc(100vw - 50px)';
+  }
 }

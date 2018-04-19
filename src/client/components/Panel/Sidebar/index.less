@@ -2,7 +2,8 @@
 
 :local(.nav) {
   width: 200px;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   display: block;
   bottom: 0;
   top: 0;
@@ -136,7 +137,7 @@
   }
 }
 
-@media (min-width: 120px) and (max-width: 580px) {
+@media (max-width: 850px) {
   :local(.nav) {
     width: 50px;
 
