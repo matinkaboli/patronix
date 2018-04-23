@@ -77,7 +77,7 @@ class Home extends Component {
             </h1>
           </div>
 
-          <h1 className={styles.centered}>
+          {/* <h1 className={styles.centered}>
             چرا باید از پیشتیبانی آنلاین استفاده کنیم؟
           </h1>
 
@@ -109,7 +109,7 @@ class Home extends Component {
               />
               <Link to='https://github.com/matinkaboli'>متین کابلی</Link>
             </div>
-          </div>
+          </div> */}
         </aside>
       </div>
     );
