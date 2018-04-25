@@ -1,7 +1,7 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import { Chat } from 'Root/models';
+import { Site, Chat } from 'Root/models';
 
 let socket = new SocketEvent();
 
@@ -9,19 +9,30 @@ socket
 .namespace('/client')
 .name('sites/remove')
 .middleware(
-  middlewares.client.checkToken,
-  middlewares.client.hasSite
+  middlewares.client.checkToken
 )
-.handler(socket => async () => {
-  await Chat.remove({ site: socket.data.site._id });
+.handler(socket => async id => {
+  try {
+    let site = await Site.findById(id);
+    if (!site) {
+      socket.emit('sites/remove', 404);
+    }
 
-  await socket.data.site.remove();
-  socket.data.site = null;
+    await Chat.remove({ site: site._id });
 
-  socket.data.user.site = null;
-  await socket.data.user.save();
+    await site.remove();
 
-  socket.emit('sites/remove', 200);
+    let index = socket.data.user.sites.findIndex(i =>
+      i.toString() === id
+    );
+    socket.data.user.sites.splice(index, 1);
+    await socket.data.user.save();
+
+    socket.emit('sites/remove', 200);
+  }
+  catch (e) {
+    socket.emit('sites/remove', 400);
+  }
 });
 
 export default socket;
