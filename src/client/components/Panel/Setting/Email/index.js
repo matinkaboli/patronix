@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import izitoast from 'izitoast';
 import { connect } from 'react-redux';
-
-import bind from 'Root/js/bind';
+import izitoast from 'izitoast';
 
 import updateEmail from 'Root/actions/user/email';
+
+import bind from 'Root/js/bind';
 import { email } from 'Root/js/validator';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Input from 'Root/components/Input';
+
 
 class Email extends Component {
   @bind

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './index.less';
 
+
 export default class extends Component {
   state = {
     current: '',

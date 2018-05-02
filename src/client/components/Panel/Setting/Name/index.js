@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import updateName from 'Root/actions/user/name';
+
+import bind from 'Root/js/bind';
+
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Input from 'Root/components/Input';
-import bind from 'Root/js/bind';
+
 
 class Name extends Component {
   @bind

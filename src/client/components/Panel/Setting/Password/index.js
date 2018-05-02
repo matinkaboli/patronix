@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import izitoast from 'izitoast';
 
-import bind from 'Root/js/bind';
-
 import updatePass from 'Root/actions/user/pass';
+
+import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Input from 'Root/components/Input';
+
 
 class Password extends Component {
   @bind

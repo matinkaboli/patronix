@@ -7,6 +7,7 @@ import Avatar from './Avatar';
 import Email from './Email';
 import Name from './Name';
 
+
 class Setting extends Component {
   render() {
     return (

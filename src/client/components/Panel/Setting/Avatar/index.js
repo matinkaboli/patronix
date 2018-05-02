@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
-import bind from 'Root/js/bind';
-import Field from 'Root/components/Panel/Field';
-import Button from 'Root/components/Button';
 import updateAvatar from 'Root/actions/user/avatar/update';
 import removeAvatar from 'Root/actions/user/avatar/remove';
+
+import bind from 'Root/js/bind';
+
+import Field from 'Root/components/Panel/Field';
+import Button from 'Root/components/Button';
+
 import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
+
 
 class Avatar extends Component {
   @bind
