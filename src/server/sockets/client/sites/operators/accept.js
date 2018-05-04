@@ -5,6 +5,8 @@ import { Invitation } from 'Root/models';
 
 let socket = new SocketEvent();
 
+//// TODO: bug ke age invitation ziad boood, nare toosh operator
+
 socket
 .namespace('/client')
 .name('sites/operators/accept')
