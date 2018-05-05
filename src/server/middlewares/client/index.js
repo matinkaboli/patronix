@@ -1,6 +1,6 @@
 export default {
   checkToken: require('./checkToken'),
   get: require('./get'),
-  hasSite: require('./hasSite'),
+  checkSite: require('./checkSite'),
   hasValidChat: require('./hasValidChat')
 };

@@ -8,7 +8,7 @@ export default (next, socket) => async id => {
       socket.data.site = site;
       next();
     } else {
-      socket.emit(socket.eventName, 400);
+      socket.emit(socket.eventName, 404);
     }
   }
 
