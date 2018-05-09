@@ -15,7 +15,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async (email, password) => {
+.handler(({ socket }) => async (email, password) => {
   if (hmac(password, dbkey) !== socket.data.user.password) {
     socket.emit('setting/email', 400, 0);
     return;

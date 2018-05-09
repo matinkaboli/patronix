@@ -10,7 +10,7 @@ socket
 .middleware(
   middlewares.customer.hasChat
 )
-.handler((socket, nsp, io) => async () => {
+.handler(({ socket, io }) => async () => {
   if (!socket.data.chat) {
     return;
   }

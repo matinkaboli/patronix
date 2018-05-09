@@ -10,7 +10,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async () => {
+.handler(({ socket }) => async () => {
   socket.emit('relogin', 200);
 });
 

@@ -11,7 +11,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(socket => async name => {
+.handler(({ socket }) => async name => {
   socket.data.site.name = name;
 
   try {

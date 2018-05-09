@@ -12,7 +12,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async name => {
+.handler(({ socket }) => async name => {
   if (socket.data.user.sites.length >= 3) {
     socket.emit('sites/new', 400, 0);
     return;

@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async code => {
+.handler(({ socket }) => async code => {
   let invitation = await Invitation
   .findOne({ code })
   .exec();

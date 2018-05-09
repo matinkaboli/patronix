@@ -11,7 +11,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasValidChat
 )
-.handler((socket, nsp, io) => async message => {
+.handler(({ socket, io }) => async message => {
   try {
     socket.data.chat.chats.push({
       sender: 1,

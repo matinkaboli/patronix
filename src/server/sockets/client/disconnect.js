@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler((socket, nsp, io) => async () => {
+.handler(({ socket, io }) => async () => {
   socket.data.user.socket = null;
   await socket.data.user.save();
 

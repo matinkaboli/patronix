@@ -13,7 +13,6 @@ socket
   middlewares.client.checkSite
 )
 .handler(socket => async id => {
-  console.log(socket.data.site);
   await Chat.remove({ site: socket.data.site._id });
 
   await socket.data.site.remove();

@@ -11,7 +11,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('signup')
-.handler(socket => async (data, captcha) => {
+.handler(({ socket }) => async (data, captcha) => {
   data.email = data.email.toLowerCase();
 
   if (captcha.toLowerCase() !== socket.data.captcha) {

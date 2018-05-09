@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.customer.checkToken
 )
-.handler(socket => async () => {
+.handler(({ socket }) => async () => {
   if (!socket.inited) {
     socket.join(socket.data.site._id.toString());
 

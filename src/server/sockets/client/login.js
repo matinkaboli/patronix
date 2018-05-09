@@ -13,7 +13,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('login')
-.handler((socket, nsp, io) => async (credentials, captcha) => {
+.handler(({ socket, nsp, io }) => async (credentials, captcha) => {
   if (!socket.attempt) {
     socket.attempt = 1;
   }

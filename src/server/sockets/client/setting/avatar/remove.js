@@ -10,7 +10,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => async () => {
+.handler(({ socket }) => async () => {
   socket.data.user.avatar = null;
   await socket.data.user.save();
 

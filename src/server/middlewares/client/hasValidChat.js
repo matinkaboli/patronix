@@ -1,6 +1,6 @@
 import { Chat } from 'Root/models';
 
-export default (next, socket) => async () => {
+export default (next, { socket }) => async () => {
   if (!socket.data.chat) {
     return;
   }

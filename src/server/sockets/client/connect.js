@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler((socket, nsp, io) => async () => {
+.handler(({ socket, io }) => async () => {
   if (socket.data.user.socket) {
     socket.emit('kickedByServer');
     socket.disconnect();

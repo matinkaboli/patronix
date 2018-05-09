@@ -13,7 +13,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler((socket, nsp, io) => async code => {
+.handler(({ socket, nsp, io }) => async code => {
   let invitation = await Invitation
   .findOne({ code })
   .populate('from')

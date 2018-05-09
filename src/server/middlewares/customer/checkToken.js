@@ -1,6 +1,6 @@
 import { Site } from 'Root/models';
 
-export default (next, socket) => async () => {
+export default (next, { socket }) => async () => {
   if (socket.handshake.query.token) {
     let site = await Site
     .findOne({ token: socket.handshake.query.token })

@@ -12,7 +12,7 @@ socket
   middlewares.customer.inited,
   middlewares.customer.checkToken
 )
-.handler((socket, nsp, io) => async message => {
+.handler(({ socket, io }) => async message => {
   if (socket.data.chat && socket.data.chat.done) {
     socket.emit('sendMessage', 400, 0);
     return;

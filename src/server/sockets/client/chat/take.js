@@ -12,12 +12,12 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler((socket, nsp, io) => async id => {
+.handler(({ socket, io }) => async id => {
   if (socket.data.chat) {
     socket.emit('chat/take', 400, 2);
     return;
   }
-  
+
   try {
     let chat = await Chat
     .findById(id)

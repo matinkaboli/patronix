@@ -11,7 +11,7 @@ socket
   middlewares.customer.inited,
   middlewares.customer.hasChat
 )
-.handler((socket, nsp, io) => async () => {
+.handler(({ socket, io }) => async () => {
   socket.data.chat.done = true;
   await socket.data.chat.save();
 

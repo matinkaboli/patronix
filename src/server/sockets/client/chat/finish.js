@@ -11,7 +11,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasValidChat
 )
-.handler((socket, nsp, io) => async () => {
+.handler(({ socket, io }) => async () => {
   socket.data.chat.done = true;
   await socket.data.chat.save();
 

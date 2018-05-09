@@ -1,4 +1,4 @@
-export default (next, socket) => () => {
+export default (next, { socket }) => () => {
   if (socket.inited) {
     next();
   }

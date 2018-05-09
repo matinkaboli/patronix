@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler((socket, nsp, io) => async id => {
+.handler(({ socket, nsp, io }) => async id => {
   try {
     let site = await Site.findById(id);
 

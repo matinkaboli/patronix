@@ -10,7 +10,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('recovery')
-.handler(socket => async email => {
+.handler(({ socket }) => async email => {
   let user = await User.findOne({ email });
 
   if (!user) {

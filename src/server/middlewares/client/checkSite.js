@@ -1,6 +1,6 @@
 import { Site } from 'Root/models';
 
-export default (next, socket) => async id => {
+export default (next, { socket }) => async id => {
   try {
     let site = await Site.findById(id);
 

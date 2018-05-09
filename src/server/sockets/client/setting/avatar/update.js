@@ -14,7 +14,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(socket => data => {
+.handler(({ socket }) => data => {
   if (!existsSync(uploadDir)) {
     mkdirSync(uploadDir);
   }

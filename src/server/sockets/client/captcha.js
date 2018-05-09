@@ -6,7 +6,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('captcha')
-.handler(socket => () => {
+.handler(({ socket }) => () => {
   let { data, text } = captcha.create({
     size: 4,
     ignore: 'o01il',

@@ -12,7 +12,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler((socket, nsp, io) => async email => {
+.handler(({ socket, nsp, io }) => async email => {
   let user = await User.findOne({ email });
 
   if (!user) {

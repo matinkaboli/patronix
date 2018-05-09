@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler((socket, nsp, io) => async () => {
+.handler(({ socket, io }) => async () => {
   await ClientToken.remove({ token: socket.handshake.query.token });
 
   socket.handshake.query.token = '';

@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.get
 )
-.handler(socket => data => {
+.handler(({ socket }) => data => {
   routerHandler(socket, data).then(res => {
     socket.emit('get', res.status, res.data);
   });

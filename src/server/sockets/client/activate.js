@@ -7,7 +7,7 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('activate')
-.handler(socket => async code => {
+.handler(({ socket }) => async code => {
   let al = await AL.findOne({ code });
 
   if (!al) {

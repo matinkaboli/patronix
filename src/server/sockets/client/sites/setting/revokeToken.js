@@ -12,7 +12,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(socket => async () => {
+.handler(({ socket }) => async () => {
   socket.data.site.token = uid();
 
   try {
