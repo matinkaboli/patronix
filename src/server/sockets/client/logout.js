@@ -11,16 +11,16 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket, io }) => async () => {
+.handler(({ shared, socket, io }) => async () => {
   await ClientToken.remove({ token: socket.handshake.query.token });
 
   socket.handshake.query.token = '';
 
-  socket.data.user.socket = null;
-  await socket.data.user.save();
+  shared.user.socket = null;
+  await shared.user.save();
 
   let sites = await Site.find(
-    { operators: socket.data.user._id },
+    { operators: shared.user._id },
     { _id: 1 }
   );
   for (let site of sites) {
