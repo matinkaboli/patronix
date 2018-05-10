@@ -8,7 +8,6 @@ export default (next, { shared, socket }) => async () => {
     .exec();
 
     if (token) {
-      socket.data.user = token.user;
       shared.user = token.user;
 
       next();

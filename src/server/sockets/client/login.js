@@ -72,7 +72,6 @@ socket
   token.token = hmac(token._id.toString(), otkey);
   await token.save();
 
-  socket.data.user = user;
   socket.join(user._id.toString());
 
   socket.handshake.query.token = token.token;
