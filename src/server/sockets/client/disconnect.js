@@ -11,12 +11,12 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket, io }) => async () => {
-  socket.data.user.socket = null;
-  await socket.data.user.save();
+.handler(({ shared, io }) => async () => {
+  shared.user.socket = null;
+  await shared.user.save();
 
   let sites = await Site.find(
-    { operators: socket.data.user._id },
+    { operators: shared.user._id },
     { _id: 1 }
   );
   for (let site of sites) {
@@ -26,22 +26,22 @@ socket
     .emit('goesOffline');
   }
 
-  if (socket.data.chat) {
-    socket.data.chat.done = true;
-    await socket.data.chat.save();
+  if (shared.chat) {
+    shared.chat.done = true;
+    await shared.chat.save();
 
     io
     .of('/customer')
-    .to(socket.data.chat._id.toString())
+    .to(shared.chat._id.toString())
     .emit('operatorLeft');
 
     let customer = io
     .of('/customer')
-    .sockets[socket.data.chat.customer];
+    .sockets[shared.chat.customer];
 
     customer.data.chat = null;
 
-    customer.leave(socket.data.chat._id.toString());
+    customer.leave(shared.chat._id.toString());
   }
 });
 
