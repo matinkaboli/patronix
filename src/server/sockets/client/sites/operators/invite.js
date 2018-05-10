@@ -11,16 +11,16 @@ socket
 .name('sites/operators/invite')
 .middleware(
   middlewares.client.checkToken,
-  middlewares.client.hasSite
+  middlewares.client.checkSite
 )
-.handler(({ socket, nsp }) => async (id, email) => {
-  if (socket.data.site.operators.length > 5) {
+.handler(({ shared, socket, nsp }) => async (id, email) => {
+  if (shared.site.operators.length > 5) {
     socket.emit('sites/operators/invite', 400, 0);
     return;
   }
 
   let user = await User.findOne({ email, status: 1 });
-  let operators = socket.data.site.operators.map(i => i.toString());
+  let operators = shared.site.operators.map(i => i.toString());
 
   if (!user || operators.includes(user._id.toString())) {
     socket.emit('sites/operators/invite', 400, 1);
@@ -29,7 +29,7 @@ socket
 
   let invitation = await Invitation.findOne({
     user: user._id,
-    from: socket.data.site._id
+    from: shared.site._id
   });
 
   if (invitation) {
@@ -39,7 +39,7 @@ socket
 
   invitation = new Invitation({
     user: user._id,
-    from: socket.data.site._id,
+    from: shared.site._id,
     code: uid()
   });
 
@@ -48,7 +48,7 @@ socket
   nsp
   .to(user._id.toString())
   .emit('invitation', {
-    from: socket.data.site.name,
+    from: shared.site.name,
     code: invitation.code
   });
 
