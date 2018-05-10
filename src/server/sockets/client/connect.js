@@ -11,20 +11,20 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket, io }) => async () => {
-  if (socket.data.user.socket) {
+.handler(({ shared, socket, io }) => async () => {
+  if (shared.user.socket) {
     socket.emit('kickedByServer');
     socket.disconnect();
     return;
   }
 
-  let sites = await Site.find({ operators: socket.data.user._id }, { _id: 1 });
+  let sites = await Site.find({ operators: shared.user._id }, { _id: 1 });
   for (let site of sites) {
     socket.join(site._id.toString());
   }
 
-  socket.data.user.socket = socket.id;
-  await socket.data.user.save();
+  shared.user.socket = socket.id;
+  await shared.user.save();
 
   for (let site of sites) {
     io
@@ -33,7 +33,7 @@ socket
     .emit('getOnline');
   }
 
-  socket.join(socket.data.user._id.toString());
+  socket.join(shared.user._id.toString());
 });
 
 export default socket;
