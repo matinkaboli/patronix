@@ -12,16 +12,16 @@ socket
   middlewares.client.checkToken,
   middlewares.client.checkSite
 )
-.handler(socket => async id => {
-  await Chat.remove({ site: socket.data.site._id });
+.handler(({ shared, socket }) => async id => {
+  await Chat.remove({ site: shared.site._id });
 
-  await socket.data.site.remove();
+  await shared.site.remove();
 
-  let index = socket.data.user.sites.findIndex(i =>
+  let index = shared.user.sites.findIndex(i =>
     i.toString() === id
   );
-  socket.data.user.sites.splice(index, 1);
-  await socket.data.user.save();
+  shared.user.sites.splice(index, 1);
+  await shared.user.save();
 
   socket.emit('sites/remove', 200);
 });

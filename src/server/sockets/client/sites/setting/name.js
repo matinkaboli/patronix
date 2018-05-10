@@ -11,11 +11,11 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(({ socket }) => async name => {
-  socket.data.site.name = name;
+.handler(({ shared, socket }) => async name => {
+  shared.site.name = name;
 
   try {
-    await socket.data.site.save();
+    await shared.site.save();
     socket.emit('sites/setting/name', 200);
   } catch (e) {
     socket.emit('sites/setting/name', 400);

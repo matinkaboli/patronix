@@ -12,12 +12,12 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(({ socket }) => async () => {
-  socket.data.site.token = uid();
+.handler(({ shared, socket }) => async () => {
+  shared.site.token = uid();
 
   try {
-    await socket.data.site.save();
-    socket.emit('sites/setting/revokeToken', 200, socket.data.site.token);
+    await shared.site.save();
+    socket.emit('sites/setting/revokeToken', 200, shared.site.token);
   } catch (e) {
     socket.emit('sites/setting/revokeToken', 400);
   }

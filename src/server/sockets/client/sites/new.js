@@ -12,23 +12,23 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => async name => {
-  if (socket.data.user.sites.length >= 3) {
+.handler(({ shared, socket }) => async name => {
+  if (shared.user.sites.length >= 3) {
     socket.emit('sites/new', 400, 0);
     return;
   }
 
   let site = new Site({
     name,
-    owner: socket.data.user._id,
+    owner: shared.user._id,
     token: uid(),
-    operators: [socket.data.user._id]
+    operators: [shared.user._id]
   });
 
   try {
     await site.save();
-    socket.data.user.site = site._id;
-    await socket.data.user.save();
+    shared.user.sites = shared.user.sites.push(site._id);
+    await shared.user.save();
 
     socket.emit('sites/new', 200);
   } catch (e) {
