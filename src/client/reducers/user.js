@@ -49,6 +49,16 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.ADD_SITE: {
+      return {
+        ...state,
+        sites: [ ...state.sites, {
+          name: action.name,
+          id: action.id
+        }]
+      };
+    }
+
     default: {
       return state;
     }

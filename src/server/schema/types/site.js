@@ -1,7 +1,8 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLList
+  GraphQLList,
+  GraphQLID
 } from 'graphql';
 
 import { User } from 'Root/models';
@@ -10,6 +11,9 @@ import operatorType from './operator';
 export default new GraphQLObjectType({
   name: 'site',
   fields: {
+    id: {
+      type: GraphQLID
+    },
     name: {
       type: GraphQLString
     },

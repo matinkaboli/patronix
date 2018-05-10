@@ -33,6 +33,7 @@ export default () => new Promise(resolve => {
       email
       sites {
         name
+        id
       }
     }
   }

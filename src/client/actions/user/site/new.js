@@ -5,15 +5,16 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default name => dispatch => {
-  socket.once('sites/new', status => {
+  socket.once('sites/new', (status, id) => {
 
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.ADD,
-        name
+        type: types.user.ADD_SITE,
+        name,
+        id
       });
 
       izitoast.success({

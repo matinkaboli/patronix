@@ -19,7 +19,8 @@ export default {
     SET_AVATAR: 'user/SET_AVATAR',
     LOGOUT: 'user/LOGOUT',
     LOGIN: 'user/LOGIN',
-    LOAD: 'user/LOAD'
+    LOAD: 'user/LOAD',
+    ADD_SITE: 'user/ADD_SITE'
   },
   sites: {
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',

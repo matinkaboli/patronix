@@ -22,14 +22,20 @@ export default new GraphQLObjectType({
     sites: {
       type: new GraphQLList(siteType),
       async resolve(parent, args, { shared }) {
-        return await Site.find({
+        let sites = await Site.find({
           owner: shared.user._id,
         }, [
           'name',
           'token',
-          'operators'
+          'operators',
+          '_id'
         ])
         .lean();
+        sites = sites.map(i => {
+          i.id = i._id.toString();
+          return i;
+        });
+        return sites;
       }
     }
   }

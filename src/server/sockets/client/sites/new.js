@@ -30,7 +30,7 @@ socket
     shared.user.sites = shared.user.sites.concat(site._id);
     await shared.user.save();
 
-    socket.emit('sites/new', 200);
+    socket.emit('sites/new', 200, site._id.toString());
   } catch (e) {
     socket.emit('sites/new', 400, 1);
   }
