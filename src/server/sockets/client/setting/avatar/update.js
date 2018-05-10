@@ -14,7 +14,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => data => {
+.handler(({ shared, socket }) => data => {
   if (!existsSync(uploadDir)) {
     mkdirSync(uploadDir);
   }
@@ -24,23 +24,23 @@ socket
     data.size < 1048576 &&
     ['jpg', 'jpeg', 'png'].includes(data.type)
   ) {
-    let path = resolve(uploadDir, `${socket.data.user.id}.${data.type}`);
+    let path = resolve(uploadDir, `${shared.user.id}.${data.type}`);
     writeFile(path, data.file, 'binary', async err => {
       if (err) {
         socket.emit('setting/avatar/update', 400);
       }
 
       else {
-        socket.data.user.avatar =
-        `${socket.data.user._id.toString()}.${data.type}`;
+        shared.user.avatar =
+        `${shared.user._id.toString()}.${data.type}`;
 
-        await socket.data.user.save();
+        await shared.user.save();
 
         socket.emit(
           'setting/avatar/update',
           200,
           '/static/uploads/' +
-          `${socket.data.user.avatar}?${randomBytes(5).toString('hex')}`
+          `${shared.user.avatar}?${randomBytes(5).toString('hex')}`
         );
       }
     });

@@ -10,9 +10,9 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => async () => {
-  socket.data.user.avatar = null;
-  await socket.data.user.save();
+.handler(({ shared, socket }) => async () => {
+  shared.user.avatar = null;
+  await shared.user.save();
 
   socket.emit('setting/avatar/remove', 200);
 });
