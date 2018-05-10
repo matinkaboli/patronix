@@ -7,12 +7,14 @@ import types from 'Root/actions';
 import gather from 'Root/gather';
 
 export default (credentials, push, captcha) => dispatch => {
-  socket.once('login', status => {
+  socket.once('login', (status, res) => {
     let handler = new ResponseHandler();
 
     handler
     .handle('success', async () => {
+      localStorage.token = res;
       await gather();
+      push('/panel');
     })
 
     .handle('unauth', () => {

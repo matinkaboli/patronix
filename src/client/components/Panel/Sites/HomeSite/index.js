@@ -47,44 +47,62 @@ class Sites extends Component {
     });
   }
 
+  @bind
+  ownedSite() {
+    return (
+      <Box>
+        <h3 className={styles.title}>لیست سایت های شما:</h3>
+        {this.props.ownedSite.map((v, i) =>
+          <div key={i} className={styles.site}>
+            <p>نام سایت: {v.name}</p>
+            <div>
+              <Link to='/panel/sites/setting'>
+              <Button color='blue'>
+                تنظیمات سایت
+              </Button>
+            </Link>
+            <Button
+              color='red'
+              handleClick={this.removeSite}>
+              حذف سایت
+            </Button>
+          </div>
+        </div>
+      )}
+      </Box>
+    );
+  }
+
+  @bind
+  createNewSite() {
+    return (
+      this.props.ownedSite.length <= 2 &&
+      <Box>
+        <h3 className={styles.title}>افزودن سایت جدید</h3>
+        <div className={styles.site}>
+          <input
+            type='text'
+            ref='new'
+            placeholder='افزودن سایت جدید'
+            className={styles.newSite}
+          />
+          <Button
+            color='blue'
+            handleClick={this.newSite}>
+            افزودن
+          </Button>
+        </div>
+    </Box>
+    );
+  }
+
   render() {
     return (
       <div className={styles.container}>
-        <Box>
-          <h3 className={styles.title}>لیست سایت های شما:</h3>
-          <br />
-          {this.props.sites.site ?
-            <div className={styles.site}>
-              <p>نام سایت: {this.props.sites.site.name}</p>
-              <div>
-                <Link to='/panel/sites/setting'>
-                  <Button color='blue'>
-                    تنظیمات سایت
-                  </Button>
-                </Link>
-                <Button
-                  color='red'
-                  handleClick={this.removeSite}>
-                  حذف سایت
-                </Button>
-              </div>
-            </div> :
-            <div className={styles.site}>
-              <input
-                type='text'
-                ref='new'
-                placeholder='افزودن سایت جدید'
-                className={styles.newSite}
-              />
-              <Button
-                color='blue'
-                handleClick={this.newSite}>
-                افزودن
-              </Button>
-            </div>
-          }
-        </Box>
-
+        <div className={styles.rightSide}>
+          {this.ownedSite()}
+          {this.createNewSite()}
+        </div>
         <Box>
           <div>
             <h3 className={styles.title}>
@@ -111,6 +129,9 @@ class Sites extends Component {
 
 export default withRouter(
   connect(
-    state => ({ sites: state.sites })
+    state => ({
+      ownedSite: state.user.sites,
+      sites: state.sites
+    })
   )(Sites),
 );
