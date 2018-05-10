@@ -12,14 +12,14 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => async (old, fresh) => {
-  if (hmac(old, dbkey) !== socket.data.user.password) {
+.handler(({ shared, socket }) => async (old, fresh) => {
+  if (hmac(old, dbkey) !== shared.user.password) {
     socket.emit('setting/password', 400);
     return;
   }
 
-  socket.data.user.password = hmac(fresh, dbkey);
-  await socket.data.user.save();
+  shared.user.password = hmac(fresh, dbkey);
+  await shared.user.save();
 
   socket.emit('setting/password', 200);
 });

@@ -10,9 +10,9 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => async name => {
-  socket.data.user.name = name;
-  await socket.data.user.save();
+.handler(({ shared, socket }) => async name => {
+  shared.user.name = name;
+  await shared.user.save();
 
   socket.emit('setting/name', 200);
 });

@@ -15,29 +15,29 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => async (email, password) => {
-  if (hmac(password, dbkey) !== socket.data.user.password) {
+.handler(({ shared, socket }) => async (email, password) => {
+  if (hmac(password, dbkey) !== shared.user.password) {
     socket.emit('setting/email', 400, 0);
     return;
   }
 
   try {
-    socket.data.user.email = email;
-    socket.data.user.status = 0;
+    shared.user.email = email;
+    shared.user.status = 0;
 
-    await socket.data.user.save();
+    await shared.user.save();
 
     let al = new AL({
       code: uid(),
-      user: socket.data.user._id
+      user: shared.user._id
     });
 
     await al.save();
 
-    await ClientToken.remove({ user: socket.data.user._id });
+    await ClientToken.remove({ user: shared.user._id });
 
     sendMail({
-      to: socket.data.user.email,
+      to: shared.user.email,
       subject: 'فعال سازی اکانت',
       html: `
         برای فعال سازی اکانت بر روی لینک زیر کیلک کنید
