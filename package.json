@@ -26,7 +26,7 @@
     "nodemailer": "^4.6.4",
     "socket.io": "^2.0.4",
     "socket.io-manager": "^1.0.0",
-    "socket.io-manager-logger": "^0.4.0",
+    "socket.io-manager-logger": "^0.4.1",
     "spdy": "^3.4.7",
     "svg-captcha": "^1.3.11",
     "uuid": "^3.2.1"

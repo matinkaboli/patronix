@@ -21,9 +21,9 @@ export default new GraphQLObjectType({
     },
     sites: {
       type: new GraphQLList(siteType),
-      async resolve(parent, args, socket) {
+      async resolve(parent, args, { shared }) {
         return await Site.find({
-          owner: socket.data.user._id
+          owner: shared.user._id,
         }, [
           'name',
           'token',

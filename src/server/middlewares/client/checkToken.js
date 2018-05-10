@@ -1,6 +1,6 @@
 import { ClientToken } from 'Root/models';
 
-export default (next, { socket }) => async () => {
+export default (next, { shared, socket }) => async () => {
   if (socket.handshake.query.token) {
     let token = await ClientToken
     .findOne({ token: socket.handshake.query.token })
@@ -9,6 +9,7 @@ export default (next, { socket }) => async () => {
 
     if (token) {
       socket.data.user = token.user;
+      shared.user = token.user;
 
       next();
     }

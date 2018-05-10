@@ -3,10 +3,10 @@ import userType from 'Root/schema/types/user';
 
 export default {
   type: userType,
-  resolve(parent, args, socket) {
-    authorize(socket);
+  async resolve(parent, args, { shared, socket }) {
+    await authorize({ shared, socket });
 
-    let res = socket.data.user.toObject();
+    let res = shared.user.toObject();
     if (res.avatar) {
       res.avatar = '/static/uploads/' + res.avatar;
     }

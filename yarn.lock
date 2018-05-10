@@ -5630,9 +5630,9 @@ socket.io-client@2.0.4:
     socket.io-parser "~3.1.1"
     to-array "0.1.4"
 
-socket.io-manager-logger@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/socket.io-manager-logger/-/socket.io-manager-logger-0.4.0.tgz#84612a432c9c468a52cc7f80bc21da5a4ffc6a1d"
+socket.io-manager-logger@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/socket.io-manager-logger/-/socket.io-manager-logger-0.4.1.tgz#b9d2f6f4f3a5ad474a449d84c6c92924ae8ddeb2"
   dependencies:
     colors "^1.1.2"
 

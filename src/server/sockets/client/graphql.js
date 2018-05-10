@@ -8,8 +8,8 @@ let socket = new SocketEvent();
 socket
 .namespace('/client')
 .name('graphql')
-.handler(({ socket }) => query => {
-  graphql(schema, query, {}, socket).then(res => {
+.handler(({ shared, socket }) => query => {
+  graphql(schema, query, {}, { shared, socket }).then(res => {
     socket.emit('graphql', res);
   }).catch(() => {
     socket.emit('graphql', 'error');
