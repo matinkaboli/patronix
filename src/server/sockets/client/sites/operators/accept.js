@@ -5,15 +5,13 @@ import { Invitation } from 'Root/models';
 
 let socket = new SocketEvent();
 
-//// TODO: bug ke age invitation ziad boood, nare toosh operator
-
 socket
 .namespace('/client')
 .name('sites/operators/accept')
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket, nsp, io }) => async code => {
+.handler(({ shared, socket, nsp, io }) => async code => {
   let invitation = await Invitation
   .findOne({ code })
   .populate('from')
@@ -21,9 +19,14 @@ socket
 
   if (
     !invitation ||
-    socket.data.user._id.toString() !== invitation.user.toString()
+    shared.user._id.toString() !== invitation.user.toString()
   ) {
     socket.emit('sites/operators/accept', 404);
+    return;
+  }
+
+  if (invitation.from.operators.length > 5) {
+    socket.emit('sites/operators/accept', 400);
     return;
   }
 
@@ -40,8 +43,8 @@ socket
   nsp
   .to(invitation.from.owner.toString())
   .emit('operators/join', {
-    name: socket.data.user.name,
-    email: socket.data.user.email
+    name: shared.user.name,
+    email: shared.user.email
   });
 
   nsp

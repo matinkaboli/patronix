@@ -11,14 +11,14 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket }) => async code => {
+.handler(({ shared, socket }) => async code => {
   let invitation = await Invitation
   .findOne({ code })
   .exec();
 
   if (
     !invitation ||
-    socket.data.user._id.toString() !== invitation.user.toString()
+    shared.user._id.toString() !== invitation.user.toString()
   ) {
     socket.emit('sites/operators/accept', 404);
     return;

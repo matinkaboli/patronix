@@ -11,7 +11,7 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ socket, nsp, io }) => async id => {
+.handler(({ shared, socket, nsp, io }) => async id => {
   try {
     let site = await Site.findById(id);
 
@@ -20,7 +20,7 @@ socket
       return;
     }
 
-    let userId = socket.data.user._id.toString();
+    let userId = shared.user._id.toString();
     let operators = site.operators.map(i => i.toString());
     if (!operators.includes(userId)) {
       socket.emit('sites/operators/leave', 400, 1);
@@ -46,8 +46,8 @@ socket
     nsp
     .to(site.owner.toString())
     .emit('operators/leave', {
-      name: socket.data.user.name,
-      email: socket.data.user.email
+      name: shared.user.name,
+      email: shared.user.email
     });
 
     socket.emit('sites/operators/leave', 200);

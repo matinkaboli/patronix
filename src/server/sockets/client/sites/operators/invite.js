@@ -14,7 +14,7 @@ socket
   middlewares.client.hasSite
 )
 .handler(({ socket, nsp }) => async (id, email) => {
-  if (socket.data.site.operators.length > 3) {
+  if (socket.data.site.operators.length > 5) {
     socket.emit('sites/operators/invite', 400, 0);
     return;
   }
