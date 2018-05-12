@@ -22,6 +22,7 @@ export default {
     }
 
     al.user.status = 1;
+    al.user.verifyTime = null;
     await al.user.save();
     await al.remove();
 
