@@ -8,5 +8,8 @@ export default dispatch => {
 
   socket.emit('logout');
 
+  socket.disconnect();
+  socket.reconnect();
+
   localStorage.token = '';
 };
