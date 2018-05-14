@@ -12,11 +12,16 @@ socket
   middlewares.client.checkToken,
   middlewares.client.checkSite
 )
-.handler(({ shared, socket, nsp, io }) => async email => {
+.handler(({ shared, socket, nsp, io }) => async (id, email) => {
   let user = await User.findOne({ email });
 
   if (!user) {
     socket.emit('sites/operators/remove', 400, 0);
+    return;
+  }
+
+  if (shared.user._id.toString() !== shared.site.owner.toString()) {
+    socket.emit('sites/operators/remove', 400, 2);
     return;
   }
 

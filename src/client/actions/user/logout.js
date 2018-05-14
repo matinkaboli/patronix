@@ -9,7 +9,7 @@ export default dispatch => {
   socket.emit('logout');
 
   socket.disconnect();
-  socket.reconnect();
+  socket.connect();
 
   localStorage.token = '';
 };
