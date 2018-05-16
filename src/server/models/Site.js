@@ -17,6 +17,16 @@ const schema = new Schema({
     required: true,
     unique: true
   },
+  information: {
+    type: String,
+    maxlength: 500,
+    trim: true,
+    default: ''
+  },
+  avatar: {
+    type: String,
+    default: null
+  },
   operators: [ {
     type: Schema.Types.ObjectId,
     ref: 'User'
