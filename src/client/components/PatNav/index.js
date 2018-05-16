@@ -1,65 +1,36 @@
 import React, { Component, Children } from 'react';
-import PropTypes from 'prop-types';
-
+import { NavLink, Route, Switch } from 'react-router-dom';
 import styles from './index.less';
 
-
 export default class extends Component {
-  state = {
-    current: '',
-    els: [],
-  }
-
-  componentWillMount() {
-    let children = Children.map(
-      this.props.children,
-      i => ({
-        name: i.props.name,
-        children: i.props.children
-      })
-    );
-
-    this.setState({
-      current: children[0].name,
-      els: children
-    });
-  }
-
-  click(name) {
-    return () => {
-      this.setState({
-        current: name
-      });
-    };
-  }
+  state = {}
 
   render() {
-    let content;
-    let children = Children.toArray(this.props.children);
-    for (let child of children) {
-      if (child.props.name === this.state.current) {
-        content = child.props.render;
-        break;
-      }
-    }
+    let data = [];
+    Children.forEach(this.props.children, i => {
+      data.push(i.props);
+    });
 
     return (
       <div className={styles.container}>
-        <div className={styles.side}>
-          {this.state.els.map((v, i) =>
-            <p
-              className={
-                v.name === this.state.current && 'active' || ''
-              }
-              key={i}
-              onClick={this.click(v.name)}>
+        <div className={styles.nav}>
+          {data.map((v, i) =>
+            <NavLink
+              to={v.path}
+              className={styles.normal}
+              activeClassName={styles.active}
+              key={i}>
               {v.children}
-            </p>
+            </NavLink>
           )}
         </div>
 
-        <div className={styles.content}>
-          {content()}
+        <div>
+          <Switch>
+            {data.map((v, i) =>
+              <Route key={i} path={v.path} render={v.render} />
+            )}
+          </Switch>
         </div>
       </div>
     );
@@ -67,7 +38,3 @@ export default class extends Component {
 }
 
 export const Section = () => {};
-
-Section.propTypes = {
-  name: PropTypes.string.isRequired
-};

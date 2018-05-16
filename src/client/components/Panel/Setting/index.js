@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PatNav, { Section } from 'Root/components/PatNav';
+import PatNav, { Section } from 'Root/components/PNav';
 import Password from './Password';
 import Avatar from './Avatar';
 import Email from './Email';
@@ -13,19 +13,19 @@ class Setting extends Component {
     return (
       <PatNav>
 
-        <Section name='avatar' render={() => <Avatar />}>
+        <Section path='/panel/setting/avatar' render={() => <Avatar />}>
           عکس پروفایل
         </Section>
 
-        <Section name='name' render={() => <Name />}>
+        <Section path='/panel/setting/name' render={() => <Name />}>
           نام
         </Section>
 
-        <Section name='email' render={() => <Email />}>
+        <Section path='/panel/setting/email' render={() => <Email />}>
           ایمیل
         </Section>
 
-        <Section name='password' render={() => <Password />}>
+        <Section path='/panel/setting/password' render={() => <Password />}>
           رمز عبور
         </Section>
       </PatNav>
