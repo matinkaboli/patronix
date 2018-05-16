@@ -15,6 +15,11 @@ export default {
       site: shared.user.sites
     }).lean();
 
+    chats = chats.map(i => {
+      i.id = i._id.toString();
+      return i;
+    });
+
     return chats;
   }
 };

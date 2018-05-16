@@ -13,11 +13,14 @@ export default new GraphQLObjectType({
     name: {
       type: GraphQLString
     },
-    // owner: {
-    //   type: operatorType,
-    //   async resolve(parent) {
-    //     console.log(parent);
-    //   }
-    // }
+    owner: {
+      type: operatorType,
+      async resolve(parent) {
+        let user = await User.findById(parent.owner);
+        vatar(user);
+
+        return user;
+      }
+    }
   }
 });

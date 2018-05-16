@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType,
-  GraphQLList
+  GraphQLList,
+  GraphQLID
 } from 'graphql';
 
 import { Site } from 'Root/models';
@@ -10,6 +11,9 @@ import fromSiteType from './fromSite';
 export default new GraphQLObjectType({
   name: 'hotChats',
   fields: {
+    id: {
+      type: GraphQLID
+    },
     chats: {
       type: new GraphQLList(chatType),
       resolve(parent) {

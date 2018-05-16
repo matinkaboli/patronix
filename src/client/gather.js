@@ -15,6 +15,8 @@ export default () => new Promise(resolve => {
           type: types.user.LOAD,
           data: res.data.user
         });
+
+        console.log(res.data.hotChats);
       }
 
       if (status === 'error') {
@@ -34,6 +36,16 @@ export default () => new Promise(resolve => {
       sites {
         name
         id
+      }
+    }
+    hotChats {
+      id
+      chats {
+        message
+        time
+      }
+      site {
+        name
       }
     }
   }
