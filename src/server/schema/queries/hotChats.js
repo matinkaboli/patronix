@@ -12,7 +12,9 @@ export default {
     await authorize({ shared, socket });
 
     let chats = await Chat.find({
-      site: shared.user.sites
+      site: shared.user.sites,
+      done: false,
+      taken: false
     }).lean();
 
     chats = chats.map(i => {
