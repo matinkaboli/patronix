@@ -6,7 +6,7 @@ import HomePanel from './HomePanel';
 import Sidebar from './Sidebar';
 import Setting from './Setting';
 import Sites from './Sites';
-import Chats from './Chats';
+import HotChats from './HotChats';
 
 import styles from './index.less';
 
@@ -22,7 +22,7 @@ class Panel extends Component {
             <Route exact path='/panel' component={HomePanel} />
             <Route path='/panel/sites' component={Sites} />
             <Route path='/panel/setting' component={Setting} />
-            <Route path='/panel/chats' component={Chats} />
+            <Route path='/panel/hotchats' component={HotChats} />
             <Route path='/panel/invitation' component={Invitation} />
             <Route>
               <Redirect to='/notfound' />

@@ -68,7 +68,7 @@ class Sidebar extends Component {
         text: 'سایت ها'
       },
       {
-        to: '/panel/chats',
+        to: '/panel/hotchats',
         icon: 'comment',
         text: 'چت ها'
       },
