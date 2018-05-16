@@ -25,7 +25,7 @@ export default class extends Component {
           )}
         </div>
 
-        <div>
+        <div className={styles.content}>
           <Switch>
             {data.map((v, i) =>
               <Route key={i} path={v.path} render={v.render} />
