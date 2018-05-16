@@ -1,4 +1,5 @@
 export default [
   require('./name'),
-  require('./revokeToken')
+  require('./revokeToken'),
+  require('./information')
 ];

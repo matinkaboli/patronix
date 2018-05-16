@@ -10,8 +10,8 @@ socket
 .middleware(
   middlewares.client.checkToken
 )
-.handler(({ shared, socket }) => async name => {
-  shared.user.name = name;
+.handler(({ shared, socket }) => async bio => {
+  shared.user.bio = bio;
   try {
     await shared.user.save();
 
@@ -19,6 +19,7 @@ socket
   } catch (e) {
     socket.emit('setting/name', 400);
   }
+
 });
 
 export default socket;
