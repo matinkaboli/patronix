@@ -47,7 +47,13 @@ const schema = new Schema({
     type: Date,
     expires: 60 * 60 * 24
   },
-  socket: String
+  socket: String,
+  bio: {
+    type: String,
+    maxlength: 500,
+    trim: true,
+    default: ''
+  }
 });
 
 export default mongoose.model('User', schema);
