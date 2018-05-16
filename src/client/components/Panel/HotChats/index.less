@@ -1,0 +1,26 @@
+:local(.side) {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  > * {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  }
+}
+
+:local(.time) {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  font-size: 0.9rem;
+}

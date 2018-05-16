@@ -49,6 +49,9 @@ export default () => new Promise(resolve => {
       }
       site {
         name
+        owner {
+          name
+        }
       }
     }
   }

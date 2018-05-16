@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import ChatNav, { Section } from '../ChatNav';
 
+import styles from './index.less';
+
 class HotChats extends Component {
   render() {
     return (
@@ -12,7 +14,24 @@ class HotChats extends Component {
             key={i}
             path={`/panel/hotchats/${v.id}`}
             render={() => <p>ab</p>}>
-            <p>A</p>
+            <div className={styles.side}>
+              <img src='/static/uploads/5af67c7040c1971844ffc054.jpeg' />
+              <div>
+                <p>
+                  نام سایت :‌ {v.site.name}
+                </p>
+                <p>
+                  مالک : {v.site.owner.name}
+                </p>
+              </div>
+              <span className={styles.time}>{
+                (() => {
+                  let time = new Date(v.chats.slice(-1)[0].time);
+
+                  return `${time.getHours()}:${time.getMinutes()}`;
+                })()
+              }</span>
+            </div>
           </Section>
         )}
       </ChatNav>
