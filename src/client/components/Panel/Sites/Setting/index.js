@@ -17,6 +17,7 @@ import lazy from 'Root/js/lazy';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
+import PNav, { Section } from 'Root/components/PNav';
 
 import styles from './index.less';
 
@@ -73,102 +74,27 @@ class Site extends Component {
   }
 
   render() {
+    const id = this.props.match.params.id;
     return (
-      <div className={styles.container}>
-        <Box>
-          <h3 className={styles.title}>نام سایت</h3>
+      <PNav>
+        <Section
+          path={`/panel/sites/${id}/name`}
+          render={() => 'there'}>
+          Hello
+        </Section>
 
-          <Field>
-            <div>
-              <p>نام سایت</p>
-              <input
-                type='text'
-                ref='name'
-                className={styles.fieldInput}
-                placeholder='نام سایت'
-                defaultValue={this.props.site.name}
-              />
-            </div>
+        <Section
+          path={`/panel/sites/${id}/reza`}
+          render={() => 'there'}>
+          reza
+        </Section>
 
-            <div>
-              <Button
-                color='blue'
-                handleClick={this.updateName}>
-                به روز رسانی
-              </Button>
-            </div>
-          </Field>
-        </Box>
-
-        <Box>
-          <h3 className={styles.title}>توکن سایت</h3>
-          <Field>
-            <div>
-              <p>توکن</p>
-              <p>{this.props.site.token}</p>
-              <code className={styles.script}>
-              {`<script
-              id='patronix-data'
-              token=${this.props.site.token}
-              src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
-              ></script>`}
-              </code>
-            </div>
-
-            <div>
-              <Button
-                color='blue'
-                handleClick={this.revokeToken}>
-                توکن جدید
-              </Button>
-            </div>
-          </Field>
-        </Box>
-
-        <Box>
-          <h3 className={styles.title}>پشتیبان ها</h3>
-          {this.props.site.operators ?
-            this.props.site.operators.map((v, i) =>
-            <Field key={i}>
-              <div>
-                <p>نام: {v.name}</p>
-                <p>ایمیل: {v.email}</p>
-              </div>
-
-              {this.props.site.owner === v._id ? '' : <div>
-                <Button
-                  color='red'
-                  handleClick={this.removeOperator(v.email)}>
-                  حذف پشتیبان
-                </Button>
-              </div>}
-            </Field>
-            ) : ''
-          }
-        </Box>
-
-        <Box>
-          <h3 className={styles.title}>دعوت پشتیبان</h3>
-          <Field>
-            <div>
-              <input
-                type='email'
-                ref='newOperator'
-                placeholder='ایمیل پشتیبان'
-                className={styles.fieldInput}
-              />
-            </div>
-
-            <div>
-              <Button
-                color='blue'
-                handleClick={this.newOperator}>
-                اضافه کردن
-              </Button>
-            </div>
-          </Field>
-        </Box>
-      </div>
+        <Section
+          path={`/panel/sites/${id}/mamad`}
+          render={() => 'there'}>
+          mamad
+        </Section>
+      </PNav>
     );
   }
 }
@@ -195,3 +121,101 @@ export default lazy(
   'cache',
   loadSite
 );
+
+/*
+<div className={styles.container}>
+  <Box>
+    <h3 className={styles.title}>نام سایت</h3>
+
+    <Field>
+      <div>
+        <p>نام سایت</p>
+        <input
+          type='text'
+          ref='name'
+          className={styles.fieldInput}
+          placeholder='نام سایت'
+          defaultValue={this.props.site.name}
+        />
+      </div>
+
+      <div>
+        <Button
+          color='blue'
+          handleClick={this.updateName}>
+          به روز رسانی
+        </Button>
+      </div>
+    </Field>
+  </Box>
+
+  <Box>
+    <h3 className={styles.title}>توکن سایت</h3>
+    <Field>
+      <div>
+        <p>توکن</p>
+        <p>{this.props.site.token}</p>
+        <code className={styles.script}>
+        {`<script
+        id='patronix-data'
+        token=${this.props.site.token}
+        src="${localStorage.getItem('patronixUrl')}/static/js/customer.js"
+        ></script>`}
+        </code>
+      </div>
+
+      <div>
+        <Button
+          color='blue'
+          handleClick={this.revokeToken}>
+          توکن جدید
+        </Button>
+      </div>
+    </Field>
+  </Box>
+
+  <Box>
+    <h3 className={styles.title}>پشتیبان ها</h3>
+    {this.props.site.operators ?
+      this.props.site.operators.map((v, i) =>
+      <Field key={i}>
+        <div>
+          <p>نام: {v.name}</p>
+          <p>ایمیل: {v.email}</p>
+        </div>
+
+        {this.props.site.owner === v._id ? '' : <div>
+          <Button
+            color='red'
+            handleClick={this.removeOperator(v.email)}>
+            حذف پشتیبان
+          </Button>
+        </div>}
+      </Field>
+      ) : ''
+    }
+  </Box>
+
+  <Box>
+    <h3 className={styles.title}>دعوت پشتیبان</h3>
+    <Field>
+      <div>
+        <input
+          type='email'
+          ref='newOperator'
+          placeholder='ایمیل پشتیبان'
+          className={styles.fieldInput}
+        />
+      </div>
+
+      <div>
+        <Button
+          color='blue'
+          handleClick={this.newOperator}>
+          اضافه کردن
+        </Button>
+      </div>
+    </Field>
+  </Box>
+</div>
+ */

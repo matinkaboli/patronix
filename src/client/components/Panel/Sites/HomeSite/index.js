@@ -56,7 +56,7 @@ class Sites extends Component {
           <div key={i} className={styles.site}>
             <p>نام سایت: {v.name}</p>
             <div>
-              <Link to={`/panel/sites/${v.id}`}>
+              <Link to={`/panel/sites/${v.id}/name`}>
               <Button color='blue'>
                 تنظیمات سایت
               </Button>
