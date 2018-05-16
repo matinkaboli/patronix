@@ -17,7 +17,7 @@ import lazy from 'Root/js/lazy';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 import Box from 'Root/components/Box';
-import PNav, { Section } from 'Root/components/PNav';
+import PatNav, { Section } from 'Root/components/PatNav';
 
 import styles from './index.less';
 
@@ -76,7 +76,7 @@ class Site extends Component {
   render() {
     const id = this.props.match.params.id;
     return (
-      <PNav>
+      <PatNav>
         <Section
           path={`/panel/sites/${id}/name`}
           render={() => 'there'}>
@@ -94,7 +94,7 @@ class Site extends Component {
           render={() => 'there'}>
           mamad
         </Section>
-      </PNav>
+      </PatNav>
     );
   }
 }

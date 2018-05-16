@@ -51,7 +51,6 @@ class Email extends Component {
             type='password'
             placeholder='رمز عبور'
             Ref={el => { this.pass = el; }}
-            defaultValue={this.props.email}
           />
         </div>
 

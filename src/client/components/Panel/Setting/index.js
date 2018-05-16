@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PatNav, { Section } from 'Root/components/PNav';
+import PatNav, { Section } from 'Root/components/PatNav';
 import Password from './Password';
 import Avatar from './Avatar';
 import Email from './Email';

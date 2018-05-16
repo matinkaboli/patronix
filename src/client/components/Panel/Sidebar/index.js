@@ -58,7 +58,7 @@ class Sidebar extends Component {
         text: 'داشبورد'
       },
       {
-        to: '/panel/setting',
+        to: '/panel/setting/avatar',
         icon: 'cog',
         text: 'تنظیمات'
       },
