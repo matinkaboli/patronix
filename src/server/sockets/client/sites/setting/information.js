@@ -6,7 +6,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/client')
-.name('sites/setting/name')
+.name('sites/setting/information')
 .middleware(
   middlewares.client.checkToken,
   middlewares.client.hasSite

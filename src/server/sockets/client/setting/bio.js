@@ -6,7 +6,7 @@ let socket = new SocketEvent();
 
 socket
 .namespace('/client')
-.name('setting/name')
+.name('setting/bio')
 .middleware(
   middlewares.client.checkToken
 )
