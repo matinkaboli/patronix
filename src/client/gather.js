@@ -16,7 +16,10 @@ export default () => new Promise(resolve => {
           data: res.data.user
         });
 
-        console.log(res.data.hotChats);
+        dispatch({
+          type: types.hotChats.LOAD,
+          chats: res.data.hotChats
+        });
       }
 
       if (status === 'error') {

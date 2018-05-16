@@ -9,6 +9,7 @@ import sites from './sites';
 import user from './user';
 import lazy from './lazy';
 import chat from './chat';
+import hotChats from './hotChats';
 
 export default combineReducers({
   historyChats,
@@ -19,5 +20,6 @@ export default combineReducers({
   sites,
   chat,
   user,
-  lazy
+  lazy,
+  hotChats
 });
