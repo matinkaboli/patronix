@@ -7,6 +7,7 @@ import {
 
 import { User } from 'Root/models';
 import operatorType from './operator';
+import vatar from 'Root/schema/utils/vatar';
 
 export default new GraphQLObjectType({
   name: 'site',
@@ -23,7 +24,7 @@ export default new GraphQLObjectType({
     operators: {
       type: new GraphQLList(operatorType),
       async resolve(parent) {
-        return await User
+        let users = await User
         .find(
           { _id: parent.operators },
           [
@@ -32,13 +33,11 @@ export default new GraphQLObjectType({
             'email'
           ]
         )
-        .lean().map(i => {
-          if (i.avatar) {
-            i.avatar = '/static/uploads/' + i.avatar;
-          }
+        .lean();
 
-          return i;
-        });
+        users = users.map(vatar);
+
+        return users;
       }
     }
   }

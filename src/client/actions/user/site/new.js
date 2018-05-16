@@ -12,7 +12,7 @@ export default name => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.user.ADD_SITE,
+        type: types.user.site.ADD,
         name,
         id
       });

@@ -49,13 +49,29 @@ export default (state = {}, action) => {
       };
     }
 
-    case types.user.ADD_SITE: {
+    case types.user.site.ADD: {
       return {
         ...state,
         sites: [ ...state.sites, {
           name: action.name,
           id: action.id
         }]
+      };
+    }
+
+    case types.user.site.LOAD: {
+      let index = state.sites.findIndex(i => i.id === action.site.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            ...action.site
+          },
+          ...state.sites.slice(index + 1)
+        ]
       };
     }
 

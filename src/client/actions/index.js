@@ -20,7 +20,10 @@ export default {
     LOGOUT: 'user/LOGOUT',
     LOGIN: 'user/LOGIN',
     LOAD: 'user/LOAD',
-    ADD_SITE: 'user/ADD_SITE'
+    site: {
+      ADD: 'user/site/ADD',
+      LOAD: 'user/site/LOAD'
+    }
   },
   sites: {
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
+import { withRouter } from 'react-router-dom';
 
 import inviteOperator from 'Root/actions/user/site/operator/invite';
 import removeOperator from 'Root/actions/user/site/operator/remove';
 import revokeToken from 'Root/actions/user/site/revokeToken';
 import updateName from 'Root/actions/user/site/name';
+import loadSite from 'Root/actions/user/site/load';
 
 import { email } from 'Root/js/validator';
 import assure from 'Root/js/assure';
 import bind from 'Root/js/bind';
+import lazy from 'Root/js/lazy';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
@@ -170,8 +173,25 @@ class Site extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    site: state.sites.site
-  })
-)(Site);
+const findSite = (state, ownedProps) => ({
+  site: state.user.sites.find(
+    i => i.id === ownedProps.match.params.id
+  )
+});
+
+export default lazy(
+  withRouter(connect(findSite)(Site)),
+  ({ params }) => `query {
+    site(id: "${params.id}") {
+      id
+      token
+      operators {
+        name
+        email
+        avatar
+      }
+    }
+  }`,
+  'cache',
+  loadSite
+);

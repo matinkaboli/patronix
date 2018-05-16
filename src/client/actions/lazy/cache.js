@@ -1,7 +1,8 @@
 import socket from 'Root/socket';
 import types from 'Root/actions';
+import parse from 'Root/js/parseGraphRes';
 
-export default (match, query, type, setState) => (dispatch, getState) => {
+export default (match, query, action, setState ) => (dispatch, getState) => {
   let state = getState().lazy.paths;
 
   if (state.includes(match.path)) {
@@ -9,16 +10,18 @@ export default (match, query, type, setState) => (dispatch, getState) => {
     return;
   }
 
-  socket.once('graphql', (status, data) => {
-    dispatch({ type, data });
+  socket.once('graphql', data => {
+    parse(data).then(status => {
+      dispatch({
+        type: types.lazy.CACHE_STOP,
+        status,
+        path: match.path
+      });
 
-    dispatch({
-      type: types.lazy.CACHE_STOP,
-      status,
-      path: match.path
+      action(data);
+
+      setState({ loading: false });
     });
-
-    setState({ loading: false });
   });
 
   dispatch({

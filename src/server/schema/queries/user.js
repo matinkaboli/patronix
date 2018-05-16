@@ -1,5 +1,6 @@
 import authorize from 'Root/authorize';
 import userType from 'Root/schema/types/user';
+import vatar from 'Root/schema/utils/vatar';
 
 export default {
   type: userType,
@@ -7,9 +8,7 @@ export default {
     await authorize({ shared, socket });
 
     let res = shared.user.toObject();
-    if (res.avatar) {
-      res.avatar = '/static/uploads/' + res.avatar;
-    }
+    vatar(res);
 
     return res;
   }

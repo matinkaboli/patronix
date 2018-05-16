@@ -2,7 +2,7 @@ import socket from 'Root/socket';
 import types from 'Root/actions';
 import parse from 'Root/js/parseGraphRes';
 
-export default (match, query, setState) => (dispatch, getState) => {
+export default (match, query, action, setState) => (dispatch, getState) => {
   let state = getState().lazy.paths;
 
   if (state.includes(match.path)) {
@@ -16,6 +16,8 @@ export default (match, query, setState) => (dispatch, getState) => {
         type: types.lazy.STATUS,
         status
       });
+
+      action(data);
 
       setState({ loading: false });
     });

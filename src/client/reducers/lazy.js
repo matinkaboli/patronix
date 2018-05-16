@@ -28,7 +28,7 @@ export default (state = {
     case types.lazy.CACHE_STOP: {
       return {
         ...state,
-        loading: true,
+        loading: false,
         status: action.status,
         paths: [...state.paths, action.path]
       };

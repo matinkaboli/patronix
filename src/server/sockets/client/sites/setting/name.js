@@ -11,7 +11,7 @@ socket
   middlewares.client.checkToken,
   middlewares.client.hasSite
 )
-.handler(({ shared, socket }) => async name => {
+.handler(({ shared, socket }) => async (id, name) => {
   shared.site.name = name;
 
   try {

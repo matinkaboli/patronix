@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
+import izitoast from 'izitoast';
 
 import cache from 'Root/actions/lazy/cache';
 import temp from 'Root/actions/lazy/temp';
@@ -12,7 +13,7 @@ class Prototype extends Component {
     type: PropTypes.oneOf(['cache', 'temp', 'conditional']).isRequired,
     // you should pass a component
     component: PropTypes.func.isRequired,
-    actionType: PropTypes.string
+    actionType: PropTypes.func
   }
 
   state = {
@@ -40,7 +41,7 @@ class Prototype extends Component {
         cache(
           this.props.match,
           query,
-          this.props.type,
+          this.props.action,
           this.setState.bind(this)
         )
       );
@@ -60,6 +61,10 @@ class Prototype extends Component {
     }
 
     if (this.props.lazy.status === 'success') {
+      if (['temp', 'conditional'].includes(this.props.type)) {
+        return <this.props.component data={this.props.lazy.data}/>;
+      }
+
       return <this.props.component />;
     }
 
@@ -71,6 +76,13 @@ class Prototype extends Component {
       return <Redirect to='/denied' />;
     }
 
+    if (this.props.lazy.status === 'error') {
+      izitoast.error({
+        rtl: true,
+        title: 'خطایی رخ داد'
+      });
+    }
+
     return null;
   }
 }
@@ -79,9 +91,9 @@ const Lazy = withRouter(connect(
   state => ({ lazy: state.lazy })
 )(Prototype));
 
-export default (component, query, type, actionType) => () =>
+export default (component, query, type, action) => () =>
   <Lazy
     component={component}
     type={type}
-    actionType={actionType}
+    action={action}
     query={query} />;
