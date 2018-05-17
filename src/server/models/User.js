@@ -39,7 +39,7 @@ const schema = new Schema({
     type: String,
     default: null
   },
-  sites: [{
+  ownedSites: [{
     type: Schema.Types.ObjectId,
     ref: 'Site'
   }],
@@ -53,7 +53,11 @@ const schema = new Schema({
     maxlength: 500,
     trim: true,
     default: ''
-  }
+  },
+  operatedSites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Site'
+  }]
 });
 
 export default mongoose.model('User', schema);
