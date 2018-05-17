@@ -6,7 +6,7 @@
   "scripts": {
     "dev:build": "gulp dev",
     "prod:build": "gulp prod",
-    "server": "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
+    "server": "cross-env NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
     "compress": "tar -czvf app.tar.gz build package.json",
     "app": "node build/app.js"
   },
@@ -42,6 +42,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.5",
     "css-loader": "^0.28.9",
     "del": "^3.0.0",
     "eslint": "^4.16.0",
