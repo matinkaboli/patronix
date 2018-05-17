@@ -5,13 +5,13 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default () => dispatch => {
-  socket.once('setting/avatar/remove', status => {
+  socket.once('sites/setting/avatar/remove', status => {
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
       dispatch({
-        type: types.user.REMOVE_AVATAR
+        type: types.sites.REMOVE_AVATAR
       });
 
       izitoast.success({
@@ -23,5 +23,5 @@ export default () => dispatch => {
     .status(status);
   });
 
-  socket.emit('setting/avatar/remove');
+  socket.emit('sites/setting/avatar/remove');
 };

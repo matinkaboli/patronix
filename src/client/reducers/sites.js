@@ -107,7 +107,7 @@ export default (state = {
           break;
         }
       }
-  
+
       return {
         ...state,
         sites
@@ -128,6 +128,27 @@ export default (state = {
       return {
         ...state,
         site: action.data
+      };
+    }
+
+    case types.sites.UPDATE_INFORMATION: {
+      return {
+        ...state,
+        information: action.information
+      };
+    }
+
+    case types.sites.REMOVE_AVATAR: {
+      return {
+        ...state,
+        avatar: null
+      };
+    }
+
+    case types.sites.SET_AVATAR: {
+      return {
+        ...state,
+        avatar: action.avatar
       };
     }
 

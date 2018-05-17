@@ -27,13 +27,13 @@ mongoose.connect(config.db, () => {
 mongoose.connection.on('error', error => {
   console.error(`Database connection error ${error}`);
 
-  process.exit(1);
+  process.exit(0);
 });
 
 mongoose.connection.on('disconnected', () => {
   console.error('Disconnected from database');
 
-  process.exit(1);
+  process.exit(0);
 });
 
 if (process.env.NODE_ENV === 'production') {

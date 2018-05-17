@@ -4,24 +4,26 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default () => dispatch => {
-  socket.once('setting/avatar/remove', status => {
+export default information => dispatch => {
+  socket.once('sites/setting/information', status => {
+
     let handler = new ResponseHandler();
 
     handler
     .handle('success', () => {
       dispatch({
-        type: types.user.REMOVE_AVATAR
+        type: types.sites.UPDATE_INFORMATION,
+        information
       });
 
       izitoast.success({
         rtl: true,
-        title: 'با موفقیت حذف شد'
+        title: 'با موفقیت به روز رسانی شد'
       });
     })
 
     .status(status);
   });
 
-  socket.emit('setting/avatar/remove');
+  socket.emit('sites/setting/information', information);
 };
