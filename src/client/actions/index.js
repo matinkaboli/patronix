@@ -17,6 +17,7 @@ export default {
     LOGIN_FAILED: 'user/LOGIN_FAILED',
     UPDATE_NAME: 'user/UPDATE_NAME',
     SET_AVATAR: 'user/SET_AVATAR',
+    UPDATE_BIO: 'user/UPDATE_BIO',
     LOGOUT: 'user/LOGOUT',
     LOGIN: 'user/LOGIN',
     LOAD: 'user/LOAD',

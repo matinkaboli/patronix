@@ -21,6 +21,13 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.UPDATE_BIO: {
+      return {
+        ...state,
+        bio: action.bio
+      };
+    }
+
     case types.user.SET_AVATAR: {
       return {
         ...state,
