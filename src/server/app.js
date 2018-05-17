@@ -1,38 +1,44 @@
 import 'babel-polyfill';
 import spdy from 'spdy';
 import http from 'http';
-import express from 'express';
-import socketIO from 'socket.io';
-import { connect, applyMiddleware } from 'socket.io-manager';
-import logger from 'socket.io-manager-logger';
-import mongoose from 'mongoose';
-import process from 'process';
 import { join } from 'path';
 import morgan from 'morgan';
-import { readFileSync } from 'fs';
 import helmet from 'helmet';
+import express from 'express';
+import process from 'process';
+import mongoose from 'mongoose';
+import socketIO from 'socket.io';
+import { readFileSync } from 'fs';
+import logger from 'socket.io-manager-logger';
+import { connect, applyMiddleware } from 'socket.io-manager';
 
-import { init } from './middlewares';
-import sockets from './sockets';
 import config from './config';
 import { User } from './models';
+import sockets from './sockets';
+import { init } from './middlewares';
 
 let modified = applyMiddleware([init], sockets);
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db);
+mongoose.connect(config.db, () => {
+  console.log('Connected to database successfully!');
+});
 
-mongoose.connection.on('error', () => {
-  process.exit(0);
+mongoose.connection.on('error', error => {
+  console.error(`Database connection error ${error}`);
+
+  process.exit(1);
 });
 
 mongoose.connection.on('disconnected', () => {
-  process.exit(0);
+  console.error('Disconnected from database');
+
+  process.exit(1);
 });
 
 if (process.env.NODE_ENV === 'production') {
   http.createServer(function(req, res) {
-      res.writeHead(301, { Location: 'https://patronix.ir' + req.url });
+      res.writeHead(301, { Location: `${config.url}${req.url}` });
       res.end();
   }).listen(80);
 }
@@ -44,7 +50,9 @@ if (process.env.NODE_ENV === 'production') {
   let server;
 
   if (process.env.NODE_ENV === 'development') {
-    server = app.listen(config.port);
+    server = app.listen(config.port, () => {
+      console.log('The server is running!');
+    });
 
     app.use(morgan('short'));
 
