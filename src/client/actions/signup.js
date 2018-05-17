@@ -1,6 +1,7 @@
 import izitoast from 'izitoast';
 
 import ResponseHandler from 'Root/js/ResponseHandler';
+import recaptcha from 'Root/actions/captcha';
 import socket from 'Root/socket';
 
 export default (credentials, captcha, push) => {
@@ -24,6 +25,8 @@ export default (credentials, captcha, push) => {
           rtl: true,
           title: 'کد امنیتی وارد شده اشتباه است'
         });
+
+        recaptcha();
       }
 
       else if (res === 1) {
@@ -31,6 +34,8 @@ export default (credentials, captcha, push) => {
           rtl: true,
           title: 'خطا! بعدا امتحان کنید'
         });
+
+        recaptcha();
       }
 
       else if (res === 2) {
