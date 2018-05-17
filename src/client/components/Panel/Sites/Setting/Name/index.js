@@ -26,7 +26,6 @@ export default class extends Component {
     return (
       <Field>
         <div>
-          <p>نام سایت</p>
           <input
             type='text'
             ref='name'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import revokeToken from 'Root/actions/user/site/revokeToken';
 
@@ -20,7 +19,6 @@ class Token extends Component {
     return (
       <Field>
         <div>
-          <p>توکن</p>
           <p>{this.props.token}</p>
           <code className={styles.script}>
             {
@@ -46,8 +44,4 @@ class Token extends Component {
 }
 
 
-export default connect(
-  state => ({
-    token: state.site.token
-  })
-)(Token);
+export default Token;

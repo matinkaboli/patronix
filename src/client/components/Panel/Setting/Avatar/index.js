@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import izitoast from 'izitoast';
 
 import updateAvatar from 'Root/actions/user/avatar/update';
 import removeAvatar from 'Root/actions/user/avatar/remove';
 
+import { image } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
@@ -37,38 +37,22 @@ class Avatar extends Component {
 
   @bind
   updateAvatar() {
-    let reader = new FileReader();
-    let file = this.refs.file.files[0];
-    let type = file.type.split('/')[1];
-    let { dispatch } = this.props;
+    const reader = new FileReader();
+    const file = this.refs.file.files[0];
 
     reader.addEventListener('loadend', () => {
-      if (file.size > 1048576) {
-        izitoast.warning({
-          rtl: true,
-          title: 'حجم فایل حداکثر می تواند ۱ مگابایت باشد.'
-        });
-
+      if (!image(file)) {
         return;
       }
 
-      if (!['jpg', 'jpeg', 'png'].includes(type)) {
-        izitoast.warning({
-          rtl: true,
-          title: 'فرمت فایل باید jpg یا png باشد'
-        });
-
-        return;
-      }
-
-      dispatch(updateAvatar({
-        type,
+      this.props.dispatch(updateAvatar({
+        type: file.type.split('/')[1],
         size: file.size,
-        file: reader.result
+        file: reader.result,
       }));
     });
 
-    reader.readAsBinaryString(this.refs.file.files[0]);
+    reader.readAsBinaryString(file);
   }
 
   @bind
@@ -86,15 +70,18 @@ class Avatar extends Component {
 
         <div>
           <input
-            type='file'
             ref='file'
+            type='file'
             className={styles.avatarInput}
-            onChange={this.updateAvatar} />
+            onChange={this.updateAvatar}
+          />
+
           <Button
             handleClick={this.openInput}
             color='blue'>
             به روز رسانی
           </Button>
+
           {
             this.props.avatar &&
             <Button

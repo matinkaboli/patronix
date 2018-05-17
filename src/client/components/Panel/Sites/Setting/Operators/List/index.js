@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
 
 import removeOperator from 'Root/actions/user/site/operator/remove';
 
@@ -49,9 +48,4 @@ class List extends Component {
 }
 
 
-export default connect(
-  state => ({
-    operators: state.site.operators,
-    owner: state.site.owner
-  })
-)(List);
+export default List;
