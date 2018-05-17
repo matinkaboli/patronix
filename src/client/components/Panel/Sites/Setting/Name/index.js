@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import izitoast from 'izitoast';
+
+import updateName from 'Root/actions/user/site/name';
+
+import bind from 'Root/js/bind';
+
+import Field from 'Root/components/Panel/Field';
+import Button from 'Root/components/Button';
+
+
+class Name extends Component {
+  @bind
+  updateName() {
+    if (!this.refs.name.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نیستند'
+      });
+      return;
+    }
+
+    this.props.dispatch(updateName(this.refs.name.value));
+  }
+
+  render() {
+    return (
+      <Field>
+        <div>
+          <p>نام سایت</p>
+          <input
+            type='text'
+            ref='name'
+            placeholder='نام سایت'
+            defaultValue={this.props.name}
+          />
+        </div>
+
+        <div>
+          <Button
+            color='blue'
+            handleClick={this.updateName}>
+            به روز رسانی
+          </Button>
+        </div>
+      </Field>
+    );
+  }
+}
+
+
+export default connect(
+  state => ({
+    name: state.site.name
+  })
+)(Name);
