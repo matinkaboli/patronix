@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import updateName from 'Root/actions/user/site/name';
@@ -9,8 +8,7 @@ import bind from 'Root/js/bind';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 
-
-class Name extends Component {
+export default class extends Component {
   @bind
   updateName() {
     if (!this.refs.name.value) {
@@ -48,10 +46,3 @@ class Name extends Component {
     );
   }
 }
-
-
-export default connect(
-  state => ({
-    name: state.site.name
-  })
-)(Name);

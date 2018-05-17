@@ -10,7 +10,6 @@ import Button from 'Root/components/Button';
 
 import styles from './index.less';
 
-
 class Token extends Component {
   @bind
   revokeToken() {

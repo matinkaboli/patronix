@@ -9,7 +9,6 @@ import bind from 'Root/js/bind';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 
-
 class List extends Component {
   @bind
   removeOperator(email) {

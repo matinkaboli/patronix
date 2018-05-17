@@ -20,7 +20,7 @@ class Site extends Component {
       <PatNav>
         <Section
           path={`/panel/sites/${id}/name`}
-          render={() => <Name />}>
+          render={() => <Name name={this.props.site.name} />}>
           نام سایت
         </Section>
 
