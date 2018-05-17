@@ -4,7 +4,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default () => dispatch => {
+export default id => dispatch => {
   socket.once('sites/remove', status => {
     let handler = new ResponseHandler();
 
@@ -23,5 +23,5 @@ export default () => dispatch => {
     .status(status);
   });
 
-  socket.emit('sites/remove');
+  socket.emit('sites/remove', id);
 };

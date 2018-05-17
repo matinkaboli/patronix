@@ -13,7 +13,7 @@ socket
   middlewares.client.checkToken
 )
 .handler(({ shared, socket }) => async name => {
-  if (shared.user.sites.length > 2) {
+  if (shared.user.ownedSites.length > 2) {
     socket.emit('sites/new', 400, 0);
     return;
   }
@@ -27,7 +27,7 @@ socket
 
   try {
     await site.save();
-    shared.user.sites = shared.user.sites.concat(site._id);
+    shared.user.ownedSites.push(site._id);
     await shared.user.save();
 
     socket.emit('sites/new', 200, site._id.toString());

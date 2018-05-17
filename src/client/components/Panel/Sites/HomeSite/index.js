@@ -41,9 +41,9 @@ class Sites extends Component {
   }
 
   @bind
-  removeSite() {
-    assure(() => {
-      this.props.dispatch(removeSite());
+  removeSite(id) {
+    return () => assure(() => {
+      this.props.dispatch(removeSite(id));
     });
   }
 
@@ -63,7 +63,7 @@ class Sites extends Component {
             </Link>
             <Button
               color='red'
-              handleClick={this.removeSite}>
+              handleClick={this.removeSite(v.id)}>
               حذف سایت
             </Button>
           </div>

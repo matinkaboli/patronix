@@ -30,11 +30,21 @@ socket
     return;
   }
 
-  let index = shared.site.operators.map(i => i.toString())
-  .findIndex(i => i === user._id.toString());
-  shared.site.operators.splice(index, index + 1);
+  {
+    let index = shared.site.operators.map(i => i.toString())
+    .findIndex(i => i === user._id.toString());
+    shared.site.operators.splice(index, index + 1);
 
-  await shared.site.save();
+    await shared.site.save();
+  }
+
+  {
+    let index = user.operatedSites
+    .findIndex(i => i === shared.sites._id.toStrig());
+    user.operatedSites.splice(index, index + 1);
+    
+    await user.save();
+  }
 
   let state = 'offline';
   if (user.socket) {

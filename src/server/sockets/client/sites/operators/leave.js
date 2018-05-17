@@ -32,9 +32,20 @@ socket
       return;
     }
 
-    let index = operators.findIndex(i => i === userId);
-    site.operators.splice(index, index + 1);
-    await site.save();
+    {
+      let index = operators.findIndex(i => i === userId);
+      site.operators.splice(index, index + 1);
+      
+      await site.save();
+    }
+
+    {
+      let index = shared.user.operatedSites
+      .findIndex(i => i === site._id.toString());
+      shared.user.operatedSites.splice(index, index + 1);
+
+      await shared.user.save();
+    }
 
     socket.leave(site._id.toString());
 

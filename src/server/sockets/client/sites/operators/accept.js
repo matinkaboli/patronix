@@ -33,6 +33,9 @@ socket
   invitation.from.operators.push(invitation.user);
   await invitation.from.save();
 
+  shared.user.operatedSites.push(invitation.from._id);
+  shared.user.save();
+
   io
   .of('/customer')
   .to(invitation.from._id.toString())
