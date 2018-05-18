@@ -21,6 +21,9 @@ export default new GraphQLObjectType({
 
         return user;
       }
+    },
+    info: {
+      type: GraphQLString
     }
   }
 });

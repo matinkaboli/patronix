@@ -39,6 +39,9 @@ export default new GraphQLObjectType({
 
         return users;
       }
+    },
+    info: {
+      type: GraphQLString
     }
   }
 });
