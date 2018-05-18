@@ -4,7 +4,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default ({ name }) => dispatch => {
+export default name => dispatch => {
   socket.once('setting/name', status => {
 
     let handler = new ResponseHandler();

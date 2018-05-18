@@ -8,12 +8,12 @@ import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
-import Input from 'Root/components/Input';
+import TextArea from 'Root/components/TextArea';
 
 
 class Name extends Component {
   @bind
-  updateName() {
+  updateBio() {
     if (!this.input.value) {
       izitoast.warning({
         rtl: 'true',
@@ -23,18 +23,14 @@ class Name extends Component {
       return;
     }
 
-    this.props.dispatch(updateBio({
-      bio: this.input.value
-    }));
+    this.props.dispatch(updateBio(this.input.value));
   }
 
   render() {
     return (
       <Field>
         <div>
-          <p>درباره</p>
-          <Input
-            type='text'
+          <TextArea
             placeholder='درباره'
             defaultValue={this.props.bio}
             Ref={el => { this.input = el; }}
@@ -42,9 +38,7 @@ class Name extends Component {
         </div>
 
         <div>
-          <Button
-            color='blue'
-            handleClick={this.updateBio}>
+          <Button color='blue' handleClick={this.updateBio}>
             به روز رسانی
           </Button>
         </div>

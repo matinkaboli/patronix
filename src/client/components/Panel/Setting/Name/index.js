@@ -19,13 +19,11 @@ class Name extends Component {
         rtl: 'true',
         title: 'مقادیر کافی نمیباشند'
       });
+
       return;
     }
 
-
-    this.props.dispatch(updateName({
-      name: this.input.value
-    }));
+    this.props.dispatch(updateName(this.input.value));
   }
 
   render() {
@@ -33,11 +31,12 @@ class Name extends Component {
       <Field>
         <div>
           <p>نام</p>
+
           <Input
             type='text'
             placeholder='نام'
-            Ref={el => { this.input = el; }}
             defaultValue={this.props.name}
+            Ref={el => { this.input = el; }}
           />
         </div>
 
