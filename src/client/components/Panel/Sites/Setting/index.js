@@ -20,55 +20,55 @@ class Site extends Component {
     const id = this.props.match.params.id;
 
     return (
-      <PatNav>
+      <PatNav
+        rootPath={`/panel/sites/${id}`}
+        rootProps={{
+          id
+        }}>
         <Section
-          path={`/panel/sites/${id}/name`}
-          render={() => <Name
-            name={this.props.site.name}
-            dispatch={this.props.dispatch}
-          />}>
+          path='/name'
+          component={Name}
+          componentProps={{
+            name: this.props.site.name
+          }}>
           نام سایت
         </Section>
 
         <Section
-          path={`/panel/sites/${id}/token`}
+          path='/token'
           render={() => <Token
             token={this.props.site.token}
-            dispatch={this.props.dispatch}
           />}>
           توکن سایت
         </Section>
 
         <Section
-          path={`/panel/sites/${id}/operators`}
+          path='/operators'
           render={() => <Operators
             owner={this.props.site.owner}
-            dispatch={this.props.dispatch}
             operators={this.props.site.operators}
           />}>
           پشتیبان ها
         </Section>
 
         <Section
-          path={`/panel/sites/${id}/invite-operator`}
+          path='/invite-operator'
           render={() => <InviteOperator />}>
           دعوت پشتیبان
         </Section>
 
         <Section
-          path={`/panel/sites/${id}/information`}
+          path='/information'
           render={() => <Information
             information={this.props.site.information}
-            dispatch={this.props.dispatch}
           />}>
           درباره سایت
         </Section>
 
         <Section
-          path={`/panel/sites/${id}/avatar`}
+          path='/avatar'
           render={() => <Avatar
             avatar={this.props.site.avatar}
-            dispatch={this.props.dispatch}
           />}>
           عکس سایت
         </Section>
