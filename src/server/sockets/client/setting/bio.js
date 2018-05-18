@@ -15,9 +15,9 @@ socket
   try {
     await shared.user.save();
 
-    socket.emit('setting/name', 200);
+    socket.emit('setting/bio', 200);
   } catch (e) {
-    socket.emit('setting/name', 400);
+    socket.emit('setting/bio', 400);
   }
 
 });
