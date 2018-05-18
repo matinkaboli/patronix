@@ -5,7 +5,7 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 
-export default ({ type, size, file }) => {
+export default (id, { type, size, file }) => {
   socket.once('sites/setting/avatar/update', (status, avatar) => {
     let handler = new ResponseHandler();
 
@@ -25,5 +25,5 @@ export default ({ type, size, file }) => {
     .status(status);
   });
 
-  socket.emit('sites/setting/avatar/update', { type, file, size });
+  socket.emit('sites/setting/avatar/update', id, { type, file, size });
 };

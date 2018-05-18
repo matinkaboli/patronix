@@ -7,37 +7,37 @@ import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
+import Input from 'Root/components/Input';
 
 export default class extends Component {
   @bind
   updateName() {
-    if (!this.refs.name.value) {
+    if (!this.input.value) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نیستند'
       });
+
       return;
     }
 
-    updateName(this.props.id, this.refs.name.value);
+    updateName(this.props.id, this.input.value);
   }
 
   render() {
     return (
       <Field>
         <div>
-          <input
+          <Input
             type='text'
-            ref='name'
             placeholder='نام سایت'
             defaultValue={this.props.name}
+            Ref={el => { this.input = el; }}
           />
         </div>
 
         <div>
-          <Button
-            color='blue'
-            handleClick={this.updateName}>
+          <Button color='blue' handleClick={this.updateName}>
             به روز رسانی
           </Button>
         </div>

@@ -24,6 +24,7 @@ export default {
     LOAD: 'user/LOAD',
     site: {
       UPDATE_NAME: 'user/site/UPDATE_NAME',
+      UPDATE_BIO: 'user/site/UPDATE_BIO',
       LOAD: 'user/site/LOAD',
       ADD: 'user/site/ADD'
     }

@@ -20,11 +20,8 @@ class Site extends Component {
     const id = this.props.match.params.id;
 
     return (
-      <PatNav
-        rootPath={`/panel/sites/${id}`}
-        rootProps={{
-          id
-        }}>
+      <PatNav rootPath={`/panel/sites/${id}`} rootProps={{ id }}>
+
         <Section
           path='/name'
           component={Name}
@@ -76,6 +73,7 @@ class Site extends Component {
           }}>
           عکس سایت
         </Section>
+
       </PatNav>
     );
   }
@@ -93,6 +91,7 @@ export default lazy(
     site(id: "${params.id}") {
       id
       token
+      information
       operators {
         name
         email

@@ -6,13 +6,14 @@ import updateInformation from 'Root/actions/user/site/information';
 import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
+import TextArea from 'Root/components/TextArea';
 import Button from 'Root/components/Button';
 
 
-class Information extends Component {
+export default class extends Component {
   @bind
   updateInformation() {
-    if (!this.refs.information.value) {
+    if (!this.input.value) {
       izitoast.warning({
         rtl: true,
         title: 'مقدار کافی نمی باشد.'
@@ -21,26 +22,23 @@ class Information extends Component {
       return;
     }
 
-    this.props.dispatch(updateInformation(this.refs.information.value));
+    updateInformation(this.props.id, this.input.value);
   }
 
   render() {
     return (
       <Field>
         <div>
-          <input
-            ref='information'
-            type='text'
+          <TextArea
             maxLength='500'
             placeholder='درباره سایت'
+            Ref={el => { this.input = el; }}
             defaultValue={this.props.information}
           />
         </div>
 
         <div>
-          <Button
-            color='blue'
-            handleClick={this.updateInformation}>
+          <Button color='blue' handleClick={this.updateInformation}>
             به روز رسانی
           </Button>
         </div>
@@ -48,5 +46,3 @@ class Information extends Component {
     );
   }
 }
-
-export default Information;

@@ -5,7 +5,7 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 
-export default information => {
+export default (id, information) => {
   socket.once('sites/setting/information', status => {
 
     let handler = new ResponseHandler();
@@ -14,7 +14,8 @@ export default information => {
     .handle('success', () => {
       dispatch({
         type: types.sites.UPDATE_INFORMATION,
-        information
+        information,
+        id
       });
 
       izitoast.success({
@@ -26,5 +27,5 @@ export default information => {
     .status(status);
   });
 
-  socket.emit('sites/setting/information', information);
+  socket.emit('sites/setting/information', id, information);
 };

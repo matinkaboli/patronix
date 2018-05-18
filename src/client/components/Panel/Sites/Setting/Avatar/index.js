@@ -14,25 +14,27 @@ import defaultImage from 'Root/images/user-default.png';
 import styles from './index.less';
 
 
-class Avatar extends Component {
+export default class extends Component {
   @bind
   renderImage() {
     if (this.props.avatar) {
       return <img
-          src={this.props.avatar}
-          alt='عکس کاربر'
-          className={styles.avatarImage} />;
+        alt='عکس کاربر'
+        src={this.props.avatar}
+        className={styles.avatarImage}
+      />;
     }
 
     return <img
-        src={defaultImage}
-        alt='عکس کاربر'
-        className={styles.avatarImage} />;
+      alt='عکس کاربر'
+      src={defaultImage}
+      className={styles.avatarImage}
+    />;
   }
 
   @bind
   removeAvatar() {
-    this.props.dispatch(removeAvatar({}));
+    removeAvatar(this.props.id);
   }
 
   @bind
@@ -45,11 +47,14 @@ class Avatar extends Component {
         return;
       }
 
-      this.props.dispatch(updateAvatar({
+      updateAvatar(
+        this.props.id,
+        {
         type: file.type.split('/')[1],
         size: file.size,
         file: reader.result,
-      }));
+        }
+      );
     });
 
     reader.readAsBinaryString(file);
@@ -92,5 +97,3 @@ class Avatar extends Component {
     );
   }
 }
-
-export default Avatar;

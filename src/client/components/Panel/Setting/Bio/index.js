@@ -7,8 +7,8 @@ import updateBio from 'Root/actions/user/bio';
 import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
-import Button from 'Root/components/Button';
 import TextArea from 'Root/components/TextArea';
+import Button from 'Root/components/Button';
 
 
 class Name extends Component {

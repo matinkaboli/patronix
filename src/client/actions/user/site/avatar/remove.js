@@ -5,7 +5,7 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 
-export default () => {
+export default id => {
   socket.once('sites/setting/avatar/remove', status => {
     let handler = new ResponseHandler();
 
@@ -24,5 +24,5 @@ export default () => {
     .status(status);
   });
 
-  socket.emit('sites/setting/avatar/remove');
+  socket.emit('sites/setting/avatar/remove', id);
 };

@@ -67,7 +67,7 @@ export default (state = {}, action) => {
     }
 
     case types.user.site.UPDATE_NAME: {
-      let index = state.sites.findIndex(i => i.id === action.id);
+      const index = state.sites.findIndex(i => i.id === action.id);
 
       return {
         ...state,
@@ -76,6 +76,22 @@ export default (state = {}, action) => {
           {
             ...state.sites[index],
             name: action.name
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
+    case types.user.site.UPDATE_BIO: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            information: action.information
           },
           ...state.sites.slice(index + 1)
         ]
