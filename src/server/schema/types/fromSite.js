@@ -22,7 +22,7 @@ export default new GraphQLObjectType({
         return user;
       }
     },
-    info: {
+    information: {
       type: GraphQLString
     }
   }
