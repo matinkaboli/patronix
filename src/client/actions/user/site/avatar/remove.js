@@ -3,8 +3,9 @@ import izitoast from 'izitoast';
 import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
+import { dispatch } from 'Root/store';
 
-export default () => dispatch => {
+export default () => {
   socket.once('sites/setting/avatar/remove', status => {
     let handler = new ResponseHandler();
 

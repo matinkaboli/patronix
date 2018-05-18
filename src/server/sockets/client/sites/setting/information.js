@@ -9,7 +9,7 @@ socket
 .name('sites/setting/information')
 .middleware(
   middlewares.client.checkToken,
-  middlewares.client.hasSite
+  middlewares.client.checkSite
 )
 .handler(({ shared, socket }) => async (id, information) => {
   shared.site.information = information;

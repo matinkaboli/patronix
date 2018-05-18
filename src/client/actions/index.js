@@ -23,7 +23,8 @@ export default {
     LOAD: 'user/LOAD',
     site: {
       ADD: 'user/site/ADD',
-      LOAD: 'user/site/LOAD'
+      LOAD: 'user/site/LOAD',
+      UPDATE_NAME: 'user/site/UPDATE_NAME'
     }
   },
   sites: {

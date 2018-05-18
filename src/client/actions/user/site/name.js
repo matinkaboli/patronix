@@ -3,8 +3,9 @@ import izitoast from 'izitoast';
 import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
+import { dispatch } from 'Root/store';
 
-export default name => dispatch => {
+export default (id, name) => {
   socket.once('sites/setting/name', status => {
 
     let handler = new ResponseHandler();
@@ -12,8 +13,9 @@ export default name => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.UPDATE_NAME,
-        name
+        type: types.user.site.UPDATE_NAME,
+        name,
+        id
       });
 
       izitoast.success({
@@ -25,5 +27,5 @@ export default name => dispatch => {
     .status(status);
   });
 
-  socket.emit('sites/setting/name', name);
+  socket.emit('sites/setting/name', id, name);
 };

@@ -10,7 +10,7 @@ socket
 .name('sites/setting/revokeToken')
 .middleware(
   middlewares.client.checkToken,
-  middlewares.client.hasSite
+  middlewares.client.checkSite
 )
 .handler(({ shared, socket }) => async () => {
   shared.site.token = uid();

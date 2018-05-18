@@ -19,7 +19,7 @@ export default class extends Component {
       return;
     }
 
-    updateName(this.refs.name.value);
+    updateName(this.props.id, this.refs.name.value);
   }
 
   render() {
