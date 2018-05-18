@@ -4,8 +4,6 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import styles from './index.less';
 
 export default class extends Component {
-  state = {}
-
   render() {
     let data = [];
     Children.forEach(this.props.children, i => {
@@ -17,7 +15,7 @@ export default class extends Component {
         <div className={styles.nav}>
           {data.map((v, i) =>
             <NavLink
-              to={v.path}
+              to={this.props.rootPath + v.path}
               className={styles.normal}
               activeClassName={styles.active}
               key={i}>
@@ -29,7 +27,14 @@ export default class extends Component {
         <div className={styles.content}>
           <Switch>
             {data.map((v, i) =>
-              <Route key={i} path={v.path} render={v.render} />
+              <Route
+                key={i}
+                path={this.props.rootPath + v.path}
+                render={
+                  () => <v.component
+                  {...this.props.rootProps}
+                  {...v.componentProps} />
+                } />
             )}
           </Switch>
         </div>

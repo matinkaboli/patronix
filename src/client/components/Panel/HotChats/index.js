@@ -8,12 +8,13 @@ import styles from './index.less';
 class HotChats extends Component {
   render() {
     return (
-      <ChatNav>
+      <ChatNav
+        rootPath='/panel/hotchats'>
         {this.props.hotChats.map((v, i) =>
           <Section
             key={i}
-            path={`/panel/hotchats/${v.id}`}
-            render={() => <p>ab</p>}>
+            path={v.id}
+            component={() => <p>ab</p>}>
             <div className={styles.side}>
               <img src='/static/uploads/5af67c7040c1971844ffc054.jpeg' />
               <div>
