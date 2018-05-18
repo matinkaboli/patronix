@@ -37,6 +37,9 @@ export default new GraphQLObjectType({
         });
         return sites;
       }
+    },
+    bio: {
+      type: GraphQLString
     }
   }
 });
