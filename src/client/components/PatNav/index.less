@@ -2,17 +2,19 @@
 @import '~Root/styles/mixins.less';
 
 :local(.normal) {
-  border-bottom: 2px solid transparent;
   transition: all 0.4s;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    border-bottom: 2px solid @blue-2;
+    background-color: @blue-3;
+    color: white;
   }
 }
+
 :local(.active) {
-  border-bottom: 2px solid @blue-2;
+  background-color: @blue-3;
+  color: white;
 }
 
 :local(.container) {
