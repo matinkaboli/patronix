@@ -9,7 +9,7 @@ import bind from 'Root/js/bind';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 
-class Invite extends Component {
+export default class extends Component {
   @bind
   newOperator() {
     if (!this.refs.newOperator.value) {
@@ -55,6 +55,3 @@ class Invite extends Component {
     );
   }
 }
-
-
-export default Invite;

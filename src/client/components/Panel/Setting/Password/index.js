@@ -10,7 +10,7 @@ import Button from 'Root/components/Button';
 import Input from 'Root/components/Input';
 
 
-class Password extends Component {
+export default class extends Component {
   @bind
   updatePass() {
     if (!this.old.value || !this.fresh.value) {
@@ -58,5 +58,3 @@ class Password extends Component {
     );
   }
 }
-
-export default Password;

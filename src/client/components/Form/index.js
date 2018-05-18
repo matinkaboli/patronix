@@ -6,7 +6,7 @@ import bind from 'Root/js/bind';
 import styles from './index.less';
 
 
-class Form extends Component {
+export default class extends Component {
   static propTypes = {
     formStyle: PropTypes.string,
     inputs: PropTypes.arrayOf(PropTypes.shape({
@@ -71,5 +71,3 @@ class Form extends Component {
     );
   }
 }
-
-export default Form;

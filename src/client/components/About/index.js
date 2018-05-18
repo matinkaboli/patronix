@@ -5,7 +5,7 @@ import Box from 'Root/components/Box';
 import styles from './index.less';
 
 
-class About extends Component {
+export default class extends Component {
   render() {
     return (
       <div className={styles.container}>
@@ -54,5 +54,3 @@ class About extends Component {
     );
   }
 }
-
-export default About;

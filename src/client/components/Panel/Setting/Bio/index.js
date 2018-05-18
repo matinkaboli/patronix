@@ -11,7 +11,7 @@ import TextArea from 'Root/components/TextArea';
 import Button from 'Root/components/Button';
 
 
-class Name extends Component {
+class Bio extends Component {
   @bind
   updateBio() {
     if (!this.input.value) {
@@ -51,4 +51,4 @@ export default connect(
   state => ({
     bio: state.user.bio
   })
-)(Name);
+)(Bio);

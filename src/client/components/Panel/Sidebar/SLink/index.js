@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './index.less';
 
-class SLink extends Component {
+export default class extends Component {
   render() {
     return (
       <NavLink
@@ -25,5 +25,3 @@ class SLink extends Component {
     );
   }
 }
-
-export default SLink;

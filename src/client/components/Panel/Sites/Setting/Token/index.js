@@ -9,10 +9,10 @@ import Button from 'Root/components/Button';
 
 import styles from './index.less';
 
-class Token extends Component {
+export default class extends Component {
   @bind
   revokeToken() {
-    this.props.dispatch(revokeToken());
+    revokeToken();
   }
 
   render() {
@@ -42,6 +42,3 @@ class Token extends Component {
     );
   }
 }
-
-
-export default Token;

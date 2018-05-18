@@ -8,12 +8,12 @@ import bind from 'Root/js/bind';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 
-class List extends Component {
+export default class List extends Component {
   @bind
   removeOperator(email) {
     return () => {
       assure(() => {
-        this.props.dispatch(removeOperator(email));
+        removeOperator(email);
       });
     };
   }
@@ -46,6 +46,3 @@ class List extends Component {
     );
   }
 }
-
-
-export default List;

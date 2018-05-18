@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from './index.less';
 
 
-class Button extends Component {
+export default class extends Component {
   render() {
     return <div
       onClick={this.props.handleClick}
@@ -12,5 +12,3 @@ class Button extends Component {
     </div>;
   }
 }
-
-export default Button;

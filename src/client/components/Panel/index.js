@@ -11,7 +11,7 @@ import HotChats from './HotChats';
 import styles from './index.less';
 
 
-class Panel extends Component {
+export default class extends Component {
   render() {
     return (
       <div className={styles.container}>
@@ -33,5 +33,3 @@ class Panel extends Component {
     );
   }
 }
-
-export default Panel;

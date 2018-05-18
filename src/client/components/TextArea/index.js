@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from './index.less';
 
 
-class TextArea extends Component {
+export default class extends Component {
   render() {
     const props = { ...this.props };
     delete props.Ref;
@@ -16,5 +16,3 @@ class TextArea extends Component {
 
   }
 }
-
-export default TextArea;

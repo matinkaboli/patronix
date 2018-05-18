@@ -5,7 +5,7 @@ import HomeSite from './HomeSite';
 import Setting from './Setting';
 
 
-class Sites extends Component {
+export default class extends Component {
   render() {
     return (
       <Switch>
@@ -15,5 +15,3 @@ class Sites extends Component {
     );
   }
 }
-
-export default Sites;

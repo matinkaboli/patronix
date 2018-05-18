@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class Denied extends Component {
+export default class extends Component {
   render() {
     return (
       <div>
@@ -10,5 +10,3 @@ class Denied extends Component {
     );
   }
 }
-
-export default Denied;

@@ -13,7 +13,7 @@ import About from './About';
 import Panel from './Panel';
 import Home from './Home';
 
-class App extends Component {
+export default class extends Component {
   render() {
     return (
       <Router history={history}>
@@ -27,5 +27,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

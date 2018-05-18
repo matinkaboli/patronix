@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from './index.less';
 
 
-class Field extends Component {
+export default class extends Component {
   render() {
     return (
       <div className={styles.section}>
@@ -12,5 +12,3 @@ class Field extends Component {
     );
   }
 }
-
-export default Field;
