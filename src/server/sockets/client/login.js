@@ -48,7 +48,7 @@ socket
     await token.remove();
   }
 
-  let sites = await Site.find({ operators: user._id });
+  let sites = await Site.find({ operators: user._id }, { _id: 1 });
   for (let site of sites) {
     socket.join(site._id.toString());
   }
