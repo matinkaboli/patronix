@@ -12,25 +12,35 @@ import Bio from './Bio';
 class Setting extends Component {
   render() {
     return (
-      <PatNav>
-
-        <Section path='/panel/setting/avatar' render={() => <Avatar />}>
+      <PatNav
+        rootPath='/panel/setting'>
+        <Section
+          path='/avatar'
+          component={Avatar}>
           عکس پروفایل
         </Section>
 
-        <Section path='/panel/setting/name' render={() => <Name />}>
+        <Section
+          path='/name'
+          component={Name}>
           نام
         </Section>
 
-        <Section path='/panel/setting/email' render={() => <Email />}>
+        <Section
+          path='/email'
+          component={Email}>
           ایمیل
         </Section>
 
-        <Section path='/panel/setting/password' render={() => <Password />}>
+        <Section
+          path='/password'
+          component={Password}>
           رمز عبور
         </Section>
 
-        <Section path='/panel/setting/bio' render={() => <Bio />}>
+        <Section
+          path='/bio'
+          component={Bio}>
           درباره
         </Section>
       </PatNav>
