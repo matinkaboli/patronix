@@ -34,24 +34,31 @@ export default () => new Promise(resolve => {
   query {
     user {
       name
-      avatar
       email
+      avatar
+
       sites {
-        name
         id
+        name
       }
+
     }
+
     hotChats {
       id
+
       chats {
         message
         time
       }
+
       site {
         name
+
         owner {
           name
         }
+
       }
     }
   }

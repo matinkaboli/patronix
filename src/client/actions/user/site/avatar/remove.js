@@ -12,7 +12,8 @@ export default id => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.REMOVE_AVATAR
+        type: types.user.site.REMOVE_AVATAR,
+        id
       });
 
       izitoast.success({

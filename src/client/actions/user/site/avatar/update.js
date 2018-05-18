@@ -12,8 +12,9 @@ export default (id, { type, size, file }) => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.SET_AVATAR,
-        avatar
+        type: types.user.site.SET_AVATAR,
+        avatar,
+        id
       });
 
       izitoast.success({

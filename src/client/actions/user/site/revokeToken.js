@@ -5,7 +5,7 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 import { dispatch } from 'Root/store';
 
-export default () => {
+export default id => {
   socket.once('sites/setting/revokeToken', (status, token) => {
 
     let handler = new ResponseHandler();
@@ -14,7 +14,8 @@ export default () => {
     .handle('success', () => {
       dispatch({
         type: types.sites.REVOKE_TOKEN,
-        token
+        token,
+        id
       });
 
       izitoast.success({
@@ -26,5 +27,5 @@ export default () => {
     .status(status);
   });
 
-  socket.emit('sites/setting/revokeToken');
+  socket.emit('sites/setting/revokeToken', id);
 };

@@ -19,7 +19,6 @@ export default class extends Component {
     return (
       <Field>
         <div>
-          <p>{this.props.token}</p>
           <code className={styles.script}>
             {
             `<script

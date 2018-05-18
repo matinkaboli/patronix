@@ -8,11 +8,12 @@ import bind from 'Root/js/bind';
 
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
+import Input from 'Root/components/Input';
 
 export default class extends Component {
   @bind
   newOperator() {
-    if (!this.refs.newOperator.value) {
+    if (!this.input.value) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نیستند'
@@ -20,7 +21,7 @@ export default class extends Component {
       return;
     }
 
-    if (!email(this.refs.newOperator.value)) {
+    if (!email(this.input.value)) {
       izitoast.error({
         rtl: true,
         title: 'ایمیل صحیح نمیباشد'
@@ -28,19 +29,19 @@ export default class extends Component {
       return;
     }
 
-    inviteOperator(this.refs.newOperator.value);
+    inviteOperator(this.props.id, this.input.value);
 
-    this.refs.newOperator.value = '';
+    this.input.value = '';
   }
 
   render() {
     return (
       <Field>
         <div>
-          <input
+          <Input
             type='email'
-            ref='newOperator'
             placeholder='ایمیل پشتیبان'
+            Ref={el => { this.input = el; }}
           />
         </div>
 

@@ -11,7 +11,7 @@ export default id => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.REMOVE
+        type: types.user.site.REMOVE
       });
 
       izitoast.success({

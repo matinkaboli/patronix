@@ -13,7 +13,7 @@ export default (id, information) => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.UPDATE_INFORMATION,
+        type: types.user.site.UPDATE_INFORMATION,
         information,
         id
       });
