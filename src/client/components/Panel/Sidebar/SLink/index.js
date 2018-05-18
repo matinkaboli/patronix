@@ -7,7 +7,7 @@ class SLink extends Component {
   render() {
     return (
       <NavLink
-        exact={this.props.exact || true}
+        exact={this.props.exact || false}
         to={this.props.to}
         onClick={this.props.handleClick}
         activeClassName={styles.activedNavLink}>
