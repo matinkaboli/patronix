@@ -36,40 +36,44 @@ class Site extends Component {
 
         <Section
           path='/token'
-          render={() => <Token
-            token={this.props.site.token}
-          />}>
+          component={Token}
+          componentProps={{
+            token: this.props.site.token
+          }}>
           توکن سایت
         </Section>
 
         <Section
           path='/operators'
-          render={() => <Operators
-            owner={this.props.site.owner}
-            operators={this.props.site.operators}
-          />}>
+          component={Operators}
+          componentProps={{
+            operators: this.props.site.operators,
+            owner: this.props.site.owner
+          }}>
           پشتیبان ها
         </Section>
 
         <Section
           path='/invite-operator'
-          render={() => <InviteOperator />}>
+          component={InviteOperator}>
           دعوت پشتیبان
         </Section>
 
         <Section
           path='/information'
-          render={() => <Information
-            information={this.props.site.information}
-          />}>
+          component={Information}
+          componentProps={{
+            information: this.props.site.information
+          }}>
           درباره سایت
         </Section>
 
         <Section
           path='/avatar'
-          render={() => <Avatar
-            avatar={this.props.site.avatar}
-          />}>
+          component={Avatar}
+          componentProps={{
+            avatar: this.props.site.avatar
+          }}>
           عکس سایت
         </Section>
       </PatNav>
