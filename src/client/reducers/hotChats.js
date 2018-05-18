@@ -6,6 +6,10 @@ export default (state = [], action) => {
       return action.chats;
     }
 
+    case types.CLEAR: {
+      return [];
+    }
+
     default: {
       return state;
     }

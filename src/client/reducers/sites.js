@@ -152,6 +152,10 @@ export default (state = {
       };
     }
 
+    case types.CLEAR: {
+      return {};
+    }
+
     default: {
       return state;
     }

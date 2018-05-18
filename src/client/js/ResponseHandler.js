@@ -34,7 +34,7 @@ export default class {
       title: 'خطا! دوباره امتحان کنید'
     });
   }
-  
+
   unauth() {
     izitoast.warning({
       rtl: true,

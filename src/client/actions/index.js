@@ -4,12 +4,13 @@ export default {
   SET_CAPTCHA: 'SET_CAPTCHA',
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
+  CLEAR: 'CLEAR',
   lazy: {
     START_LOAD: 'lazy/START_LOAD',
-    TEMP_STOP: 'lazy/TEMP_STOP',
     CACHE_STOP: 'lazy/CACHE_STOP',
-    CACHE: 'lazy/CACHE',
-    STATUS: 'lazy/STATUS'
+    TEMP_STOP: 'lazy/TEMP_STOP',
+    STATUS: 'lazy/STATUS',
+    CACHE: 'lazy/CACHE'
   },
   user: {
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',
@@ -22,9 +23,9 @@ export default {
     LOGIN: 'user/LOGIN',
     LOAD: 'user/LOAD',
     site: {
-      ADD: 'user/site/ADD',
+      UPDATE_NAME: 'user/site/UPDATE_NAME',
       LOAD: 'user/site/LOAD',
-      UPDATE_NAME: 'user/site/UPDATE_NAME'
+      ADD: 'user/site/ADD'
     }
   },
   sites: {
@@ -39,16 +40,16 @@ export default {
     ADD_OPERATOR: 'sites/ADD_OPERATOR',
     UPDATE_NAME: 'sites/UPDATE_NAME',
     SET_AVATAR: 'sites/SET_AVATAR,',
+    LOAD_OWNED: 'sites/LOAD_OWNED',
     REMOVE: 'sites/REMOVE',
     LOAD: 'sites/LOAD',
-    ADD: 'sites/ADD',
-    LOAD_OWNED: 'sites/LOAD_OWNED'
+    ADD: 'sites/ADD'
   },
   invitations: {
     ACCEPT: 'invitations/ACCEPT',
-    LOAD: 'invitations/LOAD',
     REJECT: 'invitations/REJECT',
-    ADD: 'invitations/ADD',
+    LOAD: 'invitations/LOAD',
+    ADD: 'invitations/ADD'
   },
   chat: {
     NEW_MESSAGE: 'chat/NEW_MESSAGE',
@@ -59,8 +60,8 @@ export default {
   },
   newChats: {
     REMOVE: 'newChats/REMOVE',
-    NEW: 'newChats/NEW',
-    LOAD: 'newChats/LOAD'
+    LOAD: 'newChats/LOAD',
+    NEW: 'newChats/NEW'
   },
   historyChats: {
     LOAD: 'historyChats/LOAD'

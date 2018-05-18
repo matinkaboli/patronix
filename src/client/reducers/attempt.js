@@ -10,6 +10,10 @@ export default (state = 0, action) => {
       return 0;
     }
 
+    case types.CLEAR: {
+      return 0;
+    }
+
     default: {
       return state;
     }

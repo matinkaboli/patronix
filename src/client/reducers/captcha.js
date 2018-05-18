@@ -6,6 +6,10 @@ export default (state = '', action) => {
       return action.captcha;
     }
 
+    case types.CLEAR: {
+      return '';
+    }
+
     default: {
       return state;
     }

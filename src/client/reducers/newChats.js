@@ -29,6 +29,10 @@ export default (state = [], action) => {
       return action.data;
     }
 
+    case types.CLEAR: {
+      return [];
+    }
+
     default: {
       return state;
     }

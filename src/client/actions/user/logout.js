@@ -3,7 +3,7 @@ import socket from 'Root/socket';
 
 export default dispatch => {
   dispatch({
-    type: types.user.LOGOUT
+    type: types.CLEAR
   });
 
   socket.emit('logout');
