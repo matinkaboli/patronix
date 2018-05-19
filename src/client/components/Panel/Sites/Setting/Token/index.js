@@ -11,8 +11,10 @@ import styles from './index.less';
 
 export default class extends Component {
   @bind
-  revokeToken() {
-    revokeToken();
+  revokeToken(id) {
+    return () => {
+      revokeToken(id);
+    };
   }
 
   render() {
@@ -33,7 +35,7 @@ export default class extends Component {
         <div>
           <Button
             color='blue'
-            handleClick={this.revokeToken}>
+            handleClick={this.revokeToken(this.props.id)}>
             توکن جدید
           </Button>
         </div>
