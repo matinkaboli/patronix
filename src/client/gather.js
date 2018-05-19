@@ -33,6 +33,7 @@ export default () => new Promise(resolve => {
   socket.emit('graphql', `
   query {
     user {
+      bio
       name
       email
       avatar
