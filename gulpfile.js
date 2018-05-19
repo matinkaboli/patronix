@@ -24,7 +24,11 @@ gulp.task('copy', ['clean'], () =>
     gulp.src([
       'src/server/sslcert/*'
     ])
-    .pipe(gulp.dest('build/sslcert'))
+    .pipe(gulp.dest('build/sslcert')),
+    gulp.src([
+      'src/static/**/*'
+    ])
+    .pipe(gulp.dest('build/static'))
   ]
 );
 
