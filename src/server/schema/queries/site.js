@@ -5,6 +5,7 @@ import {
 import authorize from 'Root/authorize';
 import siteType from 'Root/schema/types/site';
 import { Site } from 'Root/models';
+import vatar from 'Root/schema/utils/vatar';
 
 export default {
   type: siteType,
@@ -18,6 +19,7 @@ export default {
 
     let site = await Site.findById(args.id).lean();
     site.id = site._id.toString();
+    vatar(site);
 
     return site;
   }
