@@ -24,6 +24,9 @@ export default new GraphQLObjectType({
     },
     information: {
       type: GraphQLString
+    },
+    avatar: {
+      type: GraphQLString
     }
   }
 });

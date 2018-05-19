@@ -54,6 +54,7 @@ export default () => new Promise(resolve => {
 
       site {
         name
+        avatar
 
         owner {
           name

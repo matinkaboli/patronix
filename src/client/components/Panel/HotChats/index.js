@@ -16,7 +16,7 @@ class HotChats extends Component {
             path={`/${v.id}`}
             component={() => <p>ab</p>}>
             <div className={styles.side}>
-              <img src='/static/uploads/5af67c7040c1971844ffc054.jpeg' />
+              <img src={v.site.avatar} />
               <div>
                 <p>
                   نام سایت :‌ {v.site.name}

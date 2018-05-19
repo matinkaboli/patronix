@@ -7,6 +7,7 @@ import {
 import { Site } from 'Root/models';
 import chatType from './subChat';
 import fromSiteType from './fromSite';
+import vatar from 'Root/schema/utils/vatar';
 
 export default new GraphQLObjectType({
   name: 'hotChats',
@@ -23,7 +24,9 @@ export default new GraphQLObjectType({
     site: {
       type: fromSiteType,
       async resolve(parent) {
-        return await Site.findById(parent.site).lean();
+        let site = await Site.findById(parent.site).lean();
+        vatar(site);
+        return site;
       }
     }
   }
