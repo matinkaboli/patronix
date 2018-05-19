@@ -13,7 +13,8 @@ import Button from 'Root/components/Button';
 export default class extends Component {
   @bind
   updateInformation() {
-    if (!this.input.value) {
+    let info = this.refs.textarea.refs.textarea.value;
+    if (!info) {
       izitoast.warning({
         rtl: true,
         title: 'مقدار کافی نمی باشد.'
@@ -22,7 +23,7 @@ export default class extends Component {
       return;
     }
 
-    updateInformation(this.props.id, this.input.value);
+    updateInformation(this.props.id, info);
   }
 
   render() {
@@ -32,7 +33,7 @@ export default class extends Component {
           <TextArea
             maxLength='500'
             placeholder='درباره سایت'
-            Ref={el => { this.input = el; }}
+            ref='textarea'
             defaultValue={this.props.information}
           />
         </div>

@@ -14,7 +14,8 @@ import Button from 'Root/components/Button';
 class Bio extends Component {
   @bind
   updateBio() {
-    if (!this.input.value) {
+    let bio = this.refs.textarea.refs.textarea.value;
+    if (!bio) {
       izitoast.warning({
         rtl: 'true',
         title: 'مقادیر کافی نمیباشند'
@@ -23,7 +24,7 @@ class Bio extends Component {
       return;
     }
 
-    this.props.dispatch(updateBio(this.input.value));
+    this.props.dispatch(updateBio(bio));
   }
 
   render() {
@@ -33,7 +34,7 @@ class Bio extends Component {
           <TextArea
             placeholder='درباره'
             defaultValue={this.props.bio}
-            Ref={el => { this.input = el; }}
+            ref='textarea'
           />
         </div>
 
