@@ -12,7 +12,8 @@ import Input from 'Root/components/Input';
 export default class extends Component {
   @bind
   updateName() {
-    if (!this.input.value) {
+    let name = this.refs.name.refs.input.value;
+    if (!name) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نیستند'
@@ -21,7 +22,7 @@ export default class extends Component {
       return;
     }
 
-    updateName(this.props.id, this.input.value);
+    updateName(this.props.id, name);
   }
 
   render() {
@@ -32,7 +33,7 @@ export default class extends Component {
             type='text'
             placeholder='نام سایت'
             defaultValue={this.props.name}
-            Ref={el => { this.input = el; }}
+            ref='name'
           />
         </div>
 

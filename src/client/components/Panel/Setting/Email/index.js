@@ -15,10 +15,12 @@ import Input from 'Root/components/Input';
 class Email extends Component {
   @bind
   updateEmail() {
+    let emailValue = this.refs.email.refs.input.value;
+    let pass = this.refs.password.refs.input.value;
     if (
-      !email(this.email.value) ||
-      !this.email.value ||
-      !this.pass.value) {
+      !email(emailValue) ||
+      !emailValue ||
+      !pass) {
 
       izitoast.warning({
         rtl: true,
@@ -30,8 +32,8 @@ class Email extends Component {
     const { dispatch } = this.props;
 
     dispatch(updateEmail({
-      email: this.email.value,
-      password: this.pass.value
+      email: emailValue,
+      password: pass
     }));
   }
 
@@ -43,14 +45,14 @@ class Email extends Component {
           <Input
             type='email'
             placeholder='ایمیل'
-            Ref={el => { this.email = el; }}
+            ref='email'
             defaultValue={this.props.email}
           />
 
           <Input
             type='password'
             placeholder='رمز عبور'
-            Ref={el => { this.pass = el; }}
+            ref='password'
           />
         </div>
 

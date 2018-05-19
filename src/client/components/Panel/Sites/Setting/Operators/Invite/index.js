@@ -13,7 +13,8 @@ import Input from 'Root/components/Input';
 export default class extends Component {
   @bind
   newOperator() {
-    if (!this.input.value) {
+    let input = this.refs.input.refs.input.value;
+    if (!input) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نیستند'
@@ -21,7 +22,7 @@ export default class extends Component {
       return;
     }
 
-    if (!email(this.input.value)) {
+    if (!email(input)) {
       izitoast.error({
         rtl: true,
         title: 'ایمیل صحیح نمیباشد'
@@ -29,9 +30,9 @@ export default class extends Component {
       return;
     }
 
-    inviteOperator(this.props.id, this.input.value);
+    inviteOperator(this.props.id, input);
 
-    this.input.value = '';
+    input = '';
   }
 
   render() {
@@ -41,7 +42,7 @@ export default class extends Component {
           <Input
             type='email'
             placeholder='ایمیل پشتیبان'
-            Ref={el => { this.input = el; }}
+            ref='input'
           />
         </div>
 

@@ -13,7 +13,9 @@ import Input from 'Root/components/Input';
 export default class extends Component {
   @bind
   updatePass() {
-    if (!this.old.value || !this.fresh.value) {
+    let old = this.refs.old.refs.input.value;
+    let fresh = this.refs.fresh.refs.input.value;
+    if (!old || !fresh) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نیست'
@@ -23,8 +25,8 @@ export default class extends Component {
     }
 
     updatePass({
-      old: this.old.value,
-      fresh: this.fresh.value
+      old,
+      fresh
     });
   }
 
@@ -37,13 +39,13 @@ export default class extends Component {
           <Input
             type='password'
             placeholder='رمز کنونی'
-            Ref={el => { this.old = el; }}
+            ref='old'
           />
 
           <Input
             type='password'
             placeholder='رمز جدید'
-            Ref={el => { this.fresh = el; }}
+            ref='fresh'
           />
         </div>
 
