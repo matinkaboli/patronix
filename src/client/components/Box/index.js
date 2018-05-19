@@ -5,7 +5,11 @@ import styles from './index.less';
 
 export default class extends Component {
   render() {
-    return <div className={styles.container + ' ' + this.props.classes}>
+    let className = styles.container;
+    if (this.props.classes) {
+      className = `${className} ${this.props.classes}`;
+    }
+    return <div className={className}>
       {this.props.children}
     </div>;
   }
