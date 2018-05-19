@@ -82,22 +82,6 @@ export default (state = {}, action) => {
       };
     }
 
-    case types.user.site.UPDATE_BIO: {
-      const index = state.sites.findIndex(i => i.id === action.id);
-
-      return {
-        ...state,
-        sites: [
-          ...state.sites.slice(0, index),
-          {
-            ...state.sites[index],
-            information: action.information
-          },
-          ...state.sites.slice(index + 1)
-        ]
-      };
-    }
-
     case types.user.site.REVOKE_TOKEN: {
       const index = state.sites.findIndex(i => i.id === action.id);
 
@@ -108,6 +92,22 @@ export default (state = {}, action) => {
           {
             ...state.sites[index],
             token: action.token
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
+    case types.user.site.UPDATE_INFORMATION: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            information: action.information
           },
           ...state.sites.slice(index + 1)
         ]

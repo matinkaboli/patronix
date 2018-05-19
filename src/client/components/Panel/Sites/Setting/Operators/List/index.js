@@ -14,11 +14,9 @@ import styles from './index.less';
 export default class List extends Component {
   @bind
   removeOperator(email) {
-    return () => {
-      assure(() => {
-        removeOperator(email);
-      });
-    };
+    assure(() => {
+      removeOperator(email);
+    });
   }
 
   render() {
@@ -37,7 +35,7 @@ export default class List extends Component {
               <div>
                 <Button
                   color='red'
-                  handleClick={this.removeOperator(v.email)}>
+                  handleClick={() => { this.removeOperator(v.email); }}>
                     حذف پشتیبان
                 </Button>
               </div>

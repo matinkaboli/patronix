@@ -23,16 +23,15 @@ export default {
     LOGIN: 'user/LOGIN',
     LOAD: 'user/LOAD',
     site: {
+      UPDATE_INFORMATION: 'sites/UPDATE_INFORMATION',
       REVOKE_TOKEN: 'user/site/REVOKE_TOKEN',
       UPDATE_NAME: 'user/site/UPDATE_NAME',
-      UPDATE_BIO: 'user/site/UPDATE_BIO',
       REMOVE: 'user/site/REMOVE',
       LOAD: 'user/site/LOAD',
       ADD: 'user/site/ADD'
     }
   },
   sites: {
-    UPDATE_INFORMATION: 'sites/UPDATE_INFORMATION',
     REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',
     OPERATOR_JOINED: 'sites/OPERATOR_JOINED',
     LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
