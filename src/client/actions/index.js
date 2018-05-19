@@ -23,7 +23,8 @@ export default {
     LOGIN: 'user/LOGIN',
     LOAD: 'user/LOAD',
     site: {
-      UPDATE_INFORMATION: 'sites/UPDATE_INFORMATION',
+      UPDATE_INFORMATION: 'user/site/UPDATE_INFORMATION',
+      REMOVE_OPERATOR: 'user/site/REMOVE_OPERATOR',
       REVOKE_TOKEN: 'user/site/REVOKE_TOKEN',
       UPDATE_NAME: 'user/site/UPDATE_NAME',
       REMOVE: 'user/site/REMOVE',
@@ -32,7 +33,6 @@ export default {
     }
   },
   sites: {
-    REMOVE_OPERATOR: 'sites/REMOVE_OPERATOR',
     OPERATOR_JOINED: 'sites/OPERATOR_JOINED',
     LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
     LEFT_OPERATOR: 'sites/LEFT_OPERATOR',

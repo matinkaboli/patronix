@@ -19,6 +19,8 @@ socket.on('invitation', invitation => {
 
 
 socket.on('operators/leave', operator => {
+  console.log(operator);
+  
   izitoast.warning({
     rtl: true,
     title: `پشتیبان ${operator.name} از سایت خارج شد`
@@ -32,6 +34,8 @@ socket.on('operators/leave', operator => {
 
 
 socket.on('operators/join', operator => {
+  console.log(operator);
+
   izitoast.success({
     rtl: true,
     title: `کاربر ${operator.name} دعوت را پذیرفت و عضو پشتیبان های سایت شد`

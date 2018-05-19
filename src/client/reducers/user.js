@@ -114,6 +114,26 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.site.REMOVE_OPERATOR: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      console.log('State', state.sites[index]);
+
+      // return {
+      //   ...state,
+      //   sites: [
+      //     ...state.sites.slice(0, index),
+      //     {
+      //       ...state.sites[index],
+      //       information: action.information
+      //     },
+      //     ...state.sites.slice(index + 1)
+      //   ]
+      // };
+
+      return state;
+    }
+
     case types.user.site.REMOVE: {
       const index = state.sites.findIndex(i => i.id === action.id);
 

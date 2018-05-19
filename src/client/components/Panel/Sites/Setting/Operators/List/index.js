@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import removeOperator from 'Root/actions/user/site/operator/remove';
 
+import { getState } from 'Root/store';
 import assure from 'Root/js/assure';
 import bind from 'Root/js/bind';
 
@@ -14,12 +15,16 @@ import styles from './index.less';
 export default class List extends Component {
   @bind
   removeOperator(email) {
-    assure(() => {
-      removeOperator(email);
-    });
+    return () => {
+      assure(() => {
+        removeOperator(this.props.id, email);
+      });
+    };
   }
 
   render() {
+    const user = getState().user.email;
+
     return (
       <Fragment>
         {this.props.operators ?
@@ -31,11 +36,11 @@ export default class List extends Component {
               <p>ایمیل: {v.email}</p>
             </div>
 
-            {this.props.owner === v._id ? null :
+            {user === v.email ? null :
               <div>
                 <Button
                   color='red'
-                  handleClick={() => { this.removeOperator(v.email); }}>
+                  handleClick={this.removeOperator(v.email)}>
                     حذف پشتیبان
                 </Button>
               </div>

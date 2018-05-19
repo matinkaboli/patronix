@@ -4,7 +4,7 @@ import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
 
-export default email => dispatch => {
+export default (id, email) => dispatch => {
   socket.once('sites/operators/remove', (status, res) => {
 
     let handler = new ResponseHandler();
@@ -12,8 +12,9 @@ export default email => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.REMOVE_OPERATOR,
-        email
+        type: types.user.site.REMOVE_OPERATOR,
+        email,
+        id
       });
 
       izitoast.success({
@@ -39,5 +40,5 @@ export default email => dispatch => {
     .status(status);
   });
 
-  socket.emit('sites/operators/remove', email.toLowerCase());
+  socket.emit('sites/operators/remove', id, email.toLowerCase());
 };
