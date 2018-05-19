@@ -8,6 +8,9 @@ import bind from 'Root/js/bind';
 import Field from 'Root/components/Panel/Field';
 import Button from 'Root/components/Button';
 
+import styles from './index.less';
+
+
 export default class List extends Component {
   @bind
   removeOperator(email) {
@@ -24,12 +27,13 @@ export default class List extends Component {
         {this.props.operators ?
           this.props.operators.map((v, i) =>
           <Field key={i}>
-            <div>
+
+            <div className={styles.userInfo}>
               <p>نام: {v.name}</p>
               <p>ایمیل: {v.email}</p>
             </div>
 
-            {this.props.owner === v._id ? '' :
+            {this.props.owner === v._id ? null :
               <div>
                 <Button
                   color='red'

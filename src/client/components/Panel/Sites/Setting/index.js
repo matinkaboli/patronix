@@ -93,6 +93,7 @@ export default lazy(
       token
       information
       avatar
+
       operators {
         name
         email

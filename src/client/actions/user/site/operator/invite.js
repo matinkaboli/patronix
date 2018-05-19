@@ -3,7 +3,7 @@ import izitoast from 'izitoast';
 import ResponseHandler from 'Root/js/ResponseHandler';
 import socket from 'Root/socket';
 
-export default email => {
+export default (id, email) => {
   socket.once('sites/operators/invite', (status, res) => {
 
     let handler = new ResponseHandler();
@@ -43,5 +43,5 @@ export default email => {
     .status(status);
   });
 
-  socket.emit('sites/operators/invite', email.toLowerCase());
+  socket.emit('sites/operators/invite', id, email.toLowerCase());
 };

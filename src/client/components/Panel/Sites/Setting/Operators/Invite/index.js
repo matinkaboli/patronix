@@ -14,11 +14,13 @@ export default class extends Component {
   @bind
   newOperator() {
     let input = this.refs.input.refs.input.value;
+
     if (!input) {
       izitoast.warning({
         rtl: true,
         title: 'مقادیر کافی نیستند'
       });
+
       return;
     }
 
@@ -27,6 +29,7 @@ export default class extends Component {
         rtl: true,
         title: 'ایمیل صحیح نمیباشد'
       });
+
       return;
     }
 
@@ -40,9 +43,9 @@ export default class extends Component {
       <Field>
         <div>
           <Input
+            ref='input'
             type='email'
             placeholder='ایمیل پشتیبان'
-            ref='input'
           />
         </div>
 
