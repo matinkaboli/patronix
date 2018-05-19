@@ -13,7 +13,7 @@ export default id => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.sites.REVOKE_TOKEN,
+        type: types.user.site.REVOKE_TOKEN,
         token,
         id
       });

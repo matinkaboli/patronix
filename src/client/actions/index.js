@@ -23,6 +23,7 @@ export default {
     LOGIN: 'user/LOGIN',
     LOAD: 'user/LOAD',
     site: {
+      REVOKE_TOKEN: 'user/site/REVOKE_TOKEN',
       UPDATE_NAME: 'user/site/UPDATE_NAME',
       UPDATE_BIO: 'user/site/UPDATE_BIO',
       REMOVE: 'user/site/REMOVE',
@@ -38,7 +39,6 @@ export default {
     LEFT_OPERATOR: 'sites/LEFT_OPERATOR',
     KICK_OPERATOR: 'sites/KICK_OPERATOR',
     REMOVE_AVATAR: 'sites/REMOVE_AVATAR',
-    REVOKE_TOKEN: 'sites/REVOKE_TOKEN',
     ADD_OPERATOR: 'sites/ADD_OPERATOR',
     UPDATE_NAME: 'sites/UPDATE_NAME',
     SET_AVATAR: 'sites/SET_AVATAR,',

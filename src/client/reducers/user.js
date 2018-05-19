@@ -98,6 +98,22 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.site.REVOKE_TOKEN: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            token: action.token
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
     case types.user.site.REMOVE: {
       const index = state.sites.findIndex(i => i.id === action.id);
 
