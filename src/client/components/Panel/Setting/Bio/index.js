@@ -31,6 +31,8 @@ class Bio extends Component {
     return (
       <Field>
         <div>
+          <p>درباره</p>
+
           <TextArea
             placeholder='درباره'
             defaultValue={this.props.bio}

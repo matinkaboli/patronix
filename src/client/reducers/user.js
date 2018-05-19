@@ -98,6 +98,18 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.site.REMOVE: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
     case types.user.site.LOAD: {
       let index = state.sites.findIndex(i => i.id === action.site.id);
 

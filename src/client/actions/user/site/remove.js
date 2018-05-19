@@ -11,12 +11,13 @@ export default id => dispatch => {
     handler
     .handle('success', () => {
       dispatch({
-        type: types.user.site.REMOVE
+        type: types.user.site.REMOVE,
+        id
       });
 
       izitoast.success({
         rtl: true,
-        title: 'سایت با موفقیت حذف شد'
+        title: 'سایت شما با موفقیت حذف شد.'
       });
     })
 

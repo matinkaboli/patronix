@@ -33,16 +33,14 @@ class Sites extends Component {
 
   @bind
   leaveSite(id) {
-    return () => {
-      assure(() => {
-        this.props.dispatch(leaveSite(id));
-      });
-    };
+    assure(() => {
+      this.props.dispatch(leaveSite(id));
+    });
   }
 
   @bind
   removeSite(id) {
-    return () => assure(() => {
+    assure(() => {
       this.props.dispatch(removeSite(id));
     });
   }
@@ -61,9 +59,10 @@ class Sites extends Component {
                 تنظیمات سایت
               </Button>
             </Link>
+
             <Button
               color='red'
-              handleClick={this.removeSite(v.id)}>
+              handleClick={() => { this.removeSite(v.id); }}>
               حذف سایت
             </Button>
           </div>
@@ -86,11 +85,13 @@ class Sites extends Component {
             placeholder='افزودن سایت جدید'
             className={styles.newSite}
           />
+
           <Button
             color='blue'
             handleClick={this.newSite}>
             افزودن
           </Button>
+
         </div>
       </Box>
     );
@@ -103,6 +104,7 @@ class Sites extends Component {
           {this.ownedSite()}
           {this.createNewSite()}
         </div>
+
         <Box>
           <div>
             <h3 className={styles.title}>
@@ -115,7 +117,7 @@ class Sites extends Component {
                 <p>{v.name}</p>
                 <Button
                   color='red'
-                  handleClick={this.leaveSite(v._id)}>
+                  handleClick={() => { this.leaveSite(v._id); }}>
                   ترک کردن
                 </Button>
               </div>

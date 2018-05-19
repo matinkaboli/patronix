@@ -25,6 +25,7 @@ export default {
     site: {
       UPDATE_NAME: 'user/site/UPDATE_NAME',
       UPDATE_BIO: 'user/site/UPDATE_BIO',
+      REMOVE: 'user/site/REMOVE',
       LOAD: 'user/site/LOAD',
       ADD: 'user/site/ADD'
     }
@@ -41,10 +42,7 @@ export default {
     ADD_OPERATOR: 'sites/ADD_OPERATOR',
     UPDATE_NAME: 'sites/UPDATE_NAME',
     SET_AVATAR: 'sites/SET_AVATAR,',
-    LOAD_OWNED: 'sites/LOAD_OWNED',
-    REMOVE: 'sites/REMOVE',
-    LOAD: 'sites/LOAD',
-    ADD: 'sites/ADD'
+    LOAD_OWNED: 'sites/LOAD_OWNED'
   },
   invitations: {
     ACCEPT: 'invitations/ACCEPT',

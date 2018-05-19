@@ -34,7 +34,7 @@ export default class extends Component {
     return (
       <Field>
         <div>
-          <p>ایمیل</p>
+          <p>رمز عبور</p>
 
           <Input
             type='password'
