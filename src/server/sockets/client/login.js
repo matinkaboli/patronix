@@ -28,55 +28,61 @@ socket
     return;
   }
 
-  let user = await User.findOne({
-    ...credentials,
-    password: hmac(credentials.password, dbkey),
-    status: 1
-  });
+  try {
+    let user = await User.findOne({
+      ...credentials,
+      password: hmac(credentials.password, dbkey),
+      status: 1
+    });
 
-  if (!user) {
-    socket.attempt = socket.attempt + 1;
-    socket.data.chaptcha = null;
-    socket.emit('login', 401);
-    return;
+    if (!user) {
+      socket.attempt = socket.attempt + 1;
+      socket.data.chaptcha = null;
+      socket.emit('login', 401);
+      return;
+    }
+
+    socket.attempt = 1;
+
+    let token = await ClientToken.findOne({ user: user._id });
+    if (token) {
+      await token.remove();
+    }
+
+    let sites = await Site.find({ operators: user._id }, { _id: 1 });
+    for (let site of sites) {
+      socket.join(site._id.toString());
+    }
+
+    if (user.socket) {
+      nsp.sockets[user.socket] &&
+      nsp.sockets[user.socket].disconnect();
+    }
+
+    user.socket = socket.id;
+    await user.save();
+
+    for (let site of sites) {
+      io
+      .of('/customer')
+      .to(site._id.toString())
+      .emit('getOnline');
+    }
+
+    token = new ClientToken({ user: user._id });
+    token.token = hmac(token._id.toString(), otkey);
+    await token.save();
+
+    socket.join(user._id.toString());
+
+    socket.handshake.query.token = token.token;
+
+    socket.emit('login', 200, token.token);
   }
 
-  socket.attempt = 1;
-
-  let token = await ClientToken.findOne({ user: user._id });
-  if (token) {
-    await token.remove();
+  catch (e) {
+    socket.emit('login', 400);
   }
-
-  let sites = await Site.find({ operators: user._id }, { _id: 1 });
-  for (let site of sites) {
-    socket.join(site._id.toString());
-  }
-
-  if (user.socket) {
-    nsp.sockets[user.socket] &&
-    nsp.sockets[user.socket].disconnect();
-  }
-
-  user.socket = socket.id;
-  await user.save();
-
-  for (let site of sites) {
-    io
-    .of('/customer')
-    .to(site._id.toString())
-    .emit('getOnline');
-  }
-
-  token = new ClientToken({ user: user._id });
-  token.token = hmac(token._id.toString(), otkey);
-  await token.save();
-
-  socket.join(user._id.toString());
-
-  socket.handshake.query.token = token.token;
-
-  socket.emit('login', 200, token.token);
 });
 
 export default socket;
