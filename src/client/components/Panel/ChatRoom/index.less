@@ -1,11 +1,17 @@
+@import '~Root/styles/colors.less';
+
+:local(.container) {
+  height: 100%;
+}
+
 :local(.header) {
   background-color: white;
   padding: 10px;
 }
 
 :local(.avatar) {
-  width: 5em;
-  height: 5em;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
 }
 
@@ -16,5 +22,40 @@
 
   > p {
     margin-right: 10px;
+  }
+}
+
+:local(.content) {
+  height: ~'calc(100% - 175px)';
+  overflow-y: auto;
+}
+
+:local(.footer) {
+  padding: 10px;
+}
+
+:local(.input) {
+  width: ~'calc(100% - 100px)';
+  padding: 5px 8px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  font-family: S;
+}
+
+:local(.button) {
+  border-radius: 30px;
+  outline: none;
+  border: 0;
+  padding: 8px;
+  margin-right: 5px;
+  width: 90px;
+  background-color: @green-2;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: @green-base;
   }
 }

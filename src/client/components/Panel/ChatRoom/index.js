@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Chat from './Chat';
 
@@ -19,9 +19,25 @@ class ChatRoom extends Component {
     }
   }
 
+  @bind
+  footer() {
+    if (this.props.done) {
+      return null;
+    }
+
+    return (
+      <Fragment>
+        <input className={styles.input} />
+        <button className={styles.button}>
+          ارسال
+        </button>
+      </Fragment>
+    );
+  }
+
   render() {
     return (
-      <div className={styles.content}>
+      <div className={styles.container}>
         <div className={styles.header}>
           {this.header()}
         </div>
@@ -33,7 +49,7 @@ class ChatRoom extends Component {
         </div>
 
         <div className={styles.footer}>
-          <p>footer</p>
+          {this.footer()}
         </div>
       </div>
     );
