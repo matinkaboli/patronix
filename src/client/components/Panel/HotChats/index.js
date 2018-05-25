@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ChatNav, { Section } from '../ChatNav';
+import ChatRoom from '../ChatRoom';
 
 import styles from './index.less';
 
@@ -14,7 +15,12 @@ class HotChats extends Component {
           <Section
             key={i}
             path={`/${v.id}`}
-            component={() => <p>ab</p>}>
+            component={ChatRoom}
+            componentProps={
+              {
+                chat: v
+              }
+            }>
             <div className={styles.side}>
               <img src={v.site.avatar} />
               <div>

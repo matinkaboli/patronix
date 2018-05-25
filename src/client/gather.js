@@ -47,6 +47,8 @@ export default () => new Promise(resolve => {
 
     hotChats {
       id
+      done
+      taken
 
       chats {
         message

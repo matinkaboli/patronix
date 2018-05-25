@@ -1,7 +1,8 @@
 import {
   GraphQLObjectType,
   GraphQLList,
-  GraphQLID
+  GraphQLID,
+  GraphQLBoolean
 } from 'graphql';
 
 import { Site } from 'Root/models';
@@ -28,6 +29,12 @@ export default new GraphQLObjectType({
         vatar(site);
         return site;
       }
+    },
+    done: {
+      type: GraphQLBoolean
+    },
+    taken: {
+      type: GraphQLBoolean
     }
   }
 });
