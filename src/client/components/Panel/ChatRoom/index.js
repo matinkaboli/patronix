@@ -35,6 +35,21 @@ class ChatRoom extends Component {
     );
   }
 
+  @bind
+  content() {
+    let { done } = this.props.chat;
+
+    return (
+      <div className={
+        `${styles.content} ${done ? styles.heightDone : styles.heightUndone}`
+      }>
+        {this.props.chat.chats.map(
+          (v, i) => <Chat chat={v} key={i} />
+        )}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -42,11 +57,7 @@ class ChatRoom extends Component {
           {this.header()}
         </div>
 
-        <div className={styles.content}>
-          {this.props.chat.chats.map(
-            (v, i) => <Chat chat={v} key={i} />
-          )}
-        </div>
+        {this.content()}
 
         <div className={styles.footer}>
           {this.footer()}
