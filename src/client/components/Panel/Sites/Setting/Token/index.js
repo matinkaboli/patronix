@@ -17,24 +17,6 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <p>توکن فعلی شما</p>
-
-        <p />
-
-        <code className={styles.script}>
-          {this.props.token}
-        </code>
-
-        <p />
-
-        <Button
-          color='blue'
-          handleClick={() => { this.revokeToken(this.props.id); }}>
-          توکن جدید
-        </Button>
-
-        <p />
-
         <p>
           برای استفاده از سایت، تکه کد زیر را به اخر کد
           HTML سایتتان اضافه کنید
@@ -49,6 +31,25 @@ export default class extends Component {
           ></script>`
           }
         </code>
+
+        <p />
+
+        <Button
+          color='blue'
+          handleClick={() => { this.revokeToken(this.props.id); }}>
+          توکن جدید
+        </Button>
+
+        <p />
+
+        <p>توکن فعلی شما</p>
+
+        <p />
+
+        <code className={styles.script}>
+          {this.props.token}
+        </code>
+
       </div>
     );
   }
