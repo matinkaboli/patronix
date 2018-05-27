@@ -130,6 +130,45 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.site.LEFT_OPERATOR: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+      const operators = state.sites[index].operators.filter(
+        v => v.email !== action.email
+      );
+
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            operators
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
+    case types.user.site.ADD_OPERATOR: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            operators: [
+              ...state.sites[index].operators,
+              ...action.operator
+            ]
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
     case types.user.site.UPDATE_INFORMATION: {
       const index = state.sites.findIndex(i => i.id === action.id);
 
@@ -148,7 +187,6 @@ export default (state = {}, action) => {
 
     case types.user.site.REMOVE_OPERATOR: {
       const index = state.sites.findIndex(i => i.id === action.id);
-
       const operators = state.sites[index].operators.filter(
         v => v.email !== action.email
       );

@@ -26,24 +26,15 @@ export default {
       UPDATE_INFORMATION: 'user/site/UPDATE_INFORMATION',
       REMOVE_OPERATOR: 'user/site/REMOVE_OPERATOR',
       REMOVE_AVATAR: 'user/site/REMOVE_AVATAR',
+      LEFT_OPERATOR: 'user/site/LEFT_OPERATOR',
       REVOKE_TOKEN: 'user/site/REVOKE_TOKEN',
+      ADD_OPERATOR: 'user/site/ADD_OPERATOR',
       UPDATE_NAME: 'user/site/UPDATE_NAME',
       SET_AVATAR: 'user/site/SET_AVATAR',
       REMOVE: 'user/site/REMOVE',
       LOAD: 'user/site/LOAD',
       ADD: 'user/site/ADD'
     }
-  },
-  sites: {
-    OPERATOR_JOINED: 'sites/OPERATOR_JOINED',
-    LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
-    LEFT_OPERATOR: 'sites/LEFT_OPERATOR',
-    KICK_OPERATOR: 'sites/KICK_OPERATOR',
-    REMOVE_AVATAR: 'sites/REMOVE_AVATAR',
-    ADD_OPERATOR: 'sites/ADD_OPERATOR',
-    UPDATE_NAME: 'sites/UPDATE_NAME',
-    SET_AVATAR: 'sites/SET_AVATAR,',
-    LOAD_OWNED: 'sites/LOAD_OWNED'
   },
   invitations: {
     ACCEPT: 'invitations/ACCEPT',

@@ -6,9 +6,7 @@ import types from 'Root/actions';
 import socket from 'Root/socket';
 
 export default (id, email) => {
-  console.log('AA');
   socket.once('sites/operators/remove', (status, res) => {
-    console.log(`Status: ${status}`);
 
     let handler = new ResponseHandler();
 

@@ -18,32 +18,30 @@ socket.on('invitation', invitation => {
 });
 
 
-socket.on('operators/leave', operator => {
-  console.log(operator);
-  
+socket.on('operators/leave', (operator, id) => {
   izitoast.warning({
     rtl: true,
     title: `پشتیبان ${operator.name} از سایت خارج شد`
   });
 
   dispatch({
-    type: types.sites.LEFT_OPERATOR,
-    operator
+    type: types.user.sites.LEFT_OPERATOR,
+    email: operator.email,
+    id
   });
 });
 
 
-socket.on('operators/join', operator => {
-  console.log(operator);
-
+socket.on('operators/join', (operator, id) => {
   izitoast.success({
     rtl: true,
     title: `کاربر ${operator.name} دعوت را پذیرفت و عضو پشتیبان های سایت شد`
   });
 
   dispatch({
-    type: types.sites.ADD_OPERATOR,
-    operator
+    type: types.user.sites.ADD_OPERATOR,
+    operator,
+    id
   });
 });
 
@@ -55,7 +53,7 @@ socket.on('sites/kick', site => {
   });
 
   dispatch({
-    type: types.sites.KICK_OPERATOR,
+    type: types.user.sites.KICK_OPERATOR,
     site
   });
 });
@@ -63,7 +61,7 @@ socket.on('sites/kick', site => {
 
 socket.on('sites/join', site => {
   dispatch({
-    type: types.sites.OPERATOR_JOINED,
+    type: types.user.sites.OPERATOR_JOINED,
     site
   });
 });
