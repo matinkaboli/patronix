@@ -23,7 +23,7 @@ export default class List extends Component {
   }
 
   render() {
-    const user = getState().user.email;
+    const { email } = getState().user;
 
     return (
       <Fragment>
@@ -36,7 +36,7 @@ export default class List extends Component {
               <p>ایمیل: {v.email}</p>
             </div>
 
-            {user === v.email ? null :
+            {email === v.email ? null :
               <div>
                 <Button
                   color='red'

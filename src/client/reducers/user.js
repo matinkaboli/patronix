@@ -149,21 +149,21 @@ export default (state = {}, action) => {
     case types.user.site.REMOVE_OPERATOR: {
       const index = state.sites.findIndex(i => i.id === action.id);
 
-      console.log('State', state.sites[index]);
+      const operators = state.sites[index].operators.filter(
+        v => v.email !== action.email
+      );
 
-      // return {
-      //   ...state,
-      //   sites: [
-      //     ...state.sites.slice(0, index),
-      //     {
-      //       ...state.sites[index],
-      //       information: action.information
-      //     },
-      //     ...state.sites.slice(index + 1)
-      //   ]
-      // };
-
-      return state;
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            operators
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
     }
 
     case types.user.site.REMOVE: {
