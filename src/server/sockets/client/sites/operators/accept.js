@@ -2,6 +2,7 @@ import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
 import { Invitation } from 'Root/models';
+import vatar from 'Root/schema/utils/vatar';
 
 let socket = new SocketEvent();
 
@@ -43,12 +44,22 @@ socket
 
   await invitation.remove();
 
-  nsp
-  .to(invitation.from.owner.toString())
-  .emit('operators/join', {
-    name: shared.user.name,
-    email: shared.user.email
-  });
+  {
+    let site = {
+      name: invitation.from.name,
+      id: invitation.from._id,
+      avatar: invitation.from.avatar
+    };
+    vatar(site);
+
+    nsp
+    .to(invitation.from.owner.toString())
+    .emit('operators/join', {
+      name: shared.user.name,
+      email: shared.user.email,
+      site
+    });
+  }
 
   nsp
   .to(invitation.user.toString())
@@ -57,7 +68,7 @@ socket
     _id: invitation.from._id
   });
 
-  socket.emit('sites/operators/accept', 200, invitation.from._id);
+  socket.emit('sites/operators/accept', 200);
 });
 
 export default socket;
