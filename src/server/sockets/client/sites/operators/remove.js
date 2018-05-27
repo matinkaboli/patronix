@@ -40,9 +40,9 @@ socket
 
   {
     let index = user.operatedSites
-    .findIndex(i => i === shared.sites._id.toStrig());
+    .findIndex(i => i === shared.site._id.toStrig());
     user.operatedSites.splice(index, index + 1);
-    
+
     await user.save();
   }
 
