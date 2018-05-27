@@ -25,8 +25,10 @@ export default {
     site: {
       UPDATE_INFORMATION: 'user/site/UPDATE_INFORMATION',
       REMOVE_OPERATOR: 'user/site/REMOVE_OPERATOR',
+      REMOVE_AVATAR: 'user/site/REMOVE_AVATAR',
       REVOKE_TOKEN: 'user/site/REVOKE_TOKEN',
       UPDATE_NAME: 'user/site/UPDATE_NAME',
+      SET_AVATAR: 'user/site/SET_AVATAR',
       REMOVE: 'user/site/REMOVE',
       LOAD: 'user/site/LOAD',
       ADD: 'user/site/ADD'

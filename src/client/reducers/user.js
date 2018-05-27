@@ -98,6 +98,38 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.site.REMOVE_AVATAR: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            avatar: null
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
+    case types.user.site.SET_AVATAR: {
+      const index = state.sites.findIndex(i => i.id === action.id);
+
+      return {
+        ...state,
+        sites: [
+          ...state.sites.slice(0, index),
+          {
+            ...state.sites[index],
+            avatar: action.avatar
+          },
+          ...state.sites.slice(index + 1)
+        ]
+      };
+    }
+
     case types.user.site.UPDATE_INFORMATION: {
       const index = state.sites.findIndex(i => i.id === action.id);
 
