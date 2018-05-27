@@ -49,7 +49,12 @@ class Sites extends Component {
   ownedSite() {
     return (
       <Box>
-        <h3 className={styles.title}>لیست سایت های شما:</h3>
+        <h3 className={styles.title}>
+          {this.props.ownedSite.length ?
+            'لیست سایت های شما' :
+            'شما سایتی از خود ندارید'
+          }
+        </h3>
         {this.props.ownedSite.map((v, i) =>
           <div key={i} className={styles.site}>
             <p>نام سایت: {v.name}</p>
@@ -110,11 +115,14 @@ class Sites extends Component {
             <h3 className={styles.title}>
               {this.props.sites.sites && this.props.sites.sites.length ?
                 'لیست سایت هایی که پشتیبانی میکنید:' :
-              'شما در سایت های دیگران پشتیبانی نمیکنید'}
+                'شما در سایت های دیگران پشتیبانی نمیکنید'
+              }
             </h3>
+
             {this.props.sites.sites && this.props.sites.sites.map((v, i) =>
               <div key={i} className={styles.site}>
                 <p>{v.name}</p>
+                
                 <Button
                   color='red'
                   handleClick={() => { this.leaveSite(v._id); }}>
@@ -122,6 +130,7 @@ class Sites extends Component {
                 </Button>
               </div>
             )}
+
           </div>
         </Box>
       </div>
