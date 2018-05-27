@@ -6,6 +6,7 @@ import newChats from './newChats';
 import hotChats from './hotChats';
 import captcha from './captcha';
 import attempt from './attempt';
+import sites from './sites';
 import user from './user';
 import lazy from './lazy';
 import chat from './chat';
@@ -17,6 +18,7 @@ export default combineReducers({
   hotChats,
   captcha,
   attempt,
+  sites,
   chat,
   user,
   lazy

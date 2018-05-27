@@ -36,6 +36,17 @@ export default {
       ADD: 'user/site/ADD'
     }
   },
+  sites: {
+    OPERATOR_JOINED: 'sites/OPERATOR_JOINED',
+    LEAVE_OPERATOR: 'sites/LEAVE_OPERATOR',
+    LEFT_OPERATOR: 'sites/LEFT_OPERATOR',
+    KICK_OPERATOR: 'sites/KICK_OPERATOR',
+    REMOVE_AVATAR: 'sites/REMOVE_AVATAR',
+    ADD_OPERATOR: 'sites/ADD_OPERATOR',
+    UPDATE_NAME: 'sites/UPDATE_NAME',
+    SET_AVATAR: 'sites/SET_AVATAR,',
+    LOAD_OWNED: 'sites/LOAD_OWNED'
+  },
   invitations: {
     ACCEPT: 'invitations/ACCEPT',
     REJECT: 'invitations/REJECT',
