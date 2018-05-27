@@ -1,9 +1,9 @@
 import izitoast from 'izitoast';
 
 import ResponseHandler from 'Root/js/ResponseHandler';
+import { dispatch } from 'Root/store';
 import types from 'Root/actions';
 import socket from 'Root/socket';
-import { dispatch } from 'Root/store';
 
 export default id => {
   socket.once('sites/setting/revokeToken', (status, token) => {
