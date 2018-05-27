@@ -57,7 +57,7 @@ socket
     _id: invitation.from._id
   });
 
-  socket.emit('sites/operators/accept', 200);
+  socket.emit('sites/operators/accept', 200, invitation.from._id);
 });
 
 export default socket;
