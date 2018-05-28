@@ -12,6 +12,7 @@ socket
 
   if (!al) {
     socket.emit('activate', 404);
+    return;
   }
 
   let user = await User.findById(al.user);
