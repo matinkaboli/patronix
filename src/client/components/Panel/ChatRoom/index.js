@@ -44,7 +44,12 @@ class ChatRoom extends Component {
         `${styles.content} ${done ? styles.heightDone : styles.heightUndone}`
       }>
         {this.props.chat.chats.map(
-          (v, i) => <Chat chat={v} key={i} />
+          (v, i) =>
+            <Chat
+              sender={v.sender ? 'server' : 'customer'}
+              time={v.time}
+              message={v.message}
+              key={i} />
         )}
       </div>
     );

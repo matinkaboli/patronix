@@ -42,7 +42,6 @@ export default () => new Promise(resolve => {
         id
         name
       }
-
     }
 
     hotChats {
@@ -53,6 +52,7 @@ export default () => new Promise(resolve => {
       chats {
         message
         time
+        sender
       }
 
       site {
@@ -62,7 +62,6 @@ export default () => new Promise(resolve => {
         owner {
           name
         }
-
       }
     }
   }

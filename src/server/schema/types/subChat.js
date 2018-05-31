@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLInt
 } from 'graphql';
 
 export default new GraphQLObjectType({
@@ -11,6 +12,9 @@ export default new GraphQLObjectType({
     },
     time: {
       type: GraphQLString
+    },
+    sender: {
+      type: GraphQLInt
     }
   }
 });
