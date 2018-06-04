@@ -3,13 +3,14 @@ import React, { Component, Fragment } from 'react';
 import Chat from './Chat';
 
 import bind from 'Root/js/bind';
+import take from 'Root/actions/chats/take';
 
 import styles from './index.less';
 
 class ChatRoom extends Component {
   @bind
   take() {
-    console.log(this.props.chat.id);
+    take(this.props.chat.id);
   }
 
   @bind
@@ -20,6 +21,22 @@ class ChatRoom extends Component {
           <img src={this.props.chat.site.avatar} className={styles.avatar} />
           <p>{this.props.chat.site.name}</p>
         </div>
+      );
+    }
+
+    if (this.props.chat.taken) {
+      return (
+        <Fragment>
+          <div className={styles.info}>
+            <img src={this.props.chat.site.avatar} className={styles.avatar} />
+            <p>{this.props.chat.site.name}</p>
+          </div>
+          <div>
+            <button className={styles.finish}>
+              پایان
+            </button>
+          </div>
+        </Fragment>
       );
     }
   }

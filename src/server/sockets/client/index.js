@@ -1,5 +1,4 @@
 export default [
-  require('./activate'),
   require('./captcha'),
   require('./login'),
   require('./logout'),

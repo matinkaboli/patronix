@@ -69,6 +69,7 @@ export default {
     LOAD: 'historyChats/LOAD'
   },
   hotChats: {
-    LOAD: 'hotChats/LOAD'
+    LOAD: 'hotChats/LOAD',
+    TAKE: 'hotChats/TAKE'
   }
 };

@@ -3,8 +3,9 @@ import izitoast from 'izitoast';
 import ResponseHandler from 'Root/js/ResponseHandler';
 import types from 'Root/actions';
 import socket from 'Root/socket';
+import { dispatch } from 'Root/store';
 
-export default chat => dispatch => {
+export default id => {
   socket.once('chat/take', status => {
     let handler = new ResponseHandler();
 
@@ -16,13 +17,8 @@ export default chat => dispatch => {
       });
 
       dispatch({
-        type: types.chat.TAKE,
-        chat
-      });
-
-      dispatch({
-        type: types.newChats.REMOVE,
-        id: chat._id
+        type: types.hotChats.TAKE,
+        id
       });
     })
 
@@ -43,5 +39,5 @@ export default chat => dispatch => {
     .status(status);
   });
 
-  socket.emit('chat/take', chat._id);
+  socket.emit('chat/take', id);
 };

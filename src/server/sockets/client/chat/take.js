@@ -1,8 +1,6 @@
 import { SocketEvent } from 'socket.io-manager';
 
 import middlewares from 'Root/middlewares';
-import { Chat } from 'Root/models';
-import { url } from 'Root/config';
 
 let socket = new SocketEvent();
 
@@ -10,58 +8,39 @@ socket
 .namespace('/client')
 .name('chat/take')
 .middleware(
-  middlewares.client.checkToken
+  middlewares.client.checkToken,
+  middlewares.client.validChat
 )
-.handler(({ socket, io }) => async id => {
-  if (socket.data.chat) {
-    socket.emit('chat/take', 400, 2);
+.handler(({ shared, socket, io }) => async () => {
+  let operators = shared.chat.site.operators.map(i => i.toString());
+  if (!operators.includes(shared.user._id.toString())) {
+    socket.emit('chat/take', 403);
     return;
   }
 
-  try {
-    let chat = await Chat
-    .findById(id)
-    .populate('site')
-    .exec();
-
-    if (!chat) {
-      socket.emit('chat/take', 400, 0);
-      return;
-    }
-
-    let operators = chat.site.operators.map(i => i.toString());
-    if (!operators.includes(socket.data.user._id.toString())) {
-      socket.emit('chat/take', 403);
-      return;
-    }
-
-    if (chat.taken) {
-      socket.emit('chat/take', 400, 1);
-      return;
-    }
-
-    chat.taken = true;
-    chat.operator = {
-      id: socket.data.user._id,
-      socket: socket.id
-    };
-    await chat.save();
-
-    socket.data.chat = chat;
-    socket.join(chat._id.toString());
-
-    io
-    .of('/customer')
-    .to(chat._id.toString())
-    .emit('took', {
-      name: socket.data.user.name,
-      avatar: url + socket.data.user.avatar.url
-    });
-
-    socket.emit('chat/take', 200);
-  } catch (e) {
-    socket.emit('chat/take', 400, 3);
+  if (shared.chat.taken) {
+    socket.emit('chat/take', 400, 1);
+    return;
   }
+
+  shared.chat.taken = true;
+  shared.chat.operator = {
+    id: shared.user._id,
+    socket: socket.id
+  };
+  await shared.chat.save();
+
+  socket.join(shared.chat._id.toString());
+
+  io
+  .of('/customer')
+  .to(shared.chat._id.toString())
+  .emit('took', {
+    name: shared.user.name,
+    avatar: shared.user.avatar
+  });
+
+  socket.emit('chat/take', 200);
 });
 
 export default socket;

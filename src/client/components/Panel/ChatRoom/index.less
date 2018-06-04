@@ -7,6 +7,10 @@
 :local(.header) {
   background-color: white;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 :local(.avatar) {
@@ -65,6 +69,17 @@
 
   &:hover {
     background-color: @green-base;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  }
+}
+
+:local(.finish) {
+  &:extend(:local(.button));
+
+  background-color: @red-base ;
+
+  &:hover {
+    background-color: @red-1;
   }
 }
 
