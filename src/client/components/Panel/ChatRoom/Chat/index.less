@@ -14,22 +14,6 @@
   }
 }
 
-
-@keyframes serverError {
-  .error(@i, @count) when (@i < 1) {
-    @per: percentage(@i);
-    @moded: mod(@count, 2);
-
-    @{per} {
-      transform: scale(if((mod(@count, 2) = 1), 1, 1.4));
-    }
-
-    .error(@i + 0.2, @count + 1);
-  }
-
-  .error(0, 0);
-}
-
 @keyframes customerMessage {
   0% {
     transform: translateX(-50px);
@@ -42,21 +26,6 @@
   }
 }
 
-@keyframes customerWarning {
-  .warningMix(@i, @count) when (@i < 1) {
-    @per: percentage(@i);
-    @moded: mod(@count, 2);
-
-    @{per} {
-      opacity: if((mod(@count, 2) = 1), 0.5, 1);
-    }
-
-    .warningMix(@i + 0.2, @count + 1);
-  }
-
-  .warningMix(0, 0);
-}
-
 :local(.chat) {
   padding: 5px 20px;
   border-radius: 15px;
@@ -67,23 +36,23 @@
 }
 
 :local(.customer) {
-  direction: rtl;
+  direction: ltr;
 }
 
 :local(.message-customer) {
-  background-color: @blue-base;
-  color: white;
+  background-color: white;
+  color: black;
   animation-name: customerMessage;
   animation-duration: 0.6s;
 }
 
 :local(.server) {
-  direction: ltr;
+  direction: rtl;
 }
 
 :local(.message-server) {
-  background-color: white;
-  color: black;
+  background-color: @blue-base;
+  color: white;
   animation-name: serverMessage;
   animation-duration: 0.6s;
 }

@@ -31,11 +31,9 @@ class ChatRoom extends Component {
             <img src={this.props.chat.site.avatar} className={styles.avatar} />
             <p>{this.props.chat.site.name}</p>
           </div>
-          <div>
-            <button className={styles.finish}>
-              پایان
-            </button>
-          </div>
+          <button className={styles.finish}>
+            پایان
+          </button>
         </Fragment>
       );
     }
