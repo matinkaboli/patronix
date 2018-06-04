@@ -8,6 +8,11 @@ import styles from './index.less';
 
 class ChatRoom extends Component {
   @bind
+  take() {
+    console.log(this.props.chat.id);
+  }
+
+  @bind
   header() {
     if (!this.props.chat.done && !this.props.chat.taken) {
       return (
@@ -21,8 +26,20 @@ class ChatRoom extends Component {
 
   @bind
   footer() {
-    if (this.props.done) {
+    if (this.props.chat.done) {
       return null;
+    }
+
+    if (!this.props.chat.taken) {
+      return (
+        <Fragment>
+          <button
+            className={styles.taking}
+            onClick={this.take}>
+            اختصاص دادن چت
+          </button>
+        </Fragment>
+      );
     }
 
     return (
